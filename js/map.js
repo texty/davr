@@ -5,6 +5,9 @@ const margin = {top: 10, right: 30, bottom: 30, left: 30},
 
 
 var parseTime = d3.timeParse("%d.%m.%Y");
+
+
+//тимчасова шкала
 var color = d3.scaleOrdinal(d3.schemeCategory10);
 
 
@@ -101,7 +104,9 @@ function drawPoints(data) {
         })
         .entries(unnest);
 
-    //додаємо мітки на карту по категоріям індикаторів
+    /*додаємо мітки на карту по категоріям індикаторів, кожній групі індикаторів тепер можна задати окремі
+    параметри а також transform
+    */
     g.selectAll("circle")
         .data(nested2)
         .enter().append('g')
@@ -111,13 +116,14 @@ function drawPoints(data) {
                 .enter()
                 .append("circle")
                 .attr("cx", function (k) {
-                    return projection([k.lon, k.lat])[0];
+                    return projection([k.lon, k.lat])[0] + i;
                 })
                 .attr("cy", function (k) {
-                    return projection([k.lon, k.lat])[1];
+                    return projection([k.lon, k.lat])[1] + i;
                 })
                 .attr("r", "2px")
-                //поки що привʼязала колір до індикатора, треба привʼязати
+
+                //поки що привʼязала колір до назви індикатора, треба привʼязати до значення
                 .attr("fill", function(d){ return color(d.key)});
 
 
