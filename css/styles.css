@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black; }
+
+path {
+  fill: #ccc;
+  stroke: #fff; }
+
+path:hover {
+  fill: red; }
+
+/*# sourceMappingURL=styles.css.map */

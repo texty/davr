@@ -1,0 +1,15 @@
+body {
+  margin:0;
+  padding:0;
+  background-color: black;
+}
+
+path {
+  fill: #ccc;
+  stroke: #fff;
+  //stroke-width: 2px;
+}
+
+path:hover {
+  fill: red;
+}
