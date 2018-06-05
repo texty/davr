@@ -4,8 +4,7 @@ body {
   background-color: black; }
 
 path {
-  fill: #ccc;
-  stroke: #fff; }
+  fill: #ccc; }
 
 path:hover {
   fill: red; }
