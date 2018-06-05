@@ -158,10 +158,7 @@ function drawPoints(data) {
                         .attr("d", petalPath)
                         .style("stroke", "#fff0f7")
                         .style("stroke-width", "0.1px")
-                        // .style("fill", "#ffa5d2")
-                        .style("fill", function (d, i) {
-                            return d3.hcl(i / d.values.length * 360, 60, 70);
-                        })
+                        .style("fill", "#ffa5d2")
                         .on('click', datum => {
                         console.log(datum); // the datum for the clicked circle
                 });
