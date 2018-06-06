@@ -169,31 +169,31 @@ function drawPoints(data) {
                 });
 
 
-    g.selectAll("circle")
-        .data(nested2)
-        .enter().append('g')
-        .each(function (d, i) {
-            d3.select(this).selectAll('circle')
-                .data(d.values)
-                .enter()
-                .append("circle")
-                .attr("cx", function (k) {
-                    if (k.value > 0) {
-                        return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0] ;
-                    }
-                })
-                .attr("cy", function (k) {
-                    if (k.value > 0) {
-                        return k.size !== k.size ? 0 : projection([k.lon, k.lat])[1];
-                    }
-                })
-                .attr("r", "0.5px")
-
-                //поки що привʼязала колір до назви індикатора, треба привʼязати до значення
-                .attr("fill", "white");
-
-
-        });
+//     g.selectAll("circle")
+//         .data(nested2)
+//         .enter().append('g')
+//         .each(function (d, i) {
+//             d3.select(this).selectAll('circle')
+//                 .data(d.values)
+//                 .enter()
+//                 .append("circle")
+//                 .attr("cx", function (k) {
+//                     if (k.value > 0) {
+//                         return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0] ;
+//                     }
+//                 })
+//                 .attr("cy", function (k) {
+//                     if (k.value > 0) {
+//                         return k.size !== k.size ? 0 : projection([k.lon, k.lat])[1];
+//                     }
+//                 })
+//                 .attr("r", "0.5px")
+//
+//                 //поки що привʼязала колір до назви індикатора, треба привʼязати до значення
+//                 .attr("fill", "white");
+//
+//
+//         });
 }
 
     function zoomed() {
