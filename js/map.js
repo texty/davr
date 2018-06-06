@@ -160,37 +160,38 @@ function drawPoints(data) {
                         .style("stroke-width", "0.1px")
                         .style("fill", "#ffa5d2")
                         .on('click', datum => {
-                        console.log(datum); // the datum for the clicked circle
-                });
+                        console.log(datum.data);
+                        alert(datum.data.name + "\n"+ datum.data.key + ' - ' +  datum.data.value + "\n" + "Норму перевищено у " + datum.data.size + " раз(ів)");
+                })
 
                 });
 
 
-    // g.selectAll("circle")
-    //     .data(nested2)
-    //     .enter().append('g')
-    //     .each(function (d, i) {
-    //         d3.select(this).selectAll('circle')
-    //             .data(d.values)
-    //             .enter()
-    //             .append("circle")
-    //             .attr("cx", function (k) {
-    //                 if (k.value > 0) {
-    //                     return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0];
-    //                 }
-    //             })
-    //             .attr("cy", function (k) {
-    //                 if (k.value > 0) {
-    //                     return k.size !== k.size ? 0 : projection([k.lon, k.lat])[1];
-    //                 }
-    //             })
-    //             .attr("r", "2px")
-    //
-    //             //поки що привʼязала колір до назви індикатора, треба привʼязати до значення
-    //             .attr("fill", "white");
-    //
-    //
-    //     });
+    g.selectAll("circle")
+        .data(nested2)
+        .enter().append('g')
+        .each(function (d, i) {
+            d3.select(this).selectAll('circle')
+                .data(d.values)
+                .enter()
+                .append("circle")
+                .attr("cx", function (k) {
+                    if (k.value > 0) {
+                        return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0];
+                    }
+                })
+                .attr("cy", function (k) {
+                    if (k.value > 0) {
+                        return k.size !== k.size ? 0 : projection([k.lon, k.lat])[1];
+                    }
+                })
+                .attr("r", "0.5px")
+
+                //поки що привʼязала колір до назви індикатора, треба привʼязати до значення
+                .attr("fill", "white");
+
+
+        });
 }
 
     function zoomed() {
@@ -201,14 +202,16 @@ function drawPoints(data) {
     //не зрозуміло, як це працює. Джерело: http://bl.ocks.org/herrstucki/6199768/23f51b97bd942f6b1b7cf0b9ba76ada4cb6d1cc7
 
 function petalPath(d) {
-    var angle = (d.endAngle - d.startAngle) / 2,
+    var angle = (d.endAngle - d.startAngle) / 3,
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
+        // r = size(d.data.size),
         r = size(d.data.size),
+
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
         c2 = {x: halfRadius + r / 2, y: e.y};
-    return "M0,0L" + s.x + "," + s.y + "Q" + c1.x + "," + c1.y + " " + m.x + "," + m.y + "L" + m.x + "," + m.y + "Q" + c2.x + "," + c2.y + " " + e.x + "," + e.y + "Z";
+    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 2) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 2) + " " + Math.round(0) + "," + Math.round(0) + "Z";
 };
 
 
