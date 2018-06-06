@@ -26,15 +26,14 @@ var colorScale = d3.scaleQuantile()
     .range(colorbrewer.Blues[4])
     .domain([0,4]);
 
-//Червона для перевищених значень
-var PointColorsRed = d3.scaleQuantile()
-    .range(colorbrewer.Reds[9])
-    .domain([0,9]);
 
-//зелена для нормальних значень
-var PointColorsGreens = d3.scaleLinear()
-    .range(colorbrewer.Greens[3])
-    .domain([3,0]);
+
+//Червона для перевищених значень
+var GnYlRd = ["#006837","#1a9850", "#66bd63", "#a6d96a", "#d9ef8b", "#ffffbf",  "#fee08b",  "#fdae61", "#f46d43", "#d73027", "#a50026"];
+
+var PointColorsRed = d3.scaleQuantize()
+    .range(GnYlRd)
+    .domain([0, 1, 9]);
 
 var projection = d3.geoMercator()
     .scale(6000)
@@ -158,7 +157,10 @@ function drawPoints(data) {
                         .attr("d", petalPath)
                         .style("stroke", "#fff0f7")
                         .style("stroke-width", "0.1px")
-                        .style("fill", "#ffa5d2")
+                        .style("fill", function(d) {
+                            return PointColorsRed(d.data.size);
+                        })
+                        // .style("fill", "pink")
                         .on('click', datum => {
                         console.log(datum.data);
                         alert(datum.data.name + "\n"+ datum.data.key + ' - ' +  datum.data.value + "\n" + "Норму перевищено у " + datum.data.size + " раз(ів)");
@@ -177,7 +179,7 @@ function drawPoints(data) {
                 .append("circle")
                 .attr("cx", function (k) {
                     if (k.value > 0) {
-                        return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0];
+                        return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0] ;
                     }
                 })
                 .attr("cy", function (k) {
@@ -206,7 +208,7 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
         // r = size(d.data.size),
-        r = size(d.data.size),
+        r = size(1),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
