@@ -31,9 +31,9 @@ var colorScale = d3.scaleQuantile()
 //Червона для перевищених значень
 var GnYlRd = ["#006837","#1a9850", "#66bd63", "#a6d96a", "#d9ef8b", "#ffffbf",  "#fee08b",  "#fdae61", "#f46d43", "#d73027", "#a50026"];
 
-var PointColorsRed = d3.scaleQuantize()
-    .range(GnYlRd)
-    .domain([0, 1, 9]);
+var PointColorsRed = d3.scaleQuantile()
+    .range(colorbrewer.Reds[9])
+    .domain([0, 9]);
 
 var projection = d3.geoMercator()
     .scale(6000)
@@ -158,7 +158,12 @@ function drawPoints(data) {
                         .style("stroke", "#fff0f7")
                         .style("stroke-width", "0.1px")
                         .style("fill", function(d) {
-                            return PointColorsRed(d.data.size);
+                            if(d.data.size > 0.9) {
+                                return PointColorsRed(d.data.size);
+                            }
+                            else {
+                                return "#66bd63"
+                            }
                         })
                         // .style("fill", "pink")
                         .on('click', datum => {
