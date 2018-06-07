@@ -1,7 +1,8 @@
-var innerWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+var innerWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+    innerHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 const margin = {top: 10, right: 30, bottom: 30, left: 30},
     width = innerWidth,
-    height = width / 1.5;
+    height = innerHeight;
 
 
 var halfRadius = 2;
@@ -43,7 +44,7 @@ var projection = d3.geoMercator()
 var path = d3.geoPath().projection(projection);
 
 var zoom = d3.zoom()
-    .scaleExtent([1, 12])
+    .scaleExtent([0, 20])
     .on("zoom", zoomed);
 
 var map = d3.select("body")
@@ -55,28 +56,48 @@ var g = map.append("g");
 map.call(zoom);
 
 
-d3.json("data/danube_basin.geojson", drawMaps);
+//###################-- Ukraine --##########################
+d3.json("data/ukr_shape.geojson", drawUkraine);
 
-function drawMaps(geojson) {
+function drawUkraine(ukraine) {
     g.selectAll("path")
-        .data(geojson.features)
+        .data(ukraine.features)
         .enter()
         .append("path")
         .attr("d", path)
         // .attr("fill", "green")
-        .attr("stroke", function(d){
-            return colorScale(+d.properties.a_DEPTH5 * 5);
-        })
-        .attr("fill-opacity", 0.5)
-        .attr("stroke-width", function (d) {
-            return +d.properties.a_WIDTH5 / 50 + "px";
-        });
+        .attr("stroke", "white")
+        .attr("fill-opacity", 1)
+        .attr("fill", "black")
+        .attr("stroke-width", "0.2px");
 }
 
 
+// ###################-- Дунай --############################
+d3.json("data/danube_basin.geojson", Danube);
+
+function Danube(danubeGeojson) {
+    g.selectAll("path")
+        .data(danubeGeojson.features)
+        .enter()
+        .append("path")
+        .attr("d", path)
+        // .attr("fill", "green")
+        // .attr("stroke", function(d){
+        //     return colorScale(+d.properties.a_DEPTH5 * 5);
+        // })
+        .attr("stroke", "white")
+        .attr("fill-opacity", 0.5)
+        .attr("stroke-width", function (d) {
+            return +d.properties.a_WIDTH5 / 50 + "px";
+        }) ;
+}
+//#####################################################
 
 
-d3.csv("data/danube_gather.csv", drawPoints);
+
+
+d3.csv("data/danube_gather_temp.csv", drawPoints);
 
 function drawPoints(data) {
 
@@ -149,7 +170,7 @@ function drawPoints(data) {
                                 }
                             )))
                         .enter().append("path")
-                        .attr("class", "petal")
+                        .attr("class", "petal myBtn")
                         .attr("transform", function (d) {
                             return r((d.startAngle + d.endAngle) / 2);
                         })
@@ -166,11 +187,37 @@ function drawPoints(data) {
                             }
                         })
                         // .style("fill", "pink")
+                        // .on("click", function() {
+                        //     var modal = document.getElementById('myModal');
+                        //     var span = document.getElementsByClassName("close")[0];
+                        //     modal.style.display = "block";
+                        //
+                        //
+                        //     span.onclick = function() {
+                        //         modal.style.display = "none";
+                        //     };
+                        //     window.onclick = function(event) {
+                        //         if (event.target == modal) {
+                        //             modal.style.display = "none";
+                        //         }
+                        //     }
+                        // });
                         .on('click', datum => {
-                        console.log(datum.data);
-                        alert(datum.data.name + "\n"+ datum.data.key + ' - ' +  datum.data.value + "\n" + "Норму перевищено у " + datum.data.size + " раз(ів)");
-                })
+                        var modal = document.getElementById('myModal');
+                        var span = document.getElementsByClassName("close")[0];
+                        modal.style.display = "block";
 
+
+                        span.onclick = function() {
+                        modal.style.display = "none";
+                        };
+                         window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                            }
+                        };
+                    $('#petalsData'). html(datum.data.name + "\n"+ datum.data.key + ' - ' +  datum.data.value + "\n" + "Норму перевищено у " + datum.data.size.toFixed(2) + " раз(ів)")               ;
+                })
                 });
 
 
@@ -213,12 +260,12 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
         // r = size(d.data.size),
-        r = size(1),
+        r = size(3),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
         c2 = {x: halfRadius + r / 2, y: e.y};
-    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 2) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 2) + " " + Math.round(0) + "," + Math.round(0) + "Z";
+    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 4) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 4) + " " + Math.round(0) + "," + Math.round(0) + "Z";
 };
 
 
