@@ -39,13 +39,17 @@ var PointColorsRed = d3.scaleQuantile()
 var projection = d3.geoMercator()
     .scale(6000)
     .rotate([0, 0, 0])
-    .center([25.4, 47.5]);
+    // .center([30.53, 50.45])
+    .center([25.53, 48.45]);
+
 
 var path = d3.geoPath().projection(projection);
 
+
 var zoom = d3.zoom()
-    .scaleExtent([0, 20])
+    .scaleExtent([0, 6])
     .on("zoom", zoomed);
+
 
 var map = d3.select("body")
     .append("svg")
@@ -56,7 +60,8 @@ var g = map.append("g");
 map.call(zoom);
 
 
-//###################-- Ukraine --##########################
+
+/* --------- Ukraine --------------*/
 d3.json("data/ukr_shape.geojson", drawUkraine);
 
 function drawUkraine(ukraine) {
@@ -64,49 +69,63 @@ function drawUkraine(ukraine) {
         .data(ukraine.features)
         .enter()
         .append("path")
+        .attr("class", "ukraine")
         .attr("d", path)
         // .attr("fill", "green")
         // .attr("stroke", "white")
         .attr("fill-opacity", 1)
         .attr("fill", "rgba(255, 255, 255, 0.05)")
         .attr("stroke-width", "0.2px");
+}/*  end of Ukraine*/
+
+/* --------- Rivers --------------*/
+let Globalvar = {}; // Global access variables
+Globalvar.toggleBasin = "data/DNIESTR_basin.geojson"; // CSV init
+update();
+Globalvar.durations = 5;
+
+function update() {
+    map.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+    d3.selectAll('path').transition().duration(750);
+    d3.selectAll('path').remove();
+    file = Globalvar.toggleBasin;
+    d3.json(file, function (error, allData) {
+        g.selectAll("path")
+            .data(allData.features)
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("class", 'enter')
+            .attr("fill", "green")
+            .attr("stroke", function (d) {
+                    d.properties.a_DEPTH5 = +d.properties.a_DEPTH5;
+                    d.properties.a_WIDTH5 = +d.properties.a_WIDTH5;
+                    return colorScale(d.properties.a_DEPTH5 * 5);
+                }
+            )
+            .attr("opacity", function (d) {
+                    d.properties.a_DEPTH5 = +d.properties.a_DEPTH5;
+                    d.properties.a_WIDTH5 = +d.properties.a_WIDTH5;
+                    return d.properties.a_WIDTH5 > 4 ? 1 : 0;
+                }
+            )
+
+            .attr("fill-opacity", 0.5)
+            .attr("stroke-width", function (d) {
+                return +d.properties.a_WIDTH5 / 50 + "px";
+            });
+    });
+
 }
-
-
-// ###################-- Дунай --############################
-d3.json("data/danube_basin.geojson", Danube);
-
-function Danube(danubeGeojson) {
-    g.selectAll("path")
-        .data(danubeGeojson.features)
-        .enter()
-        .append("path")
-        .attr("d", path)
-        // .attr("fill", "green")
-        // .attr("stroke", function(d){
-        //     return colorScale(+d.properties.a_DEPTH5 * 5);
-        // })
-        .attr("stroke", "white")
-        .attr("fill-opacity", 0.5)
-        .attr("stroke-width", function (d) {
-            return +d.properties.a_WIDTH5 / 50 + "px";
-        }) ;
-}
-//#####################################################
+/*  end of Rivers*/
 
 
 
 
-d3.csv("data/danube_gather_temp.csv", drawPoints);
 
-function drawPoints(data) {
-
-    //створюємо перелік усіх індикаторів, по яких збираються дані
-    // var indicators = {};
-    // data.forEach(function (d) {
-    //     indicators[d.key] = true
-    // });
-
+/*---------------- Draw flowers  -------------------*/
+d3.csv("data/total_data_gather.csv", function (error, data) {
+    var river = document.getElementById('selectBasin').value;
     //групуємо дані по місцю забору і даті
     var nested = d3.nest()
         .key(function (d) {
@@ -115,7 +134,9 @@ function drawPoints(data) {
         .key(function (d) {
             return d.date
         })
-        .entries(data);
+        .entries(data.filter(function (d) {
+            return d.river === river
+        }));
 
 
     //беремо дані за останню можливу дату по кожному місцю водозабору
@@ -156,151 +177,225 @@ function drawPoints(data) {
      */
 
 
-            g.selectAll(".petal")
-                .data(nested2)
-                .enter().append('g')
+    g.selectAll(".petal")
+        .data(nested2)
+        .enter().append('g')
+        .attr("transform", function (d) {
+            return "translate(" + projection([d.values[0].lon, d.values[0].lat]) + ")";
+        })
+        .each(function (d, i) {
+            d3.select(this).selectAll('.petal')
+                .data(pie(d.values
+                    .filter(function (d) {
+                            return d.size > 0;
+                        }
+                    )))
+                .enter().append("path")
+                .attr("class", "petal myBtn")
                 .attr("transform", function (d) {
-                    return "translate(" + projection([d.values[0].lon, d.values[0].lat]) + ")";
+                    return r((d.startAngle + d.endAngle) / 2);
                 })
-                .each(function (d, i) {
-                    d3.select(this).selectAll('.petal')
-                        .data(pie(d.values
-                            .filter(function (d) {
-                                    return d.size > 0;
-                                }
-                            )))
-                        .enter().append("path")
-                        .attr("class", "petal myBtn")
-                        .attr("transform", function (d) {
-                            return r((d.startAngle + d.endAngle) / 2);
-                        })
 
-                        .attr("d", petalPath)
-                        .style("stroke", "#fff0f7")
-                        .style("stroke-width", "0.1px")
-                        .style("fill", function(d) {
-                            if(d.data.size > 0.9) {
-                                return PointColorsRed(d.data.size);
-                            }
-                            else {
-                                return "#66bd63"
-                            }
-                        })
-                        // .style("fill", "pink")
-                        // .on("click", function() {
-                        //     var modal = document.getElementById('myModal');
-                        //     var span = document.getElementsByClassName("close")[0];
-                        //     modal.style.display = "block";
-                        //
-                        //
-                        //     span.onclick = function() {
-                        //         modal.style.display = "none";
-                        //     };
-                        //     window.onclick = function(event) {
-                        //         if (event.target == modal) {
-                        //             modal.style.display = "none";
-                        //         }
-                        //     }
-                        // });
-                        .on('click', datum => {
-                        var modal = document.getElementById('myModal');
-                        var span = document.getElementsByClassName("close")[0];
-                        modal.style.display = "block";
-
-
-                        span.onclick = function() {
-                        modal.style.display = "none";
-                        };
-                         window.onclick = function(event) {
-                        if (event.target == modal) {
-                            modal.style.display = "none";
-                            }
-                        };
-                    $('#petalsData'). html(datum.data.name + "\n"+ datum.data.key + ' - ' +  datum.data.value + "\n" + "Норму перевищено у " + datum.data.size.toFixed(2) + " раз(ів)")               ;
+                .attr("d", petalPath)
+                .style("stroke", "#fff0f7")
+                .style("stroke-width", "0.1px")
+                .style("fill", function (d) {
+                    if (d.data.size > 0.9) {
+                        return PointColorsRed(d.data.size);
+                    }
+                    else {
+                        return "#66bd63"
+                    }
                 })
+                .on('click', datum => {
+                var modal = document.getElementById('myModal');
+            var span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+
+
+            span.onclick = function () {
+                modal.style.display = "none";
+            };
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            };
+            $('#petalsData').html(datum.data.name + "\n" + datum.data.key + ' - ' + datum.data.value + "\n" + "Норму перевищено у " + datum.data.size.toFixed(2) + " раз(ів)");
+        })
+        });
+
+
+})
+function drawPoints() {
+    var river = document.getElementById('selectBasin').value;
+
+    d3.csv("data/total_data_gather.csv", function (error, data) {
+        //групуємо дані по місцю забору і даті
+        var nested = d3.nest()
+            .key(function (d) {
+                return d.id
+            })
+            .key(function (d) {
+                return d.date
+            })
+            .entries(data.filter(function (d) {
+                return d.river === river
+            }));
+
+
+        //беремо дані за останню можливу дату по кожному місцю водозабору
+        x = nested.map(function (d) {
+            arrayLength = d.values.length - 1;
+            return d.values[arrayLength];
+        });
+
+        //розгруповуємо дані за останню дату у звичайний array
+        var unnest = [];
+        x.forEach(function (d) {
+            d.values.forEach(function (k) {
+                unnest.push({
+                    id: k.id,
+                    date: k.date,
+                    name: k.name,
+                    lon: +k.lon,
+                    lat: +k.lat,
+                    key: k.key,
+                    value: k.value,
+                    norm: +k.norm,
+                    dev: +k.dev,
+                    size: +k.size
                 });
+            });
+        });
+
+        //та сгруповуємо дані по індикаторам
+        var nested2 = d3.nest()
+            .key(function (d) {
+                // return d.key;
+                return d.id
+            })
+            .entries(unnest);
+
+        /*додаємо мітки на карту по категоріям індикаторів, кожній групі індикаторів тепер можна задати окремі
+         параметри а також transform
+         */
 
 
-//     g.selectAll("circle")
-//         .data(nested2)
-//         .enter().append('g')
-//         .each(function (d, i) {
-//             d3.select(this).selectAll('circle')
-//                 .data(d.values)
-//                 .enter()
-//                 .append("circle")
-//                 .attr("cx", function (k) {
-//                     if (k.value > 0) {
-//                         return k.size !== k.size ? 0 : projection([k.lon, k.lat])[0] ;
-//                     }
-//                 })
-//                 .attr("cy", function (k) {
-//                     if (k.value > 0) {
-//                         return k.size !== k.size ? 0 : projection([k.lon, k.lat])[1];
-//                     }
-//                 })
-//                 .attr("r", "0.5px")
-//
-//                 //поки що привʼязала колір до назви індикатора, треба привʼязати до значення
-//                 .attr("fill", "white");
-//
-//
-//         });
+        g.selectAll(".petal")
+            .data(nested2)
+            .enter().append('g')
+            .attr("transform", function (d) {
+                return "translate(" + projection([d.values[0].lon, d.values[0].lat]) + ")";
+            })
+            .each(function (d, i) {
+                d3.select(this).selectAll('.petal')
+                    .data(pie(d.values
+                        .filter(function (d) {
+                                return d.size > 0;
+                            }
+                        )))
+                    .enter().append("path")
+                    .attr("class", "petal myBtn")
+                    .attr("transform", function (d) {
+                        return r((d.startAngle + d.endAngle) / 2);
+                    })
+
+                    .attr("d", petalPath)
+                    .style("stroke", "#fff0f7")
+                    .style("stroke-width", "0.1px")
+                    .style("fill", function (d) {
+                        if (d.data.size > 0.9) {
+                            return PointColorsRed(d.data.size);
+                        }
+                        else {
+                            return "#66bd63"
+                        }
+                    })
+                    .on('click', datum => {
+                    var modal = document.getElementById('myModal');
+                var span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
+
+
+                span.onclick = function () {
+                    modal.style.display = "none";
+                };
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                };
+                $('#petalsData').html(datum.data.name + "\n" + datum.data.key + ' - ' + datum.data.value + "\n" + "Норму перевищено у " + datum.data.size.toFixed(2) + " раз(ів)");
+            })
+            });
+
+
+    })
 }
 
-    function zoomed() {
-        g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
-        g.attr("transform", d3.event.transform); // updated for d3 v4
-    }
 
-    //не зрозуміло, як це працює. Джерело: http://bl.ocks.org/herrstucki/6199768/23f51b97bd942f6b1b7cf0b9ba76ada4cb6d1cc7
+
 
 function petalPath(d) {
     var angle = (d.endAngle - d.startAngle) / 3,
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
-        // r = size(d.data.size),
-        r = size(3),
+    // r = size(d.data.size),
+        r = size(1),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
         c2 = {x: halfRadius + r / 2, y: e.y};
-    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 4) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 4) + " " + Math.round(0) + "," + Math.round(0) + "Z";
+    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 3) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 3) + " " + Math.round(0) + "," + Math.round(0) + "Z";
 };
 
 
 
+function r(angle) {
+    return "rotate(" + (angle / Math.PI * 180) + ")";
+}
 
-// function petalFill(d, i) {
-//     return d3.hcl(i / d.values.length * 360, 60, 70);
-// };
+function polarToCartesian(angle, radius) {
+    return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius
+    };
+}  /* end of flowers */
 
-// function petalStroke(d, i) {
-//     return d3.hcl(i / d.values.length * 360, 60, 40);
-// };
 
-    function r(angle) {
-        return "rotate(" + (angle / Math.PI * 180) + ")";
+function zoomed() {
+    g.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+    g.attr("transform", d3.event.transform); // updated for d3 v4
+}
+
+function toggle() {
+    if (document.getElementById('selectBasin').value == 'Дунай') {
+        Globalvar.toggleBasin = "data/danube_basin.geojson";
+        projection.scale(6000).rotate([0, 0, 0]).center([25.53, 47.45]);
+    } else if
+    (document.getElementById('selectBasin').value == 'Дністер') {
+        Globalvar.toggleBasin = "data/DNIESTR_basin.geojson";
+        projection.scale(6000).rotate([0, 0, 0]).center([25.53, 48.45]);
     }
-
-    function polarToCartesian(angle, radius) {
-        return {
-            x: Math.cos(angle) * radius,
-            y: Math.sin(angle) * radius
-        };
+    else if
+    (document.getElementById('selectBasin').value == 'Південний Буг') {
+        Globalvar.toggleBasin = "data/BUG_basin.geojson";
+        projection.scale(6000).rotate([0, 0, 0]).center([26.53, 48.45]);
     }
+    else if
+    (document.getElementById('selectBasin').value == 'Дніпро') {
+        Globalvar.toggleBasin = "data/DNIPRO_basin.geojson";
+        projection.scale(3500).rotate([0, 0, 0]).center([30.53, 50.45]);
+    }
+    else if
+    (document.getElementById('selectBasin').value == 'Дон') {
+        Globalvar.toggleBasin = "data/DON_basin.geojson";
+        projection.scale(6000).rotate([0, 0, 0]).center([34.53, 50.55]);
+    }
+    update();
+    d3.json("data/ukr_shape.geojson", drawUkraine);
+    d3.selectAll('.petal').remove();
+    drawPoints();
+}
 
-
-
-// nested_data.map(function(m) {
-//     //for each group do the filter on each value
-//     m.values = m.values.filter(function(d) {
-//         //return true for those having starting point as island.
-//         return d['starting point'] == 'Island';
-//     })
-// })
-
-
-// var data = [{name: 'dan', value: 40}, {name: 'ryan', value: 50}];
-// var getKeys = _.pluck(data, 'name');
-// => ["dan", "ryan"]

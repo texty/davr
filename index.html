@@ -13,13 +13,17 @@
 <!--<script src="http://lab.interactivethings.com/lib/d3-grid.js"></script>-->
 
 <!--<script src="https://d3js.org/topojson.v1.min.js"></script>-->
-<script src="js/map.js"></script>
+<!--<script src="js/map.js"></script>-->
 <!--<script src="js/flower.js"></script>-->
-<!--<script src="js/updateRiver.js"></script>-->
+<script src="js/updateRiver.js"></script>
 
-<select id="select-basin">
-    <option value="1">Дунай</option>
-    <option value="2">Дністер</option>
+<select id="selectBasin" onchange="toggle()">
+    <option value="Дністер">Дністер</option>
+    <option value="Дунай">Дунай</option>
+    <option value="Південний Буг">Південний Буг</option>
+    <option value="Дніпро">Дніпро</option>
+    <option value="Дон">Дон</option>
+
 
 </select>
 

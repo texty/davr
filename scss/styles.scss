@@ -4,6 +4,14 @@ body {
   background-color: black;
 }
 
+//* {
+//  -webkit-transition: all 0.3s ease;
+//  -moz-transition: all 0.3s ease;
+//  -o-transition: all 0.3s ease;
+//  -ms-transition: all 0.3s ease;
+//  transition: all 0.3s ease;
+//}
+
 //path {
 //  fill: #ccc;
 //
@@ -13,7 +21,7 @@ body {
 //  fill: red;
 //}
 
-#select-basin {
+#selectBasin {
   position:absolute;
   top: 20px;
   right:20px;
