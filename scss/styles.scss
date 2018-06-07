@@ -2,23 +2,23 @@ body {
   margin:0;
   padding:0;
   background-color: black;
+
 }
 
-//* {
-//  -webkit-transition: all 0.3s ease;
-//  -moz-transition: all 0.3s ease;
-//  -o-transition: all 0.3s ease;
-//  -ms-transition: all 0.3s ease;
-//  transition: all 0.3s ease;
-//}
 
-//path {
-//  fill: #ccc;
+
+//  path.enter {
+//    fill-opacity: 0;
+//    stroke-dasharray: 870;
+//    stroke-dashoffset: 870;
+//    animation: draw 10s infinite linear;
+//  }
 //
-//}
-
-//path:hover {
-//  fill: red;
+//
+//@keyframes draw {
+//  to {
+//    stroke-dashoffset: 0;
+//  }
 //}
 
 #selectBasin {
@@ -68,4 +68,9 @@ body {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+
+.petal {
+  z-index:1000
 }

@@ -78,20 +78,57 @@ function drawUkraine(ukraine) {
         .attr("stroke-width", "0.2px");
 }/*  end of Ukraine*/
 
-/* --------- Rivers --------------*/
-let Globalvar = {}; // Global access variables
-Globalvar.toggleBasin = "data/DNIESTR_basin.geojson"; // CSV init
-update();
-Globalvar.durations = 5;
+// /* --------- Rivers --------------*/
+// let Globalvar = {}; // Global access variables
+// Globalvar.toggleBasin = "data/DNIESTR_basin.geojson"; // CSV init
+// update();
+// Globalvar.durations = 5;
+//
+// function update() {
+//     map.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+//     d3.selectAll('path').transition().duration(750);
+//     d3.selectAll('path').remove();
+//     file = Globalvar.toggleBasin;
+//     d3.json(file, function (error, allData) {
+//         g.selectAll("path")
+//             .data(allData.features)
+//             .enter()
+//             .append("path")
+//             .attr("d", path)
+//             .attr("class", 'enter')
+//             .attr("fill", "green")
+//             .attr("stroke", function (d) {
+//                     d.properties.a_DEPTH5 = +d.properties.a_DEPTH5;
+//                     d.properties.a_WIDTH5 = +d.properties.a_WIDTH5;
+//                     return colorScale(d.properties.a_DEPTH5 * 5);
+//                 }
+//             )
+//             .attr("opacity", function (d) {
+//                     d.properties.a_DEPTH5 = +d.properties.a_DEPTH5;
+//                     d.properties.a_WIDTH5 = +d.properties.a_WIDTH5;
+//                     return d.properties.a_WIDTH5 > 4 ? 1 : 0;
+//                 }
+//             )
+//
+//             .attr("fill-opacity", 0.5)
+//             .attr("stroke-width", function (d) {
+//                 return +d.properties.a_WIDTH5 / 50 + "px";
+//             });
+//     });
 
-function update() {
-    map.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
-    d3.selectAll('path').transition().duration(750);
-    d3.selectAll('path').remove();
-    file = Globalvar.toggleBasin;
-    d3.json(file, function (error, allData) {
+// }
+/*  end of Rivers*/
+
+/*---------------- DRAW rivers from a file  -------------------*/
+function drawRivers() {
+    var river = document.getElementById('selectBasin').value;
+
+    d3.json("data/ALL_rivers ukr basins SIMPLE.geojson", function (error, allData) {
+
         g.selectAll("path")
-            .data(allData.features)
+            .data(allData.features.filter(function (d) {
+                return d.properties.river === river
+            }))
             .enter()
             .append("path")
             .attr("d", path)
@@ -116,15 +153,16 @@ function update() {
             });
     });
 
-}
-/*  end of Rivers*/
+
+    }
+
 
 
 
 
 
 /*---------------- Draw flowers  -------------------*/
-d3.csv("data/total_data_gather.csv", function (error, data) {
+d3.csv("data/flowers.csv", function (error, data) {
     var river = document.getElementById('selectBasin').value;
     //групуємо дані по місцю забору і даті
     var nested = d3.nest()
@@ -136,7 +174,8 @@ d3.csv("data/total_data_gather.csv", function (error, data) {
         })
         .entries(data.filter(function (d) {
             return d.river === river
-        }));
+        })
+        );
 
 
     //беремо дані за останню можливу дату по кожному місцю водозабору
@@ -226,11 +265,11 @@ d3.csv("data/total_data_gather.csv", function (error, data) {
         });
 
 
-})
+});
 function drawPoints() {
     var river = document.getElementById('selectBasin').value;
 
-    d3.csv("data/total_data_gather.csv", function (error, data) {
+    d3.csv("data/flowers.csv", function (error, data) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
             .key(function (d) {
@@ -371,31 +410,28 @@ function zoomed() {
 
 function toggle() {
     if (document.getElementById('selectBasin').value == 'Дунай') {
-        Globalvar.toggleBasin = "data/danube_basin.geojson";
         projection.scale(6000).rotate([0, 0, 0]).center([25.53, 47.45]);
     } else if
     (document.getElementById('selectBasin').value == 'Дністер') {
-        Globalvar.toggleBasin = "data/DNIESTR_basin.geojson";
         projection.scale(6000).rotate([0, 0, 0]).center([25.53, 48.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Південний Буг') {
-        Globalvar.toggleBasin = "data/BUG_basin.geojson";
         projection.scale(6000).rotate([0, 0, 0]).center([26.53, 48.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Дніпро') {
-        Globalvar.toggleBasin = "data/DNIPRO_basin.geojson";
         projection.scale(3500).rotate([0, 0, 0]).center([30.53, 50.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Дон') {
-        Globalvar.toggleBasin = "data/DON_basin.geojson";
         projection.scale(6000).rotate([0, 0, 0]).center([34.53, 50.55]);
     }
-    update();
-    d3.json("data/ukr_shape.geojson", drawUkraine);
-    d3.selectAll('.petal').remove();
+    // d3.json("data/ukr_shape.geojson", drawUkraine);
+    // d3.selectAll('.petal').remove();
     drawPoints();
+    drawRivers();
+    // update();
+
 }
 

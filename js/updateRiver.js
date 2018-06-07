@@ -2,7 +2,7 @@
 var innerWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
     innerHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 const margin = {top: 10, right: 30, bottom: 30, left: 30},
-    width = innerWidth,
+    width = innerWidth - margin.right - margin.left,
     height = innerHeight;
 
 
@@ -59,6 +59,8 @@ var map = d3.select("body")
 
 var g = map.append("g");
 map.call(zoom);
+
+
 
 //###################-- Ukraine --##########################
 d3.json("data/ukr_shape.geojson", drawUkraine);
@@ -224,7 +226,8 @@ function drawPoints(data) {
                 }
             };
             $('#petalsData'). html(datum.data.name + "\n"+ datum.data.key + ' - ' +  datum.data.value + "\n" + "Норму перевищено у " + datum.data.size.toFixed(2) + " раз(ів)")               ;
-        })
+        });
+
         });
 
 
@@ -239,7 +242,7 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
     // r = size(d.data.size),
-        r = size(1),
+        r = size(halfRadius),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
@@ -266,33 +269,41 @@ function zoomed() {
 }
 
 function toggle() {
-    if (document.getElementById('selectBasin').value == 'Дунай') {
+    if (document.getElementById('selectBasin').value == 'Дунай' &&
+        document.getElementById('selectBasin').options[document.getElementById('selectBasin').selectedIndex].innerHTML == 'Дунай (Одеська обл.)') {
         Globalvar.toggleMarkers = "data/danube_gather_temp.csv";
         Globalvar.toggleBasin = "data/danube_basin.geojson";
-        projection.scale(6000).rotate([0, 0, 0]).center([25.53, 47.45]);
-    } else if
+        projection.scale(14000).rotate([0, 0, 0]).center([28.53, 46]);
+    } else if(document.getElementById('selectBasin').value == 'Дунай' &&
+        document.getElementById('selectBasin').options[document.getElementById('selectBasin').selectedIndex].innerHTML == 'Дунай (Закарпат. Ів.-Франк., Чернів. обл.)') {
+        Globalvar.toggleMarkers = "data/danube_gather_temp.csv";
+        Globalvar.toggleBasin = "data/danube_basin.geojson";
+        projection.scale(10000).rotate([0, 0, 0]).center([24.00, 48.45]);
+    }
+
+    else if
     (document.getElementById('selectBasin').value == 'Дністер') {
         Globalvar.toggleMarkers = "data/DNIESTR_flower.csv";
         Globalvar.toggleBasin = "data/DNIESTR_basin.geojson";
-        projection.scale(6000).rotate([0, 0, 0]).center([25.53, 48.45]);
+        projection.scale(7000).rotate([0, 0, 0]).center([25.53, 48.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Південний Буг') {
         Globalvar.toggleBasin = "data/BUG_basin.geojson";
         Globalvar.toggleMarkers = "data/BUG_flower.csv";
-        projection.scale(6000).rotate([0, 0, 0]).center([26.53, 48.45]);
+        projection.scale(7000).rotate([0, 0, 0]).center([27.53, 48.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Дніпро') {
         Globalvar.toggleBasin = "data/DNIPRO_basin.geojson";
         Globalvar.toggleMarkers = "data/DNIPRO_flower.csv";
-        projection.scale(3500).rotate([0, 0, 0]).center([30.53, 50.45]);
+        projection.scale(7000).rotate([0, 0, 0]).center([30.53, 48.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Дон') {
         Globalvar.toggleBasin = "data/DON_basin.geojson";
         Globalvar.toggleMarkers = "data/DON_flower.csv";
-        projection.scale(6000).rotate([0, 0, 0]).center([34.53, 50.55]);
+        projection.scale(7000).rotate([0, 0, 0]).center([34.53, 49.55]);
     }
     update();
 }

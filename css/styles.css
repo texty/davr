@@ -53,4 +53,7 @@ body {
   text-decoration: none;
   cursor: pointer; }
 
+.petal {
+  z-index: 1000; }
+
 /*# sourceMappingURL=styles.css.map */

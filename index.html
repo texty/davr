@@ -7,10 +7,12 @@
     <link rel="stylesheet" href = "css/styles.css">
 </head>
 <body>
+<div id="svgContainer"></div>
 <script src="lib/jquery-2.1.4.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-<!--<script src="http://lab.interactivethings.com/lib/d3-grid.js"></script>-->
+<!--<script src="lib/fisheye.js"></script>-->
+
 
 <!--<script src="https://d3js.org/topojson.v1.min.js"></script>-->
 <!--<script src="js/map.js"></script>-->
@@ -19,7 +21,8 @@
 
 <select id="selectBasin" onchange="toggle()">
     <option value="Дністер">Дністер</option>
-    <option value="Дунай">Дунай</option>
+    <option data="1" value="Дунай">Дунай (Одеська обл.)</option>
+    <option value="Дунай">Дунай (Закарпат. Ів.-Франк., Чернів. обл.)</option>
     <option value="Південний Буг">Південний Буг</option>
     <option value="Дніпро">Дніпро</option>
     <option value="Дон">Дон</option>
