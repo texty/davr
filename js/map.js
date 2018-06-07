@@ -66,9 +66,9 @@ function drawUkraine(ukraine) {
         .append("path")
         .attr("d", path)
         // .attr("fill", "green")
-        .attr("stroke", "white")
+        // .attr("stroke", "white")
         .attr("fill-opacity", 1)
-        .attr("fill", "black")
+        .attr("fill", "rgba(255, 255, 255, 0.05)")
         .attr("stroke-width", "0.2px");
 }
 
