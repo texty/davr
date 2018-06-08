@@ -56,19 +56,26 @@ var parseTime = d3.timeParse("%d.%m.%Y");
 var projection = d3.geoMercator()
     .scale(1500)
     .rotate([0, 0, 0])
-    .center([28.53, 50.45]);
+    .center([27.53, 47.00]);
 
 var path = d3.geoPath()
     .projection(projection);
+
+
+var zoom = d3.zoom()
+    .scaleExtent([0, 6])
+    .on("zoom", zoomed);
+
 
 var bigMap = d3.select("body")
     .append("svg")
     .attr("id", "bigsvg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 960 400");
+    .attr("viewBox", "0 0 960 350");
 
 var group = bigMap.append("g");
 
+bigMap.call(zoom);
 d3.json("data/all_total_basins.geojson", drawRivers);
 
     function drawRivers(myData) {
@@ -350,6 +357,10 @@ function drawSmallMaps(file, id) {
     })
 };
 
+function zoomed() {
+    group.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+    group.attr("transform", d3.event.transform); // updated for d3 v4
+}
 
 
 
