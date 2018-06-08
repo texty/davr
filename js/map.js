@@ -40,7 +40,7 @@ var projection = d3.geoMercator()
     .scale(6000)
     .rotate([0, 0, 0])
     // .center([30.53, 50.45])
-    .center([25.53, 48.45]);
+    .center([25.53, 49.45]);
 
 
 var path = d3.geoPath().projection(projection);

@@ -7,28 +7,39 @@
     <link rel="stylesheet" href = "css/styles.css">
 </head>
 <body>
-<div id="svgContainer"></div>
 <script src="lib/jquery-2.1.4.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <!--<script src="lib/fisheye.js"></script>-->
-
-
 <!--<script src="https://d3js.org/topojson.v1.min.js"></script>-->
 <!--<script src="js/map.js"></script>-->
 <!--<script src="js/flower.js"></script>-->
-<script src="js/updateRiver.js"></script>
+<!--<script src="js/updateRiver.js"></script>-->
+<script src="js/multiples.js"></script>
 
-<select id="selectBasin" onchange="toggle()">
-    <option value="Дністер">Дністер</option>
-    <option data="1" value="Дунай">Дунай (Одеська обл.)</option>
-    <option value="Дунай">Дунай (Закарпат. Ів.-Франк., Чернів. обл.)</option>
-    <option value="Південний Буг">Південний Буг</option>
-    <option value="Дніпро">Дніпро</option>
-    <option value="Дон">Дон</option>
+<div id="allrivers">
+    <div id="danube" class="river"><h5>Дунай</h5></div>
+    <div id="dnister" class="river"><h5>Дністер</h5></div>
+    <div id="southernbug" class="river"><h5>Південний Буг</h5></div>
+    <div id="dnipro" class="river"><h5>Дніпро</h5></div>
+    <div id="don" class="river"><h5>Дон</h5></div>
+    <div id="wisla" class="river"><h5>Вісла</h5></div>
+
+</div>
+
+<div id="bigMap"></div>
 
 
-</select>
+<!--<select id="selectBasin" onchange="toggle()">-->
+    <!--<option value="Дністер">Дністер</option>-->
+    <!--<option data="1" value="Дунай">Дунай (Одеська обл.)</option>-->
+    <!--<option value="Дунай">Дунай (Закарпат. Ів.-Франк., Чернів. обл.)</option>-->
+    <!--<option value="Південний Буг">Південний Буг</option>-->
+    <!--<option value="Дніпро">Дніпро</option>-->
+    <!--<option value="Дон">Дон</option>-->
+
+
+<!--</select>-->
 
 
 <div id="myModal" class="modal">

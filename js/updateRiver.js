@@ -242,7 +242,7 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
     // r = size(d.data.size),
-        r = size(halfRadius),
+        r = size(halfRadius*3),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
@@ -297,7 +297,7 @@ function toggle() {
     (document.getElementById('selectBasin').value == 'Дніпро') {
         Globalvar.toggleBasin = "data/DNIPRO_basin.geojson";
         Globalvar.toggleMarkers = "data/DNIPRO_flower.csv";
-        projection.scale(7000).rotate([0, 0, 0]).center([30.53, 48.45]);
+        projection.scale(5000).rotate([0, 0, 0]).center([30.53, 49.45]);
     }
     else if
     (document.getElementById('selectBasin').value == 'Дон') {

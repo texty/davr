@@ -5,21 +5,12 @@ body {
 
 }
 
-
-
-//  path.enter {
-//    fill-opacity: 0;
-//    stroke-dasharray: 870;
-//    stroke-dashoffset: 870;
-//    animation: draw 10s infinite linear;
-//  }
-//
-//
-//@keyframes draw {
-//  to {
-//    stroke-dashoffset: 0;
-//  }
-//}
+h5{
+  //color:white;
+  font-style: italic;
+  text-align: center;
+  color:#739b76;
+}
 
 #selectBasin {
   position:absolute;
@@ -72,5 +63,17 @@ body {
 
 
 .petal {
-  z-index:1000
+  z-index:1000;
+  display:none;
+}
+
+
+#allrivers {
+  display:grid;
+  grid-template-columns: repeat( auto-fit, minmax(200px, 1fr));
+  grid-gap:5vw;
+}
+
+.river{
+  //background-color: rgba(225,225,225,0.2);
 }

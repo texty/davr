@@ -3,6 +3,11 @@ body {
   padding: 0;
   background-color: black; }
 
+h5 {
+  font-style: italic;
+  text-align: center;
+  color: #739b76; }
+
 #selectBasin {
   position: absolute;
   top: 20px;
@@ -54,6 +59,12 @@ body {
   cursor: pointer; }
 
 .petal {
-  z-index: 1000; }
+  z-index: 1000;
+  display: none; }
+
+#allrivers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 5vw; }
 
 /*# sourceMappingURL=styles.css.map */
