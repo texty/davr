@@ -8,6 +8,11 @@ h5 {
   text-align: center;
   color: #739b76; }
 
+.captions {
+  font-style: italic;
+  text-align: center;
+  color: white; }
+
 #selectBasin {
   position: absolute;
   top: 20px;
