@@ -61,10 +61,14 @@ h5{
   cursor: pointer;
 }
 
+.river {
+  z-index:1;
+}
 
 .petal {
-  z-index:1000;
+  z-index:5;
   display:none;
+  //color: #95ddff;
 }
 
 
@@ -74,6 +78,6 @@ h5{
   grid-gap:5vw;
 }
 
-.river{
-  //background-color: rgba(225,225,225,0.2);
+.riverCont{
+  background-color: rgba(225,225,225,0.2);
 }

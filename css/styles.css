@@ -58,13 +58,19 @@ h5 {
   text-decoration: none;
   cursor: pointer; }
 
+.river {
+  z-index: 1; }
+
 .petal {
-  z-index: 1000;
+  z-index: 5;
   display: none; }
 
 #allrivers {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   grid-gap: 5vw; }
+
+.riverCont {
+  background-color: rgba(225, 225, 225, 0.2); }
 
 /*# sourceMappingURL=styles.css.map */
