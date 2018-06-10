@@ -90,7 +90,7 @@ function drawPoints() {
                             return PointColorsRed(d.data.size);
                         }
                         else {
-                            return "#95ddff"
+                            return "#49E858"
                         }
                     })
 
