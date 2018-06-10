@@ -24,26 +24,26 @@ function drawRivers(myData) {
                 return obj.key == keyriver;
             });
 
-                // return BlWhScale(d.properties.a_DEPTH5 * 5);
-
-            if(filter[0].key == "Дунай"){
-                return  plasmaScale(d.properties.a_DEPTH5 * 5);
-            }
-            else if   (filter[0].key == "Дніпро") {
-                return viridisScale(d.properties.a_DEPTH5 * 5);
-            }
-            else if   (filter[0].key == "Дон") {
-                return greenScale(d.properties.a_DEPTH5 * 5);
-            }
-            else if   (filter[0].key == "Вісла") {
-                return spectralScale(d.properties.a_DEPTH5 * 5);
-            }
-            else if   (filter[0].key == "Дністер") {
                 return BlWhScale(d.properties.a_DEPTH5 * 5);
-            }
-            else if   (filter[0].key == "Південний Буг") {
-                return infernoScale(d.properties.a_DEPTH5 * 5);
-            }
+
+//             if(filter[0].key == "Дунай"){
+//                 return  plasmaScale(d.properties.a_DEPTH5 * 5);
+//             }
+//             else if   (filter[0].key == "Дніпро") {
+//                 return viridisScale(d.properties.a_DEPTH5 * 5);
+//             }
+//             else if   (filter[0].key == "Дон") {
+//                 return greenScale(d.properties.a_DEPTH5 * 5);
+//             }
+//             else if   (filter[0].key == "Вісла") {
+//                 return spectralScale(d.properties.a_DEPTH5 * 5);
+//             }
+//             else if   (filter[0].key == "Дністер") {
+//                 return BlWhScale(d.properties.a_DEPTH5 * 5);
+//             }
+//             else if   (filter[0].key == "Південний Буг") {
+//                 return infernoScale(d.properties.a_DEPTH5 * 5);
+//             }
 }
         )
         .attr("fill-opacity", 0.5)
