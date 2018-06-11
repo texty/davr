@@ -3,6 +3,17 @@ body {
   padding: 0;
   background-color: black; }
 
+#map {
+  height: 500px; }
+
+.modalKeysHeading {
+  font-size: 14px; }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px; }
+
 h5 {
   font-style: italic;
   text-align: center;
@@ -33,7 +44,7 @@ h5 {
   top: 0;
   width: 100%;
   /* Full width */
-  height: 100%;
+  height: auto;
   /* Full height */
   overflow: auto;
   /* Enable scroll if needed */

@@ -86,11 +86,11 @@ function drawSmallMaps(file, id) {
            map.on("click", function() {
                bigMap.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
 
-               // projection.scale(1500).center([27.53, 47.00]);
+               // projection
+               //     .scale(1500)
+               //     .center([27.53, 47.00]);
                //
                // group.selectAll("path")
-               //     .transition()
-               //     .duration(0)
                //     .attr("d", path);
 
 

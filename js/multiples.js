@@ -67,6 +67,20 @@ var riversNames = [
         {key:"Вісла", value:"wisla", lat: "25.53", lon:"54.00", scale:"4000", color: "infernoScale"}
 ];
 
+var indicatorNames = [
+    {key: "БСК5..МгО.дм3", cont: "one"},
+    {key: "Завислі..суспендовані..речовини..мг.дм3", cont: "two"},
+    {key: "Кисень.розчинений.МгО2.дм3", cont: "three"},
+    {key: "Сульфат.іони..мг.дм3", cont: "four"},
+    {key: "Хлорид.іони..мг.дм3", cont: "five"},
+    {key: "Амоній.іони..мг.дм3", cont: "siz"},
+    {key: "Нітрат.іони..мг.дм3", cont: "seven"},
+    {key: "Нітрит.іони..мг.дм3", cont: "eight"},
+    {key: "Фосфат.іони..поліфосфати...мг.дм3", cont: "nine"},
+    {key: "Хімічне.споживання.кисню..мгО.дм3", cont: "ten"},
+    {key: "Синтетичні.поверхнево.активні.речовини..аніонні...мг.дм3", cont: "eleven"}
+];
+
 /* Глобальні змінні для квіточок*/
 var halfRadius = 2; //радіус для квіточок
 
@@ -82,7 +96,7 @@ var pie = d3.pie()
 
 
 /*Змінні для карт (проекція, зум)*/
-var parseTime = d3.timeParse("%d.%m.%Y");
+// var parseTime = d3.timeParse("%d.%m.%Y");
 
 var projection = d3.geoMercator()
     .scale(1500)
@@ -109,31 +123,28 @@ bigMap.call(zoom);
 
 bigMap.on("click", function () {
     /*знаходимо координати кліку*/
-    var x = d3.mouse(this)[0];
-    var y = d3.mouse(this)[1];
-    var p = projection.invert([x, y]);
-
-    console.log(p);
-
-    /*не працює, перестає знаходити координати з другого кліку, видає NaN, NaN*/
-    projection
-    .scale(3500)
-    .rotate([0, 0, 0])
-    .center([p]);
-
-
-    /*не працює, напевно через те, що не працює попередній шматок коду*/
-    group.selectAll('path')
-        .transition()
-        .duration(500)
-        .attr("d", path);
+    // var x = d3.mouse(this)[0];
+    // var y = d3.mouse(this)[1];
+    // var p = projection.invert([x, y]);
+    //
+    // console.log(p);
+    //
+    // projection
+    // .scale(3500)
+    // .center(p);
+    //
+    // path = d3.geoPath()
+    //     .projection(projection);
+    //
+    // group.selectAll('path')
+    //     .attr("d", path);
 
     /*Працює, але не центрує*/
-    d3.selectAll('path').transition().duration(750);
-    bigMap.transition()
-        .delay(100)
-        .duration(700)
-        .call(zoom.scaleTo, 3);
+    // d3.selectAll('path').transition().duration(750);
+    // bigMap.transition()
+    //     .delay(100)
+    //     .duration(700)
+    //     .call(zoom.scaleTo, 3);
     //
     //
 
@@ -165,7 +176,7 @@ drawSmallMaps("data/all_total_basins.json", "#wisla");
 
 
 /* Малюємо велику карту з басейнами рік*/
-d3.json("data/all_total_basins.json", drawRivers);
+// d3.json("data/all_total_basins.json", drawRivers);
 
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
@@ -176,11 +187,25 @@ setTimeout(drawPoints, 6000);
 
 
 function zoomed() {
-    group.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+    // group.style("stroke-width", 1.5 / d3.event.transform.k + "px");
     group.attr("transform", d3.event.transform); // updated for d3 v4
 }
 
 
+Array.prototype.contains = function (v) {
+    for (var i = 0; i < this.length; i++) {
+        if (this[i] === v) return true;
+    }
+    return false;
+};
+
+function FindByAttributeValue(attribute, value, element_type)    {
+    element_type = element_type || "*";
+    var All = document.getElementsByTagName(element_type);
+    for (var i = 0; i < All.length; i++)       {
+        if (All[i].getAttribute(attribute) == value) { return All[i]; }
+    }
+}
 
 
 

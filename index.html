@@ -7,20 +7,21 @@
     <link rel="stylesheet" href = "css/styles.css">
 </head>
 <body>
+
 <script src="lib/jquery-2.1.4.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-<!--<script src="lib/fisheye.js"></script>-->
+<!--<script src="lib/leaflet.js"></script>-->
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <!--<script src="js/map.js"></script>-->
 <!--<script src="js/flower.js"></script>-->
 <!--<script src="js/updateRiver.js"></script>-->
 <script src="js/drawRivers.js"></script>
 <script src="js/drawSmallMaps.js"></script>
+<script src="js/drawChart.js"></script>
+
 <script src="js/drawPoints.js"></script>
 <script src="js/multiples.js"></script>
-
-
 
 <div id="allrivers">
     <div id="danube" class="riverCont">
@@ -71,14 +72,63 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
+
+
         <p id="petalsData">Some text in the Modal..</p>
+
+<div id="myModalGrid">
+        <div id="chart"></div>
+
+<div class="formInpurs">
+        <input class="messageCheckbox" value="БСК5..МгО.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>БСК5..МгО.дм3
+        <input class="messageCheckbox" value="Завислі..суспендовані..речовини..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Завислі..суспендовані..речовини..мг.дм3
+         <input class="messageCheckbox" value="Кисень.розчинений.МгО2.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Кисень.розчинений.МгО2.дм3
+        <input class="messageCheckbox" value="Сульфат.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Сульфат.іони..мг.дм3
+        <input class="messageCheckbox" value="Хлорид.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Хлорид.іони..мг.дм3
+        <input class="messageCheckbox" value="Амоній.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Амоній.іони..мг.дм3
+        <input class="messageCheckbox" value="Нітрат.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Нітрат.іони..мг.дм3
+        <input class="messageCheckbox" value="Нітрит.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Нітрит.іони..мг.дм3
+        <input class="messageCheckbox" value="Фосфат.іони..поліфосфати...мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Фосфат.іони..поліфосфати...мг.дм3
+        <input class="messageCheckbox" value="Хімічне.споживання.кисню..мгО.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Хімічне.споживання.кисню..мгО.дм3
+        <input class="messageCheckbox" value="Синтетичні.поверхнево.активні.речовини..аніонні...мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Синтетичні.поверхнево.активні.речовини..аніонні...мг.дм3
+</div>
+    </div>
+        </div>
+        </div>
+
+
+
+
+
+
+
+
+
     </div>
 
 </div>
 
-<script>
 
-    // When the user clicks on <span> (x), close the modal
+<script>
+    function onchangeFunctions() {
+        checkInput();
+        drawChart();
+    }
+
+    function checkInput() {
+        var indicators = document.getElementsByClassName('messageCheckbox');
+        var selectedIndicator;
+        for (var i = 0; i < indicators.length; i++) {
+            if (indicators[i].checked) {
+                selectedIndicator = indicators[i].value;
+                return selectedIndicator;
+            }
+        }
+
+
+
+
+    }
 
 </script>
 

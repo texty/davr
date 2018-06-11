@@ -100,8 +100,7 @@ function drawPoints() {
                     .on('click', function (d)  {
                         var modal = document.getElementById('myModal');
                         var span = document.getElementsByClassName("close")[0];
-                        d3.select('#petalsData')
-                            .html(d.data.name + "\n" + d.data.key + ' - ' + d.data.value + "\n" + "Норму перевищено у " + d.data.size.toFixed(2) + " раз(ів)");
+                        
                         modal.style.display = "block";
                         span.onclick = function () {
                             modal.style.display = "none";
@@ -113,16 +112,18 @@ function drawPoints() {
                         };
                         
                         var IdForChart = d.data.id;
-                        // drawChart(IdForChart)
+                        var indicator = d.data.key;
+                        var norm = d.data.norm;
+                        
+                        // drawChart(IdForChart, indicator);
+                        // updateLineChart(IdForChart)
+                        d3.selectAll(".messageCheckbox").attr("name", IdForChart);
+                        FindByAttributeValue("value", indicator).checked = true;
 
-                        // d3.selectAll("path.petal").style("display", "none").each(function () {
-                        //     var currentflower = this;
-                        //     if(!currentflower.classList.contains(filter[0].value)){
-                        //         d3.select(currentflower).style("display", "block")
-                        //     }
-                        // });
+                        drawChart()
 
-                        // console.log(myClass)
+
+
                     })
 
 
