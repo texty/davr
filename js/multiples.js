@@ -95,8 +95,8 @@ var pie = d3.pie()
 
 
 
+
 /*Змінні для карт (проекція, зум)*/
-// var parseTime = d3.timeParse("%d.%m.%Y");
 
 var projection = d3.geoMercator()
     .scale(1500)
@@ -151,6 +151,9 @@ bigMap.on("click", function () {
 });
 
 
+
+
+
 d3.json("data/ukr_shape.geojson", drawUkraine);
 function drawUkraine(ukraine){
     group.selectAll("path")
@@ -176,11 +179,121 @@ drawSmallMaps("data/all_total_basins.json", "#wisla");
 
 
 /* Малюємо велику карту з басейнами рік*/
-d3.json("data/all_total_basins.json", drawRivers);
+// d3.json("data/all_total_basins.json", drawRivers);
+
+/* -----Малюємо лінійний графік, який буде оновлюватись-----*/
+var chartMargin = {top: 10, right: 30, bottom: 30, left: 30};
+// var chartWidth = document.getElementById("myModal").offsetWidth/1.5,
+//     chartHeight = document.getElementById("myModal").offsetHeight/1.5 ;
+
+var chartWidth = 600,
+    chartHeight = 300;
+
+var parseTime = d3.timeParse("%d.%m.%Y");
+
+var chartX = d3.scaleTime()
+    .rangeRound([50, chartWidth]);
+
+var chartY = d3.scaleLinear()
+    .rangeRound([chartHeight - 50, 0]);
+
+
+
+var valueline = d3.line()
+    .x(function (d) {
+        return chartX(d.date);
+    })
+    .y(function (d) {
+        return chartY(d.value);
+    });
+
+
+d3.csv("data/total_data_gather.csv", function (error, chart) {
+
+    var chartSvg = d3.select("#chart")
+        .append("svg")
+        .attr("id", "chartToRemove")
+        .attr("width", chartWidth)
+        .attr("height", chartHeight);
+// .attr("preserveAspectRatio", "xMinYMin meet")
+// .attr("viewBox", "0 0 960 500");
+
+    var chartG = chartSvg.append("g");
+
+    var idData = chart.filter(function (d) {
+        return d.id === "27224"
+    });
+
+
+    var dataData = idData.filter(function (d) {
+        return d.key === 'БСК5..МгО.дм3';
+    });
+
+    var norm = dataData[0].norm;
+
+    d3.select('#petalsData')
+        .html(dataData[0].name);
+
+    dataData.forEach(function (d) {
+        d.date = parseTime(d.date);
+        d.value = +d.value;
+    });
+
+
+
+    var dates = dataData.map(function (d) {
+        return d.date
+    });
+
+    var xMin = d3.min(d3.values(dates));
+    var xMax = new Date();
+
+
+    chartX.domain([xMin, xMax]);
+    chartY.domain([0, d3.max(dataData, function (d) {
+        return d.value;
+    })]);
+
+    chartG.append("path")
+        .data([dataData])
+        .attr("class", "line")
+        .attr("d", valueline)
+        .attr("stroke", BlWhScale);
+
+
+    var lines = chartG.append("line")        
+        .attr("x1", chartX(xMin))
+        .attr("y1", chartY(norm))
+        .attr("x2", chartX(xMax))
+        .attr("y2", chartY(norm))
+        .attr('class', "redline")
+        .style("stroke", "red");
+
+    chartSvg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + (chartHeight - 50) + ")")
+        .call(d3.axisBottom(chartX));
+
+    // Add the Y Axis
+    chartSvg.append("g")
+        .attr("class", "y axis")
+        .attr("transform", "translate(50,0)")//magic number, change it at will
+        .call(d3.axisLeft(chartY));
+
+
+    d3.select('#petalsData').append("p")
+        .attr("id", "modalKeysHeadings")
+        .text("триває завантаження").style("font-weight", "bold");
+
+});
+
+
+/*end of line chart*/
+
 
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints, 6000);
+setTimeout(drawPoints, 3000);
 
 
 
