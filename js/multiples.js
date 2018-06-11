@@ -113,27 +113,27 @@ bigMap.on("click", function () {
     var y = d3.mouse(this)[1];
     var p = projection.invert([x, y]);
 
-    // console.log(p);
+    console.log(p);
 
     /*не працює, перестає знаходити координати з другого кліку, видає NaN, NaN*/
-    // projection
-    // .scale(3500)
-    // .rotate([0, 0, 0])
-    // .center([p]);
+    projection
+    .scale(3500)
+    .rotate([0, 0, 0])
+    .center([p]);
 
 
     /*не працює, напевно через те, що не працює попередній шматок коду*/
-    // group.selectAll('path')
-    //     .transition()
-    //     .duration(500)
-    //     .attr("d", path);
+    group.selectAll('path')
+        .transition()
+        .duration(500)
+        .attr("d", path);
 
     /*Працює, але не центрує*/
-    // d3.selectAll('path').transition().duration(750);
-    // bigMap.transition()
-    //     .delay(100)
-    //     .duration(700)
-    //     .call(zoom.scaleTo, 3);
+    d3.selectAll('path').transition().duration(750);
+    bigMap.transition()
+        .delay(100)
+        .duration(700)
+        .call(zoom.scaleTo, 3);
     //
     //
 
@@ -169,7 +169,7 @@ d3.json("data/all_total_basins.json", drawRivers);
 
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints, 4000);
+setTimeout(drawPoints, 6000);
 
 
 
