@@ -113,7 +113,7 @@ bigMap.on("click", function () {
     var y = d3.mouse(this)[1];
     var p = projection.invert([x, y]);
 
-    console.log(p);
+    // console.log(p);
 
     /*не працює, перестає знаходити координати з другого кліку, видає NaN, NaN*/
     // projection
