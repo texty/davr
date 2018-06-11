@@ -176,7 +176,7 @@ drawSmallMaps("data/all_total_basins.json", "#wisla");
 
 
 /* Малюємо велику карту з басейнами рік*/
-// d3.json("data/all_total_basins.json", drawRivers);
+d3.json("data/all_total_basins.json", drawRivers);
 
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
