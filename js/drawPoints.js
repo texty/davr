@@ -111,7 +111,9 @@ function drawPoints() {
                                 modal.style.display = "none";
                             }
                         };
-
+                        
+                        var IdForChart = d.data.id;
+                        // drawChart(IdForChart)
 
                         // d3.selectAll("path.petal").style("display", "none").each(function () {
                         //     var currentflower = this;

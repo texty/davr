@@ -160,16 +160,16 @@ d3.json("data/all_total_basins.json", drawRivers);
 
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints, 4000);
+// setTimeout(drawPoints, 4000);
 
 
 /* Малюємо маленькі карти*/
-drawSmallMaps("data/all_total_basins.json", "#dnister");
-drawSmallMaps("data/all_total_basins.json", "#danube");
-drawSmallMaps("data/all_total_basins.json", "#dnipro");
-drawSmallMaps("data/all_total_basins.json", "#don");
-drawSmallMaps("data/all_total_basins.json", "#southernbug");
-drawSmallMaps("data/all_total_basins.json", "#wisla");
+// drawSmallMaps("data/all_total_basins.json", "#dnister");
+// drawSmallMaps("data/all_total_basins.json", "#danube");
+// drawSmallMaps("data/all_total_basins.json", "#dnipro");
+// drawSmallMaps("data/all_total_basins.json", "#don");
+// drawSmallMaps("data/all_total_basins.json", "#southernbug");
+// drawSmallMaps("data/all_total_basins.json", "#wisla");
 
 
 
