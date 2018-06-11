@@ -113,13 +113,16 @@ bigMap.on("click", function () {
     var y = d3.mouse(this)[1];
     var p = projection.invert([x, y]);
 
-    // console.log(p);
+    console.log(p);
 
     /*не працює, перестає знаходити координати з другого кліку, видає NaN, NaN*/
-    // projection.scale(3500).rotate([0, 0, 0]).center([p]);
+    // projection
+    // .scale(3500)
+    // .rotate([0, 0, 0])
+    // .center([p]);
 
 
-    /*не працює*/
+    /*не працює, напевно через те, що не працює попередній шматок коду*/
     // group.selectAll('path')
     //     .transition()
     //     .duration(500)
