@@ -27,6 +27,8 @@ function drawChart() {
             return d.key === keyIndicator;
         });
 
+
+
         var norm = dataData[0].norm;
 
         d3.select('#petalsData')
@@ -37,6 +39,13 @@ function drawChart() {
         dataData.forEach(function (d) {
             d.date = parseTime(d.date);
             d.value = +d.value;
+        });
+
+
+        dataData.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(a.date) - new Date(b.date);
         });
 
         var valueline = d3.line()

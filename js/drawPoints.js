@@ -141,7 +141,7 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
     // r = size(d.data.size),
-        r = size(0.02),
+        r = size(0.01),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},

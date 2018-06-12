@@ -107,7 +107,7 @@ var path = d3.geoPath()
     .projection(projection);
 
 var zoom = d3.zoom()
-    .scaleExtent([0, 6])
+    .scaleExtent([0, 10])
     .on("zoom", zoomed);
 
 var bigMap = d3.select("body")
@@ -181,6 +181,9 @@ drawSmallMaps("data/all_total_basins.json", "#wisla");
 /* Малюємо велику карту з басейнами рік*/
 // d3.json("data/all_total_basins.json", drawRivers);
 
+
+
+
 /* -----Малюємо лінійний графік, який буде оновлюватись-----*/
 var chartMargin = {top: 10, right: 30, bottom: 30, left: 30};
 // var chartWidth = document.getElementById("myModal").offsetWidth/1.5,
@@ -224,9 +227,20 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         return d.id === "27224"
     });
 
+    idData.forEach(function (d) {
+        d.date = parseTime(d.date);
+        d.value = +d.value;
+    });
+
 
     var dataData = idData.filter(function (d) {
         return d.key === 'БСК5..МгО.дм3';
+    });
+
+    dataData.sort(function(a,b){
+        // Turn your strings into dates, and then subtract them
+        // to get a value that is either negative, positive, or zero.
+        return new Date(b.date) - new Date(a.date);
     });
 
     var norm = dataData[0].norm;
@@ -234,10 +248,10 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
     d3.select('#petalsData')
         .html(dataData[0].name);
 
-    dataData.forEach(function (d) {
-        d.date = parseTime(d.date);
-        d.value = +d.value;
-    });
+    // dataData.forEach(function (d) {
+    //     d.date = parseTime(d.date);
+    //     d.value = +d.value;
+    // });
 
 
 
@@ -246,7 +260,8 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
     });
 
     var xMin = d3.min(d3.values(dates));
-    var xMax = new Date();
+    var xMax = d3.max(d3.values(dates));
+    // var xMax = new Date();
 
 
     chartX.domain([xMin, xMax]);
