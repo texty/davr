@@ -71,14 +71,14 @@ function drawChart() {
         })]);
 
         chartSvg.select(".line")   // change the line
-            .duration(750)
+            .duration(500)
             .attr("d", valueline(dataData));
         chartSvg.select(".x.axis") // change the x axis
-            .duration(750)
+            .duration(500)
             .call(d3.axisBottom(chartX));
 
         chartSvg.select(".y.axis") // change the y axis
-            .duration(750)
+            .duration(500)
             .call(d3.axisLeft(chartY));
 
 
