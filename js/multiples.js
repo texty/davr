@@ -181,8 +181,6 @@ function drawUkraine(ukraine){
 /* Малюємо велику карту з басейнами рік*/
 // d3.json("data/all_total_basins.json", drawRivers);
 
-// drawRivers();
-
 
 /* -----Малюємо лінійний графік, який буде оновлюватись-----*/
 var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
@@ -282,6 +280,26 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         return d.value;
     })]);
 
+    var greenpart = 100 / (yMax/norm);
+
+
+    chartSvg.append("linearGradient")
+        .attr("id", "line-gradient")
+        .attr("gradientUnits", "userSpaceOnUse")
+        .attr("x1", 0).attr("y1", chartY(0))
+        .attr("x2", 0).attr("y2", chartY(yMax))
+        .selectAll("stop")
+        .data([
+            {offset: "0%", color: "lawngreen"},
+            {offset: greenpart + "%", color: "lawngreen"},
+            {offset: greenpart + "%", color: "red"},
+            {offset: "100%", color: "red"}
+        ])
+        .enter().append("stop")
+        .attr("offset", function(d) { return d.offset; })
+        .attr("stop-color", function(d) { return d.color; });
+    /*end of the gradient*/
+
     chartG.append("path")
         .data([dataData])
         .attr("class", "line")
@@ -289,21 +307,21 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .attr("stroke", "#49E858");
 
 
-    var lines = chartG.append("line")        
-        .attr("x1", chartX(xMin))
-        .attr("y1", chartY(norm))
-        .attr("x2", chartX(xMax))
-        .attr("y2", chartY(norm))
-        .attr('class', "redline")
-        ;
+    // var lines = chartG.append("line")        
+    //     .attr("x1", chartX(xMin))
+    //     .attr("y1", chartY(norm))
+    //     .attr("x2", chartX(xMax))
+    //     .attr("y2", chartY(norm))
+    //     .attr('class', "redline")
+    //     ;
 
 
-    chartSvg.append("text")
-        .attr('class', 'lineText')
-        .attr('text-anchor', 'end')
-        .attr("x", chartX(xMax))
-        .attr("y", chartY(norm))
-        .text('допустима норма');
+    // chartSvg.append("text")
+    //     .attr('class', 'lineText')
+    //     .attr('text-anchor', 'end')
+    //     .attr("x", chartX(xMax))
+    //     .attr("y", chartY(norm))
+    //     .text('допустима норма');
 
 
     chartG.append("g")

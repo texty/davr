@@ -62,7 +62,7 @@ h5{
 
 
 .modal-content {
-  background-color: rgba(8, 8, 8, 0.95);
+  background-color: rgba(0,0,0, 0.95);
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
@@ -94,15 +94,11 @@ h5{
 
 .line {
   fill: none;
-  stroke:white;
+  stroke: url(#line-gradient);
   stroke-width: 1px;
 }
 
-.lineText {
-  font-size: 14px;
-  font-style:italic;
-  fill:#ab0004;
-}
+
 
 //Grid chart and checkboxes
 
@@ -167,10 +163,17 @@ input[type="radio"] {
 }
 
 .redline {
-  stroke: #ab0004;
+  stroke: #82bcf4;
   z-index: 1000;
   stroke-width: 0.8px;
   //stroke-dasharray: 5;
+}
+
+.lineText {
+  font-size: 14px;
+  font-style:italic;
+  fill:#82bcf4;
+  text-align: right;
 }
 
 .axis line {
@@ -249,3 +252,4 @@ img.preview {
   background:#000;
   opacity:.5;
 }
+

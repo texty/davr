@@ -50,6 +50,7 @@ function drawChart() {
         });
 
         var xMin = d3.min(d3.values(dates));
+        var endLine = d3.max(d3.values(dates));
         var xMax = new Date();
         
         chartX.domain([xMin, xMax]);
@@ -87,6 +88,11 @@ function drawChart() {
             return a - b
         });
 
+
+
+
+
+
         chartSvg.select(".line")   // change the line
             .duration(500)
             .attr("d", valueline(dataData));
@@ -98,28 +104,55 @@ function drawChart() {
             .duration(500)
             .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
 
-        if(norm > 0) {
-            chartG.select(".redline")
-                .attr("x1", chartX(xMin))
-                .attr("y1", chartY(norm))
-                .attr("x2", chartX(xMax))
-                .attr("y2", chartY(norm))
-                .style("opacity", 1);
-        }
-        if (norm === "NA"){
-            console.log("немає норми");
-            chartG.select(".redline")
-                .style("opacity", 0);
-        }
-
-
-        chartSvg.select('.lineText')
-            .attr("x", chartX(xMax))
-            .attr("y", y(10));
-
         d3.select('#petalsData').append("p")
             .attr("id", "modalKeysHeadings")
             .text(keyIndicator).style("font-weight", "bold");
+
+        // if(norm > 0) {
+        //     chartG.select(".redline")
+        //         .attr("x1", chartX(xMin))
+        //         .attr("y1", chartY(norm))
+        //         .attr("x2", chartX(endLine))
+        //         .attr("y2", chartY(norm))
+        //         .style("opacity", 1);
+        //
+        //
+        // }
+        // if (norm === "NA"){
+        //     console.log("немає норми");
+        //     chartG.select(".redline")
+        //         .style("opacity", 0);
+        //
+        //
+        // }
+        norm = +norm;
+        var greenpart;
+
+        if(yMax < norm) {
+            greenpart = 100 / (norm / yMax);
+        }
+        else if(yMax > norm) {
+            greenpart = 100 / (yMax / norm);
+        }
+
+        else if(norm === "NA"){
+            greenpart = 100
+        }
+
+        var offset = greenpart+"%";
+        chartSvg.select('#line-gradient > stop:nth-child(1)')
+            .attr("offset", "0%");
+        chartSvg.select('#line-gradient > stop:nth-child(2)')
+            .attr("offset", offset);
+        chartSvg.select('#line-gradient > stop:nth-child(3)')
+            .attr("offset", offset);
+        chartSvg.select('#line-gradient > stop:nth-child(4)')
+            .attr("offset", "100%");
+
+
+        /*end of the gradient*/
+
+
     });
 
 
