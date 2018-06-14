@@ -225,9 +225,6 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top +")");
 
 
-
-
-
     var idData = chart.filter(function (d) {
         return d.id === "27224"
     });
@@ -249,6 +246,7 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
     });
 
     var norm = dataData[0].norm;
+    norm = +norm;
 
     d3.select('#petalsData')
         .html(dataData[0].name);
@@ -258,6 +256,12 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
     //     d.value = +d.value;
     // });
 
+    var values = dataData.map(function (d) {
+        return d.value
+    });
+
+    var yMax = d3.max(d3.values(values));
+    var yMin = d3.min(d3.values(values));
 
 
     var dates = dataData.map(function (d) {
@@ -268,6 +272,10 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
     var xMax = d3.max(d3.values(dates));
     // var xMax = new Date();
 
+    var yticks = [yMin, +norm, yMax];
+    yticks.sort(function(a,b) {
+        return a - b
+    });
 
     chartX.domain([xMin, xMax]);
     chartY.domain([0, d3.max(dataData, function (d) {
@@ -287,18 +295,27 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .attr("x2", chartX(xMax))
         .attr("y2", chartY(norm))
         .attr('class', "redline")
-        .style("stroke", "red");
+        ;
+
+
+    chartSvg.append("text")
+        .attr('class', 'lineText')
+        .attr('text-anchor', 'end')
+        .attr("x", chartX(xMax))
+        .attr("y", chartY(norm))
+        .text('допустима норма');
+
 
     chartG.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
-        .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%y-%m")));
+        .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%b-%Y")));
 
     // Add the Y Axis
     chartG.append("g")
         .attr("class", "y axis")
         // .attr("transform", "translate(30,0)")//magic number, change it at will
-        .call(d3.axisLeft(chartY).ticks(6).tickSize(-chartWidth));
+        .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
 
 
     d3.select('#petalsData').append("p")
@@ -372,7 +389,7 @@ function numTicks(widther) {
 }
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints, 500);
+setTimeout(drawPoints);
 
 
 

@@ -47,8 +47,8 @@ function drawChart() {
 
         var dates = dataData.map(function (d) {
             return d.date
-        });       
-        
+        });
+
         var xMin = d3.min(d3.values(dates));
         var xMax = new Date();
         
@@ -61,6 +61,7 @@ function drawChart() {
         });
         var norm = dataData[0].norm;
         var yMax = d3.max(d3.values(values));
+        var yMin = d3.min(d3.values(values));
 
         if(norm > 0) {
             if (norm > yMax) {
@@ -75,24 +76,46 @@ function drawChart() {
         else{
             chartY.domain([0, yMax]);
         }
+        var yticks;
+        if(norm > 0) {
+            yticks = [yMin, +norm, yMax];
+        }
+        else {
+            yticks = [yMin, yMax];
+        }
+        yticks.sort(function(a,b) {
+            return a - b
+        });
+
         chartSvg.select(".line")   // change the line
             .duration(500)
             .attr("d", valueline(dataData));
         chartSvg.select(".x.axis") // change the x axis
             .duration(500)
-            .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%b-%y")));
+            .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%b-%Y")));
 
         chartSvg.select(".y.axis") // change the y axis
             .duration(500)
-            .call(d3.axisLeft(chartY).ticks(6).tickSize(-chartWidth));
+            .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
+
+        if(norm > 0) {
+            chartG.select(".redline")
+                .attr("x1", chartX(xMin))
+                .attr("y1", chartY(norm))
+                .attr("x2", chartX(xMax))
+                .attr("y2", chartY(norm))
+                .style("opacity", 1);
+        }
+        if (norm === "NA"){
+            console.log("немає норми");
+            chartG.select(".redline")
+                .style("opacity", 0);
+        }
 
 
-        chartG.select(".redline")
-            .attr("x1", chartX(xMin))
-            .attr("y1", chartY(norm))
-            .attr("x2", chartX(xMax))
-            .attr("y2", chartY(norm));
-
+        chartSvg.select('.lineText')
+            .attr("x", chartX(xMax))
+            .attr("y", y(10));
 
         d3.select('#petalsData').append("p")
             .attr("id", "modalKeysHeadings")

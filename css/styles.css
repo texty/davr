@@ -65,7 +65,12 @@ h5 {
 .line {
   fill: none;
   stroke: white;
-  stroke-width: 2px; }
+  stroke-width: 1px; }
+
+.lineText {
+  font-size: 14px;
+  font-style: italic;
+  fill: #ab0004; }
 
 .formInpurs {
   display: grid; }
@@ -101,7 +106,7 @@ input[type="radio"] {
   stroke-dasharray: 2px 3px;
   shape-rendering: crispEdges; }
 
-path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
+path.domain {
   display: none; }
 
 #chartToRemove > g > g.x.axis > g.tick > text {
@@ -113,7 +118,7 @@ path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
   font-size: 12px; }
 
 g.tick {
-  stroke-width: 0.4px; }
+  stroke-width: 0.2px; }
 
 /* end of modal*/
 .river {

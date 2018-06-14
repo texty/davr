@@ -95,7 +95,13 @@ h5{
 .line {
   fill: none;
   stroke:white;
-  stroke-width: 2px;
+  stroke-width: 1px;
+}
+
+.lineText {
+  font-size: 14px;
+  font-style:italic;
+  fill:#ab0004;
 }
 
 //Grid chart and checkboxes
@@ -179,9 +185,11 @@ input[type="radio"] {
 
 
 
-path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
+path.domain {
   display: none ;
 }
+
+
 
 #chartToRemove > g > g.x.axis > g.tick > text {
   font-size:12px;
@@ -194,7 +202,7 @@ path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
 }
 
 g.tick {
-  stroke-width: 0.4px;
+  stroke-width: 0.2px;
 }
 
 /* end of modal*/
