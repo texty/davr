@@ -1,7 +1,5 @@
 function drawRivers(myData) {
 
-
-
     group.selectAll("path")
         .data(topojson.feature(myData, myData.objects.all_total_basins).features)
         .enter()

@@ -1,18 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: black; }
+  background-color: black;
+  font-family: 'Proxima-Nova', sans-serif; }
 
 #map {
   height: 500px; }
-
-.modalKeysHeading {
-  font-size: 14px; }
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px; }
 
 h5 {
   font-style: italic;
@@ -30,38 +23,27 @@ h5 {
   right: 20px;
   width: 25vw; }
 
-/* The Modal (background) */
+/*----- Modal Window -----*/
 .modal {
   display: none;
-  /* Hidden by default */
   position: fixed;
-  /* Stay in place */
   z-index: 1;
-  /* Sit on top */
-  padding-top: 100px;
-  /* Location of the box */
+  padding-top: 50px;
   left: 0;
   top: 0;
   width: 100%;
-  /* Full width */
   height: auto;
-  /* Full height */
   overflow: auto;
-  /* Enable scroll if needed */
   background-color: black;
-  /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4);
-  /* Black w/ opacity */ }
+  background-color: rgba(0, 0, 0, 0.4); }
 
-/* Modal Content */
 .modal-content {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(8, 8, 8, 0.95);
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%; }
 
-/* The Close Button */
 .close {
   color: #aaaaaa;
   float: right;
@@ -74,6 +56,62 @@ h5 {
   text-decoration: none;
   cursor: pointer; }
 
+#petalsData, #modalKeysHeadings, .onecol {
+  color: white; }
+
+.modalKeysHeading {
+  font-size: 14px; }
+
+.line {
+  fill: none;
+  stroke: white;
+  stroke-width: 2px; }
+
+.formInpurs {
+  display: grid; }
+  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px), (min-width: 767px) and (max-width: 1024px) {
+    .formInpurs {
+      grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 374px) and (max-width: 767px), (min-width: 0) and (max-width: 374px) {
+    .formInpurs {
+      grid-template-columns: 1fr; } }
+
+.onecol {
+  grid-column: span 1; }
+
+input[type="radio"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -ms-appearance: checkbox;
+  /* not currently supported */
+  -o-appearance: checkbox;
+  /* not currently supported */ }
+
+#chartToRemove {
+  margin-bottom: 30px; }
+
+.redline {
+  stroke: #ab0004;
+  stroke-width: 0.8px; }
+
+.axis line {
+  fill: none;
+  stroke: #ccc;
+  stroke-dasharray: 2px 3px;
+  shape-rendering: crispEdges; }
+
+path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
+  display: none; }
+
+#chartToRemove > g > g.x.axis > g.tick > text {
+  font-size: 12px;
+  fill: white !important; }
+
+#chartToRemove > g > g.y.axis > g.tick > text {
+  fill: white !important;
+  font-size: 12px; }
+
+/* end of modal*/
 .river {
   z-index: 1; }
 

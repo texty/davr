@@ -1,26 +1,27 @@
+
+// Media query
+$brk-xlarge: '(min-width: 1441px) and (max-width: 2570px)';
+$brk-large: '(min-width: 1286px) and (max-width: 1440px)';
+$brk-medium: '(min-width: 1024px) and (max-width: 1285px)';
+$brk-narrow: '(min-width: 767px) and (max-width: 1024px)';
+$brk-spnarrow: '(min-width: 374px) and (max-width: 767px)';
+$brk-mobile: '(min-width: 0) and (max-width: 374px)';
+
+//@font-face { font-family: "Segoe UI Regular"; src: url(../fonts/regular.ttf); }
+
+
 body {
   margin:0;
   padding:0;
   background-color: black;
+  font-family: 'Proxima-Nova', sans-serif;
 
 }
 
 #map {
     height: 500px;
-
 }
 
-
-
-.modalKeysHeading{
-  font-size: 14px;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}
 
 h5{
   //color:white;
@@ -44,57 +45,30 @@ h5{
   //color:white;
 }
 
-
-/* The Modal (background) */
+/*----- Modal Window -----*/
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 50px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: auto; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: auto;
+  overflow:auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content */
+
 .modal-content {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(8, 8, 8, 0.95);
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
   width: 80%;
 }
-//
-//#myModalGrid{
-//  display:grid;
-//  grid-template-columns: 2fr 1fr;
-//
-//}
 
-//#chart {
-//  grid-column: 1/2;
-//}
-//
-//#inputForm {
-//  grid-column: 2/3;
-//
-//}
-
-
-//.messageCheckbox {
-//  display:block;
-//}
-//.tick text {
-//  font-size:10px;
-//  color:black;
-//}
-
-
-/* The Close Button */
 .close {
   color: #aaaaaa;
   float: right;
@@ -108,6 +82,122 @@ h5{
   text-decoration: none;
   cursor: pointer;
 }
+
+#petalsData, #modalKeysHeadings, .onecol {
+  color:white;
+}
+
+//Chart
+.modalKeysHeading {
+  font-size: 14px;
+}
+
+.line {
+  fill: none;
+  stroke:white;
+  stroke-width: 2px;
+}
+
+//Grid chart and checkboxes
+
+//#myModalGrid {
+//  @media #{$brk-xlarge}, #{$brk-large} {
+//    display:grid;
+//    grid-template-columns: 1fr 1fr
+//  }
+//  @media #{$brk-medium}, #{$brk-narrow}, #{$brk-spnarrow}, #{$brk-mobile}{
+//    display:grid;
+//    grid-template-columns: 1fr;
+//    grid-template-rows: 50% 50%;
+//  }
+//
+//}
+//
+//#chart {
+//  @media #{$brk-xlarge}, #{$brk-large} {
+//    grid-column: 1 / 2;
+//    width:calc(80vw/2);
+//  }
+//  @media #{$brk-medium}, #{$brk-narrow}, #{$brk-spnarrow}, #{$brk-mobile}{
+//    grid-column: 1/-1;
+//    grid-row: 1/2;
+//    width:calc(80vw);
+//  }
+//}
+
+.formInpurs {
+  //@media #{$brk-xlarge}, #{$brk-large} {
+  //  grid-column: 2 / 3;
+  //}
+  //@media #{$brk-medium}, #{$brk-narrow}, #{$brk-spnarrow}, #{$brk-mobile}{
+  //  grid-column: 1/-1;
+  //  grid-row: 2/3;
+  //}
+  display:grid;
+  @media #{$brk-xlarge}, #{$brk-large}, #{$brk-medium}, #{$brk-narrow} {
+    grid-template-columns: 1fr 1fr
+  }
+  @media  #{$brk-spnarrow}, #{$brk-mobile}{
+    grid-template-columns: 1fr
+  }
+}
+
+
+
+.onecol {
+  grid-column: span 1;
+}
+
+input[type="radio"] {
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -ms-appearance: checkbox;     /* not currently supported */
+  -o-appearance: checkbox;      /* not currently supported */
+}
+
+
+#chartToRemove {
+  margin-bottom: 30px;
+}
+
+.redline {
+  stroke: #ab0004;
+  stroke-width: 0.8px;
+  //stroke-dasharray: 5;
+}
+
+.axis line {
+  fill: none;
+  stroke: #ccc;
+  stroke-dasharray: 2px 3px;
+  shape-rendering: crispEdges;
+  //stroke-width: 1px;
+}
+
+
+
+
+
+path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
+  display: none ;
+}
+
+#chartToRemove > g > g.x.axis > g.tick > text {
+  font-size:12px;
+  fill:white!important;
+}
+
+#chartToRemove > g > g.y.axis > g.tick > text {
+  fill:white!important;
+  font-size:12px;
+}
+
+
+/* end of modal*/
+
+
+
+
 
 .river {
   z-index:1;

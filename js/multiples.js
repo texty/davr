@@ -120,34 +120,34 @@ var group = bigMap.append("g");
 
 
 bigMap.call(zoom);
-
+//
 bigMap.on("click", function () {
-    /*знаходимо координати кліку*/
-    // var x = d3.mouse(this)[0];
-    // var y = d3.mouse(this)[1];
-    // var p = projection.invert([x, y]);
-    //
-    // console.log(p);
-    //
-    // projection
-    // .scale(3500)
-    // .center(p);
-    //
-    // path = d3.geoPath()
-    //     .projection(projection);
-    //
-    // group.selectAll('path')
-    //     .attr("d", path);
-
-    /*Працює, але не центрує*/
-    // d3.selectAll('path').transition().duration(750);
-    // bigMap.transition()
-    //     .delay(100)
-    //     .duration(700)
-    //     .call(zoom.scaleTo, 3);
-    //
-    //
-
+//     /*знаходимо координати кліку*/
+//     // var x = d3.mouse(this)[0];
+//     // var y = d3.mouse(this)[1];
+//     // var p = projection.invert([x, y]);
+//     //
+//     // console.log(p);
+//     //
+//     // projection
+//     // .scale(3500)
+//     // .center(p);
+//     //
+//     // path = d3.geoPath()
+//     //     .projection(projection);
+//     //
+//     // group.selectAll('path')
+//     //     .attr("d", path);
+//
+//     /*Працює, але не центрує*/
+//     // d3.selectAll('path').transition().duration(750);
+//     // bigMap.transition()
+//     //     .delay(100)
+//     //     .duration(700)
+//     //     .call(zoom.scaleTo, 3);
+//     //
+//     //
+//
 });
 
 
@@ -179,27 +179,28 @@ drawSmallMaps("data/all_total_basins.json", "#wisla");
 
 
 /* Малюємо велику карту з басейнами рік*/
-d3.json("data/all_total_basins.json", drawRivers);
+// d3.json("data/all_total_basins.json", drawRivers);
 
-
+// drawRivers();
 
 
 /* -----Малюємо лінійний графік, який буде оновлюватись-----*/
-var chartMargin = {top: 10, right: 30, bottom: 30, left: 30};
-// var chartWidth = document.getElementById("myModal").offsetWidth/1.5,
-//     chartHeight = document.getElementById("myModal").offsetHeight/1.5 ;
+var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
 
-var chartWidth = 600,
-    chartHeight = 300;
+
+var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
+var chartWidth = W - chartMargin.left - chartMargin.right;
+// window.addEventListener('resize', redraw);
+
+    chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
 var parseTime = d3.timeParse("%d.%m.%Y");
 
 var chartX = d3.scaleTime()
-    .rangeRound([50, chartWidth]);
+    .rangeRound([0, chartWidth]);
 
 var chartY = d3.scaleLinear()
-    .rangeRound([chartHeight - 50, 0]);
-
+    .rangeRound([chartHeight, 0]);
 
 
 var valueline = d3.line()
@@ -210,18 +211,22 @@ var valueline = d3.line()
         return chartY(d.value);
     });
 
-
 d3.csv("data/total_data_gather.csv", function (error, chart) {
 
     var chartSvg = d3.select("#chart")
         .append("svg")
         .attr("id", "chartToRemove")
-        .attr("width", chartWidth)
-        .attr("height", chartHeight);
-// .attr("preserveAspectRatio", "xMinYMin meet")
-// .attr("viewBox", "0 0 960 500");
+        .attr("width", chartWidth + chartMargin.left + chartMargin.right)
+        .attr("height", chartHeight + chartMargin.top + chartMargin.bottom);
+        // .attr("preserveAspectRatio", "xMinYMin meet")
+        // .attr("viewBox", "0 0 960 300");
 
-    var chartG = chartSvg.append("g");
+    var chartG = chartSvg.append("g")
+        .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top +")");
+
+
+
+
 
     var idData = chart.filter(function (d) {
         return d.id === "27224"
@@ -273,7 +278,7 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .data([dataData])
         .attr("class", "line")
         .attr("d", valueline)
-        .attr("stroke", BlWhScale);
+        .attr("stroke", "#49E858");
 
 
     var lines = chartG.append("line")        
@@ -284,16 +289,16 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .attr('class', "redline")
         .style("stroke", "red");
 
-    chartSvg.append("g")
+    chartG.append("g")
         .attr("class", "x axis")
-        .attr("transform", "translate(0," + (chartHeight - 50) + ")")
-        .call(d3.axisBottom(chartX));
+        .attr("transform", "translate(0," + chartHeight + ")")
+        .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%y-%m")));
 
     // Add the Y Axis
-    chartSvg.append("g")
+    chartG.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(50,0)")//magic number, change it at will
-        .call(d3.axisLeft(chartY));
+        // .attr("transform", "translate(30,0)")//magic number, change it at will
+        .call(d3.axisLeft(chartY).ticks(6).tickSize(-chartWidth));
 
 
     d3.select('#petalsData').append("p")
@@ -302,10 +307,69 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
 
 });
 
+// function redraw() {
+//     console.log("resized");
+//     var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
+//     var chartWidth = W - chartMargin.left - chartMargin.right;
+//
+//     var chartX = d3.scaleTime()
+//         .rangeRound([0, chartWidth]);
+//
+//     var chartY = d3.scaleLinear()
+//         .rangeRound([chartHeight, 0]);
+//
+//
+//
+//
+//     var valueline = d3.line()
+//         .x(function (d) {
+//             return chartX(d.date);
+//         })
+//         .y(function (d) {
+//             return chartY(d.value);
+//         });
+//
+//     var chartSvg = d3.select("#chartToRemove");
+//
+//     chartSvg
+//         .attr("width", chartWidth + chartMargin.left + chartMargin.right)
+//         .attr("height", chartHeight + chartMargin.top + chartMargin.bottom);
+//
+//     var chartG = chartSvg.select("g");
+//
+//     d3.selectAll('.line')
+//         .attr("d", valueline);
+//
+//
+//     d3.selectAll(".x.axis")
+//         .call(d3.axisBottom(chartX)
+//             .scale(chartX)
+//             .ticks(numTicks(chartWidth))
+//             .tickSize(-chartHeight)
+//             .tickFormat(d3.timeFormat("%Y-%m")));
+//
+//     d3.selectAll(".y.axis")
+//         .call(d3.axisLeft(chartY)
+//             .tickSize(-chartWidth)
+//             .ticks(6));
+//
+//
+//
+//
+// }
 
 /*end of line chart*/
 
-
+function numTicks(widther) {
+    if (widther <= 900) {
+        return 4
+        console.log("return 4")
+    }
+    else {
+        return 8
+        console.log("return 5")
+    }
+}
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
 setTimeout(drawPoints, 3000);
