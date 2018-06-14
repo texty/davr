@@ -125,6 +125,8 @@ function drawChart() {
         //
         //
         // }
+
+       /*------- gradient ------*/
         norm = +norm;
         var greenpart;
 
@@ -134,21 +136,70 @@ function drawChart() {
         else if(yMax > norm) {
             greenpart = 100 / (yMax / norm);
         }
-
         else if(norm === "NA"){
             greenpart = 100
         }
 
-        var offset = greenpart+"%";
+        var step1 = greenpart+"%";
+        var step2= (100/(yMax / norm)) * 2+"%";
+        var step3= (100/(yMax / norm)) * 4+"%";
+        var step4= (100/(yMax / norm)) * 6+"%";
+        var step5= (100/(yMax / norm)) * 8+"%";
+        var step6= (100/(yMax / norm)) * 10+"%";
+        var step7= (100/(yMax / norm)) * 13+"%";
+        var step8= (100/(yMax / norm)) * 16+"%";
+        var step9= (100/(yMax / norm)) * 19+"%";
+        var step10 = (100/(yMax / norm)) *25+"%";
+
+
+
+
+        
+        
+        
         chartSvg.select('#line-gradient > stop:nth-child(1)')
             .attr("offset", "0%");
         chartSvg.select('#line-gradient > stop:nth-child(2)')
-            .attr("offset", offset);
+            .attr("offset", step1);
         chartSvg.select('#line-gradient > stop:nth-child(3)')
-            .attr("offset", offset);
+            .attr("offset", step1);
         chartSvg.select('#line-gradient > stop:nth-child(4)')
-            .attr("offset", "100%");
+            .attr("offset", step2);
+        chartSvg.select('#line-gradient > stop:nth-child(5)')
+            .attr("offset", step2);
+        chartSvg.select('#line-gradient > stop:nth-child(6)')
+            .attr("offset", step3);
+        chartSvg.select('#line-gradient > stop:nth-child(7)')
+            .attr("offset", step3);
+        chartSvg.select('#line-gradient > stop:nth-child(8)')
+            .attr("offset", step4);
+        chartSvg.select('#line-gradient > stop:nth-child(9)')
+            .attr("offset", step4);
+        chartSvg.select('#line-gradient > stop:nth-child(10)')
+            .attr("offset", step5);
+        chartSvg.select('#line-gradient > stop:nth-child(11)')
+            .attr("offset", step5);
+        chartSvg.select('#line-gradient > stop:nth-child(12)')
+            .attr("offset", step6);
+        chartSvg.select('#line-gradient > stop:nth-child(13)')
+            .attr("offset", step6);
+        chartSvg.select('#line-gradient > stop:nth-child(14)')
+            .attr("offset", step7);
+        chartSvg.select('#line-gradient > stop:nth-child(15)')
+            .attr("offset", step7);
+        chartSvg.select('#line-gradient > stop:nth-child(16)')
+            .attr("offset", step8);
+        chartSvg.select('#line-gradient > stop:nth-child(17)')
+            .attr("offset", step8);
+        chartSvg.select('#line-gradient > stop:nth-child(18)')
+            .attr("offset", step9);
+        chartSvg.select('#line-gradient > stop:nth-child(19)')
+            .attr("offset", step9);
+        chartSvg.select('#line-gradient > stop:nth-child(20)')
+            .attr("offset", step10);
 
+
+      
 
         /*end of the gradient*/
 

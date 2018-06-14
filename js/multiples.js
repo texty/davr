@@ -290,11 +290,29 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .attr("x2", 0).attr("y2", chartY(yMax))
         .selectAll("stop")
         .data([
-            {offset: "0%", color: "lawngreen"},
-            {offset: greenpart + "%", color: "lawngreen"},
-            {offset: greenpart + "%", color: "red"},
-            {offset: "100%", color: "red"}
+            {offset: "0%", color: "#49E858"},
+            {offset: "10%", color: "#49E858"},
+            {offset: "10%", color: "#fff5f0"},
+            {offset: "20%", color: "#fff5f0"},
+            {offset: "20%", color: "#fee0d2"},
+            {offset: "30%", color: "#fee0d2"},
+            {offset: "30%", color: "#fcbba1"},
+            {offset: "40%", color: "#fcbba1"},
+            {offset: "40%", color: "#fc9272"},
+            {offset: "50%", color: "#fc9272"},
+            {offset: "50%", color: "#fb6a4a"},
+            {offset: "60%", color: "#fb6a4a"},
+            {offset: "60%", color: "#ef3b2c"},
+            {offset: "70%", color: "#ef3b2c"},
+            {offset: "70%", color: "#cb181d"},
+            {offset: "80%", color: "#cb181d"},
+            {offset: "80%", color: "#a50f15"},
+            {offset: "90%", color: "#a50f15"},
+            {offset: "90%", color: "#a50f15"},
+            {offset: "100%", color: "#67000d"}
         ])
+
+
         .enter().append("stop")
         .attr("offset", function(d) { return d.offset; })
         .attr("stop-color", function(d) { return d.color; });
