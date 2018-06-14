@@ -169,12 +169,12 @@ function drawUkraine(ukraine){
 
 
 /* Малюємо маленькі карти*/
-drawSmallMaps("data/all_total_basins.json", "#dnister");
-drawSmallMaps("data/all_total_basins.json", "#danube");
-drawSmallMaps("data/all_total_basins.json", "#dnipro");
-drawSmallMaps("data/all_total_basins.json", "#don");
-drawSmallMaps("data/all_total_basins.json", "#southernbug");
-drawSmallMaps("data/all_total_basins.json", "#wisla");
+// drawSmallMaps("data/all_total_basins.json", "#dnister");
+// drawSmallMaps("data/all_total_basins.json", "#danube");
+// drawSmallMaps("data/all_total_basins.json", "#dnipro");
+// drawSmallMaps("data/all_total_basins.json", "#don");
+// drawSmallMaps("data/all_total_basins.json", "#southernbug");
+// drawSmallMaps("data/all_total_basins.json", "#wisla");
 
 
 
@@ -372,7 +372,7 @@ function numTicks(widther) {
 }
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints, 3000);
+setTimeout(drawPoints, 500);
 
 
 
@@ -398,6 +398,8 @@ function FindByAttributeValue(attribute, value, element_type)    {
         if (All[i].getAttribute(attribute) == value) { return All[i]; }
     }
 }
+
+
 
 
 

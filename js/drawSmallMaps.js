@@ -44,75 +44,75 @@ function drawSmallMaps(file, id) {
 
         /*додаємо карту у відповідний контейнер*/
         var map = d3.select(id)
-            .append("img")
-            .attr("src", src)
-            .attr("class", "preview ")
+            // .append("img")
+            // .attr("src", src)
+            // .attr("class", "preview ")
             
   /*small maps as svg*/
-            // .append("svg")
-            // .attr("preserveAspectRatio", "xMinYMin meet")
-            // .attr("viewBox", "0 0 960 800")
+            .append("svg")
+            .attr("preserveAspectRatio", "xMinYMin meet")
+            .attr("viewBox", "0 0 960 800")
         ;
 
 
 
-        // var g = map.append("g");
-        //
-        // g.selectAll("path")
-        //     .data(topojson.feature(data, data.objects.all_total_basins).features
-        //         .filter(function (d) {
-        //             return d.properties.river === river
-        //         }))
-        //     .enter()
-        //     .append("path")
-        //     .attr("d", path)
-        //     .attr("class", filteredArray[0].value)
-        //     .attr("class", "smallriver")
-        //     .attr("fill", "none")
-        //     .attr("stroke", function (d) {
-        //             d.properties.a_DEPTH5 = +d.properties.a_DEPTH5;
-        //             d.properties.a_WIDTH5 = +d.properties.a_WIDTH5;
-        //             return BlWhScale(d.properties.a_DEPTH5 * 5);
-        //         }
-        //     )
-        //      .attr("fill-opacity", 0.5)
-        //     .attr("stroke-width", function (d) {
-        //         return +d.properties.a_WIDTH5 / 30 + "px";
-        //     });
-        //
+        var g = map.append("g");
+
+        g.selectAll("path")
+            .data(topojson.feature(data, data.objects.all_total_basins).features
+                .filter(function (d) {
+                    return d.properties.river === river
+                }))
+            .enter()
+            .append("path")
+            .attr("d", path)
+            .attr("class", filteredArray[0].value)
+            .attr("class", "smallriver")
+            .attr("fill", "none")
+            .attr("stroke", function (d) {
+                    d.properties.a_DEPTH5 = +d.properties.a_DEPTH5;
+                    d.properties.a_WIDTH5 = +d.properties.a_WIDTH5;
+                    return BlWhScale(d.properties.a_DEPTH5 * 5);
+                }
+            )
+             .attr("fill-opacity", 0.5)
+            .attr("stroke-width", function (d) {
+                return +d.properties.a_WIDTH5 / 30 + "px";
+            });
+
         
         /*фільтрує річки і квіточки на великій карті в алежності від обраної річки*/
         
-           map.on("click", function() {
-               bigMap.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
-
-               // projection
-               //     .scale(1500)
-               //     .center([27.53, 47.00]);
-               //
-               // group.selectAll("path")
-               //     .attr("d", path);
-
-
-            d3.selectAll(".river")
-                .style("display", "none")
-                .each(function() {
-                var currentPath = this;
-                if(currentPath.classList.contains(filteredArray[0].value)){
-                    d3.select(currentPath).style("display", "block")
-                }
-            });
-
-
-            d3.selectAll(".petal")
-                .style("display", "none")
-                .each(function() {
-                    var currentPath = this;
-                    if(currentPath.classList.contains(filteredArray[0].value)){
-                        d3.select(currentPath).style("display", "block")
-                    }
-                });
-      })
+      //      map.on("click", function() {
+      //          bigMap.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+      //
+      //          // projection
+      //          //     .scale(1500)
+      //          //     .center([27.53, 47.00]);
+      //          //
+      //          // group.selectAll("path")
+      //          //     .attr("d", path);
+      //
+      //
+      //       d3.selectAll(".river")
+      //           .style("display", "none")
+      //           .each(function() {
+      //           var currentPath = this;
+      //           if(currentPath.classList.contains(filteredArray[0].value)){
+      //               d3.select(currentPath).style("display", "block")
+      //           }
+      //       });
+      //
+      //
+      //       d3.selectAll(".petal")
+      //           .style("display", "none")
+      //           .each(function() {
+      //               var currentPath = this;
+      //               if(currentPath.classList.contains(filteredArray[0].value)){
+      //                   d3.select(currentPath).style("display", "block")
+      //               }
+      //           });
+      // })
 
     })
-};
+}

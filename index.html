@@ -17,7 +17,7 @@
 <!--<script src="js/flower.js"></script>-->
 <!--<script src="js/updateRiver.js"></script>-->
 <script src="js/drawRivers.js"></script>
-<script src="js/drawSmallMaps.js"></script>
+<!--<script src="js/drawSmallMaps.js"></script>-->
 <script src="js/drawChart.js"></script>
 
 <script src="js/drawPoints.js"></script>
@@ -26,28 +26,29 @@
 <div id="allrivers">
     <div id="danube" class="riverCont">
         <h5>Дунай</h5>
-
+        <img style="width:100%" src="img/danube.png" />
     </div>
     <div id="dnister" class="riverCont">
         <h5>Дністер</h5>
-
+        <img style="width:100%" src="img/dnister.png" />
     </div>
     <div id="wisla" class="riverCont">
         <h5>Вісла</h5>
-
+        <img style="width:100%" src="img/wisla.png" />
     </div>
     <div id="southernbug" class="riverCont">
         <h5>Південний Буг</h5>
-
+        <img style="width:100%" src="img/southernbug.png" />
     </div>
     <div id="dnipro" class="riverCont">
         <h5>Дніпро</h5>
-
+        <img style="width:100%" src="img/dnipro.png" />
     </div>
-    <div id="don" class="riverCont">
+    <div id="don" class="riverCont" >
         <h5>Дон</h5>
-
+        <img style="width:100%" src="img/don.png" />
     </div>
+
 
 
 </div>
@@ -117,21 +118,12 @@
     </div>
         </div>
         </div>
-
-
-
-
-
-
-
-
-
     </div>
-
 </div>
 
 
 <script>
+    /* функція перемикає графік на різні індикатори*/
     function onchangeFunctions() {
         checkInput();
         drawChart();
@@ -148,12 +140,42 @@
             }
         }
     }
+</script>
+
+<script>
+    /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
+
+    $(".riverCont").on("click", function(){
+        var id = $(this).attr("id");
+//        alert(id);
+
+        var filteredArray = riversNames.filter(function( obj ) {
+            return obj.value === id;
+        });
+
+        d3.selectAll(".river")
+                .style("display", "none")
+                .each(function() {
+                    var currentPath = this;
+                    if(currentPath.classList.contains(filteredArray[0].value)){
+                        d3.select(currentPath).style("display", "block")
+                    }
+                });
+
+        d3.selectAll(".petal")
+                .style("display", "none")
+                .each(function() {
+                    var currentPath = this;
+                    if(currentPath.classList.contains(filteredArray[0].value)){
+                        d3.select(currentPath).style("display", "block")
+                    }
+                });
+
+    });
 
 
 
 </script>
-
-
 
 </body>
 </html>
