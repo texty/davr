@@ -92,6 +92,7 @@ input[type="radio"] {
 
 .redline {
   stroke: #ab0004;
+  z-index: 1000;
   stroke-width: 0.8px; }
 
 .axis line {
@@ -110,6 +111,9 @@ path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
 #chartToRemove > g > g.y.axis > g.tick > text {
   fill: white !important;
   font-size: 12px; }
+
+g.tick {
+  stroke-width: 0.4px; }
 
 /* end of modal*/
 .river {

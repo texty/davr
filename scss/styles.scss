@@ -162,6 +162,7 @@ input[type="radio"] {
 
 .redline {
   stroke: #ab0004;
+  z-index: 1000;
   stroke-width: 0.8px;
   //stroke-dasharray: 5;
 }
@@ -192,6 +193,9 @@ path.domain, #chartToRemove > g > g.y.axis > g:nth-child(2) > text {
   font-size:12px;
 }
 
+g.tick {
+  stroke-width: 0.4px;
+}
 
 /* end of modal*/
 

@@ -20,7 +20,7 @@ function drawChart() {
             return d.key === keyIndicator;
         });
 
-        var norm = dataData[0].norm;
+        
 
         d3.select('#petalsData')
             .html(dataData[0].name);
@@ -47,17 +47,34 @@ function drawChart() {
 
         var dates = dataData.map(function (d) {
             return d.date
-        });
-
+        });       
+        
         var xMin = d3.min(d3.values(dates));
         var xMax = new Date();
-
-
+        
         chartX.domain([xMin, xMax]);
-        chartY.domain([0, d3.max(dataData, function (d) {
-            return d.value;
-        })]);
 
+
+
+        var values = dataData.map(function (d) {
+            return d.value
+        });
+        var norm = dataData[0].norm;
+        var yMax = d3.max(d3.values(values));
+
+        if(norm > 0) {
+            if (norm > yMax) {
+                chartY.domain([0, norm]);
+            }
+
+            if (norm < yMax) {
+                chartY.domain([0, yMax]);
+            }
+        }
+
+        else{
+            chartY.domain([0, yMax]);
+        }
         chartSvg.select(".line")   // change the line
             .duration(500)
             .attr("d", valueline(dataData));
@@ -75,7 +92,7 @@ function drawChart() {
             .attr("y1", chartY(norm))
             .attr("x2", chartX(xMax))
             .attr("y2", chartY(norm));
-;
+
 
         d3.select('#petalsData').append("p")
             .attr("id", "modalKeysHeadings")
