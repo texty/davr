@@ -146,6 +146,7 @@
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
 
     $(".riverCont").on("click", function(){
+        bigMap.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
         var id = $(this).attr("id");
 //        alert(id);
 
