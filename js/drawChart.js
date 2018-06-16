@@ -1,10 +1,11 @@
 /**
  * Created by yevheniia on 11.06.18.
  */
-function drawChart() {
-
-    var dataId = d3.selectAll(".messageCheckbox").attr("name");
-    var keyIndicator = checkInput();
+function drawChart(IdForChart, keyIndicator) {
+    var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
+    // var dataId = d3.selectAll(".messageCheckbox").attr("name");
+    
+    // var keyIndicator = checkInput();
 
     var parseTime = d3.timeParse("%d.%m.%Y");
 
@@ -13,7 +14,7 @@ function drawChart() {
         var chartSvg = d3.select("#chart").transition();
         var chartG = chartSvg.select('g').transition();
         var idData = chart.filter(function (d) {
-            return d.id === dataId
+            return d.id === IdForChart
         });
 
         var dataData = idData.filter(function (d) {
@@ -130,15 +131,18 @@ function drawChart() {
         norm = +norm;
         var greenpart;
 
-        if(yMax < norm) {
+        if(norm === "NA" || norm != norm){
+            greenpart = 100
+        }
+        else if(yMax < norm) {
             greenpart = 100 / (norm / yMax);
         }
         else if(yMax > norm) {
             greenpart = 100 / (yMax / norm);
         }
-        else if(norm === "NA"){
-            greenpart = 100
-        }
+
+
+
 
         var step1 = greenpart+"%";
         var step2= (100/(yMax / norm)) * 2+"%";

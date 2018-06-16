@@ -1,15 +1,25 @@
 function drawPoints() {
 
     d3.csv("data/flowers.csv", function (error, points) {
+    // d3.csv("data/total_data_gather.csv", function (error, points) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
             .key(function (d) {
                 return d.id
             })
-            .key(function (d) {
+             .key(function (d) {
                 return d.date
             })
             .entries(points);
+
+/*----------------------- roll up try ---------------------------------------*/
+
+
+
+
+/*-------------------------------------------------------------------------- -*/
+
+
 
 
         //беремо дані за останню можливу дату по кожному місцю водозабору
@@ -112,15 +122,18 @@ function drawPoints() {
                         };
                         
                         var IdForChart = d.data.id;
-                        var indicator = d.data.key;
+                        var keyindicator = d.data.key;
                         var norm = d.data.norm;
                         
                         // drawChart(IdForChart, indicator);
                         // updateLineChart(IdForChart)
-                        d3.selectAll(".messageCheckbox").attr("name", IdForChart);
-                        FindByAttributeValue("value", indicator).checked = true;
-
-                        drawChart()
+                        // d3.selectAll(".messageCheckbox").attr("name", IdForChart);
+                        // FindByAttributeValue("value", keyindicator).checked = true;
+                        
+                        
+                        drawBigFlower(IdForChart);
+                        drawChart(IdForChart, keyindicator);
+                        
 
 
 
@@ -135,29 +148,3 @@ function drawPoints() {
 
 
 
-
-function petalPath(d) {
-    var angle = (d.endAngle - d.startAngle) / 3,
-        s = polarToCartesian(-angle, halfRadius),
-        e = polarToCartesian(angle, halfRadius),
-    // r = size(d.data.size),
-        r = size(0.03),
-
-        m = {x: halfRadius + r, y: 0},
-        c1 = {x: halfRadius + r / 2, y: s.y},
-        c2 = {x: halfRadius + r / 2, y: e.y};
-    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 2) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 2) + " " + Math.round(0) + "," + Math.round(0) + "Z";
-};
-
-
-
-function r(angle) {
-    return "rotate(" + (angle / Math.PI * 180) + ")";
-}
-
-function polarToCartesian(angle, radius) {
-    return {
-        x: Math.cos(angle) * radius,
-        y: Math.sin(angle) * radius
-    };
-}  /* end of flowers */

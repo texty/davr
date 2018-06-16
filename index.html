@@ -8,6 +8,84 @@
 </head>
 <body>
 
+
+
+
+
+<div id="bigMap"></div>
+<!--<h5 class="captions">Клікни на сірий фон знизу, коли побачиш річки на великій карті</h5>-->
+
+<!--<select id="selectBasin" onchange="toggle()">-->
+    <!--<option value="Дністер">Дністер</option>-->
+    <!--<option data="1" value="Дунай">Дунай (Одеська обл.)</option>-->
+    <!--<option value="Дунай">Дунай (Закарпат. Ів.-Франк., Чернів. обл.)</option>-->
+    <!--<option value="Південний Буг">Південний Буг</option>-->
+    <!--<option value="Дніпро">Дніпро</option>-->
+    <!--<option value="Дон">Дон</option>-->
+
+
+<!--</select>-->
+
+<div id ="clone"></div>
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+
+        <p id="petalsData">Триває завантаження...</p>
+
+<div id="myModalGrid">
+        <div id="chart"></div>
+        <div id="big-flower"></div>
+
+</div>
+<!--<div class="formInpurs">-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="БСК5..МгО.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'><label title="Біохімічне споживання кисню за 5 діб, мгО/дм3">БСК5, МгО/дм3</label>-->
+        <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Завислі..суспендовані..речовини..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Завислі суспендовані речовини, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Кисень.розчинений.МгО2.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Кисень розчинений, МгО2/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Сульфат.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Сульфат іони, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Хлорид.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Хлорид іони, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Амоній.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Амоній іони, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Нітрат.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Нітрат іони, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Нітрит.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Нітрит-іони, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Фосфат.іони..поліфосфати...мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Фосфат-іони..поліфосфати, мг/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Хімічне.споживання.кисню..мгО.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Хімічне споживання кисню, мгО/дм3-->
+    <!--</div>-->
+    <!--<div class="onecol">-->
+        <!--<input class="messageCheckbox" value="Синтетичні.поверхнево.активні.речовини..аніонні...мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Синтетичні ПАР аніонні, мг/дм3-->
+    <!--</div>-->
+<!--</div>-->
+
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var clonedivWidth = document.getElementById('clone').clientWidth;
+</script>
+
 <script src="lib/jquery-2.1.4.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
@@ -18,10 +96,33 @@
 <!--<script src="js/updateRiver.js"></script>-->
 <script src="js/drawRivers.js"></script>
 <!--<script src="js/drawSmallMaps.js"></script>-->
-<script src="js/drawChart.js"></script>
-
 <script src="js/drawPoints.js"></script>
+<script src="js/drawBigFlower.js"></script>
+<script src="js/drawChart.js"></script>
 <script src="js/multiples.js"></script>
+<script>
+
+
+
+    /* функція перемикає графік на різні індикатори*/
+//    function onchangeFunctions() {
+//        checkInput();
+//        drawChart();
+////        redraw();
+//    }
+
+    function checkInput() {
+        var indicators = document.getElementsByClassName('messageCheckbox');
+        var selectedIndicator;
+        for (var i = 0; i < indicators.length; i++) {
+            if (indicators[i].checked) {
+                selectedIndicator = indicators[i].value;
+                return selectedIndicator;
+            }
+        }
+    }
+</script>
+
 
 <div id="allrivers">
     <div id="danube" class="riverCont">
@@ -52,95 +153,6 @@
 
 
 </div>
-
-<div id="bigMap"></div>
-<!--<h5 class="captions">Клікни на сірий фон знизу, коли побачиш річки на великій карті</h5>-->
-
-<!--<select id="selectBasin" onchange="toggle()">-->
-    <!--<option value="Дністер">Дністер</option>-->
-    <!--<option data="1" value="Дунай">Дунай (Одеська обл.)</option>-->
-    <!--<option value="Дунай">Дунай (Закарпат. Ів.-Франк., Чернів. обл.)</option>-->
-    <!--<option value="Південний Буг">Південний Буг</option>-->
-    <!--<option value="Дніпро">Дніпро</option>-->
-    <!--<option value="Дон">Дон</option>-->
-
-
-<!--</select>-->
-
-
-<div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-        <span class="close">&times;</span>
-
-
-        <p id="petalsData">Триває завантаження...</p>
-
-<div id="myModalGrid">
-        <div id="chart" ></div>
-
-<div class="formInpurs">
-    <div class="onecol">
-        <input class="messageCheckbox" value="БСК5..МгО.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'><label title="Біохімічне споживання кисню за 5 діб, мгО/дм3">БСК5, МгО/дм3</label>
-        </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Завислі..суспендовані..речовини..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Завислі суспендовані речовини, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Кисень.розчинений.МгО2.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Кисень розчинений, МгО2/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Сульфат.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Сульфат іони, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Хлорид.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Хлорид іони, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Амоній.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Амоній іони, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Нітрат.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Нітрат іони, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Нітрит.іони..мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Нітрит-іони, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Фосфат.іони..поліфосфати...мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Фосфат-іони..поліфосфати, мг/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Хімічне.споживання.кисню..мгО.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Хімічне споживання кисню, мгО/дм3
-    </div>
-    <div class="onecol">
-        <input class="messageCheckbox" value="Синтетичні.поверхнево.активні.речовини..аніонні...мг.дм3" type="radio" name="test1" onchange = 'onchangeFunctions()'>Синтетичні ПАР аніонні, мг/дм3
-    </div>
-</div>
-    </div>
-        </div>
-        </div>
-    </div>
-</div>
-
-
-<script>
-    /* функція перемикає графік на різні індикатори*/
-    function onchangeFunctions() {
-        checkInput();
-        drawChart();
-//        redraw();
-    }
-
-    function checkInput() {
-        var indicators = document.getElementsByClassName('messageCheckbox');
-        var selectedIndicator;
-        for (var i = 0; i < indicators.length; i++) {
-            if (indicators[i].checked) {
-                selectedIndicator = indicators[i].value;
-                return selectedIndicator;
-            }
-        }
-    }
-</script>
 
 <script>
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
@@ -175,6 +187,45 @@
     });
 
 
+
+
+
+    var flowerMargin = {top: 20, right: 20, bottom: 20, left: 35};
+    var flowerWidth = clonedivWidth - chartMargin.left - chartMargin.right,
+            flowerHeight = 300 - chartMargin.top - chartMargin.bottom;
+
+    var flowerSvg = d3.select("#big-flower").append("svg")
+            .attr("id", "#bigFlower")
+            .attr("width", flowerWidth + flowerMargin.left + flowerMargin.right)
+            .attr("height", chartHeight + flowerMargin.top + flowerMargin.bottom);
+
+
+    var flowerG = flowerSvg.append("g")
+            .attr('transform', 'translate(+' + flowerWidth/2 + "," + flowerHeight/2+ ')');
+
+
+    var div = d3.select("#myModal").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+    var halfRadius = 2; //радіус для квіточок
+    var bigradius =  clonedivWidth /10;
+
+    var arc = d3.arc()
+            .outerRadius(bigradius - 10)
+            .innerRadius(0);
+
+
+    var size = d3.scaleSqrt()
+            .domain([0, 1])
+            .range([0, halfRadius]);
+
+
+
+    var pie = d3.pie()
+            .sort(null)
+            // .value(function(d) { return d.size; });
+            .value(function(d) { return 5; });
 
 </script>
 

@@ -1,3 +1,5 @@
+
+
 var inferno = ["#000004","#02020c", "#050417", "#0a0722", "#10092d", "#160b39",  "#1e0c45",
     "#260c51", "#2f0a5b", "#380962", "#400a67", "#490b6a", "#510e6c", "#59106e", "#61136e",
     "#69166e", "#71196e", "#781c6d", "#801f6c", "#88226a", "#902568", "#982766", "#a02a63",
@@ -82,16 +84,7 @@ var indicatorNames = [
 ];
 
 /* Глобальні змінні для квіточок*/
-var halfRadius = 2; //радіус для квіточок
 
-var size = d3.scaleSqrt()
-    .domain([0, 1])
-    .range([0, halfRadius]);
-
-var pie = d3.pie()
-    .sort(null)
-    // .value(function(d) { return d.size; });
-    .value(function(d) { return 5; });
 
 
 
@@ -152,7 +145,9 @@ bigMap.on("click", function () {
 
 
 
-
+/*----------------------
+ Малюємо шейп України
+ -----------------------*/
 
 d3.json("data/ukr_shape.geojson", drawUkraine);
 function drawUkraine(ukraine){
@@ -161,14 +156,14 @@ function drawUkraine(ukraine){
         .enter()
         .append("path")
         .attr("d", path)
-        .attr("class", "ukraine")
-        .attr("fill", "none")
-        .attr("stroke", "white")
-        .attr("stroke-width", "0.5px");
+        .attr("id", "ukraine")       
+       
 };
 
 
-/* Малюємо маленькі карти*/
+/* -----------------------------------------------------------------------
+Малюємо маленькі карти  (у фінальній версії не потрібно, карти картинками)
+-------------------------------------------------------------------------*/
 // drawSmallMaps("data/all_total_basins.json", "#dnister");
 // drawSmallMaps("data/all_total_basins.json", "#danube");
 // drawSmallMaps("data/all_total_basins.json", "#dnipro");
@@ -178,19 +173,25 @@ function drawUkraine(ukraine){
 
 
 
-/* Малюємо велику карту з басейнами рік*/
+
+/*-------------------------------------
+ Малюємо велику карту з басейнами рік
+ -------------------------------------*/
 // d3.json("data/all_total_basins.json", drawRivers);
 
 
-/* -----Малюємо лінійний графік, який буде оновлюватись-----*/
+
+
+
+/*-----------------------------------------------------------------------------------
+Малюємо лінійний графік with general update (оновлюється скриптом 'drawChart.js')
+------------------------------------------------------------------------------------*/
+
 var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
 
-
-var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
-var chartWidth = W - chartMargin.left - chartMargin.right;
-// window.addEventListener('resize', redraw);
-
-    chartHeight = 300 - chartMargin.top - chartMargin.bottom;
+// var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
+var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
+chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
 var parseTime = d3.timeParse("%d.%m.%Y");
 
@@ -237,10 +238,9 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         return d.key === 'БСК5..МгО.дм3';
     });
 
+
     dataData.sort(function(a,b){
-        // Turn your strings into dates, and then subtract them
-        // to get a value that is either negative, positive, or zero.
-        return new Date(b.date) - new Date(a.date);
+        return new Date(b.date) - new Date(a.date);/* щоб не малюватись крокозяблики*/
     });
 
     var norm = dataData[0].norm;
@@ -249,40 +249,30 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
     d3.select('#petalsData')
         .html(dataData[0].name);
 
-    // dataData.forEach(function (d) {
-    //     d.date = parseTime(d.date);
-    //     d.value = +d.value;
-    // });
 
-    var values = dataData.map(function (d) {
-        return d.value
-    });
 
+    //yAxis
+    var values = dataData.map(function (d) {  return d.value  });
     var yMax = d3.max(d3.values(values));
     var yMin = d3.min(d3.values(values));
+    var yticks = [yMin, +norm, yMax];
+    yticks.sort(function(a,b) {   return a - b  });
 
 
+
+    //xAxis
     var dates = dataData.map(function (d) {
-        return d.date
-    });
-
+        return d.date    });
     var xMin = d3.min(d3.values(dates));
     var xMax = d3.max(d3.values(dates));
     // var xMax = new Date();
-
-    var yticks = [yMin, +norm, yMax];
-    yticks.sort(function(a,b) {
-        return a - b
-    });
-
     chartX.domain([xMin, xMax]);
     chartY.domain([0, d3.max(dataData, function (d) {
         return d.value;
     })]);
 
-    var greenpart = 100 / (yMax/norm);
 
-
+    //Градієнт для лінійного графіку
     chartSvg.append("linearGradient")
         .attr("id", "line-gradient")
         .attr("gradientUnits", "userSpaceOnUse")
@@ -311,43 +301,27 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
             {offset: "90%", color: "#a50f15"},
             {offset: "100%", color: "#67000d"}
         ])
-
-
         .enter().append("stop")
         .attr("offset", function(d) { return d.offset; })
         .attr("stop-color", function(d) { return d.color; });
     /*end of the gradient*/
 
+
+
+
+    //Додaємо path and axis
     chartG.append("path")
         .data([dataData])
         .attr("class", "line")
         .attr("d", valueline)
         .attr("stroke", "#49E858");
 
-
-    // var lines = chartG.append("line")        
-    //     .attr("x1", chartX(xMin))
-    //     .attr("y1", chartY(norm))
-    //     .attr("x2", chartX(xMax))
-    //     .attr("y2", chartY(norm))
-    //     .attr('class', "redline")
-    //     ;
-
-
-    // chartSvg.append("text")
-    //     .attr('class', 'lineText')
-    //     .attr('text-anchor', 'end')
-    //     .attr("x", chartX(xMax))
-    //     .attr("y", chartY(norm))
-    //     .text('допустима норма');
-
-
     chartG.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
         .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%b-%Y")));
 
-    // Add the Y Axis
+
     chartG.append("g")
         .attr("class", "y axis")
         // .attr("transform", "translate(30,0)")//magic number, change it at will
@@ -360,7 +334,7 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
 
 });
 
-// function redraw() {
+// function redraw() { /* невдала спроба зробити графік динамічно resizable*/
 //     console.log("resized");
 //     var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
 //     var chartWidth = W - chartMargin.left - chartMargin.right;
@@ -411,8 +385,10 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
 //
 // }
 
-/*end of line chart*/
 
+
+
+/* кількість ticks для вісі Х*/
 function numTicks(widther) {
     if (widther <= 900) {
         return 4
@@ -424,19 +400,36 @@ function numTicks(widther) {
     }
 }
 
+/* end of line chart*/
+
+
+
+/*-----------------------------------------------------------------------------------
+ Малюємо велику квітку (оновлюється скриптом 'drawChart.js')
+ ------------------------------------------------------------------------------------*/
+
+
+/* end of dig flower*/
+
+
+
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints);
+setTimeout(drawPoints, 100);
 
 
 
 
 
+/*Функція зуму*/
 function zoomed() {
     // group.style("stroke-width", 1.5 / d3.event.transform.k + "px");
     group.attr("transform", d3.event.transform); // updated for d3 v4
 }
 
 
+
+
+/*Перевірка if array contains*/
 Array.prototype.contains = function (v) {
     for (var i = 0; i < this.length; i++) {
         if (this[i] === v) return true;
@@ -444,6 +437,10 @@ Array.prototype.contains = function (v) {
     return false;
 };
 
+
+
+
+/*Пошук за атрибутом елементу*/
 function FindByAttributeValue(attribute, value, element_type)    {
     element_type = element_type || "*";
     var All = document.getElementsByTagName(element_type);
@@ -456,6 +453,31 @@ function FindByAttributeValue(attribute, value, element_type)    {
 
 
 
+function petalPath(d) {
+    var angle = (d.endAngle - d.startAngle) / 3,
+        s = polarToCartesian(-angle, halfRadius),
+        e = polarToCartesian(angle, halfRadius),
+    // r = size(d.data.size),
+        r = size(0.03),
+
+        m = {x: halfRadius + r, y: 0},
+        c1 = {x: halfRadius + r / 2, y: s.y},
+        c2 = {x: halfRadius + r / 2, y: e.y};
+    return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 2) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 2) + " " + Math.round(0) + "," + Math.round(0) + "Z";
+};
+
+
+
+function r(angle) {
+    return "rotate(" + (angle / Math.PI * 180) + ")";
+}
+
+function polarToCartesian(angle, radius) {
+    return {
+        x: Math.cos(angle) * radius,
+        y: Math.sin(angle) * radius
+    };
+}  /* end of flowers */
 
 
 
