@@ -18,6 +18,16 @@ body {
 
 }
 
+canvas {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+svg {
+  z-index:200;
+}
+
 #map {
     height: 500px;
 }
@@ -258,7 +268,7 @@ g.tick {
 }
 
 .petal {
-  z-index:5;
+  z-index:10000;
   display:none;
   //color: #95ddff;
 }

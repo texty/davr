@@ -103,6 +103,8 @@ var zoom = d3.zoom()
     .scaleExtent([0, 10])
     .on("zoom", zoomed);
 
+
+
 var bigMap = d3.select("body")
     .append("svg")
     .attr("id", "bigsvg")
@@ -156,8 +158,8 @@ function drawUkraine(ukraine){
         .enter()
         .append("path")
         .attr("d", path)
-        .attr("id", "ukraine")       
-       
+        .attr("id", "ukraine")
+
 };
 
 

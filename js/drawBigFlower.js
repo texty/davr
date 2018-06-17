@@ -19,6 +19,7 @@ function drawBigFlower(IdForChart) {
             .enter();
         particles.append("path")
             .attr('class', "particles")
+
             .attr("transform", function (d) {
                 return r((d.startAngle + d.endAngle) / 2);
             })
@@ -44,12 +45,19 @@ function drawBigFlower(IdForChart) {
         
         // particles.append('text')
         //     .attr('class', 'big-labels')
-        //     .attr('x', (bigradius * 2) + 15)
+        //     .attr('x', r(100))
         //     .text(function (d) {
         //         return d.data.key;
         //     })
+        //     // .attr("transform", function (d) {
+        //     //     return r((d.startAngle + d.endAngle) / 2);
+        //     // })
         //     .attr("transform", function (d) {
-        //         return r((d.startAngle + d.endAngle) / 2);
+        //         return "translate(" +
+        //             (bigradius * Math.sin( ((d.endAngle - d.startAngle) / 2) + d.startAngle ) ) +
+        //             ", " +
+        //             ( -1 * bigradius * Math.cos( ((d.endAngle - d.startAngle) / 2) + d.startAngle ) ) +
+        //             ")";
         //     })
         //     .style("fill", "white")
         //     .style("font-size", "9px");
@@ -62,11 +70,11 @@ function drawBigFlower(IdForChart) {
 
 
 function bigPetalPath(d) {
-    var angle = (d.endAngle - d.startAngle) / 3,
+    var angle = (d.endAngle - d.startAngle) / 2,
         s = polarToCartesian(-angle, bigradius),
         e = polarToCartesian(angle, bigradius),
     // r = size(d.data.size),
-        r = size(100),
+        r = size(80),
 
         m = {x: bigradius + r, y: 0},
         c1 = {x: bigradius + r / 2, y: s.y},

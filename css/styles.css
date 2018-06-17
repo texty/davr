@@ -5,6 +5,15 @@ body {
   background-color: black;
   font-family: 'Proxima-Nova', sans-serif; }
 
+canvas {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+svg {
+  z-index: 200; }
+
 #map {
   height: 500px; }
 
@@ -162,7 +171,7 @@ g.tick {
   z-index: 1; }
 
 .petal {
-  z-index: 5;
+  z-index: 10000;
   display: none; }
 
 #allrivers {
