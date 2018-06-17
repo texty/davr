@@ -43,6 +43,7 @@ function drawBigFlower(IdForChart) {
             });
 
         
+        
         // particles.append('text')
         //     .attr('class', 'big-labels')
         //     .attr('x', r(100))
