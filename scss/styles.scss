@@ -25,6 +25,7 @@ canvas {
   left: 0;
   pointer-events:none;
 }
+
 svg {
   z-index:200;
 }
@@ -269,7 +270,7 @@ g.tick {
 }
 
 .petal {
-  z-index:6;
+  z-index:10000;
   display:none;
   //color: #95ddff;
 }

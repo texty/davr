@@ -172,7 +172,7 @@ g.tick {
   z-index: 1; }
 
 .petal {
-  z-index: 6;
+  z-index: 10000;
   display: none; }
 
 #allrivers {

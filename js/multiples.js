@@ -416,17 +416,17 @@ function numTicks(widther) {
 
 
 /* Малюємо квіточки із затримкою, аби вони були зверху річок*/
-setTimeout(drawPoints, 100);
+setTimeout(drawPoints, 6000);
 
 
 
 
 
-/*Функція зуму*/
-function zoomed() {
-    // group.style("stroke-width", 1.5 / d3.event.transform.k + "px");
-    group.attr("transform", d3.event.transform); // updated for d3 v4
-}
+// /*Функція зуму*/
+// function zoomed() {
+//     // group.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+//     group.attr("transform", d3.event.transform); // updated for d3 v4
+// }
 
 
 
@@ -443,13 +443,13 @@ Array.prototype.contains = function (v) {
 
 
 /*Пошук за атрибутом елементу*/
-function FindByAttributeValue(attribute, value, element_type)    {
-    element_type = element_type || "*";
-    var All = document.getElementsByTagName(element_type);
-    for (var i = 0; i < All.length; i++)       {
-        if (All[i].getAttribute(attribute) == value) { return All[i]; }
-    }
-}
+// function FindByAttributeValue(attribute, value, element_type)    {
+//     element_type = element_type || "*";
+//     var All = document.getElementsByTagName(element_type);
+//     for (var i = 0; i < All.length; i++)       {
+//         if (All[i].getAttribute(attribute) == value) { return All[i]; }
+//     }
+// }
 
 
 

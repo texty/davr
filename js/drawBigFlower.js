@@ -71,7 +71,7 @@ function drawBigFlower(IdForChart) {
 
 
 function bigPetalPath(d) {
-    var angle = (d.endAngle - d.startAngle) / 2,
+    var angle = (d.endAngle - d.startAngle) / 3,
         s = polarToCartesian(-angle, bigradius),
         e = polarToCartesian(angle, bigradius),
     // r = size(d.data.size),
