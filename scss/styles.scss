@@ -19,10 +19,11 @@ body {
 }
 
 canvas {
-  z-index: 100;
+  z-index: 5;
   position: absolute;
   top: 0;
   left: 0;
+  pointer-events:none;
 }
 svg {
   z-index:200;
@@ -63,7 +64,7 @@ h5{
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   padding-top: 50px;
   left: 0;
   top: 0;
@@ -268,7 +269,7 @@ g.tick {
 }
 
 .petal {
-  z-index:10000;
+  z-index:6;
   display:none;
   //color: #95ddff;
 }

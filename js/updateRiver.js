@@ -64,7 +64,6 @@ var size = d3.scaleSqrt()
     .range([0, halfRadius]);
 
 
-
 var pie = d3.pie()
     .sort(null)
     // .value(function(d) { return d.size; });
@@ -77,7 +76,7 @@ var path2 = d3.geoPath()
 var map = {};
 map.width = window.innerWidth;
 map.height = window.innerWidth / 3;
-alert(map.width);
+// alert(map.width);
 
 
 // var ctx = canvas.node().getContext('2d');
@@ -94,8 +93,8 @@ map.svg =
         .append('g');
 
 
-
-map.canvas = d3.select("body").append("canvas")
+/*-------------------------------------------------- */
+map.canvasDanube = d3.select("body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -103,12 +102,205 @@ map.canvas = d3.select("body").append("canvas")
     .attr("class", "river danube")
     .node().getContext('2d');
 
-
-
-var path = d3.geoPath()
+var pathDanube = d3.geoPath()
     .projection(projection)
     // .context(ctx);
-    .context(map.canvas);
+    .context(map.canvasDanube);
+
+
+d3.json("data/DANUBE.json", function (error, danube) {
+
+    var data = topojson.feature(danube, danube.objects.DANUBE)
+        .features.filter(function (d) {
+            return d.properties.a_WIDTH5 > 5;
+        });
+    map.canvasDanube.fillStyle = "none";
+    data.forEach(function (d) {
+        map.canvasDanube.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+        map.canvasDanube.lineWidth = d.properties.a_WIDTH5 / 50;
+        map.canvasDanube.beginPath();
+        pathDanube(d);
+        map.canvasDanube.fill();
+        map.canvasDanube.stroke();
+    });
+
+});
+/*-------------------------------------------------- */
+
+map.canvasDnipro = d3.select("body").append("canvas")
+    .attr('height', map.height)
+    .attr('width', map.width)
+    // .attr("preserveAspectRatio", "xMinYMin meet")
+    // .attr("viewBox", "0 0 960 350")
+    .attr("class", "river dnipro")
+    .node().getContext('2d');
+
+var pathDnipro = d3.geoPath()
+    .projection(projection)
+    // .context(ctx);
+    .context(map.canvasDnipro);
+
+
+
+d3.json("data/DNIPRO.json", function (error, dnipro) {
+
+    var data = topojson.feature(dnipro, dnipro.objects.DNIEPR)
+        .features.filter(function (d) {
+            return d.properties.a_WIDTH5 > 5;
+        });
+    map.canvasDnipro.fillStyle = "none";
+    data.forEach(function (d) {
+        map.canvasDnipro.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+        map.canvasDnipro.lineWidth = d.properties.a_WIDTH5 / 50;
+        map.canvasDnipro.beginPath();
+        pathDnipro(d);
+        map.canvasDnipro.fill();
+        map.canvasDnipro.stroke();
+    });
+
+});
+
+
+/*-------------------------------------------------- */
+
+map.canvasDon = d3.select("body").append("canvas")
+    .attr('height', map.height)
+    .attr('width', map.width)
+    // .attr("preserveAspectRatio", "xMinYMin meet")
+    // .attr("viewBox", "0 0 960 350")
+    .attr("class", "river don")
+    .node().getContext('2d');
+
+var pathDon = d3.geoPath()
+    .projection(projection)
+    // .context(ctx);
+    .context(map.canvasDon);
+
+
+
+d3.json("data/DON.json", function (error, don) {
+
+    var data = topojson.feature(don, don.objects.DON)
+        .features.filter(function (d) {
+            return d.properties.a_WIDTH5 > 5;
+        });
+    map.canvasDon.fillStyle = "none";
+    data.forEach(function (d) {
+        map.canvasDon.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+        map.canvasDon.lineWidth = d.properties.a_WIDTH5 / 50;
+        map.canvasDon.beginPath();
+        pathDon(d);
+        map.canvasDon.fill();
+        map.canvasDon.stroke();
+    });
+
+});
+
+/*-------------------------------------------------- */
+
+map.canvasWisla = d3.select("body").append("canvas")
+    .attr('height', map.height)
+    .attr('width', map.width)
+    // .attr("preserveAspectRatio", "xMinYMin meet")
+    // .attr("viewBox", "0 0 960 350")
+    .attr("class", "river wisla")
+    .node().getContext('2d');
+
+var pathWisla = d3.geoPath()
+    .projection(projection)
+    // .context(ctx);
+    .context(map.canvasWisla);
+
+
+
+d3.json("data/WISLA.json", function (error, wisla) {
+
+    var data = topojson.feature(wisla, wisla.objects.WISLA)
+        .features.filter(function (d) {
+            return d.properties.a_WIDTH5 > 5;
+        });
+    map.canvasWisla.fillStyle = "none";
+    data.forEach(function (d) {
+        map.canvasWisla.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+        map.canvasWisla.lineWidth = d.properties.a_WIDTH5 / 50;
+        map.canvasWisla.beginPath();
+        pathWisla(d);
+        map.canvasWisla.fill();
+        map.canvasWisla.stroke();
+    });
+
+});
+
+/*-------------------------------------------------- */
+
+map.canvasBug = d3.select("body").append("canvas")
+    .attr('height', map.height)
+    .attr('width', map.width)
+    // .attr("preserveAspectRatio", "xMinYMin meet")
+    // .attr("viewBox", "0 0 960 350")
+    .attr("class", "river southernbug")
+    .node().getContext('2d');
+
+var pathBug = d3.geoPath()
+    .projection(projection)
+    // .context(ctx);
+    .context(map.canvasBug);
+
+
+
+d3.json("data/SOUTHERNBUG.json", function (error, bug) {
+
+    var data = topojson.feature(bug, bug.objects.SOUTHERNBUG)
+        .features.filter(function (d) {
+            return d.properties.a_WIDTH5 > 5;
+        });
+    map.canvasBug.fillStyle = "none";
+    data.forEach(function (d) {
+        map.canvasBug.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+        map.canvasBug.lineWidth = d.properties.a_WIDTH5 / 50;
+        map.canvasBug.beginPath();
+        pathBug(d);
+        map.canvasBug.fill();
+        map.canvasBug.stroke();
+    });
+
+});
+
+/*-------------------------------------------------- */
+
+map.canvasDniestr = d3.select("body").append("canvas")
+    .attr('height', map.height)
+    .attr('width', map.width)
+    // .attr("preserveAspectRatio", "xMinYMin meet")
+    // .attr("viewBox", "0 0 960 350")
+    .attr("class", "river dnister")
+    .node().getContext('2d');
+
+var pathDniestr = d3.geoPath()
+    .projection(projection)
+    // .context(ctx);
+    .context(map.canvasDniestr);
+
+
+
+d3.json("data/DNIESTR.json", function (error, dniestr) {
+
+    var data = topojson.feature(dniestr, dniestr.objects.DNIESTR)
+        .features.filter(function (d) {
+            return d.properties.a_WIDTH5 > 5;
+        });
+    map.canvasDniestr.fillStyle = "none";
+    data.forEach(function (d) {
+        map.canvasDniestr.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+        map.canvasDniestr.lineWidth = d.properties.a_WIDTH5 / 50;
+        map.canvasDniestr.beginPath();
+        pathDniestr(d);
+        map.canvasDniestr.fill();
+        map.canvasDniestr.stroke();
+    });
+
+});
+
 
 
 // var zoom = d3.zoom()
@@ -117,23 +309,29 @@ var path = d3.geoPath()
 
 
 
-    d3.json("data/all_total_basins.json", function (error, rivers) {
+    // d3.json("data/all_total_basins.json", function (error, rivers) {
+    //
+    //     var data = topojson.feature(rivers, rivers.objects.all_total_basins)
+    //         .features.filter(function (d) {
+    //             return d.properties.a_WIDTH5 > 5;
+    //         });
+    //     map.canvas.fillStyle = "none";
+    //     data.forEach(function (d) {
+    //         map.canvas.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+    //         map.canvas.lineWidth = d.properties.a_WIDTH5 / 50;
+    //         map.canvas.beginPath();
+    //         path(d);
+    //         map.canvas.fill();
+    //         map.canvas.stroke();
+    //     });
+    //
+    // });
 
-        var data = topojson.feature(rivers, rivers.objects.all_total_basins)
-            .features.filter(function (d) {
-                return d.properties.a_WIDTH5 > 5;
-            });
-        map.canvas.fillStyle = "none";
-        data.forEach(function (d) {
-            map.canvas.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            map.canvas.lineWidth = d.properties.a_WIDTH5 / 50;
-            map.canvas.beginPath();
-            path(d);
-            map.canvas.fill();
-            map.canvas.stroke();
-        });
 
-    });
+
+
+
+
 
 d3.json("data/ukr_shape.geojson", drawUkraine);
 function drawUkraine(ukraine){

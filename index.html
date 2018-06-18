@@ -82,12 +82,12 @@
 
 
 
-<script src="js/drawRivers.js"></script>
-<script src="js/drawPoints.js"></script>
+<!--<script src="js/drawRivers.js"></script>-->
+<!--<script src="js/drawPoints.js"></script>-->
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
-<script src="js/multiples.js"></script>
-<!--<script src="js/updateRiver.js"></script>-->
+<!--<script src="js/multiples.js"></script>-->
+<script src="js/updateRiver.js"></script>
 
 
 
@@ -147,7 +147,7 @@
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
 
     $(".riverCont").on("click", function(){
-        bigMap.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
+//        bigMap.transition().duration(750).call(zoom.transform, d3.zoomIdentity);
         var id = $(this).attr("id");
 //        alert(id);
 
@@ -176,42 +176,42 @@
     });
 
 
-    var flowerMargin = {top: 20, right: 20, bottom: 20, left: 35};
-    var flowerWidth = clonedivWidth - chartMargin.left - chartMargin.right,
-            flowerHeight = 300 - chartMargin.top - chartMargin.bottom;
-
-    var flowerSvg = d3.select("#big-flower").append("svg")
-            .attr("id", "#bigFlower")
-            .attr("width", flowerWidth + flowerMargin.left + flowerMargin.right)
-            .attr("height", chartHeight + flowerMargin.top + flowerMargin.bottom);
-
-
-    var flowerG = flowerSvg.append("g")
-            .attr('transform', 'translate(+' + flowerWidth/2 + "," + flowerHeight/2+ ')');
-
-
-    var div = d3.select("#myModal").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
-
-    var halfRadius = 2; //радіус для квіточок
-    var bigradius =  clonedivWidth /10;
-
-    var arc = d3.arc()
-            .outerRadius(bigradius)
-            .innerRadius(0);
-
-
-    var size = d3.scaleSqrt()
-            .domain([0, 1])
-            .range([0, halfRadius]);
-
-
-
-    var pie = d3.pie()
-            .sort(null)
-            // .value(function(d) { return d.size; });
-            .value(function(d) { return 5; });
+//    var flowerMargin = {top: 20, right: 20, bottom: 20, left: 35};
+//    var flowerWidth = clonedivWidth - chartMargin.left - chartMargin.right,
+//            flowerHeight = 300 - chartMargin.top - chartMargin.bottom;
+//
+//    var flowerSvg = d3.select("#big-flower").append("svg")
+//            .attr("id", "#bigFlower")
+//            .attr("width", flowerWidth + flowerMargin.left + flowerMargin.right)
+//            .attr("height", chartHeight + flowerMargin.top + flowerMargin.bottom);
+//
+//
+//    var flowerG = flowerSvg.append("g")
+//            .attr('transform', 'translate(+' + flowerWidth/2 + "," + flowerHeight/2+ ')');
+//
+//
+//    var div = d3.select("#myModal").append("div")
+//            .attr("class", "tooltip")
+//            .style("opacity", 0);
+//
+//    var halfRadius = 2; //радіус для квіточок
+//    var bigradius =  clonedivWidth /10;
+//
+//    var arc = d3.arc()
+//            .outerRadius(bigradius)
+//            .innerRadius(0);
+//
+//
+//    var size = d3.scaleSqrt()
+//            .domain([0, 1])
+//            .range([0, halfRadius]);
+//
+//
+//
+//    var pie = d3.pie()
+//            .sort(null)
+//            // .value(function(d) { return d.size; });
+//            .value(function(d) { return 5; });
 
 </script>
 
