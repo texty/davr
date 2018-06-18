@@ -15,11 +15,12 @@ body {
   padding:0;
   background-color: black;
   font-family: 'Proxima-Nova', sans-serif;
+  overflow-x: hidden;
 
 }
 
 canvas {
-  z-index: 5;
+  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;
@@ -171,15 +172,33 @@ h5{
 div.tooltip {
   position: absolute;
   text-align: center;
-  width: 300px;
-  height: 28px;
+  min-width: 100px;
+  max-width: 400px;
+  height: auto;
   padding: 2px;
   font: 12px sans-serif;
-  background: lightsteelblue;
+  background: white;
   border: 0px;
-  border-radius: 8px;
+  //border-radius: 8px;
   pointer-events: none;
   //fill:white;
+}
+
+
+
+.hint {
+  position:absolute;
+  border-radius: 1px;
+  padding: 6px;
+  opacity: 0.9;
+  font-family: 'Proxima-Nova', sans-serif;
+  font-size:12px;
+  top: 50%;
+  left:52%;
+  max-width: 300px;
+  color: #1c1c1c;
+  background-color: #ffffff;
+  pointer-events: none;
 }
 
 
@@ -303,4 +322,7 @@ img.preview {
   background:#000;
   opacity:.5;
 }
+
+
+
 

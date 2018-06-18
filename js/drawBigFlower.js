@@ -25,7 +25,9 @@ function drawBigFlower(IdForChart) {
             })
 
             .attr("d", bigPetalPath)
-            .attr("title", function (d) {return d.data.key;})
+            .attr("title", function (d) {
+                return d.data.key;
+            })
             .style("stroke", "#fff0f7")
             .style("fill", function (d) {
                 if (d.data.size > 0.9) {
@@ -36,32 +38,70 @@ function drawBigFlower(IdForChart) {
                 }
             })
             .on("click", function (d) {
+                d3.selectAll(".particles").style("stroke-width", "1px").style("stroke", "#fff0f7");
+                d3.select(this).style("stroke-width", "4px").style("stroke", "#1765a0");
                 var keyIndicator = d.data.key;
                 console.log(d);
 
-                drawChart(IdForChart, keyIndicator)
-            });
+                // div.transition()
+                //     .duration(200)
+                //     .style("opacity", .9);
 
-        
-        
+                div.html(d.data.key)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+
+                drawChart(IdForChart, keyIndicator)
+            })
+            .on("mouseover", function (d) {
+                d3.select(".hint").html("Клікніть </br> на пелюсток, </br> аби побудувати </br> графік");
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+
+                div.html(d.data.key)
+                    .style("left", (d3.event.pageX) + "px")
+
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function (d) {
+                d3.select(".hint").html("Наведіть </br> мишею на </br>пелюсток, аби </br> обрати показник </br> якості води");
+
+            }) ;
+
         // particles.append('text')
         //     .attr('class', 'big-labels')
-        //     .attr('x', r(100))
+        //     .attr('x', bigradius * 2)
         //     .text(function (d) {
-        //         return d.data.key;
+        //         var label = indicatorNames.filter(function (obj) {
+        //             return obj.key === d.data.key;
+        //         });
+        //         return label[0].abr;
         //     })
-        //     // .attr("transform", function (d) {
-        //     //     return r((d.startAngle + d.endAngle) / 2);
-        //     // })
+        //
         //     .attr("transform", function (d) {
-        //         return "translate(" +
-        //             (bigradius * Math.sin( ((d.endAngle - d.startAngle) / 2) + d.startAngle ) ) +
-        //             ", " +
-        //             ( -1 * bigradius * Math.cos( ((d.endAngle - d.startAngle) / 2) + d.startAngle ) ) +
-        //             ")";
+        //         return r((d.startAngle + d.endAngle) / 2);
         //     })
         //     .style("fill", "white")
-        //     .style("font-size", "9px");
+        //     .style("font-size", "10px");
+
+
+
+        // particles.append('text')
+        //     .attr('class', 'big-labels')
+        //     .attr('x', bigradius * 2)
+        //     .text(function (d) {
+        //         var label = indicatorNames.filter(function (obj) {
+        //             return obj.key === d.data.key;
+        //         });
+        //         return label[0].abr;
+        //     })
+        //
+        //     .attr("transform", function (d) {
+        //         return r((d.startAngle + d.endAngle) / 2);
+        //     })
+        //     .style("fill", "white")
+        //     .style("font-size", "10px");
 
 
     })

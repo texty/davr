@@ -141,9 +141,6 @@ function drawChart(IdForChart, keyIndicator) {
             greenpart = 100 / (yMax / norm);
         }
 
-
-
-
         var step1 = greenpart+"%";
         var step2= (100/(yMax / norm)) * 2+"%";
         var step3= (100/(yMax / norm)) * 4+"%";
