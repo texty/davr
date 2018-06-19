@@ -71,47 +71,61 @@ var div = d3.select("#myModal").append("div")
     .style("opacity", 0);
 
 
-var hint = d3.select("#myModal").append("div")
-    .attr("class", "hint")
-    .html("Наведіть </br> мишею на </br>пелюсток, аби </br> обрати показник </br> якості води");
+
+
+
+// var hint = d3.select("#myModal").append("div")
+//     .attr("class", "hint")
+//     .html("Наведіть </br> мишею на </br>пелюсток, аби </br> обрати показник </br> якості води");
 
 /* Кольорові шкали для річок та пелюсток */
-var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#82bcf4', '#9dc6f3', '#b4d1f3', '#c8daf2'];
+var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#82bcf4'];
 
+
+//, '#9dc6f3', '#b4d1f3', '#c8daf2'
 var BlWhScale = d3.scaleQuantile() //синя шкала для річок
     .range(bluRedWhite)
     .domain([0, 9]);
 
+
+
+var reds = ["#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"];
 var PointColorsRed = d3.scaleQuantile()
-    .range(colorbrewer.Reds[9])
+    // .range(colorbrewer.Reds[9])
+    .range(reds)
     .domain([0, 9]);
 
 
 /* проекція для карти*/
 var projection = d3.geoMercator()
-    .scale(1400)
+    .scale(2500)
     .rotate([0, 0, 0])
-    .center([22, 48.00]);
+    .center([30, 50.00]);
 
 var path2 = d3.geoPath()
     .projection(projection);
 
 var zoom = d3.zoom()
-    .scaleExtent([5, 5])
-    .on('zoom', function(){ map.redraw(d3.event.transform)})
+    .scaleExtent([6, 6])
+    .on('zoom', function(){ map.redraw(d3.event.transform)});
 
-
+//tooltip for all flowers
+var flowerhint = d3.select("body").append("div")
+    .attr("class", "tooltip")
+    .style("opacity", 0);
 
 /* контейнер для svg та canvas */
 var map = {};
-map.width = window.innerWidth;
-map.height = window.innerWidth / 3;
+// map.width = window.innerWidth;
+map.width = mapWidth;
+map.height = window.innerHeight;
+// map.height = window.innerWidth / 3;
 
 
 
 
 /*------------------ Дунай ------------------------------- */
-map.canvasDanube = d3.select("body").append("canvas")
+map.canvasDanube = d3.select("#body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -126,7 +140,7 @@ var pathDanube = d3.geoPath()
     .context(ctxDanube);
 
 
-map.canvasDanube.draw = function (transform) {    
+map.canvasDanube.draw = function (transform) {
     retrieve("DANUBE", d3.json, "data/DANUBE.json", function (data) {
         ctxDanube.clearRect(0, 0, map.width, map.height);
         ctxDanube.save();
@@ -137,7 +151,8 @@ map.canvasDanube.draw = function (transform) {
         }
             ctxDanube.fillStyle = "transparent";        data.forEach(function (d) {
             ctxDanube.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            ctxDanube.lineWidth = d.properties.a_WIDTH5 / 100;
+            ctxDanube.lineWidth = d.properties.a_WIDTH5 / 150;
+            // ctxDanube.globalAlpha = 0.8;
             ctxDanube.beginPath();
             pathDanube(d);
             ctxDanube.fill();
@@ -150,9 +165,13 @@ map.canvasDanube.draw = function (transform) {
 };
 
 
+
+
+
+
 /*--------------------- Дніпро ----------------------------- */
 
-map.canvasDnipro = d3.select("body").append("canvas")
+map.canvasDnipro = d3.select("#body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -193,7 +212,7 @@ map.canvasDnipro.draw = function (transform) {
 
 /*----------------- Дон ------------------------ */
 
-map.canvasDon = d3.select("body").append("canvas")
+map.canvasDon = d3.select("#body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -234,7 +253,7 @@ map.canvasDon.draw = function (transform) {
 
 /*-------------------------------------------------- */
 
-map.canvasWisla = d3.select("body").append("canvas")
+map.canvasWisla = d3.select("#body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -274,7 +293,7 @@ map.canvasWisla.draw = function (transform) {
 
 /*-------------------------------------------------- */
 
-map.canvasBug = d3.select("body").append("canvas")
+map.canvasBug = d3.select("#body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -314,7 +333,7 @@ map.canvasBug.draw = function (transform) {
 
 /*--------------------Південний Буг ------------------------------ */
 
-map.canvasDniestr = d3.select("body").append("canvas")
+map.canvasDniestr = d3.select("#body").append("canvas")
     .attr('height', map.height)
     .attr('width', map.width)
     // .attr("preserveAspectRatio", "xMinYMin meet")
@@ -372,9 +391,11 @@ map.redraw = function(transform) {
     map.canvasWisla.draw(transform);
     map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
     map.svg.attr("transform", d3.event.transform);
+    map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+    map.svgShape.attr("transform", d3.event.transform);
 };
 
-d3.select('body')
+d3.select('#body')
     .call(zoom);
 
 function retrieve(layername, method, param, cb){
@@ -385,7 +406,8 @@ function retrieve(layername, method, param, cb){
 
         var filtered = topojson.feature(data, data.objects[layername])
             .features.filter(function (d) {
-                return d.properties.a_WIDTH5 > 5;
+                // return d.properties.a_WIDTH5 > 5;
+                return d;
             });
 
         datasets[layername] = filtered;
@@ -399,10 +421,22 @@ function retrieve(layername, method, param, cb){
 
 /* -------------------- append svg  -------------------- */
 
+
+
 map.svg =
-    d3.select('body')
+    d3.select('#body')
         .append('svg')
-        .attr("id", "bigsvg")
+        .attr("id", "flowers")
+        // .attr("preserveAspectRatio", "xMinYMin meet")
+        // .attr("viewBox", "0 0 960 350")
+        .attr('width', map.width)
+        .attr('height', map.height)
+        .append('g');
+
+map.svgShape =
+    d3.select('#body')
+        .append('svg')
+        .attr("id", "svgukraine")
         // .attr("preserveAspectRatio", "xMinYMin meet")
         // .attr("viewBox", "0 0 960 350")
         .attr('width', map.width)
@@ -413,12 +447,10 @@ map.svg =
 
 
 
-
-
 /* -------------------- Ukraine -------------------------------- */
 d3.json("data/ukr_shape.geojson", drawUkraine);
 function drawUkraine(ukraine) {
-    map.svg.selectAll("path")
+    map.svgShape.selectAll("path")
         .data(ukraine.features)
         .enter()
         .append("path")
@@ -433,7 +465,7 @@ function drawUkraine(ukraine) {
 
 /* -------------------- Flowers -------------------------------- */
 function drawPoints() {
-    d3.csv("data/flowers.csv", function (error, points) {
+    d3.csv("data/lastDayMeanValueAllKey.csv", function (error, points) {
         // d3.csv("data/total_data_gather.csv", function (error, points) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
@@ -465,6 +497,7 @@ function drawPoints() {
                     key: k.key,
                     river: k.river,
                     value: k.value,
+                    mean: k.mean,
                     norm: +k.norm,
                     dev: +k.dev,
                     size: +k.size
@@ -524,11 +557,31 @@ function drawPoints() {
                             return PointColorsRed(d.data.size);
                         }
                         else {
-                            return "#49E858"
+                            // return "#49E858"
+                            return "#087D17"
                         }
                     })
 
+                    .on("mouseover", function (d) {
+                       var targetFlower= d3.select(this.parentNode);
+                        targetFlower.moveToFront();
 
+                        flowerhint.transition()
+                            .duration(200)
+                            .style("opacity", .9);
+
+                        flowerhint.html(d.data.name)
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY - 35) + "px");
+
+                    })
+                    .on("mouseout", function (d) {
+                        flowerhint.transition()
+                            .duration(200)
+                            .style("opacity", 0);
+
+
+                    })
 
                     /*чому тут d повертає не той датасет? , що треба, а гемометрію?????*/
                     .on('click', function (d) {
@@ -574,7 +627,7 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
     // r = size(d.data.size),
-        r = size(0.03),
+        r = size(0.04),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
@@ -600,7 +653,6 @@ function polarToCartesian(angle, radius) {
 
 
 
-
 /* -------------------- Draw line charts -------------------------------- */
 var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
 
@@ -608,7 +660,9 @@ var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
 var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
 chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
-var parseTime = d3.timeParse("%d.%m.%Y");
+// var parseTime = d3.timeParse("%d.%m.%Y");
+var parseTime = d3.timeParse("%Y-%m-%d");
+
 
 var chartX = d3.scaleTime()
     .rangeRound([0, chartWidth]);
@@ -625,7 +679,8 @@ var valueline = d3.line()
         return chartY(d.value);
     });
 
-d3.csv("data/total_data_gather.csv", function (error, chart) {
+// d3.csv("data/total_data_gather.csv", function (error, chart) {
+d3.csv("data/allFlowerData.csv", function (error, chart){
 
     var chartSvg = d3.select("#chart")
         .append("svg")
@@ -698,27 +753,21 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
         .attr("x1", 0).attr("y1", chartY(0))
         .attr("x2", 0).attr("y2", chartY(yMax))
         .selectAll("stop")
+    // var reds = ["#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"];
         .data([
-            {offset: "0%", color: "#49E858"},
-            {offset: "10%", color: "#49E858"},
-            {offset: "10%", color: "#fff5f0"},
-            {offset: "20%", color: "#fff5f0"},
-            {offset: "20%", color: "#fee0d2"},
-            {offset: "30%", color: "#fee0d2"},
-            {offset: "30%", color: "#fcbba1"},
-            {offset: "40%", color: "#fcbba1"},
-            {offset: "40%", color: "#fc9272"},
-            {offset: "50%", color: "#fc9272"},
-            {offset: "50%", color: "#fb6a4a"},
-            {offset: "60%", color: "#fb6a4a"},
-            {offset: "60%", color: "#ef3b2c"},
-            {offset: "70%", color: "#ef3b2c"},
-            {offset: "70%", color: "#cb181d"},
-            {offset: "80%", color: "#cb181d"},
-            {offset: "80%", color: "#a50f15"},
+            {offset: "0%", color: "#087D17"},
+            {offset: "10%", color: "#087D17"},
+            {offset: "10%", color: "#fb6a4a"},
+            {offset: "30%", color: "#fb6a4a"},
+            {offset: "30%", color: "#ef3b2c"},
+            {offset: "50%", color: "#ef3b2c"},
+            {offset: "50%", color: "#cb181d"},            
+            {offset: "70%", color: "#cb181d"},            
+            {offset: "70%", color: "#a50f15"},
             {offset: "90%", color: "#a50f15"},
-            {offset: "90%", color: "#a50f15"},
+            {offset: "90%", color: "#67000d"},
             {offset: "100%", color: "#67000d"}
+            
         ])
         .enter().append("stop")
         .attr("offset", function (d) {
@@ -755,56 +804,7 @@ d3.csv("data/total_data_gather.csv", function (error, chart) {
 
 });
 
-// function redraw() { /* невдала спроба зробити графік динамічно resizable*/
-//     console.log("resized");
-//     var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
-//     var chartWidth = W - chartMargin.left - chartMargin.right;
-//
-//     var chartX = d3.scaleTime()
-//         .rangeRound([0, chartWidth]);
-//
-//     var chartY = d3.scaleLinear()
-//         .rangeRound([chartHeight, 0]);
-//
-//
-//
-//
-//     var valueline = d3.line()
-//         .x(function (d) {
-//             return chartX(d.date);
-//         })
-//         .y(function (d) {
-//             return chartY(d.value);
-//         });
-//
-//     var chartSvg = d3.select("#chartToRemove");
-//
-//     chartSvg
-//         .attr("width", chartWidth + chartMargin.left + chartMargin.right)
-//         .attr("height", chartHeight + chartMargin.top + chartMargin.bottom);
-//
-//     var chartG = chartSvg.select("g");
-//
-//     d3.selectAll('.line')
-//         .attr("d", valueline);
-//
-//
-//     d3.selectAll(".x.axis")
-//         .call(d3.axisBottom(chartX)
-//             .scale(chartX)
-//             .ticks(numTicks(chartWidth))
-//             .tickSize(-chartHeight)
-//             .tickFormat(d3.timeFormat("%Y-%m")));
-//
-//     d3.selectAll(".y.axis")
-//         .call(d3.axisLeft(chartY)
-//             .tickSize(-chartWidth)
-//             .ticks(6));
-//
-//
-//
-//
-// }
+
 
 
 /* кількість ticks для вісі Х*/
@@ -821,7 +821,11 @@ function numTicks(widther) {
 
 /* end of line chart*/
 
-
+d3.selection.prototype.moveToFront = function() {
+    return this.each(function(){
+        this.parentNode.appendChild(this);
+    });
+};
 
 
 

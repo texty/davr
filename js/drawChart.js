@@ -7,9 +7,11 @@ function drawChart(IdForChart, keyIndicator) {
     
     // var keyIndicator = checkInput();
 
-    var parseTime = d3.timeParse("%d.%m.%Y");
+    // var parseTime = d3.timeParse("%d.%m.%Y");
+    var parseTime = d3.timeParse("%Y-%m-%d");
 
-    d3.csv("data/total_data_gather.csv", function (error, chart) {
+    // d3.csv("data/total_data_gather.csv", function (error, chart) {
+        d3.csv("data/allFlowerData.csv", function (error, chart){
 
         var chartSvg = d3.select("#chart").transition();
         var chartG = chartSvg.select('g').transition();
@@ -143,20 +145,11 @@ function drawChart(IdForChart, keyIndicator) {
 
         var step1 = greenpart+"%";
         var step2= (100/(yMax / norm)) * 2+"%";
-        var step3= (100/(yMax / norm)) * 4+"%";
-        var step4= (100/(yMax / norm)) * 6+"%";
-        var step5= (100/(yMax / norm)) * 8+"%";
-        var step6= (100/(yMax / norm)) * 10+"%";
-        var step7= (100/(yMax / norm)) * 13+"%";
-        var step8= (100/(yMax / norm)) * 16+"%";
-        var step9= (100/(yMax / norm)) * 19+"%";
-        var step10 = (100/(yMax / norm)) *25+"%";
+        var step3= (100/(yMax / norm)) * 5+"%";
+        var step4= (100/(yMax / norm)) * 10+"%";
+        var step5= (100/(yMax / norm)) * 15+"%";
+        var step6= (100/(yMax / norm)) * 25+"%";
 
-
-
-
-        
-        
         
         chartSvg.select('#line-gradient > stop:nth-child(1)')
             .attr("offset", "0%");
@@ -184,20 +177,7 @@ function drawChart(IdForChart, keyIndicator) {
             .attr("offset", step6);
         chartSvg.select('#line-gradient > stop:nth-child(13)')
             .attr("offset", step6);
-        chartSvg.select('#line-gradient > stop:nth-child(14)')
-            .attr("offset", step7);
-        chartSvg.select('#line-gradient > stop:nth-child(15)')
-            .attr("offset", step7);
-        chartSvg.select('#line-gradient > stop:nth-child(16)')
-            .attr("offset", step8);
-        chartSvg.select('#line-gradient > stop:nth-child(17)')
-            .attr("offset", step8);
-        chartSvg.select('#line-gradient > stop:nth-child(18)')
-            .attr("offset", step9);
-        chartSvg.select('#line-gradient > stop:nth-child(19)')
-            .attr("offset", step9);
-        chartSvg.select('#line-gradient > stop:nth-child(20)')
-            .attr("offset", step10);
+
 
 
       

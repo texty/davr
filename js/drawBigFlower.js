@@ -7,8 +7,8 @@ function drawBigFlower(IdForChart) {
     d3.selectAll('.big-labels').remove();
 
 
-    d3.csv("data/flowers.csv", function (error, flowers) {
-
+    // d3.csv("data/flowers.csv", function (error, flowers) {
+    d3.csv("data/lastDayMeanValueAllKey.csv", function (error, flowers) {
         var data = flowers.filter(function (d) {
             return d.id === IdForChart
         });
@@ -34,7 +34,8 @@ function drawBigFlower(IdForChart) {
                     return PointColorsRed(d.data.size);
                 }
                 else {
-                    return "#49E858"
+                    // return "#49E858"
+                    return "#087D17"
                 }
             })
             .on("click", function (d) {
@@ -43,29 +44,21 @@ function drawBigFlower(IdForChart) {
                 var keyIndicator = d.data.key;
                 console.log(d);
 
-                // div.transition()
-                //     .duration(200)
-                //     .style("opacity", .9);
 
-                div.html(d.data.key)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
 
                 drawChart(IdForChart, keyIndicator)
             })
             .on("mouseover", function (d) {
-                d3.select(".hint").html("Клікніть </br> на пелюсток, </br> аби побудувати </br> графік");
+                // d3.select(".hint").html("Клікніть </br> на пелюсток, </br> аби побудувати </br> графік");
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
 
                 div.html(d.data.key)
                     .style("left", (d3.event.pageX) + "px")
-
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("mouseout", function (d) {
-                d3.select(".hint").html("Наведіть </br> мишею на </br>пелюсток, аби </br> обрати показник </br> якості води");
 
             }) ;
 
@@ -87,21 +80,21 @@ function drawBigFlower(IdForChart) {
 
 
 
-        // particles.append('text')
-        //     .attr('class', 'big-labels')
-        //     .attr('x', bigradius * 2)
-        //     .text(function (d) {
-        //         var label = indicatorNames.filter(function (obj) {
-        //             return obj.key === d.data.key;
-        //         });
-        //         return label[0].abr;
-        //     })
-        //
-        //     .attr("transform", function (d) {
-        //         return r((d.startAngle + d.endAngle) / 2);
-        //     })
-        //     .style("fill", "white")
-        //     .style("font-size", "10px");
+        particles.append('text')
+            .attr('class', 'big-labels')
+            .attr('x', bigradius * 2)
+            .text(function (d) {
+                var label = indicatorNames.filter(function (obj) {
+                    return obj.key === d.data.key;
+                });
+                return label[0].abr;
+            })
+
+            .attr("transform", function (d) {
+                return r((d.startAngle + d.endAngle) / 2);
+            })
+            .style("fill", "white")
+            .style("font-size", "10px");
 
 
     })
@@ -135,3 +128,5 @@ function polarToCartesian(angle, radius) {
     };
 }
 /* end of flowers */
+
+

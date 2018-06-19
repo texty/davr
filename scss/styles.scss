@@ -16,8 +16,18 @@ body {
   background-color: black;
   font-family: 'Proxima-Nova', sans-serif;
   overflow-x: hidden;
-
+  display:grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 100vh;
 }
+
+#body {
+  position:relative;
+  grid-column: 2/3;
+  grid-row: 1/-1;
+  border-left: 1px solid #5c5c5c;
+}
+
 
 canvas {
   z-index: -1;
@@ -25,7 +35,10 @@ canvas {
   top: 0;
   left: 0;
   pointer-events:none;
+
 }
+
+
 
 svg {
   z-index:200;
@@ -35,16 +48,43 @@ svg {
     height: 500px;
 }
 
+#flowers {
+  z-index: 5;
+  position: absolute;
+
+}
+
 #ukraine {
   fill: #070707;
+
+}
+
+#allrivers {
+  //background-color: rgba(12, 12, 12, 0.95);
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+  grid-gap:10px;
+  grid-column: 1/2;
+  grid-row: 1/-1;
+  height: 100vh;
+  overflow: auto;
+}
+
+#allrivers {
+  -ms-overflow-style: none;  // IE 10+
+  overflow: -moz-scrollbars-none;  // Firefox
+}
+#allrivers::-webkit-scrollbar {
+  display: none;  // Safari and Chrome
 }
 
 
-h5{
+h5 {
   //color:white;
   font-style: italic;
   text-align: center;
   color: #ffffff;
+  -webkit-margin-after: 0;
 }
 
 .captions {
@@ -95,7 +135,7 @@ h5{
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: #949494;
   text-decoration: none;
   cursor: pointer;
 }
@@ -120,43 +160,21 @@ h5{
 //Grid chart and checkboxes
 
 #myModalGrid {
-  //@media #{$brk-xlarge}, #{$brk-large} {
-    display:grid;
+  display:grid;
     grid-template-columns: 1fr 1fr;
-  //}
-  //@media #{$brk-medium}, #{$brk-narrow}, #{$brk-spnarrow}, #{$brk-mobile}{
-  //  display:grid;
-  //  grid-template-columns: 1fr;
-  //  grid-template-rows: 50% 50%;
-  //}
+
 
 
 }
-//
+
 #chart {
-//  @media #{$brk-xlarge}, #{$brk-large}, #{$brk-medium}, #{$brk-narrow} {
     grid-column: 1 / 2;
-//    width:40vw;
   }
-//
-//
-//  @media #{$brk-spnarrow}, #{$brk-mobile}{
-//    grid-column: 1/-1;
-//    grid-row: 1/2;
-//    width:calc(80vw);
-//  }
-//}
 
 
 #big-flower {
-//  @media #{$brk-xlarge}, #{$brk-large}, #{$brk-medium}, #{$brk-narrow} {
     grid-column: 2 / 3;
   }
-//  @media  #{$brk-spnarrow}, #{$brk-mobile}{
-//    grid-column: 1/-1;
-//    grid-row: 2/3;
-//  }
-//}
 
 
 #clone { /*клон чарт-контейнера для вирахування ширини для медіа-кверіс*/
@@ -173,7 +191,7 @@ div.tooltip {
   position: absolute;
   text-align: center;
   min-width: 100px;
-  max-width: 400px;
+  max-width: 200px;
   height: auto;
   padding: 2px;
   font: 12px sans-serif;
@@ -182,24 +200,26 @@ div.tooltip {
   //border-radius: 8px;
   pointer-events: none;
   //fill:white;
+  z-index:6;
 }
 
 
 
-.hint {
-  position:absolute;
-  border-radius: 1px;
-  padding: 6px;
-  opacity: 0.9;
-  font-family: 'Proxima-Nova', sans-serif;
-  font-size:12px;
-  top: 50%;
-  left:52%;
-  max-width: 300px;
-  color: #1c1c1c;
-  background-color: #ffffff;
-  pointer-events: none;
-}
+//.hint {
+//  position:absolute;
+//  border-radius: 1px;
+//  padding: 6px;
+//  opacity: 0.9;
+//  font-family: 'Proxima-Nova', sans-serif;
+//  font-size:14px;
+//  top: 50%;
+//  left:52%;
+//  max-width: 100px;
+//  max-height:100px;
+//  color: #ffffff;
+//  //background-color: #ffffff;
+//  pointer-events: none;
+//}
 
 
 
@@ -286,19 +306,19 @@ g.tick {
 
 .river {
   z-index:1;
+  display:none;
 }
 
 .petal {
-  z-index:10000;
+  z-index:1;
   display:none;
   //color: #95ddff;
 }
 
 
-#allrivers {
-  display:grid;
-  grid-template-columns: repeat( auto-fit, minmax(150px, 1fr));
-  grid-gap:5vw;
+
+
+#viz {
 }
 
 .riverCont{

@@ -4,7 +4,16 @@ body {
   padding: 0;
   background-color: black;
   font-family: 'Proxima-Nova', sans-serif;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 100vh; }
+
+#body {
+  position: relative;
+  grid-column: 2/3;
+  grid-row: 1/-1;
+  border-left: 1px solid #5c5c5c; }
 
 canvas {
   z-index: -1;
@@ -19,13 +28,34 @@ svg {
 #map {
   height: 500px; }
 
+#flowers {
+  z-index: 5;
+  position: absolute; }
+
 #ukraine {
   fill: #070707; }
+
+#allrivers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+  grid-gap: 10px;
+  grid-column: 1/2;
+  grid-row: 1/-1;
+  height: 100vh;
+  overflow: auto; }
+
+#allrivers {
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none; }
+
+#allrivers::-webkit-scrollbar {
+  display: none; }
 
 h5 {
   font-style: italic;
   text-align: center;
-  color: #ffffff; }
+  color: #ffffff;
+  -webkit-margin-after: 0; }
 
 .captions {
   font-style: italic;
@@ -67,7 +97,7 @@ h5 {
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: #949494;
   text-decoration: none;
   cursor: pointer; }
 
@@ -106,27 +136,14 @@ div.tooltip {
   position: absolute;
   text-align: center;
   min-width: 100px;
-  max-width: 400px;
+  max-width: 200px;
   height: auto;
   padding: 2px;
   font: 12px sans-serif;
   background: white;
   border: 0px;
-  pointer-events: none; }
-
-.hint {
-  position: absolute;
-  border-radius: 1px;
-  padding: 6px;
-  opacity: 0.9;
-  font-family: 'Proxima-Nova', sans-serif;
-  font-size: 12px;
-  top: 50%;
-  left: 52%;
-  max-width: 300px;
-  color: #1c1c1c;
-  background-color: #ffffff;
-  pointer-events: none; }
+  pointer-events: none;
+  z-index: 6; }
 
 .formInpurs {
   display: grid; }
@@ -184,16 +201,12 @@ g.tick {
 
 /* end of modal*/
 .river {
-  z-index: 1; }
-
-.petal {
-  z-index: 10000;
+  z-index: 1;
   display: none; }
 
-#allrivers {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 5vw; }
+.petal {
+  z-index: 1;
+  display: none; }
 
 img.preview {
   max-width: 100%; }
