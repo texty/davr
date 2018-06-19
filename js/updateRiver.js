@@ -100,7 +100,7 @@ var PointColorsRed = d3.scaleQuantile()
 var projection = d3.geoMercator()
     .scale(2500)
     .rotate([0, 0, 0])
-    .center([30, 50.00]);
+    .center([33, 50.00]);
 
 var path2 = d3.geoPath()
     .projection(projection);
