@@ -1,38 +1,71 @@
 @charset "UTF-8";
+@font-face {
+  font-family: "Segoe UI Light";
+  src: url(../fonts/light.ttf); }
 body {
+  font-family: "Segoe UI Light", sans-serif;
   display: grid;
-  grid-template-columns: 320px auto;
-  grid-template-rows: 30px calc(100vh - 30px);
+  grid-template-columns: 310px auto;
+  grid-template-rows: 50px calc(100vh - 50px);
   display: grid;
   margin: 0;
   padding: 0;
   background-color: black;
-  font-family: 'Proxima-Nova', sans-serif;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  pointer-events: none; }
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+
+#wait {
+  margin: 0 auto;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: white;
+  text-align: center; }
 
 #body {
   position: relative;
+  height: 100vh;
   width: 100%;
-  grid-row: 2/3;
+  grid-row: 1/3;
   grid-column: 2/3; }
 
 #contaminants {
   grid-row: 2/3;
   grid-column: 2/3;
   display: none;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 70px);
   overflow: auto; }
 
+#switchToTable {
+  width: 100%; }
+
+#switchToMap {
+  width: 96%; }
+
 .switch {
-  width: 300px;
+  height: 30px;
   align-self: center;
-  grid-column: 2/3;
+  grid-column: 1/2;
   grid-row: 1/2;
   position: relative;
-  float: right; }
+  float: right;
+  background-color: #167bbf;
+  padding: 10px;
+  border: 1px solid grey;
+  margin: 10px 0 0 0;
+  color: white !important;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px; }
 
 .switch:hover {
-  background-color: #64b2f4;
+  background-color: #fb6a4a;
   cursor: pointer; }
 
 #switchToMap {
@@ -73,15 +106,19 @@ svg {
 #ukraine {
   fill: #070707; }
 
+@-moz-document url-prefix() {
+  #ukraine {
+    fill: #0f0f0f; } }
 #allrivers {
   margin: 10px 0;
   grid-column: 1/2;
   grid-row: 2/3;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+  grid-template-rows: repeat(auto-fill, minmax(1fr));
   grid-gap: 10px;
-  height: calc(100vh - 50px);
-  overflow: auto; }
+  height: calc(100vh - 70px);
+  overflow: scroll; }
 
 #regions {
   margin-top: 10px;
@@ -89,13 +126,14 @@ svg {
   grid-column: 1/2;
   grid-row: 2/3;
   color: white;
-  height: calc(100vh - 60px);
-  overflow: auto;
-  display: none; }
+  height: calc(100vh - 100px);
+  overflow: scroll;
+  display: none;
+  width: 100%;
+  position: relative; }
 
 #allrivers, #regions, #contaminants {
-  -ms-overflow-style: none;
-  overflow: -moz-scrollbars-none; }
+  -ms-overflow-style: none; }
 
 #allrivers::-webkit-scrollbar {
   display: none; }
@@ -106,20 +144,51 @@ svg {
 #contaminants::-webkit-scrollbar {
   display: none; }
 
+/* Perfect Scrollbar */
+.ps__rail-x {
+  top: 0px;
+  bottom: auto;
+  /* If using `top`, there shouldn't be a `bottom`. */ }
+
+.ps__rail-y {
+  right: 0px;
+  left: auto;
+  /* If using `left`, there shouldn't be a `right`. */ }
+
+.ps__thumb-x {
+  top: 1px;
+  bottom: auto;
+  /* If using `top`, there shouldn't be a `bottom`. */ }
+
+.ps__thumb-y {
+  right: 1px;
+  left: auto;
+  /* If using `left`, there shouldn't be a `right`. */ }
+
 .riverCont {
   border: 1px solid #0d0d0d;
-  padding: 10px;
+  padding: 5px;
   cursor: pointer; }
 
-div.button {
-  width: 290px;
+button.button {
+  background-color: transparent;
+  width: 96%;
   padding: 10px;
   border: 1px solid grey;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  color: white !important; }
 
-div.button:hover {
+button.button:hover {
   background-color: #64b2f4;
   cursor: pointer; }
+
+button.button:active {
+  background-color: #64b2f4;
+  border: 1px solid grey; }
+
+button.button:focus {
+  background-color: #64b2f4;
+  border: 1px solid grey; }
 
 p.button {
   margin: 0;
@@ -127,9 +196,11 @@ p.button {
   font-size: 12px; }
 
 h5 {
-  font-style: italic;
+  font-size: 12px;
   text-align: center;
-  color: #ffffff; }
+  line-height: 1.6;
+  color: #ffffff;
+  letter-spacing: 5px; }
 
 .captions {
   font-style: italic;
@@ -286,6 +357,9 @@ path.domain {
 g.tick {
   stroke-width: 0.2px; }
 
+@-moz-document url-prefix() {
+  g.tick {
+    stroke-width: 1px; } }
 /* end of modal*/
 .river {
   z-index: 1;
@@ -308,5 +382,22 @@ img.preview {
   position: absolute;
   background: #000;
   opacity: .5; }
+
+.introjs-helperLayer {
+  background-color: rgba(59, 56, 56, 0.3); }
+
+.introjs-tooltip {
+  background-color: #3b3838;
+  text-align: left;
+  color: white;
+  min-width: 200px;
+  max-width: 300px;
+  border-radius: 3px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+  -webkit-transition: opacity .1s ease-out;
+  -moz-transition: opacity .1s ease-out;
+  -ms-transition: opacity .1s ease-out;
+  -o-transition: opacity .1s ease-out;
+  transition: opacity .1s ease-out; }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,3 +1,6 @@
+
+
+
 var datasets = {};
 
 var indicatorNames = [
@@ -110,6 +113,8 @@ var zoom = d3.zoom()
     .on('zoom', function(){
             console.log("zoomed");
             console.log(d3.event.transform);
+        
+
             map.redraw(d3.event.transform)
 
 });
@@ -397,7 +402,6 @@ setTimeout(drawPoints, 100);
 
 /*------------ Redraw rivers on zoom ------------------*/
 map.redraw = function(transform) {
-    // console.log("zoomed");
     map.canvasDanube.draw(transform);
     map.canvasDnipro.draw(transform);
     map.canvasDon.draw(transform);

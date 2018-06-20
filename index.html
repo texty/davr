@@ -4,23 +4,28 @@
     <meta charset="utf-8">
     <title>rivers</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="css/perfect-scrollbar.css">
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs-rtl.min.css"/>
 
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
 
 
 </head>
 <body>
-<button id="switchToTable" class="switch">Забруднювачі</button>
-<button id="switchToMap" class="switch">Вода</button>
+<button id="switchToTable" class="switch" data-intro="Щоб дізнатись, які підприємстка скидають забруднену воду в річки, тисніть сюди. У новому вікні оберіть потрібну область" data-step="5">Хто забруднює річки в твоїй області</button>
+<button id="switchToMap" class="switch">Повернутись до карти</button>
 
 
 
 <div id="clone"></div>
-<div id="body">
+<div id="body" data-intro="Колесиком миші збільшіть масштаб карти" data-step="2">
 </div>
 <script>
     var clonedivWidth = document.getElementById('clone').clientWidth;
     var mapWidth = document.getElementById('body').clientWidth;
+    var buttonHeight = document.getElementById('switchToTable').clientHeight;
+//    alert(buttonHeight)
 </script>
 
 
@@ -42,7 +47,8 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
-
+<script src="lib/perfect-scrollbar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
 
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
@@ -56,11 +62,11 @@
 
 
 <div id="allrivers">
-    <div id="danube" class="riverCont">
+    <div id="danube" class="riverCont" data-intro="Клікніть, щоб обрати басейн річки" data-step="1">
         <h5>Дунай</h5>
         <img style="width:100%" src="img/danube.png"/>
     </div>
-    <div id="dnister" class="riverCont">
+    <div id="dnister" class="riverCont" data-intro="Щоб повернутись до попереднього масштабу, перейдіть на іншу річку" data-step="4">
         <h5>Дністер</h5>
         <img style="width:100%" src="img/dnister.png"/>
     </div>
@@ -84,77 +90,40 @@
 
 
 <div id="regions">
-    <div class="button">
-    <p class="button">Вінницька</p></div>
-    <div class="button">
-    <p class="button">Волинська</p></div>
-    <div class="button">
-    <p class="button">Луганська</p></div>
-    <div class="button">
-    <p class="button">Дніпропетровська</p></div>
-    <div class="button">
-    <p class="button">Донецька</p></div>
-    <div class="button">
-    <p class="button">Житомирська</p></div>
-    <div class="button">
-    <p class="button">Закарпатська</p></div>
-    <div class="button">
-    <p class="button">Запорізька</p>
-    </div>
-    <div class="button">
-    <p class="button">Івано-Франківська</p>
-    </div>
-    <div class="button">
-    <p class="button">Київ</p>
-    </div>
-    <div class="button">
-    <p class="button">Київська</p>
-    </div>
-    <div class="button">
-    <p class="button">Кіровоградська</p>
-    </div>
-    <div class="button">
-        <p class="button">АР Крим</p>
-    </div>
-    <div class="button">
-    <p class="button">Львівська</p>
-    </div>
-    <div class="button">
-    <p class="button">Миколаївська</p>
-    </div>
-    <div class="button">
-    <p class="button">Одеська</p>
-    </div>
-    <div class="button">
-    <p class="button">Полтавська</p>
-    </div>
-    <div class="button">
-    <p class="button">Рівненська</p>
-    </div>
-    <div class="button">
-    <p class="button">Сумська</p>
-    </div>
-    <div class="button">
-    <p class="button">Тернопільська</p>
-    </div>
-    <div class="button">
-    <p class="button">Харківська</p>
-    </div>
-    <div class="button">
-    <p class="button">Херсонська</p>
-    </div>
-    <div class="button">
-    <p class="button">Хмельницька</p>
-    </div>
-    <div class="button">
-    <p class="button">Черкаська</p>
-    </div>
-    <div class="button">
-    <p class="button">Чернігівська</p>
-    </div>
-    <div class="button">
-    <p class="button">Чернівецька</p>
-    </div>
+    <button class="button">Вінницька</button>
+    <button class="button">Волинська</button>
+    <button class="button">Луганська</button>
+    <button class="button">Дніпропетровська</button>
+    <button class="button">Донецька</button>
+    <button class="button">Житомирська</button>
+    <button class="button">Закарпатська</button>
+    <button class="button">Запорізька</button>
+    <button class="button">Івано-Франківська</button>
+    <button class="button">Київ</button>
+    <button class="button">Київська</button>
+    <button class="button">Кіровоградська</button>
+    <button class="button">АР Крим</button>
+    <button class="button">Львівська</button>
+    <button class="button">Миколаївська</button>
+    <button class="button">Одеська</button>
+    <button class="button">Полтавська</button>
+    <button class="button">Рівненська</button>
+
+    <button class="button">Сумська</button>
+
+    <button class="button">Тернопільська</button>
+
+    <button class="button">Харківська</button>
+
+    <button class="button">Херсонська</button>
+
+    <button class="button">Хмельницька</button>
+
+    <button class="button">Черкаська</button>
+
+    <button class="button">Чернігівська</button>
+
+    <button class="button">Чернівецька</button>
 
 </div>
 
@@ -165,6 +134,30 @@
 
 
 <script>
+
+
+        d3.select("canvas.river.danube")
+                .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Зелені пелюстки означають, що середнє значення показника якості в межах норми. Відтінок червоного - рівень перевищення норми. По кліку на квітку Ви зможете побачити, які показники актуальні для цієї точки і динаміку кожного за останні 5 років.")
+                .attr("data-step", "3")
+
+
+
+/* perfect scroll*/
+
+    const ps = new PerfectScrollbar('#regions', {
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        minScrollbarLength: 1
+    });
+
+    const ps2 = new PerfectScrollbar('#allrivers', {
+        wheelSpeed: 2,
+        wheelPropagation: true,
+        minScrollbarLength: 1
+    });
+
+
+    /* перемикач між екранами*/
 
     d3.select("#switchToTable").on("click", function (){
         d3.select("#body").style("display", "none");
@@ -186,12 +179,35 @@
 
     });
 
+    /* затримка появи річок, поки вони вантажаться*/
+d3.select("#body").append("div")
+        .attr("id", "loader")
+//        .append("img")
+//        .attr("src", "img/loading.gif");
+        .append("p")
+        .html("триває завантаження...")
+        .attr("id", "wait");
+
+
 
     setTimeout(function () {
-        $('.river').css('display', "block");
-    }, 3000);
-    /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
+        introJs()
+                .setOption('showBullets', false)
+                .setOption('nextLabel', "Готово")
+                .setOption("prevLabel", "Назад")
+                .setOption("skipLabel", "Пропустити")
+                .setOption("doneLabel", "Зрозуміло")
 
+
+                .start();
+        $('.river').css('display', "block");
+        $('body').css('pointer-events', 'all');
+        $('#loader').remove()
+
+    }, 4000);
+
+
+    /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
     $(".riverCont").on("click", function () {
         var t = d3.zoomIdentity.translate(0, 0).scale(1);
         d3.select("#body").call(zoom.transform, t);
@@ -226,7 +242,7 @@
 
 
 
-    d3.selectAll("div.button").on("click", function () {
+    d3.selectAll("button.button").on("click", function () {
         d3.select("table.contaminantsTable").remove();
         var key = this.innerText;
         key = key.replace(/(\r\n\t|\n|\r\t)/gm,"");
