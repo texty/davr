@@ -8,7 +8,7 @@ function drawBigFlower(IdForChart) {
 
 
     // d3.csv("data/flowers.csv", function (error, flowers) {
-    d3.csv("data/lastDayMeanValueAllKey.csv", function (error, flowers) {
+    d3.csv("data/lastDayMeanValueAllKey2.csv", function (error, flowers) {
         var data = flowers.filter(function (d) {
             return d.id === IdForChart
         });
@@ -39,7 +39,7 @@ function drawBigFlower(IdForChart) {
                 }
             })
             .on("click", function (d) {
-                d3.selectAll(".particles").style("stroke-width", "1px").style("stroke", "#fff0f7");
+                d3.selectAll(".particles").style("stroke-width", "1px").style("stroke", "#070707");
                 d3.select(this).style("stroke-width", "4px").style("stroke", "#1765a0");
                 var keyIndicator = d.data.key;
                 console.log(d);

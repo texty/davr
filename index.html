@@ -10,9 +10,14 @@
 
 </head>
 <body>
-<div id="map"></div>
+<button id="switchToTable" class="switch">Забруднювачі</button>
+<button id="switchToMap" class="switch">Вода</button>
+
+
+
 <div id="clone"></div>
-<div id="body"></div>
+<div id="body">
+</div>
 <script>
     var clonedivWidth = document.getElementById('clone').clientWidth;
     var mapWidth = document.getElementById('body').clientWidth;
@@ -80,26 +85,19 @@
 
 <div id="regions">
     <div class="button">
-    <p class="button">Вінницька</p>
-    </div>
+    <p class="button">Вінницька</p></div>
     <div class="button">
-    <p class="button">Волинська</p>
-    </div>
+    <p class="button">Волинська</p></div>
     <div class="button">
-    <p class="button">Луганська</p>
-    </div>
+    <p class="button">Луганська</p></div>
     <div class="button">
-    <p class="button">Дніпропетровська</p>
-    </div>
+    <p class="button">Дніпропетровська</p></div>
     <div class="button">
-    <p class="button">Донецька</p>
-    </div>
+    <p class="button">Донецька</p></div>
     <div class="button">
-    <p class="button">Житомирська</p>
-    </div>
+    <p class="button">Житомирська</p></div>
     <div class="button">
-    <p class="button">Закарпатська</p>
-    </div>
+    <p class="button">Закарпатська</p></div>
     <div class="button">
     <p class="button">Запорізька</p>
     </div>
@@ -114,6 +112,9 @@
     </div>
     <div class="button">
     <p class="button">Кіровоградська</p>
+    </div>
+    <div class="button">
+        <p class="button">АР Крим</p>
     </div>
     <div class="button">
     <p class="button">Львівська</p>
@@ -165,6 +166,26 @@
 
 <script>
 
+    d3.select("#switchToTable").on("click", function (){
+        d3.select("#body").style("display", "none");
+        d3.select("#allrivers").style("display", "none");
+        d3.select("#regions").style("display", "block");
+        d3.select("#contaminants").style("display", "block");
+        d3.select("#switchToTable").style("display", "none");
+        d3.select("#switchToMap").style("display", "block");
+
+    });
+
+    d3.select("#switchToMap").on("click", function (){
+        d3.select("#body").style("display", "block");
+        d3.select("#allrivers").style("display", "grid");
+        d3.select("#regions").style("display", "none");
+        d3.select("#contaminants").style("display", "none");
+        d3.select("#switchToTable").style("display", "block");
+        d3.select("#switchToMap").style("display", "none");
+
+    });
+
 
     setTimeout(function () {
         $('.river').css('display', "block");
@@ -200,6 +221,16 @@
                     }
                 });
 
+    });
+
+
+
+
+    d3.selectAll("div.button").on("click", function () {
+        d3.select("table.contaminantsTable").remove();
+        var key = this.innerText;
+        key = key.replace(/(\r\n\t|\n|\r\t)/gm,"");
+        callTable(key)
     });
 
 

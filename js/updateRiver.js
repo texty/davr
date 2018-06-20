@@ -120,7 +120,7 @@ var zoom = d3.zoom()
 
 
 //tooltip for all flowers
-var flowerhint = d3.select("#body").append("div")
+var flowerhint = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
@@ -480,7 +480,7 @@ function drawUkraine(ukraine) {
 
 /* -------------------- Flowers -------------------------------- */
 function drawPoints() {
-    d3.csv("data/lastDayMeanValueAllKey1.csv", function (error, points) {
+    d3.csv("data/lastDayMeanValueAllKey2.csv", function (error, points) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
             .key(function (d) {
@@ -586,7 +586,7 @@ function drawPoints() {
 
                         flowerhint.html(d.data.name)
                             .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY - 35) + "px");
+                            .style("top", (d3.event.pageY) + "px");
 
                     })
                     .on("mouseout", function (d) {
