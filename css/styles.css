@@ -20,7 +20,7 @@ body {
   grid-row: 2/3;
   grid-column: 2/3;
   display: none;
-  height: calc(100vh - 20px);
+  height: calc(100vh - 50px);
   overflow: auto; }
 
 .switch {
@@ -80,7 +80,7 @@ svg {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
   grid-gap: 10px;
-  height: calc(100vh - 20px);
+  height: calc(100vh - 50px);
   overflow: auto; }
 
 #regions {
@@ -108,7 +108,8 @@ svg {
 
 .riverCont {
   border: 1px solid #0d0d0d;
-  padding: 10px; }
+  padding: 10px;
+  cursor: pointer; }
 
 div.button {
   width: 290px;

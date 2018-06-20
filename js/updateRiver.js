@@ -128,7 +128,7 @@ var flowerhint = d3.select("body").append("div")
 var map = {};
 // map.width = mapWidth;
 map.width = mapWidth;
-map.height = window.innerHeight - 20;
+map.height = window.innerHeight - 50;
 // map.height = window.innerWidth - 300;
 
 
