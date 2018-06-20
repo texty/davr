@@ -3,17 +3,20 @@
 <head>
     <meta charset="utf-8">
     <title>rivers</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"/>
+
     <link rel="stylesheet" href="css/styles.css">
+
+
 </head>
 <body>
-<div id="body"></div>
+<div id="map"></div>
 <div id="clone"></div>
+<div id="body"></div>
 <script>
     var clonedivWidth = document.getElementById('clone').clientWidth;
     var mapWidth = document.getElementById('body').clientWidth;
 </script>
-
-
 
 
 <div id="myModal" class="modal">
@@ -34,9 +37,17 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
+
+
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
 <script src="js/updateRiver.js"></script>
+<script src="js/contaminants.js"></script>
+
+<!--<script src='lib/leaflet-src.js'></script>-->
+<!--<script src='https://raw.github.com/calvinmetcalf/leaflet-ajax/master/dist/leaflet.ajax.min.js'></script>-->
+
+<!--<script src="js/leafletmap.js"></script>-->
 
 
 <div id="allrivers">
@@ -64,9 +75,93 @@
         <h5>Дон</h5>
         <img style="width:100%" src="img/don.png"/>
     </div>
+</div>
+
+
+<div id="regions">
+    <div class="button">
+    <p class="button">Вінницька</p>
+    </div>
+    <div class="button">
+    <p class="button">Волинська</p>
+    </div>
+    <div class="button">
+    <p class="button">Луганська</p>
+    </div>
+    <div class="button">
+    <p class="button">Дніпропетровська</p>
+    </div>
+    <div class="button">
+    <p class="button">Донецька</p>
+    </div>
+    <div class="button">
+    <p class="button">Житомирська</p>
+    </div>
+    <div class="button">
+    <p class="button">Закарпатська</p>
+    </div>
+    <div class="button">
+    <p class="button">Запорізька</p>
+    </div>
+    <div class="button">
+    <p class="button">Івано-Франківська</p>
+    </div>
+    <div class="button">
+    <p class="button">Київ</p>
+    </div>
+    <div class="button">
+    <p class="button">Київська</p>
+    </div>
+    <div class="button">
+    <p class="button">Кіровоградська</p>
+    </div>
+    <div class="button">
+    <p class="button">Львівська</p>
+    </div>
+    <div class="button">
+    <p class="button">Миколаївська</p>
+    </div>
+    <div class="button">
+    <p class="button">Одеська</p>
+    </div>
+    <div class="button">
+    <p class="button">Полтавська</p>
+    </div>
+    <div class="button">
+    <p class="button">Рівненська</p>
+    </div>
+    <div class="button">
+    <p class="button">Сумська</p>
+    </div>
+    <div class="button">
+    <p class="button">Тернопільська</p>
+    </div>
+    <div class="button">
+    <p class="button">Харківська</p>
+    </div>
+    <div class="button">
+    <p class="button">Херсонська</p>
+    </div>
+    <div class="button">
+    <p class="button">Хмельницька</p>
+    </div>
+    <div class="button">
+    <p class="button">Черкаська</p>
+    </div>
+    <div class="button">
+    <p class="button">Чернігівська</p>
+    </div>
+    <div class="button">
+    <p class="button">Чернівецька</p>
+    </div>
+
+</div>
+
+<div id="contaminants">
 
 
 </div>
+
 
 <script>
 
@@ -78,7 +173,7 @@
 
     $(".riverCont").on("click", function () {
         var t = d3.zoomIdentity.translate(0, 0).scale(1);
-        d3.select("body").call(zoom.transform, t);
+        d3.select("#body").call(zoom.transform, t);
 
         var id = $(this).attr("id");
 //        alert(id);

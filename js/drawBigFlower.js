@@ -28,7 +28,7 @@ function drawBigFlower(IdForChart) {
             .attr("title", function (d) {
                 return d.data.key;
             })
-            .style("stroke", "#fff0f7")
+            .style("stroke", "#070707")
             .style("fill", function (d) {
                 if (d.data.size > 0.9) {
                     return PointColorsRed(d.data.size);

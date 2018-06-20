@@ -98,28 +98,38 @@ var PointColorsRed = d3.scaleQuantile()
 
 /* проекція для карти*/
 var projection = d3.geoMercator()
-    .scale(2500)
+    .scale(2000)
     .rotate([0, 0, 0])
-    .center([33, 50.00]);
+    .center([30, 50]);
 
 var path2 = d3.geoPath()
     .projection(projection);
 
 var zoom = d3.zoom()
     .scaleExtent([6, 6])
-    .on('zoom', function(){ map.redraw(d3.event.transform)});
+    .on('zoom', function(){
+            console.log("zoomed");
+            console.log(d3.event.transform);
+            map.redraw(d3.event.transform)
+
+});
+
+
+
+
+
 
 //tooltip for all flowers
-var flowerhint = d3.select("body").append("div")
+var flowerhint = d3.select("#body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
 /* контейнер для svg та canvas */
 var map = {};
-// map.width = window.innerWidth;
+// map.width = mapWidth;
 map.width = mapWidth;
-map.height = window.innerHeight;
-// map.height = window.innerWidth / 3;
+map.height = window.innerHeight - 20;
+// map.height = window.innerWidth - 300;
 
 
 
@@ -151,7 +161,11 @@ map.canvasDanube.draw = function (transform) {
         }
             ctxDanube.fillStyle = "transparent";        data.forEach(function (d) {
             ctxDanube.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            ctxDanube.lineWidth = d.properties.a_WIDTH5 / 150;
+
+                ctxDanube.lineWidth = d.properties.a_WIDTH5 / 100;
+
+                ctxDanube.lineWidth = d.properties.a_WIDTH5 / 150;
+          
             // ctxDanube.globalAlpha = 0.8;
             ctxDanube.beginPath();
             pathDanube(d);
@@ -383,6 +397,7 @@ setTimeout(drawPoints, 100);
 
 /*------------ Redraw rivers on zoom ------------------*/
 map.redraw = function(transform) {
+    // console.log("zoomed");
     map.canvasDanube.draw(transform);
     map.canvasDnipro.draw(transform);
     map.canvasDon.draw(transform);
@@ -465,8 +480,7 @@ function drawUkraine(ukraine) {
 
 /* -------------------- Flowers -------------------------------- */
 function drawPoints() {
-    d3.csv("data/lastDayMeanValueAllKey.csv", function (error, points) {
-        // d3.csv("data/total_data_gather.csv", function (error, points) {
+    d3.csv("data/lastDayMeanValueAllKey1.csv", function (error, points) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
             .key(function (d) {
@@ -550,7 +564,7 @@ function drawPoints() {
                     })
 
                     .attr("d", petalPath)
-                    .style("stroke", "#fff0f7")
+                    .style("stroke", "#070707")
                     .style("stroke-width", "0.1px")
                     .style("fill", function (d) {
                         if (d.data.size > 0.9) {
