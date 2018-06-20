@@ -17,8 +17,8 @@ body {
 #loader {
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%); }
+  top: 40%;
+  transform: translate(-50%, -40%); }
 
 #wait {
   margin: 0 auto;
@@ -362,8 +362,7 @@ g.tick {
     stroke-width: 1px; } }
 /* end of modal*/
 .river {
-  z-index: 1;
-  display: none; }
+  z-index: 1; }
 
 .petal {
   z-index: 1;
@@ -384,7 +383,8 @@ img.preview {
   opacity: .5; }
 
 .introjs-helperLayer {
-  background-color: rgba(59, 56, 56, 0.3); }
+  background-color: rgba(59, 56, 56, 0);
+  border: 1px solid white; }
 
 .introjs-tooltip {
   background-color: #3b3838;

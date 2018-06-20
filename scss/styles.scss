@@ -27,8 +27,8 @@ body {
 #loader {
   position:absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 40%;
+  transform: translate(-50%, -40%);
 
 }
 
@@ -499,7 +499,7 @@ g.tick {
 
 .river {
   z-index:1;
-  display:none;
+  //display:none;
 }
 
 .petal {
@@ -530,7 +530,8 @@ img.preview {
 }
 
 .introjs-helperLayer {
-  background-color:  rgba(59, 56, 56, 0.3);
+  background-color:  rgba(59, 56, 56, 0);
+  border: 1px solid white
 }
 
 .introjs-tooltip {
