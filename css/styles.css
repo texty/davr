@@ -279,6 +279,12 @@ h5 {
 .modalKeysHeading {
   font-size: 14px; }
 
+#units {
+  float: right;
+  font-size: 14px;
+  color: white;
+  font-style: italic; }
+
 .line {
   fill: none;
   stroke: url(#line-gradient);

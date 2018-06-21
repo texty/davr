@@ -42,6 +42,9 @@ var riversNames = [
 ];
 
 
+
+
+
 /*Змінні для великої квітки*/
 var halfRadius = 2; //радіус для квіточок
 var bigradius = clonedivWidth / 10;
@@ -712,6 +715,31 @@ var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
 var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
 chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
+
+
+
+var locale = d3.timeFormatLocale({
+    "dateTime": "%A, %e %B %Y г. %X",
+    "date": "%d.%m.%Y",
+    "time": "%H:%M:%S",
+    "periods": ["AM", "PM"],
+    "days": ["неділя", "понеділок", "вівторок", "середа", "четвер", "пʼятниця", "субота"],
+    "shortDays": ["вс", "пн", "вт", "ср", "чт", "пт", "сб"],
+    "months": ["cічень", "лютий", "березень", "квітень", "травень", "червень", "липень", "серпень", "вересень", "жовтень", "листопад", "грудень"],
+    "shortMonths": ["січ", "лют", "бер", "квт", "трав", "черв", "лип", "серп", "вер", "жовт", "лист", "груд"]
+});
+
+var formatMonth = locale.format("%B"),
+    formatYear = locale.format("%b-%Y");
+
+
+function multiFormat(date) {
+    return (d3.timeYear(date) < date ? formatMonth
+        : formatYear)(date);
+}
+
+
+
 // var parseTime = d3.timeParse("%d.%m.%Y");
 var parseTime = d3.timeParse("%Y-%m-%d");
 
@@ -841,7 +869,7 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
     chartG.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + chartHeight + ")")
-        .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%b-%Y")));
+        .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(multiFormat));
 
 
     chartG.append("g")
@@ -871,6 +899,14 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
             }
 
         });
+
+    d3.select("#chart").append("p")
+        .attr("id", "units")
+        .style("float", "right")
+        .text("Одиниці вимірювання речовин - мг/дм3");
+
+
+
 
     d3.select('#petalsData')
         .append("p")

@@ -100,7 +100,7 @@ function drawChart(IdForChart, keyIndicator) {
                 .attr("d", valueline(dataData));
             chartSvg.select(".x.axis") // change the x axis
                 .duration(500)
-                .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(d3.timeFormat("%b-%Y")));
+                .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(multiFormat));
 
             chartSvg.select(".y.axis") // change the y axis
                 .duration(500)
