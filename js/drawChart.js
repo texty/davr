@@ -106,6 +106,12 @@ function drawChart(IdForChart, keyIndicator) {
                 .duration(500)
                 .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
 
+
+            d3.select("#lineText")
+                .attr("x", chartX(parseTime("2018-01-01")))
+                .attr("y", chartY(norm)+10);
+
+
             d3.select('#keyHeading')
                 .html(function (d) {
                     var label = indicatorNames.filter(function (obj) {
