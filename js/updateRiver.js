@@ -139,7 +139,7 @@ var zoom = d3.zoom()
 
 //tooltip for all flowers
 var flowerhint = d3.select("body").append("div")
-    .attr("class", "tooltip")
+    .attr("class", "flowerhint")
     .style("opacity", 0);
 
 
