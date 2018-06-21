@@ -30,12 +30,27 @@ function drawBigFlower(IdForChart) {
             })
             .style("stroke", "#070707")
             .style("fill", function (d) {
-                if (d.data.size > 0.9) {
-                    return PointColorsRed(d.data.size);
+                if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
+                    if (d.data.size > 0.9) {
+                        return PointColorsRed(d.data.size);
+                    }
+                    else {
+                        // return "#49E858"
+                        return "#087D17"
+                    }
                 }
-                else {
-                    // return "#49E858"
-                    return "#087D17"
+
+                //якщо кисень
+                if(d.data.key === "Кисень.розчинений.МгО2.дм3") {
+                    if (d.data.size > 0.9) {
+                        return "#087D17";
+                    }
+                    else {
+                        // return "#49E858"
+                        return "#a50f15"
+                    }
+
+
                 }
             })
             .on("click", function (d) {

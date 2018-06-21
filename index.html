@@ -33,7 +33,7 @@
     <!-- Modal content -->
     <div class="modal-content">
         <span class="close">&times;</span>
-        <p id="petalsData">Триває завантаження...</p>
+        <p id="petalsData"></p>
         <div id="myModalGrid">
             <div id="chart"></div>
             <div id="big-flower">
@@ -209,6 +209,8 @@ d3.select("#body").append("div")
 
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
     $(".riverCont").on("click", function () {
+        d3.selectAll(".riverCont").style("border", "1px solid #0d0d0d");
+        d3.select(this).style("border", "2px solid white");
         var t = d3.zoomIdentity.translate(0, 0).scale(1);
         d3.select("#body").call(zoom.transform, t);
 

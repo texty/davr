@@ -58,7 +58,7 @@ var callTable = function (key) {
 
         table.selectAll("tbody tr")
             .sort(function (a, b) {
-                return d3.ascending(a.value, b.value);
+                return d3.descending(a.value, b.value);
             });
 
     });

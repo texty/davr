@@ -249,6 +249,14 @@ h5 {
 #petalsData, #modalKeysHeadings, .onecol {
   color: white; }
 
+#modalKeysHeadings {
+  display: inline-block; }
+
+#keyimg {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px; }
+
 .modalKeysHeading {
   font-size: 14px; }
 
@@ -383,7 +391,7 @@ img.preview {
   opacity: .5; }
 
 .introjs-helperLayer {
-  background-color: rgba(59, 56, 56, 0);
+  background-color: rgba(59, 56, 56, 0.05);
   border: 1px solid white; }
 
 .introjs-tooltip {
