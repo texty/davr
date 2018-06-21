@@ -13,13 +13,13 @@
 
 </head>
 <body>
-<button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки. У новому вікні оберіть потрібну область" data-step="5">Хто забруднює річки в твоїй області</button>
-<button id="switchToMap" class="switch">Повернутись до карти</button>
+<button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто забруднює річки в твоїй області</button>
+<button id="switchToMap" class="switch" data-intro="Повернутись до попереднього екрану" data-step="8">Повернутись до карти</button>
 
 
 
 <div id="clone"></div>
-<div id="body" data-intro="Колесиком миші збільшіть масштаб карти" data-step="2">
+<div id="body" data-intro="Наведіть мишу на місце, яке хочете приблизити і покрутіть колесиком" data-step="2">
 </div>
 <script>
     var clonedivWidth = document.getElementById('clone').clientWidth;
@@ -90,7 +90,7 @@
 
 
 <div id="regions">
-    <button class="button">Вінницька</button>
+    <button class="button" data-intro="Оберіть потрібну область" data-step="6">Вінницька</button>
     <button class="button">Волинська</button>
     <button class="button">Луганська</button>
     <button class="button">Дніпропетровська</button>
@@ -108,37 +108,26 @@
     <button class="button">Одеська</button>
     <button class="button">Полтавська</button>
     <button class="button">Рівненська</button>
-
     <button class="button">Сумська</button>
-
     <button class="button">Тернопільська</button>
-
     <button class="button">Харківська</button>
-
     <button class="button">Херсонська</button>
-
     <button class="button">Хмельницька</button>
-
     <button class="button">Черкаська</button>
-
     <button class="button">Чернігівська</button>
-
     <button class="button">Чернівецька</button>
 
 </div>
 
-<div id="contaminants">
-
-
-</div>
+<div id="contaminants" data-intro="Чим більше забрудненої води скидає підприємство, тим вище воно в таблиці" data-ste="7"></div>
 
 
 <script>
 
 
-        d3.select("canvas.river.danube")
-                .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Зелені пелюстки означають, що середнє значення показника якості в межах норми. Відтінок червоного - рівень перевищення норми. По кліку на квітку Ви зможете побачити, які показники актуальні для цієї точки і динаміку кожного за останні 5 років")
-                .attr("data-step", "3")
+d3.select("canvas.river.danube")
+      .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Зелені пелюстки означають, що середнє значення показника якості в межах норми. Відтінок червоного - рівень перевищення норми. По кліку на квітку Ви зможете побачити, які показники актуальні для цієї точки і динаміку кожного за останні 5 років")
+      .attr("data-step", "3");
 
 
 
@@ -185,7 +174,7 @@ d3.select("#body").append("div")
 //        .append("img")
 //        .attr("src", "img/loading.gif");
         .append("p")
-        .html("триває завантаження...")
+        .html("триває завантаження<span>.</span><span>.</span><span>.</span>")
         .attr("id", "wait");
 
 
@@ -194,9 +183,9 @@ d3.select("#body").append("div")
         introJs()
                 .setOption('showBullets', false)
 //                .setOption('showButtons', false)
-                .setOption('nextLabel', "Готово")
+                .setOption('nextLabel', "Далі")
                 .setOption("prevLabel", "Назад")
-                .setOption("skipLabel", "Пропустити")
+                .setOption("skipLabel", "Пропустити інструктаж")
                 .setOption("doneLabel", "Зрозуміло")
 
 
@@ -248,7 +237,9 @@ d3.select("#body").append("div")
         d3.select("table.contaminantsTable").remove();
         var key = this.innerText;
         key = key.replace(/(\r\n\t|\n|\r\t)/gm,"");
-        callTable(key)
+        callTable(key);
+        $("table > tbody > tr#id36759156")
+
     });
 
 

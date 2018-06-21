@@ -32,15 +32,17 @@ var callTable = function (key) {
                 return d.regionName === key
             }))
             .enter()
-            .append('tr');
+            .append('tr')
+            .attr("id", function (d) {
+                return "id"+d.id
+            });
 
 
 
         rows.append('td')
-            .attr("id", function (d) {
-                return d.id
-            })
+
             .text(function (d) {
+
                 return d.id;
             });
 
