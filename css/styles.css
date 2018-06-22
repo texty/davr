@@ -215,11 +215,11 @@ svg {
   position: absolute; }
 
 #ukraine {
-  fill: #070707; }
+  fill: #232323; }
 
 @-moz-document url-prefix() {
   #ukraine {
-    fill: #0f0f0f; } }
+    fill: #222222; } }
 #allrivers {
   margin: 10px 0;
   grid-column: 1/2;
