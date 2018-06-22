@@ -130,7 +130,8 @@ var zoom = d3.zoom()
 
             map.redraw(d3.event.transform)
 
-});
+})
+    ;
 
 
 
@@ -436,6 +437,7 @@ map.redraw = function(transform) {
 
 d3.select('#body')
     .call(zoom);
+    
 
 function retrieve(layername, method, param, cb){
     if (datasets[layername]) return cb(datasets[layername]);
@@ -594,7 +596,8 @@ function drawPoints() {
                         //якщо не кисень
                         if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
                             if (d.data.size > 0.9) {
-                                return PointColorsRed(d.data.size);
+                                // return PointColorsRed(d.data.size);
+                                return "#a50f15"
                             }
                             else {
                                 // return "#49E858"

@@ -28,7 +28,6 @@ body {
 }
 
 
-
 #text {
   grid-row:1/2;
   grid-column: 1/3;
@@ -45,8 +44,9 @@ h1, h3, p, li {
   height:100vh;
   background-image: url(../img/all.png);
   background-size: cover;
+  margin: 0 !important;
   //margin-bottom:150px;
-  background-position: 10% 50%;
+  //background-position: 10% 50%;
 }
 
 #overlay {
@@ -61,23 +61,8 @@ h1, h3, p, li {
 
 }
 
-//#title-subtitle {
-////position:absolute;
-//left: 10%;
-//top: 10%;
-////transform: translate(-10%, -10%);
-//}
-
-//#title{
-//  position:absolute;
-//  left: 50%;
-//  top: 50%;
-//  transform: translate(-50%, -50%);
-//}
-
-
 #title {
-  margin-top:40px;
+  padding-top:40px;
   margin-left: 40px;
   margin-bottom:40px;
   opacity:1;
@@ -149,6 +134,8 @@ p, li {
 
 
 /* -----  Візуалізація ----- */
+
+//анімація завантаження карти
 #loader {
   position:absolute;
   left: 50%;
@@ -194,24 +181,7 @@ p, li {
 }
 
 
-#body {
-  position:relative;
-  height: 100vh;
-  width:100%;
-  grid-row:2/4;
-  grid-column: 2/3;
-}
-
-
-
-#contaminants {
-  grid-row:3/4;
-  grid-column: 2/3;
-  display:none;
-  height: calc(100vh - 70px);
-  overflow: auto;
-
-}
+//кнопки перемикачі
 
 #switchToTable {
   width: 100%;
@@ -235,7 +205,7 @@ p, li {
   //color:white!important;
   font-size: 12px;
   //text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .switch:hover {
@@ -247,28 +217,52 @@ p, li {
   display: none;
 }
 
-table {
-  margin: 10px 10%;
-  width:80%
+button.button {
+  background-color: transparent;
+  width: 96%;
+  padding: 10px;
+  border: 1px solid grey;
+  margin-bottom:10px;
+  color:white;
 }
 
-#contaminants > table > tbody > tr> td:nth-child(2) {
-  width: 60%;
+button.button:hover {
+  background-color:$blueTextColor ;
+  cursor:pointer;
+  color:black;
 }
 
-#contaminants > table > thead > tr> th {
-  text-align: left;
-  padding-bottom: 20px;
+button.button:active {
+  background-color:$blueTextColor;
+  border: 1px solid grey;
+  color:black;
+
 }
 
-td, th {
-  font-size: 16px;
-  color: $blueTextColor;
-  line-height: 2;
+button.button:focus{
+  background-color:$blueTextColor;
+  border: 1px solid grey;
+  color:black;
 }
 
-td {
-  padding-bottom:10px;
+
+p.button {
+  margin:0;
+  padding:0;
+  font-size:12px
+
+}
+
+
+
+//карта
+
+#body {
+  position:relative;
+  height: 100vh;
+  width:100%;
+  grid-row:2/4;
+  grid-column: 2/3;
 }
 
 canvas {
@@ -299,6 +293,9 @@ svg {
   }
 }
 
+
+//мінікарти та регіони (навігація)
+
 #allrivers {
   //height: 200px;
   margin:10px 0;
@@ -310,8 +307,15 @@ svg {
   grid-gap:10px;
   height: calc(100vh - 70px);
   overflow: scroll;
-
 }
+
+
+.riverCont {
+  border: 1px solid #0d0d0d;
+  padding: 5px;
+  cursor:pointer;
+}
+
 
 #regions {
   margin-top: 10px;
@@ -344,6 +348,45 @@ svg {
 }
 
 
+//таблиця
+#contaminants {
+  grid-row:3/4;
+  grid-column: 2/3;
+  display:none;
+  height: calc(100vh - 70px);
+  overflow: auto;
+
+}
+
+table {
+  margin: 10px 10%;
+  width:80%
+}
+
+#contaminants > table > tbody > tr> td:nth-child(2) {
+  width: 60%;
+}
+
+#contaminants > table > thead > tr> th {
+  text-align: left;
+  padding-bottom: 20px;
+}
+
+td, th {
+  font-size: 16px;
+  color: $blueTextColor;
+  line-height: 2;
+}
+
+td {
+  padding-bottom:10px;
+}
+
+
+
+
+
+
 /* Perfect Scrollbar */
 
 .ps__rail-x {
@@ -371,59 +414,6 @@ svg {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-.riverCont {
-  border: 1px solid #0d0d0d;
-  padding: 5px;
-  cursor:pointer;
-}
-
-
-
-button.button {
-  background-color: transparent;
-  width: 96%;
-  padding: 10px;
-  border: 1px solid grey;
-  margin-bottom:10px;
-  color:white;
-}
-
-button.button:hover {
-  background-color:$blueTextColor ;
-  cursor:pointer;
-  color:black;
-}
-
-button.button:active {
-  background-color:$blueTextColor;
-  border: 1px solid grey;
-  color:black;
-}
-
-button.button:focus{
-  background-color:$blueTextColor;
-  border: 1px solid grey;
-  color:black;
-}
-
-
-p.button {
-  margin:0;
-  padding:0;
-  font-size:12px
-
-}
 
 
 h5 {
