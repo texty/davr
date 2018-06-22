@@ -155,19 +155,34 @@
 
 <script>
 
-d3.select("#body").on("click", function() {
-    zoom.scaleExtent([6, 6])
 
-    $(window).on("wheel mousewheel", function(e){
-        if(e.originalEvent.deltaY < 0) {
-            e.preventDefault();
-            return;
-        } else if (e.originalEvent.wheelDeltaY < 0) {
-            e.preventDefault();
-            return;
-        }
+    var zoomWidth = mapWidth - 310;
+    d3.selectAll("#body").on("click", function () {
+
+        var t = d3.event;
+        var scale = 6;
+        let x = mapWidth * scale / 3 - scale * t.clientX;
+        let y = mapHeight / 2 - scale * t.clientY;
+        console.log(x);
+        console.log(y);
+
+
+        var z = d3.zoomIdentity
+                .translate(x, y)
+                .scale(scale);
+
+
+        d3.select("#body").call(zoom.transform, z);
+
+
+
+
+
+
+
     });
-});
+
+
 
 
 

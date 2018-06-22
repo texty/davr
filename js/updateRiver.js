@@ -114,17 +114,48 @@ var PointColorsRed = d3.scaleQuantile()
 /* проекція для карти*/
 
 var projection;
+var zoom;
+
+var zoomTrans = {x:0, y:0, scale:1};
+
 if (window.innerWidth > 1500){
 projection = d3.geoMercator()
     .scale(3500)
     .rotate([0, 0, 0])
     .center([24, 50]);
+
+
+    zoom = d3.zoom()
+        .scaleExtent([3, 3])
+        .on('zoom', function(){
+            map.redraw(d3.event.transform);
+        });
+
+
+
+
+
 }
 else if (window.innerWidth < 1500){
     projection = d3.geoMercator()
         .scale(2000)
         .rotate([0, 0, 0])
         .center([30, 50]);
+
+    zoom = d3.zoom()
+        .scaleExtent([6, 6])
+        .on('zoom', function(){
+
+            zoomTrans.x = d3.event.transform.x;
+            zoomTrans.y = d3.event.transform.y;
+            zoomTrans.scale = d3.event.transform.k;
+
+            map.redraw(d3.event.transform);
+        });
+
+
+
+
 }
 
 var path2 = d3.geoPath()
@@ -152,49 +183,14 @@ var indicatorHint = d3.select("#modalKeysHeadings").append("div")
 /* контейнер для svg та canvas */
 var map = {};
 // map.width = mapWidth;
+mapHeight = window.innerHeight - 50;
 map.width = mapWidth;
-map.height = window.innerHeight - 50;
+map.height = mapHeight;
 // map.height = window.innerWidth - 300;
 
-var kv,
-    xv,
-    yv;
-
-var myTransform;
-
-var zoom = d3.zoom()
-    .scaleExtent([1, 1])
-    .on('zoom', function(){
-
-map.redraw(d3.event.transform);
-
-            // if(d3.event.transform.k > 1) {
-            //     kv = 6;
-            //     xv = -1405;
-            //     yv = -1740;
-            //
-            //     myTransform = {k:kv, x:xv, y:yv};
-            //
-            //
-            //     map.redraw(myTransform);
-            //    }
-            //
-            //    if(d3.event.transform.k === 1) {
-            //        kv = 1;
-            //        xv = 0;
-            //        yv = 0;
-            //
-            //        myTransform = {k:kv, x:xv, y:yv};
-            //
-            //        map.redraw(myTransform);
-            //    }
 
 
-        });
 
-// var Z = d3.select("#body");
-//
-// zoom.scaleTo(Z, 6);
 
 /*------------------ Дунай ------------------------------- */
 map.canvasDanube = d3.select("#body").append("canvas")
@@ -474,7 +470,7 @@ map.redraw = function(transform) {
 
 
 d3.select('#body')
-    .call(zoom);
+    .call(zoom).on("wheel.zoom", null);
 
 
 
