@@ -45,6 +45,7 @@ h1, h3, p, li {
   z-index: 5; }
 
 #title {
+  text-transform: uppercase;
   padding-top: 40px;
   margin-left: 40px;
   margin-bottom: 20px;
@@ -63,6 +64,9 @@ h1, h3, p, li {
   font-size: 17px;
   letter-spacing: 2px;
   color: #c9defa; }
+  @media (min-width: 1286px) and (max-width: 1440px), (min-width: 1441px) and (max-width: 2570px) {
+    #subtitle {
+      width: 30%; } }
 
 #credits {
   margin-left: 40px;
@@ -84,13 +88,12 @@ p.text, li.text {
 
 h1 {
   font-family: 'Prata', serif;
-  font-size: 50pt;
+  font-size: 40pt;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0; }
 
 h1 span {
-  text-transform: uppercase;
-  font-size: 75pt;
+  font-size: 78pt;
   line-height: 1.4; }
 
 h3 {

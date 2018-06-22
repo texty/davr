@@ -68,6 +68,7 @@ h1, h3, p, li {
 }
 
 #title {
+  text-transform: uppercase;
   padding-top:40px;
   margin-left: 40px;
   margin-bottom:20px;
@@ -90,6 +91,11 @@ h1, h3, p, li {
   font-size: 17px;
   letter-spacing: 2px;
   color: $blueTextColor;
+
+  @media #{$brk-large}, #{$brk-xlarge} {
+    width:30%;
+  }
+
 }
 
 #credits {
@@ -117,7 +123,7 @@ p.text, li.text {
 
 h1 {
   font-family: 'Prata', serif;
-  font-size: 50pt;
+  font-size: 40pt;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
 
@@ -125,8 +131,8 @@ h1 {
 }
 
 h1 span {
-  text-transform: uppercase;
-  font-size: 75pt;
+
+  font-size: 78pt;
   line-height: 1.4;
 }
 

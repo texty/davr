@@ -163,7 +163,7 @@ var kv,
 var myTransform;
 
 var zoom = d3.zoom()
-    .scaleExtent([6, 6])
+    .scaleExtent([1, 1])
     .on('zoom', function(){
 
 map.redraw(d3.event.transform);
