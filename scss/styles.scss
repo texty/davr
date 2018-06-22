@@ -92,8 +92,8 @@ h1, h3, p, li {
   letter-spacing: 2px;
   color: $blueTextColor;
 
-  @media #{$brk-large}, #{$brk-xlarge} {
-    width:30%;
+  @media  #{$brk-xlarge} {
+    width:20%;
   }
 
 }
