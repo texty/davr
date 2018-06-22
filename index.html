@@ -158,18 +158,19 @@
 
     var zoomWidth = mapWidth - 310;
     d3.selectAll("#body").on("click", function () {
-        var t = d3.event;
+        d3.selectAll("#body").style("transform-origin", "50% 50% 0");
+
         var scale;
         var tx;
         var ty;
         if(window.innerWidth >= 1500){
             scale = 3;
-            tx = mapWidth * scale / 2  - scale * t.clientX;
-            ty = mapHeight / 2 - scale * t.clientY;
+            tx = mapWidth * scale / 3  - scale * d3.event.clientX;
+            ty = mapHeight / 2 - scale * d3.event.clientY;
 
         } else if(window.innerWidth < 1500) {
             scale = 5;
-            tx = mapWidth * scale / 2 - scale * d3.event.clientX;
+            tx = mapWidth * scale / 2.5 - scale * d3.event.clientX;
             ty = mapHeight / 2 - scale * d3.event.clientY;
         }
 

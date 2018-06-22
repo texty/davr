@@ -122,7 +122,7 @@ if (window.innerWidth > 1500){
 projection = d3.geoMercator()
     .scale(3500)
     .rotate([0, 0, 0])
-    .center([24, 50]);
+    .center([22, 52]);
 
 
     zoom = d3.zoom()
