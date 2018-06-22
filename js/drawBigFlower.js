@@ -95,21 +95,21 @@ function drawBigFlower(IdForChart) {
 
 
 
-        particles.append('text')
-            .attr('class', 'big-labels')
-            .attr('x', bigradius * 2)
-            .text(function (d) {
-                var label = indicatorNames.filter(function (obj) {
-                    return obj.key === d.data.key;
-                });
-                return label[0].abr;
-            })
-
-            .attr("transform", function (d) {
-                return r((d.startAngle + d.endAngle) / 2);
-            })
-            .style("fill", "white")
-            .style("font-size", "10px");
+        // particles.append('text')
+        //     .attr('class', 'big-labels')
+        //     .attr('x', bigradius * 2)
+        //     .text(function (d) {
+        //         var label = indicatorNames.filter(function (obj) {
+        //             return obj.key === d.data.key;
+        //         });
+        //         return label[0].abr;
+        //     })
+        //
+        //     .attr("transform", function (d) {
+        //         return r((d.startAngle + d.endAngle) / 2);
+        //     })
+        //     .style("fill", "white")
+        //     .style("font-size", "10px");
 
 
     })

@@ -121,17 +121,7 @@ var projection = d3.geoMercator()
 var path2 = d3.geoPath()
     .projection(projection);
 
-var zoom = d3.zoom()
-    .scaleExtent([6, 6])
-    .on('zoom', function(){
-            console.log("zoomed");
-            console.log(d3.event.transform);
-        
 
-            map.redraw(d3.event.transform)
-
-})
-    ;
 
 
 
@@ -157,8 +147,49 @@ map.width = mapWidth;
 map.height = window.innerHeight - 50;
 // map.height = window.innerWidth - 300;
 
+var kv,
+    xv,
+    yv;
+
+var myTransform;
+
+var zoom = d3.zoom()
+    .scaleExtent([6, 6])
+    .on('zoom', function(){
+
+map.redraw(d3.event.transform);
 
 
+
+
+
+            // if(d3.event.transform.k > 1) {
+            //     kv = 6;
+            //     xv = -1405;
+            //     yv = -1740;
+            //
+            //     myTransform = {k:kv, x:xv, y:yv};
+            //
+            //
+            //     map.redraw(myTransform);
+            //    }
+            //
+            //    if(d3.event.transform.k === 1) {
+            //        kv = 1;
+            //        xv = 0;
+            //        yv = 0;
+            //
+            //        myTransform = {k:kv, x:xv, y:yv};
+            //
+            //        map.redraw(myTransform);
+            //    }
+
+
+        });
+
+// var Z = d3.select("#body");
+//
+// zoom.scaleTo(Z, 6);
 
 /*------------------ Дунай ------------------------------- */
 map.canvasDanube = d3.select("#body").append("canvas")
@@ -435,8 +466,12 @@ map.redraw = function(transform) {
     map.svgShape.attr("transform", d3.event.transform);
 };
 
+
+
 d3.select('#body')
     .call(zoom);
+
+
 
 
 function retrieve(layername, method, param, cb){
@@ -678,6 +713,8 @@ function drawPoints() {
 
     });
 }
+
+
 
 
 function petalPath(d) {
@@ -956,6 +993,27 @@ d3.selection.prototype.moveToFront = function() {
 
 
 
+// var value = d3.select('#body').attr("value");
+//
+//
+// $("#body").on("click", function () {
+//
+//     if (value === '0' || value === '1') {
+//         console.log(value);
+//         console.log(d3.event.transform.x)
+//         var p = d3.zoomIdentity.translate(d3.event.transform.x, d3.event.transform.y).scale(6);
+//         d3.select("#body").attr("value", "6").call(zoom.transform, p);
+//     }
+// });
 
+
+   
+    // var t = d3.zoomIdentity.translate(0, 0).scale(1);
+
+
+
+
+
+   
 
 
