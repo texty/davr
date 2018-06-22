@@ -114,13 +114,13 @@ var PointColorsRed = d3.scaleQuantile()
 /* проекція для карти*/
 
 var projection;
-if (window.innerWidth > 2000){
+if (window.innerWidth > 1500){
 projection = d3.geoMercator()
-    .scale(10000)
+    .scale(5000)
     .rotate([0, 0, 0])
     .center([24, 50]);
 }
-else if (window.innerWidth < 2000){
+else if (window.innerWidth < 1500){
     projection = d3.geoMercator()
         .scale(2000)
         .rotate([0, 0, 0])

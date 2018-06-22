@@ -51,7 +51,8 @@ h1, h3, p, li {
   opacity: 1;
   line-height: 1;
   letter-spacing: 6px;
-  color: #c9defa; }
+  color: #c9defa;
+  font-weight: 300; }
 
 #subtitle {
   margin-left: 40px;
