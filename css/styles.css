@@ -398,7 +398,8 @@ h5 {
 
 #clone {
   /*клон чарт-контейнера для вирахування ширини для медіа-кверіс*/
-  opacity: 0; }
+  opacity: 0;
+  pointer-events: none; }
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
     #clone {
       width: 40vw; } }

@@ -46,7 +46,13 @@ var riversNames = [
 
 
 /*Змінні для великої квітки*/
-var halfRadius = 2; //радіус для квіточок
+var halfRadius;
+if (window.innerWidth >= 2000){
+    halfRadius = 10;
+} //радіус для квіточок
+if (window.innerWidth < 2000){
+    halfRadius = 2;
+} //радіус для квіточок
 var bigradius = clonedivWidth / 10;
 
 var arc = d3.arc()
