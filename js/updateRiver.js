@@ -118,11 +118,11 @@ var zoom;
 
 var zoomTrans = {x:0, y:0, scale:1};
 
-if (window.innerWidth > 1500){
+if (window.innerWidth > 2000){
 projection = d3.geoMercator()
     .scale(3500)
     .rotate([0, 0, 0])
-    .center([22, 52]);
+    .center([30, 50]);
 
 
     zoom = d3.zoom()
@@ -131,12 +131,8 @@ projection = d3.geoMercator()
             map.redraw(d3.event.transform);
         });
 
-
-
-
-
 }
-else if (window.innerWidth < 1500){
+else if (window.innerWidth < 2000){
     projection = d3.geoMercator()
         .scale(2000)
         .rotate([0, 0, 0])
@@ -157,6 +153,9 @@ else if (window.innerWidth < 1500){
 
 
 }
+
+
+
 
 var path2 = d3.geoPath()
     .projection(projection);
@@ -190,7 +189,7 @@ map.height = mapHeight;
 
 
 
-
+projection.translate([map.width/2, map.height/2]);
 
 /*------------------ Дунай ------------------------------- */
 map.canvasDanube = d3.select("#body").append("canvas")
