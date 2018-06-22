@@ -31,7 +31,7 @@
         <!--Над проектом працювали: Євгенія Дроздова, Петро Бондар.-->
         <p class="text">Ми нанесли на карту найбільші річкові басейни України. Користувачу потрібно клікнути на один з басейнів у меню ліворуч для того, щоб почати працювати з картою.</p>
 
-<p class="text">Після кліку карта прибирає всю зайву інформацію і залишає тільки обраний басейн та іконки (у вигляді «квітки») на ньому. Ними на карті позначені місця, де співробітники Держводагенства забирають воду для аналізів. Якщо у “квітки” червоніють пелюстки ‒ значить, забруднення перевищує норму.</p>
+<p class="text">Після кліку карта прибирає всю зайву інформацію і залишає тільки обраний басейн та іконки (у вигляді «квітки») на ньому. Ними на карті позначені місця, де співробітники Держводагенства забирають воду для аналізів. Якщо у «квітки» червоніють пелюстки ‒ значить, забруднення перевищує норму. Наблизити карту можна за допомогою подвійного кліку.</p>
 
 <p class="text">Якщо натиснути на іконку, на екрані з’являється нове вікно з графіком та збільшеною «квіткою». На графіку можна відстежити, як змінювалась концентрація речовини-забруднювача в минулому, і якою вона є зараз. Що ж до «квітки», кожна її пелюстка позначає певний забруднювач. На пелюстки можна натискати для того, щоб побачити графік для обраного пказника. </p>
 
@@ -48,7 +48,7 @@
 
 
 <div id="clone"></div>
-<div id="body" value="0" data-intro="Подвійний клік на місці, що Вас цікавить, наблизить і відцентрує карту. Можете потягнути карті вліво-вправо-вверх-вниз, аби роздивитись інші «квіточки». Щоб зменшити карту, знову клікніть на басейн річки" data-step="2">
+<div id="body" value="0" data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки" data-step="2">
     <!--<div id="title">-->
     <!--<h1>На чисту воду!</h1></div>-->
     <!--<div id="subtitle">-->
@@ -93,11 +93,11 @@
 
 
 <div id="allrivers">
-    <div id="danube" class="riverCont" data-intro="Клікніть, щоб обрати басейн річки" data-step="1">
+    <div id="danube" class="riverCont" data-intro="Перед тим, як натиснути <b>Далі</b>, клікніть на позначену область, щоб обрати басейн річки" data-step="1">
         <h5>Дунай</h5>
         <img style="width:100%" src="img/danube.png"/>
     </div>
-    <div id="dnister" class="riverCont" data-intro="Щоб повернутись до попереднього масштабу, перейдіть на іншу річку" data-step="4">
+    <div id="dnister" class="riverCont" data-intro="Щоб повернутись до попереднього масштабу, клікніть на позначену область" data-step="4">
         <h5>Дністер</h5>
         <img style="width:100%" src="img/dnister.png"/>
     </div>
@@ -156,59 +156,31 @@
 <script>
 
 
-    var zoomWidth = mapWidth - 310;
-    d3.selectAll("#body").on("dblclick", function () {
-        d3.selectAll("#body").style("transform-origin", "50% 50% 0");
-
-        var scale;
-        var tx;
-        var ty;
-        if(window.innerWidth >= 1500){
-            scale = 3;
-            tx = mapWidth * scale / 3  - scale * d3.event.clientX;
-            ty = mapHeight / 2 - scale * d3.event.clientY;
-
-        } else if(window.innerWidth < 1500) {
-            scale = 5;
-            tx = mapWidth * scale / 2.5 - scale * d3.event.clientX;
-            ty = mapHeight / 2 - scale * d3.event.clientY;
-        }
-
-        var z = d3.zoomIdentity
-                .translate(tx, ty)
-                .scale(scale);
-        d3.select("#body").call(zoom.transform, z);
-    });
-
-
-//    var z;
-//    var t = d3.event;
-//    var scale;
-
-//    d3.selectAll("#body").on("click", function () {
-//        if(window.innerWidth > 1500) {
+//    var zoomWidth = mapWidth - 310;
+//    d3.selectAll("#body").on("dblclick", function () {
+//        d3.selectAll("#body").style("transform-origin", "50% 50% 0");
+//
+//        var scale;
+//        var tx;
+//        var ty;
+//        if(window.innerWidth >= 1500){
 //            scale = 3;
-//            let x = mapWidth * scale / 3 - scale * d3.event.clientX;
-//            let y = mapHeight / 2 - scale * d3.event.clientY;
+//            tx = mapWidth * scale / 3  - scale * d3.event.clientX;
+//            ty = mapHeight / 2 - scale * d3.event.clientY;
 //
-//
-//
-//            z = d3.zoomIdentity
-//                    .translate(x, y)
-//                    .scale(scale);
+//        } else if(window.innerWidth < 1500) {
+//            scale = 5;
+//            tx = mapWidth * scale / 2.5 - scale * d3.event.clientX;
+//            ty = mapHeight / 2 - scale * d3.event.clientY;
 //        }
 //
-//            z = d3.zoomIdentity
-//                    .translate(x, y)
-//                    .scale(scale);
-//        }
-//
-//
-//
+//        var z = d3.zoomIdentity
+//                .translate(tx, ty)
+//                .scale(scale);
 //        d3.select("#body").call(zoom.transform, z);
-//
-//
 //    });
+
+
 
 
 
@@ -231,7 +203,7 @@
 
 
 d3.select("canvas.river.danube")
-      .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Зелені пелюстки означають, що середнє значення показника якості в межах норми. Відтінок червоного - рівень перевищення норми. По кліку на квітку Ви зможете побачити, які показники актуальні для цієї точки і динаміку кожного за останні 5 років")
+      .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Зелені пелюстки означають, що середнє значення показника якості в межах норми, червоні - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>")
       .attr("data-step", "3");
 
 
