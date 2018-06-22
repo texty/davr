@@ -571,6 +571,7 @@ h5 {
 
 #clone { /*клон чарт-контейнера для вирахування ширини для медіа-кверіс*/
   opacity:0;
+  pointer-events:none;
   @media #{$brk-xlarge}, #{$brk-large}, #{$brk-medium} {
     width:40vw;
   }
