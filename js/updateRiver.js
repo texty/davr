@@ -715,7 +715,12 @@ function drawPoints() {
     });
 }
 
-
+var flowefsize;
+if(window.innerWidth >= 1500){
+    flowefsize = 1.5;
+} else if(window.innerWidth < 1500){
+    flowefsize = 0.05;
+}
 
 
 function petalPath(d) {
@@ -723,7 +728,8 @@ function petalPath(d) {
         s = polarToCartesian(-angle, halfRadius),
         e = polarToCartesian(angle, halfRadius),
     // r = size(d.data.size),
-        r = size(0.04),
+
+        r = size(flowefsize),
 
         m = {x: halfRadius + r, y: 0},
         c1 = {x: halfRadius + r / 2, y: s.y},
