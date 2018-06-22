@@ -437,7 +437,7 @@ map.redraw = function(transform) {
 
 d3.select('#body')
     .call(zoom);
-    
+
 
 function retrieve(layername, method, param, cb){
     if (datasets[layername]) return cb(datasets[layername]);
