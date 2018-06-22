@@ -46,13 +46,10 @@ var riversNames = [
 
 
 /*Змінні для великої квітки*/
-var halfRadius;
-if (window.innerWidth >= 2000){
-    halfRadius = 10;
-} //радіус для квіточок
-if (window.innerWidth < 2000){
-    halfRadius = 2;
-} //радіус для квіточок
+var halfRadius = 2;
+
+
+
 var bigradius = clonedivWidth / 10;
 
 var arc = d3.arc()
@@ -720,12 +717,8 @@ function drawPoints() {
     });
 }
 
-var flowefsize;
-if(window.innerWidth >= 1500){
-    flowefsize = 1.5;
-} else if(window.innerWidth < 1500){
-    flowefsize = 0.05;
-}
+var flowefsize = 0.05;
+
 
 
 function petalPath(d) {
