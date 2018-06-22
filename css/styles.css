@@ -383,6 +383,9 @@ h5 {
   stroke: url(#line-gradient);
   stroke-width: 1px; }
 
+@-moz-document url-prefix() {
+  .line {
+    stroke-width: 2.5px; } }
 #myModalGrid {
   display: grid;
   grid-template-columns: 1fr 1fr; }

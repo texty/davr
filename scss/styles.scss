@@ -543,6 +543,12 @@ h5 {
   stroke-width: 1px;
 }
 
+@-moz-document url-prefix() {
+  .line {
+    stroke-width: 2.5px;
+  }
+}
+
 
 
 //Grid chart

@@ -116,7 +116,7 @@ var PointColorsRed = d3.scaleQuantile()
 var projection;
 if (window.innerWidth > 1500){
 projection = d3.geoMercator()
-    .scale(4000)
+    .scale(3500)
     .rotate([0, 0, 0])
     .center([24, 50]);
 }

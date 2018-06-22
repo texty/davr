@@ -154,8 +154,19 @@
 
 
 <script>
+
 d3.select("#body").on("click", function() {
     zoom.scaleExtent([6, 6])
+
+    $(window).on("wheel mousewheel", function(e){
+        if(e.originalEvent.deltaY < 0) {
+            e.preventDefault();
+            return;
+        } else if (e.originalEvent.wheelDeltaY < 0) {
+            e.preventDefault();
+            return;
+        }
+    });
 });
 
 
