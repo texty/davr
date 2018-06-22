@@ -111,12 +111,21 @@ var PointColorsRed = d3.scaleQuantile()
     .range(reds)
     .domain([0, 9]);
 
-
 /* проекція для карти*/
-var projection = d3.geoMercator()
-    .scale(2000)
+
+var projection;
+if (window.innerWidth > 2000){
+projection = d3.geoMercator()
+    .scale(4000)
     .rotate([0, 0, 0])
-    .center([30, 50]);
+    .center([24, 50]);
+}
+else if (window.innerWidth < 2000){
+    projection = d3.geoMercator()
+        .scale(2000)
+        .rotate([0, 0, 0])
+        .center([30, 50]);
+}
 
 var path2 = d3.geoPath()
     .projection(projection);
@@ -158,10 +167,6 @@ var zoom = d3.zoom()
     .on('zoom', function(){
 
 map.redraw(d3.event.transform);
-
-
-
-
 
             // if(d3.event.transform.k > 1) {
             //     kv = 6;

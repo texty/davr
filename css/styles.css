@@ -330,7 +330,7 @@ h5 {
   left: 0;
   top: 0;
   width: 100%;
-  height: auto;
+  height: 80vh;
   overflow: auto;
   background-color: black;
   background-color: rgba(0, 0, 0, 0.4); }
