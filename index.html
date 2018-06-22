@@ -154,38 +154,62 @@
 
 
 <script>
-    var z;
-    var t = d3.event;
-    var scale;
 
+
+    var zoomWidth = mapWidth - 310;
     d3.selectAll("#body").on("click", function () {
-        if(window.innerWidth > 1500) {
+        var t = d3.event;
+        var scale;
+        var tx;
+        var ty;
+        if(window.innerWidth >= 1500){
             scale = 3;
-            let x = mapWidth * scale / 3 - scale * d3.event.clientX;
-            let y = mapHeight / 2 - scale * d3.event.clientY;
+            tx = mapWidth * scale / 2  - scale * t.clientX;
+            ty = mapHeight / 2 - scale * t.clientY;
 
-
-
-            z = d3.zoomIdentity
-                    .translate(x, y)
-                    .scale(scale);
-        }
-        else if(window.innerWidth > 1500) {
-            scale = 6;
-            let x = mapWidth * scale / 2 - scale * d3.event.clientX;
-            let y = mapHeight / 2 - scale * d3.event.clientY;
-
-            z = d3.zoomIdentity
-                    .translate(x, y)
-                    .scale(scale);
+        } else if(window.innerWidth < 1500) {
+            scale = 5;
+            tx = mapWidth * scale / 2 - scale * d3.event.clientX;
+            ty = mapHeight / 2 - scale * d3.event.clientY;
         }
 
-
-
+        var z = d3.zoomIdentity
+                .translate(tx, ty)
+                .scale(scale);
         d3.select("#body").call(zoom.transform, z);
-
-
     });
+
+
+//    var z;
+//    var t = d3.event;
+//    var scale;
+
+//    d3.selectAll("#body").on("click", function () {
+//        if(window.innerWidth > 1500) {
+//            scale = 3;
+//            let x = mapWidth * scale / 3 - scale * d3.event.clientX;
+//            let y = mapHeight / 2 - scale * d3.event.clientY;
+//
+//
+//
+//            z = d3.zoomIdentity
+//                    .translate(x, y)
+//                    .scale(scale);
+//        }
+//
+//            z = d3.zoomIdentity
+//                    .translate(x, y)
+//                    .scale(scale);
+//        }
+//
+//
+//
+//        d3.select("#body").call(zoom.transform, z);
+//
+//
+//    });
+
+
 
 
 
