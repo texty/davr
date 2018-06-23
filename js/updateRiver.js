@@ -557,46 +557,46 @@ function drawPoints() {
             .key(function (d) {
                 return d.id
             })
-            .key(function (d) {
-                return d.date
-            })
+            // .key(function (d) {
+            //     return d.date
+            // })
             .entries(points);
 
 
         //беремо дані за останню можливу дату по кожному місцю водозабору
-        x = nested.map(function (d) {
-            arrayLength = d.values.length - 1;
-            return d.values[arrayLength];
-        });
+        // x = nested.map(function (d) {
+        //     arrayLength = d.values.length - 1;
+        //     return d.values[arrayLength];
+        // });
 
         //розгруповуємо дані за останню дату у звичайний array
-        var unnest = [];
-        x.forEach(function (d) {
-            d.values.forEach(function (k) {
-                unnest.push({
-                    id: k.id,
-                    date: k.date,
-                    name: k.name,
-                    lon: +k.lon,
-                    lat: +k.lat,
-                    key: k.key,
-                    river: k.river,
-                    value: k.value,
-                    mean: k.mean,
-                    norm: +k.norm,
-                    dev: +k.dev,
-                    size: +k.size
-                });
-            });
-        });
+        // var unnest = [];
+        // x.forEach(function (d) {
+        //     d.values.forEach(function (k) {
+        //         unnest.push({
+        //             id: k.id,
+        //             date: k.date,
+        //             name: k.name,
+        //             lon: +k.lon,
+        //             lat: +k.lat,
+        //             key: k.key,
+        //             river: k.river,
+        //             value: k.value,
+        //             mean: k.mean,
+        //             norm: +k.norm,
+        //             dev: +k.dev,
+        //             size: +k.size
+        //         });
+        //     });
+        // });
 
         //та сгруповуємо дані по індикаторам
-        var nested2 = d3.nest()
-            .key(function (d) {
-                // return d.key;
-                return d.id
-            })
-            .entries(unnest);
+        // var nested2 = d3.nest()
+        //     .key(function (d) {
+        //         // return d.key;
+        //         return d.id
+        //     })
+        //     .entries(unnest);
 
         /*додаємо мітки на карту по категоріям індикаторів, кожній групі індикаторів тепер можна задати окремі
          параметри а також transform
@@ -604,7 +604,7 @@ function drawPoints() {
 
 
         map.svg.selectAll(".petal")
-            .data(nested2)
+            .data(nested)
             .enter().append('g')
             .attr("transform", function (d) {
                 return "translate(" + projection([d.values[0].lon, d.values[0].lat]) + ")";
