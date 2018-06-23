@@ -128,7 +128,6 @@ projection = d3.geoMercator()
     .rotate([0, 0, 0])
     .center([30, 50]);
 
-
     zoom = d3.zoom()
         .scaleExtent([3, 3])
         .on('zoom', function(){
@@ -150,11 +149,8 @@ else if (window.innerWidth < 2000){
             zoomTrans.y = d3.event.transform.y;
             zoomTrans.scale = d3.event.transform.k;
 
-            map.redraw(d3.event.transform);
+            map.redraw(d3.event.transform, riverForDrawId);
         });
-
-
-
 
 }
 
@@ -163,12 +159,6 @@ else if (window.innerWidth < 2000){
 
 var path2 = d3.geoPath()
     .projection(projection);
-
-
-
-
-
-
 
 
 //tooltip for all flowers
@@ -457,13 +447,27 @@ setTimeout(drawPoints, 100);
 
 
 /*------------ Redraw rivers on zoom ------------------*/
-map.redraw = function(transform) {
-    map.canvasDanube.draw(transform);
-    map.canvasDnipro.draw(transform);
-    map.canvasDon.draw(transform);
-    map.canvasBug.draw(transform);
-    map.canvasDniestr.draw(transform);
-    map.canvasWisla.draw(transform);
+map.redraw = function(transform, riverForDrawId) {
+    if(riverForDrawId == "danube"){
+        map.canvasDanube.draw(transform);
+    }
+    if(riverForDrawId == "dnipro") {
+        map.canvasDnipro.draw(transform);
+    }
+    if(riverForDrawId == "don") {
+        map.canvasDon.draw(transform);
+    }
+    if(riverForDrawId == "southernbug") {
+        map.canvasBug.draw(transform);
+    }
+
+    if(riverForDrawId == "dnister") {
+        map.canvasDniestr.draw(transform);
+    }
+    if(riverForDrawId == "wisla") {
+        map.canvasWisla.draw(transform);
+    }
+
     map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
     map.svg.attr("transform", d3.event.transform);
     map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
