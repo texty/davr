@@ -435,7 +435,7 @@ map.canvasDniestr.draw = function (transform) {
 };
 
 /*------------ Draw rivers ----------------------------*/
-if (window.innerWidth < 700) {
+if (window.innerWidth < 1000) {
     map.canvasDanube.draw();
     // map.canvasDnipro.draw();
     // map.canvasDon.draw();
@@ -451,6 +451,7 @@ else {
     map.canvasBug.draw();
     map.canvasDniestr.draw();
     map.canvasWisla.draw();
+    setTimeout(drawPoints, 100);
 }
 
 
