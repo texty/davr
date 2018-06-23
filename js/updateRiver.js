@@ -435,44 +435,56 @@ map.canvasDniestr.draw = function (transform) {
 };
 
 /*------------ Draw rivers ----------------------------*/
-
-map.canvasDanube.draw();
-map.canvasDnipro.draw();
-map.canvasDon.draw();
-map.canvasBug.draw();
-map.canvasDniestr.draw();
-map.canvasWisla.draw();
-setTimeout(drawPoints, 100);
+if (window.innerWidth < 700) {
+    map.canvasDanube.draw();
+    // map.canvasDnipro.draw();
+    // map.canvasDon.draw();
+    // map.canvasBug.draw();
+    // map.canvasDniestr.draw();
+    // map.canvasWisla.draw();
+    setTimeout(drawPoints, 100);
+}
+else {
+    map.canvasDanube.draw();
+    map.canvasDnipro.draw();
+    map.canvasDon.draw();
+    map.canvasBug.draw();
+    map.canvasDniestr.draw();
+    map.canvasWisla.draw();
+}
 
 
 
 /*------------ Redraw rivers on zoom ------------------*/
-map.redraw = function(transform, riverForDrawId) {
-    if(riverForDrawId == "danube"){
-        map.canvasDanube.draw(transform);
-    }
-    if(riverForDrawId == "dnipro") {
-        map.canvasDnipro.draw(transform);
-    }
-    if(riverForDrawId == "don") {
-        map.canvasDon.draw(transform);
-    }
-    if(riverForDrawId == "southernbug") {
-        map.canvasBug.draw(transform);
-    }
 
-    if(riverForDrawId == "dnister") {
-        map.canvasDniestr.draw(transform);
-    }
-    if(riverForDrawId == "wisla") {
-        map.canvasWisla.draw(transform);
-    }
+    map.redraw = function (transform, riverForDrawId) {
+        if (riverForDrawId == "danube") {
+            map.canvasDanube.draw(transform);
+        }
+        if (riverForDrawId == "dnipro") {
+            map.canvasDnipro.draw(transform);
+        }
+        if (riverForDrawId == "don") {
+            map.canvasDon.draw(transform);
+        }
+        if (riverForDrawId == "southernbug") {
+            map.canvasBug.draw(transform);
+        }
 
-    map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
-    map.svg.attr("transform", d3.event.transform);
-    map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
-    map.svgShape.attr("transform", d3.event.transform);
-};
+        if (riverForDrawId == "dnister") {
+            map.canvasDniestr.draw(transform);
+        }
+        if (riverForDrawId == "wisla") {
+            map.canvasWisla.draw(transform);
+        }
+
+        map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+        map.svg.attr("transform", d3.event.transform);
+        map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+        map.svgShape.attr("transform", d3.event.transform);
+    };
+
+
 
 
 
