@@ -172,43 +172,43 @@ if(dataData[0].key != "Кисень.розчинений.МгО2.дм3") {
 
             chartSvg.select('#line-gradient > stop:nth-child(1)')
                 .attr("offset", "0%")
-                .attr("stop-color", "#087D17");
+                .attr("stop-color", "#199eb1");
             chartSvg.select('#line-gradient > stop:nth-child(2)')
                 .attr("offset", step1)
-                .attr("stop-color", "#087D17");
+                .attr("stop-color", "#199eb1");
             chartSvg.select('#line-gradient > stop:nth-child(3)')
                 .attr("offset", step1)
-                .attr("stop-color", "#fb6a4a");
+                .attr("stop-color", reds[0]);
             chartSvg.select('#line-gradient > stop:nth-child(4)')
                 .attr("offset", step2)
-                .attr("stop-color", "#fb6a4a");
+                .attr("stop-color", reds[0]);
             chartSvg.select('#line-gradient > stop:nth-child(5)')
                 .attr("offset", step2)
-                .attr("stop-color", "#fb6a4a");
+                .attr("stop-color", reds[1]);
             chartSvg.select('#line-gradient > stop:nth-child(6)')
                 .attr("offset", step3)
-                .attr("stop-color", "#ef3b2c");
+                .attr("stop-color", reds[1]);
             chartSvg.select('#line-gradient > stop:nth-child(7)')
                 .attr("offset", step3)
-                .attr("stop-color", "#ef3b2c");
+                .attr("stop-color", reds[2]);
             chartSvg.select('#line-gradient > stop:nth-child(8)')
                 .attr("offset", step4)
-                .attr("stop-color", "#cb181d");
+                .attr("stop-color", reds[2]);
             chartSvg.select('#line-gradient > stop:nth-child(9)')
                 .attr("offset", step4)
-                .attr("stop-color", "#cb181d");
+                .attr("stop-color", reds[3]);
             chartSvg.select('#line-gradient > stop:nth-child(10)')
                 .attr("offset", step5)
-                .attr("stop-color", "#a50f15");
+                .attr("stop-color", reds[3]);
             chartSvg.select('#line-gradient > stop:nth-child(11)')
                 .attr("offset", step5)
-                .attr("stop-color", "#a50f15");
+                .attr("stop-color", reds[3]);
             chartSvg.select('#line-gradient > stop:nth-child(12)')
                 .attr("offset", step6)
-                .attr("stop-color", "#67000d");
-            chartSvg.select('#line-gradient > stop:nth-child(13)')
-                .attr("offset", step6)
-                .attr("stop-color", "#67000d");
+                .attr("stop-color", reds[4]);
+            // chartSvg.select('#line-gradient > stop:nth-child(13)')
+            //     .attr("offset", step6)
+            //     .attr("stop-color", reds[4]);
         }
 
 
@@ -238,43 +238,43 @@ if(dataData[0].key != "Кисень.розчинений.МгО2.дм3") {
 
                 chartSvg.select('#line-gradient > stop:nth-child(1)')
                     .attr("offset", "0%")
-                    .attr("stop-color", "#a50f15");
+                    .attr("stop-color", reds[2]);
                 chartSvg.select('#line-gradient > stop:nth-child(2)')
                     .attr("offset", step1)
-                    .attr("stop-color", "#a50f15");
+                    .attr("stop-color", reds[2]);
                 chartSvg.select('#line-gradient > stop:nth-child(3)')
                     .attr("offset", step1)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(4)')
                     .attr("offset", step2)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(5)')
                     .attr("offset", step2)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color",green);
                 chartSvg.select('#line-gradient > stop:nth-child(6)')
                     .attr("offset", step3)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(7)')
                     .attr("offset", step3)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(8)')
                     .attr("offset", step4)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(9)')
                     .attr("offset", step4)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(10)')
                     .attr("offset", step5)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(11)')
                     .attr("offset", step5)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(12)')
                     .attr("offset", step6)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
                 chartSvg.select('#line-gradient > stop:nth-child(13)')
                     .attr("offset", step6)
-                    .attr("stop-color", "#087D17");
+                    .attr("stop-color", green);
 
             }
 

@@ -109,7 +109,8 @@ var BlWhScale = d3.scaleQuantile() //синя шкала для річок
 
 
 
-var reds = ["#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"];
+var reds = ["#570c49", "#84126e", "#DD1FB9", "#EC76D5", "#f094df"];
+var green = "#199eb1";
 var PointColorsRed = d3.scaleQuantile()
     // .range(colorbrewer.Reds[9])
     .range(reds)
@@ -129,8 +130,9 @@ projection = d3.geoMercator()
     .center([30, 50]);
 
     zoom = d3.zoom()
-        .scaleExtent([3, 3])
+        .scaleExtent([4, 4])
         .on('zoom', function(){
+
             map.redraw(d3.event.transform);
         });
 
@@ -642,22 +644,22 @@ function drawPoints() {
                         if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
                             if (d.data.size > 0.9) {
                                 // return PointColorsRed(d.data.size);
-                                return "#a50f15"
+                                return "#dd1fb9"
                             }
                             else {
                                 // return "#49E858"
-                                return "#087D17"
+                                return "#199eb1"
                             }
                         }
 
                         //якщо кисень
                         if(d.data.key === "Кисень.розчинений.МгО2.дм3") {
                             if (d.data.size > 0.9) {
-                                return "#087D17";
+                                return "#199eb1";
                             }
                             else {
                                 // return "#49E858"
-                                return "#a50f15"
+                                return "#dd1fb9"
                             }
 
 
@@ -724,7 +726,7 @@ function drawPoints() {
     });
 }
 
-var flowefsize = 0.05;
+var flowefsize = 0.08;
 
 
 
@@ -887,18 +889,18 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
         .selectAll("stop")
     // var reds = ["#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"];
         .data([
-            {offset: "0%", color: "#087D17"},
-            {offset: "10%", color: "#087D17"},
-            {offset: "10%", color: "#fb6a4a"},
-            {offset: "30%", color: "#fb6a4a"},
-            {offset: "30%", color: "#ef3b2c"},
-            {offset: "50%", color: "#ef3b2c"},
-            {offset: "50%", color: "#cb181d"},            
-            {offset: "70%", color: "#cb181d"},            
-            {offset: "70%", color: "#a50f15"},
-            {offset: "90%", color: "#a50f15"},
-            {offset: "90%", color: "#67000d"},
-            {offset: "100%", color: "#67000d"}
+            {offset: "0%", color: "#199eb1"},
+            {offset: "10%", color: "#199eb1"},
+            {offset: "10%", color: reds[0]},
+            {offset: "30%", color: reds[0]},
+            {offset: "30%", color: reds[1]},
+            {offset: "50%", color: reds[1]},
+            {offset: "50%", color: reds[2]},
+            {offset: "70%", color: reds[2]},
+            {offset: "70%", color: reds[3]},
+            {offset: "90%", color: reds[3]},
+            {offset: "90%", color: reds[4]},
+            {offset: "100%", color: reds[4]}
             
         ])
         .enter().append("stop")

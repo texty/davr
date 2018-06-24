@@ -36,14 +36,14 @@ function drawBigFlower(IdForChart) {
                     }
                     else {
                         // return "#49E858"
-                        return "#087D17"
+                        return "#199eb1"
                     }
                 }
 
                 //якщо кисень
                 if(d.data.key === "Кисень.розчинений.МгО2.дм3") {
                     if (d.data.size > 0.9) {
-                        return "#087D17";
+                        return "#199eb1";
                     }
                     else {
                         // return "#49E858"
