@@ -345,6 +345,9 @@ h5 {
   line-height: 1.6;
   color: #ffffff;
   letter-spacing: 5px; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    h5 {
+      font-size: 22px; } }
 
 .captions {
   font-style: italic;

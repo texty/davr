@@ -499,6 +499,10 @@ h5 {
   line-height: 1.6;
   color: #ffffff;
   letter-spacing: 5px;
+  @media #{$brk-narrow}, #{$brk-spnarrow} {
+    font-size: 22px;
+
+  }
 }
 
 .captions {
