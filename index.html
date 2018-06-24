@@ -2,66 +2,146 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>rivers</title>
 
+
+    <meta name="description"
+          content="На чисту воду">
+    <meta name="author" content="">
+
+    <title>На чисту воду</title>
+
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:site_name"
+          content="На чисту воду"/>
+    <meta property="og:type" content="http://texty.org.ua/d/2018/davr/"/>
+    <meta property="og:title"
+          content="На чисту воду"/>
+    <meta property="og:image" content="http://texty.org.ua/d/2018/davr/img/mob/dnister.png"/>
+    <meta property="og:description"
+          content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'/>
+    <meta property="og:url" content="http://texty.org.ua/d/2018/davr/"/>
+
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:site" content="@textyorgua"/>
+    <meta property="twitter:account_id" content="49572937"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:url" content="http://texty.org.ua/d/2018/davr/"/>
+    <meta name="twitter:title"
+          content="На чисту воду"/>
+    <meta name="twitter:description"
+          content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'/>
+    <meta name="twitter:image:src" content="http://texty.org.ua/d/2018/davr/img/mob/dnister.png"/>
+    <meta name="twitter:image:width" content="1200"/>
+    <meta name="twitter:image:height" content="630"/>
+
+
+    <!-- Other Meta Tags -->
+    <meta name="title"
+          content="На чисту воду">
+    <meta name="description"
+          content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'>
+
+    <!-- Links -->
     <link rel="stylesheet" href="css/perfect-scrollbar.css">
-    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs-rtl.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Prata&amp;subset=cyrillic,cyrillic-ext,vietnamese" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs-rtl.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Prata&amp;subset=cyrillic,cyrillic-ext,vietnamese"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
-
-
 </head>
+
+
 <body>
-
 <div id="text">
-
     <div id="header">
+        <div class="logo">
+            <a href="http://texty.org.ua/" target="_blank">
+                <img class='gif' style="width:100%" src="img/logo.png"/>
+            </a>
+        </div>
+
+
+        <div class="social-icons">
+            <div class="facebook">
+                <a class='share-btn'
+                   href="https://www.facebook.com/sharer/sharer.php?u=http://texty.org.ua/d/2018/davr/">
+                    <svg class="cover" fill='white' id="facebook" viewBox="0 0 448 512">
+                        <path d="M448 80v352c0 26.5-21.5 48-48 48h-85.3V302.8h60.6l8.7-67.6h-69.3V192c0-19.6 5.4-32.9 33.5-32.9H384V98.7c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9H184v67.6h60.9V480H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48z"/>
+                    </svg>
+                </a>
+            </div>
+            <div class="twitter">
+                <a class='share-btn' href="https://twitter.com/intent/tweet?text=http://texty.org.ua/d/2018/davr/">
+                    <svg id="twitter" fill='white' viewBox="0 0 448 512">
+                        <path d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-48.9 158.8c.2 2.8.2 5.7.2 8.5 0 86.7-66 186.6-186.6 186.6-37.2 0-71.7-10.8-100.7-29.4 5.3.6 10.4.8 15.8.8 30.7 0 58.9-10.4 81.4-28-28.8-.6-53-19.5-61.3-45.5 10.1 1.5 19.2 1.5 29.6-1.2-30-6.1-52.5-32.5-52.5-64.4v-.8c8.7 4.9 18.9 7.9 29.6 8.3a65.447 65.447 0 0 1-29.2-54.6c0-12.2 3.2-23.4 8.9-33.1 32.3 39.8 80.8 65.8 135.2 68.6-9.3-44.5 24-80.6 64-80.6 18.9 0 35.9 7.9 47.9 20.7 14.8-2.8 29-8.3 41.6-15.8-4.9 15.2-15.2 28-28.8 36.1 13.2-1.4 26-5.1 37.8-10.2-8.9 13.1-20.1 24.7-32.9 34z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
 
         <h1 id="title">На чисту <br><span>воду</span></h1>
         <div id="title-subtitle">
-
-<h3 id="subtitle">Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів. На карті ‒ понад 400 пунктів контролю річкової води. Ви можете переглянути до 16 параметрів забруднення, а також з’ясувати, як його рівень змінювався протягом п’яти років.
-
-</h3>
+            <h3 id="subtitle">Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів. На карті ‒ понад 400 пунктів контролю річкової води. Ви можете переглянути до 16 параметрів забруднення, а також з’ясувати, як його рівень змінювався протягом п’яти років.
+            </h3>
         </div>
     </div>
     <div id="text-description">
         <h4 id="credits"></h4>
         <!--Над проектом працювали: Євгенія Дроздова, Петро Бондар.-->
-        <p class="text">Ми нанесли на карту найбільші річкові басейни України. Користувачу потрібно клікнути на один з басейнів у меню ліворуч для того, щоб почати працювати з картою.</p>
+        <p class="text">Ми нанесли на карту найбільші річкові басейни України. Користувачу потрібно клікнути на один з
+            басейнів у меню ліворуч для того, щоб почати працювати з картою.</p>
 
-<p class="text">Після кліку карта прибирає всю зайву інформацію і залишає тільки обраний басейн та іконки (у вигляді «квітки») на ньому. Ними на карті позначені місця, де співробітники Держводагенства забирають воду для аналізів. Якщо у «квітки» рожевіють пелюстки ‒ значить, забруднення перевищує норму. Наблизити карту можна за допомогою подвійного кліку.</p>
+        <p class="text">Після кліку карта прибирає всю зайву інформацію і залишає тільки обраний басейн та іконки (у
+            вигляді «квітки») на ньому. Ними на карті позначені місця, де співробітники Держводагенства забирають воду
+            для аналізів. Якщо у «квітки» рожевіють пелюстки ‒ значить, забруднення перевищує норму. Наблизити карту
+            можна за допомогою подвійного кліку.</p>
 
-<p class="text">Якщо натиснути на іконку, на екрані з’являється нове вікно з графіком та збільшеною «квіткою». На графіку можна відстежити, як змінювалась концентрація речовини-забруднювача в минулому, і якою вона є зараз. Що ж до «квітки», кожна її пелюстка позначає певний забруднювач. На пелюстки можна натискати для того, щоб побачити графік для обраного пказника. </p>
+        <p class="text">Якщо натиснути на іконку, на екрані з’являється нове вікно з графіком та збільшеною «квіткою».
+            На графіку можна відстежити, як змінювалась концентрація речовини-забруднювача в минулому, і якою вона є
+            зараз. Що ж до «квітки», кожна її пелюстка позначає певний забруднювач. На пелюстки можна натискати для
+            того, щоб побачити графік для обраного пказника. </p>
 
-<p class="text">В <b>мобільній версії</b> відображається загальна картина якості води по басейнах.</p>
+        <p class="text">В <b>мобільній версії</b> відображається загальна картина якості води по басейнах.</p>
 
-<p class="text">Над картою є кнопка «Хто забруднює річки в твоїй області». Натисніть її й оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. На жаль, даних про точні координати, де саме вони скидають речовини-забруднювачі, в нас немає.
-</p>
+        <p class="text">Над картою є кнопка «Хто забруднює річки в твоїй області». Натисніть її й оберіть свою область
+            зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства
+            відповідальні за значну частину забруднення в річках. На жаль, даних про точні координати, де саме вони
+            скидають речовини-забруднювачі, в нас немає.
+        </p>
     </div>
 
 </div>
 
 
-<button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто забруднює річки в твоїй області</button>
-<button id="switchToMap" class="switch" data-intro="Повернутись до попереднього екрану" data-step="8">Повернутись до карти</button>
+<button id="switchToTable" class="switch"
+        data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто
+    забруднює річки в твоїй області
+</button>
+<button id="switchToMap" class="switch" data-intro="Повернутись до попереднього екрану" data-step="8">Повернутись до
+    карти
+</button>
 
-<button id="switchToTable-mob" class="switch-mob" data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто забруднює річки в твоїй області</button>
-<button id="switchToMap-mob" class="switch-mob" data-intro="Повернутись до попереднього екрану" data-step="8">Повернутись до карти</button>
+<button id="switchToTable-mob" class="switch-mob"
+        data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто
+    забруднює річки в твоїй області
+</button>
+<button id="switchToMap-mob" class="switch-mob" data-intro="Повернутись до попереднього екрану" data-step="8">
+    Повернутись до карти
+</button>
 
 <div id="mobile">
 
     <h5>Дунай</h5>
-    <img  src="img/mob/danube.png"/>
+    <img src="img/mob/danube.png"/>
 
     <h5>Вісла</h5>
-    <img  src="img/mob/wisla.png"/>
+    <img src="img/mob/wisla.png"/>
 
     <h5>Дністер</h5>
-    <img  src="img/mob/dnister.png"/>
+    <img src="img/mob/dnister.png"/>
 
     <h5>Південний Буг</h5>
     <img src="img/mob/southernbug.png"/>
@@ -71,25 +151,29 @@
 
 
     <h5>Дон</h5>
-    <img style="width: 100%"  src="img/mob/don.png"/>
+    <img style="width: 100%" src="img/mob/don.png"/>
 
 </div>
 
 
 <div id="clone"></div>
-<div id="body" value="0" data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки" data-step="2">
+<div id="body" value="0"
+     data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки"
+     data-step="2">
     <div id="map"></div>
     <!--<div id="title">-->
     <!--<h1>На чисту воду!</h1></div>-->
     <!--<div id="subtitle">-->
     <!--<h3>Інтерактивна карту забруднення річок в Україні на основі даних Державного  агентства водних ресурсів. На карті понад 400 пунктів контролю річкової води. Ви можете подивитися до 16 параметрів забруднення, а також, як воно змінювалося протягом п`яти років</h3></div>-->
-    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію по користуванню картою</button>
+    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію по користуванню
+        картою
+    </button>
 </div>
 <script>
     var clonedivWidth = document.getElementById('clone').clientWidth;
     var mapWidth = document.getElementById('body').clientWidth;
     var buttonHeight = document.getElementById('switchToTable').clientHeight;
-//    alert(buttonHeight)
+    //    alert(buttonHeight)
 </script>
 
 
@@ -113,15 +197,13 @@
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script src="lib/perfect-scrollbar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
-
+<script src="lib/share-behavior.js"></script>
 
 
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
 <script src="js/updateRiver.js"></script>
 <script src="js/contaminants.js"></script>
-
-
 
 
 <!--<script src="https://d3js.org/d3-tile.v0.0.min.js"></script>-->
@@ -132,11 +214,14 @@
 
 
 <div id="allrivers">
-    <div id="danube" class="riverCont" data-intro="Перед тим, як натиснути <b>Далі</b>, клікніть на позначену область, щоб обрати басейн річки" data-step="1">
+    <div id="danube" class="riverCont"
+         data-intro="Перед тим, як натиснути <b>Далі</b>, клікніть на позначену область, щоб обрати басейн річки"
+         data-step="1">
         <h5>Дунай</h5>
         <img style="width:100%" src="img/danube.png"/>
     </div>
-    <div id="dnister" class="riverCont" data-intro="Щоб повернутись до попереднього масштабу, клікніть на позначену область" data-step="4">
+    <div id="dnister" class="riverCont"
+         data-intro="Щоб повернутись до попереднього масштабу, клікніть на позначену область" data-step="4">
         <h5>Дністер</h5>
         <img style="width:100%" src="img/dnister.png"/>
     </div>
@@ -189,45 +274,39 @@
 
 </div>
 
-<div id="contaminants" data-intro="Чим більше забрудненої води скидає підприємство, тим вище воно в таблиці" data-ste="7"></div>
+<div id="contaminants" data-intro="Чим більше забрудненої води скидає підприємство, тим вище воно в таблиці"
+     data-ste="7"></div>
 
 
 <script>
 
 
-//    var zoomWidth = mapWidth - 310;
-//    d3.selectAll("#body").on("dblclick", function () {
-//        d3.selectAll("#body").style("transform-origin", "50% 50% 0");
-//
-//        var scale;
-//        var tx;
-//        var ty;
-//        if(window.innerWidth >= 1500){
-//            scale = 3;
-//            tx = mapWidth * scale / 3  - scale * d3.event.clientX;
-//            ty = mapHeight / 2 - scale * d3.event.clientY;
-//
-//        } else if(window.innerWidth < 1500) {
-//            scale = 5;
-//            tx = mapWidth * scale / 2.5 - scale * d3.event.clientX;
-//            ty = mapHeight / 2 - scale * d3.event.clientY;
-//        }
-//
-//        var z = d3.zoomIdentity
-//                .translate(tx, ty)
-//                .scale(scale);
-//        d3.select("#body").call(zoom.transform, z);
-//    });
+    //    var zoomWidth = mapWidth - 310;
+    //    d3.selectAll("#body").on("dblclick", function () {
+    //        d3.selectAll("#body").style("transform-origin", "50% 50% 0");
+    //
+    //        var scale;
+    //        var tx;
+    //        var ty;
+    //        if(window.innerWidth >= 1500){
+    //            scale = 3;
+    //            tx = mapWidth * scale / 3  - scale * d3.event.clientX;
+    //            ty = mapHeight / 2 - scale * d3.event.clientY;
+    //
+    //        } else if(window.innerWidth < 1500) {
+    //            scale = 5;
+    //            tx = mapWidth * scale / 2.5 - scale * d3.event.clientX;
+    //            ty = mapHeight / 2 - scale * d3.event.clientY;
+    //        }
+    //
+    //        var z = d3.zoomIdentity
+    //                .translate(tx, ty)
+    //                .scale(scale);
+    //        d3.select("#body").call(zoom.transform, z);
+    //    });
 
 
-
-
-
-
-
-
-
-    startIntro = function() {
+    startIntro = function () {
         introJs()
                 .setOption('showBullets', false)
                 .setOption('showStepNumbers', false)
@@ -241,13 +320,12 @@
     };
 
 
-d3.select("canvas.river.danube")
-      .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>")
-      .attr("data-step", "3");
+    d3.select("canvas.river.danube")
+            .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>")
+            .attr("data-step", "3");
 
 
-
-/* perfect scroll*/
+    /* perfect scroll*/
 
     const ps = new PerfectScrollbar('#regions', {
         wheelSpeed: 2,
@@ -264,7 +342,7 @@ d3.select("canvas.river.danube")
 
     /* перемикач між екранами*/
 
-    d3.select("#switchToTable").on("click", function (){
+    d3.select("#switchToTable").on("click", function () {
         d3.select("#body").style("display", "none");
         d3.select("#allrivers").style("display", "none");
         d3.select("#regions").style("display", "block");
@@ -274,7 +352,7 @@ d3.select("canvas.river.danube")
 
     });
 
-    d3.select("#switchToMap").on("click", function (){
+    d3.select("#switchToMap").on("click", function () {
         d3.select("#body").style("display", "block");
         d3.select("#allrivers").style("display", "grid");
         d3.select("#regions").style("display", "none");
@@ -284,42 +362,33 @@ d3.select("canvas.river.danube")
 
     });
 
-d3.select("#switchToTable-mob").on("click", function (){
-    d3.select("#mobile").style("display", "none");
-    d3.select("#regions").style("display", "block");
-    d3.select("#contaminants").style("display", "block");
-    d3.select("#switchToTable-mob").style("display", "none");
-    d3.select("#switchToMap-mob").style("display", "block");
+    d3.select("#switchToTable-mob").on("click", function () {
+        d3.select("#mobile").style("display", "none");
+        d3.select("#regions").style("display", "block");
+        d3.select("#contaminants").style("display", "block");
+        d3.select("#switchToTable-mob").style("display", "none");
+        d3.select("#switchToMap-mob").style("display", "block");
 
-});
+    });
 
-d3.select("#switchToMap-mob").on("click", function (){
-    d3.select("#mobile").style("display", "block");
-    d3.select("#regions").style("display", "none");
-    d3.select("#contaminants").style("display", "none");
-    d3.select("#switchToTable-mob").style("display", "block");
-    d3.select("#switchToMap-mob").style("display", "none");
+    d3.select("#switchToMap-mob").on("click", function () {
+        d3.select("#mobile").style("display", "block");
+        d3.select("#regions").style("display", "none");
+        d3.select("#contaminants").style("display", "none");
+        d3.select("#switchToTable-mob").style("display", "block");
+        d3.select("#switchToMap-mob").style("display", "none");
 
-});
-
-
-
-
-
-
-
-
+    });
 
 
     /* затримка появи річок, поки вони вантажаться*/
-d3.select("#body").append("div")
-        .attr("id", "loader")
-//        .append("img")
-//        .attr("src", "img/loading.gif");
-        .append("p")
-        .html("триває завантаження<span>.</span><span>.</span><span>.</span>")
-        .attr("id", "wait");
-
+    d3.select("#body").append("div")
+            .attr("id", "loader")
+            //        .append("img")
+            //        .attr("src", "img/loading.gif");
+            .append("p")
+            .html("триває завантаження<span>.</span><span>.</span><span>.</span>")
+            .attr("id", "wait");
 
 
     setTimeout(function () {
@@ -365,12 +434,10 @@ d3.select("#body").append("div")
     });
 
 
-
-
     d3.selectAll("button.button").on("click", function () {
         d3.select("table.contaminantsTable").remove();
         var key = this.innerText;
-        key = key.replace(/(\r\n\t|\n|\r\t)/gm,"");
+        key = key.replace(/(\r\n\t|\n|\r\t)/gm, "");
         callTable(key);
         $("table > tbody > tr#id36759156")
 

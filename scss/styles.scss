@@ -28,6 +28,43 @@ body {
 }
 
 
+
+.logo {
+  position:absolute;
+  top:5px;
+  left:10px;
+  width:120px;
+  height: 30px;
+
+}
+
+.gif {
+  border-radius: 5px;
+}
+
+.social-icons {
+  height: 30px;
+  //position: fixed;
+}
+
+#facebook, #twitter {
+  width:30px;
+  height: 30px;
+}
+
+#facebook{
+  position: absolute;
+  top:5px;
+  right: 50px;
+}
+
+#twitter{
+  position: absolute;
+  top:5px;
+  right: 10px;
+}
+
+
 #text {
   grid-row:1/2;
   grid-column: 1/-1;
@@ -481,15 +518,6 @@ td {
   right: 1px;
   left: auto; /* If using `left`, there shouldn't be a `right`. */
 }
-
-
-
-
-
-
-
-
-
 
 
 h5 {
