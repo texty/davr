@@ -12,11 +12,6 @@ body {
   background-color: black;
   overflow-x: hidden;
   pointer-events: none; }
-  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
-    body {
-      display: grid;
-      grid-template-columns: minmax(150px, 150px) auto;
-      grid-template-rows: auto 50px  50vh  50vh; } }
 
 #text {
   grid-row: 1/2;
@@ -194,12 +189,24 @@ p.button {
   padding: 0;
   font-size: 12px; }
 
+#mobile {
+  grid-column: 1/-1; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    #mobile {
+      display: block; } }
+  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
+    #mobile {
+      display: none; } }
+
 #body {
   position: relative;
   height: 100vh;
   width: 100%;
   grid-row: 2/4;
   grid-column: 2/3; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    #body {
+      display: none; } }
 
 canvas {
   z-index: -1;
@@ -230,6 +237,9 @@ svg {
   grid-gap: 10px;
   height: calc(100vh - 70px);
   overflow: scroll; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    #allrivers {
+      display: none; } }
 
 .riverCont {
   border: 1px solid #0d0d0d;
