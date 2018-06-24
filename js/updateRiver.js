@@ -29,7 +29,7 @@ var indicatorNames = [
     {key: "Хімічне.споживання.кисню..мгО.дм3", abr: "XСК5 МгО.дм3", printName: "Хімічне споживання кисню (ХСК)", description: "Кількість кисню, яка потрібна для того, щоб розклались сторонні речовини (органічні й неорганічні) у воді. Таким чином вода самоочищується від забруднювачів. Якщо ХСК різко зросло — отже, до водойми потрапило багато брудної води"},
 
     {key: "Синтетичні.поверхнево.активні.речовини..аніонні...мг.дм3", abr: "СПАР.аніонні", printName: "Синтетичні поверхнево-активні речовини (СПАР)", description: "Синтетичні поверхнево-активні речовини (СПАР): неорганічні та органічні речовини, які утворюють піну на поверхні води. Вони потрапляють у воду разом з каналізаційними і промисловими стоками. Призводять до росту мікроскопічних водоростей та зменшують кількість кисню, що розчиняється у воді"}
-    
+
 ];
 
 var riversNames = [
@@ -152,6 +152,7 @@ else if (window.innerWidth < 2000){
             zoomTrans.scale = d3.event.transform.k;
 
             map.redraw(d3.event.transform, riverForDrawId);
+
         });
 
 }
@@ -218,7 +219,7 @@ map.canvasDanube.draw = function (transform) {
                 ctxDanube.lineWidth = d.properties.a_WIDTH5 / 100;
 
                 ctxDanube.lineWidth = d.properties.a_WIDTH5 / 150;
-          
+
             // ctxDanube.globalAlpha = 0.8;
             ctxDanube.beginPath();
             pathDanube(d);
@@ -901,7 +902,7 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
             {offset: "90%", color: reds[3]},
             {offset: "90%", color: reds[4]},
             {offset: "100%", color: reds[4]}
-            
+
         ])
         .enter().append("stop")
         .attr("offset", function (d) {
@@ -1021,7 +1022,7 @@ d3.selection.prototype.moveToFront = function() {
 // });
 
 
-   
+
     // var t = d3.zoomIdentity.translate(0, 0).scale(1);
 
 
