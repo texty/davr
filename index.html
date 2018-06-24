@@ -37,7 +37,9 @@
 
 <p class="text">Якщо натиснути на іконку, на екрані з’являється нове вікно з графіком та збільшеною «квіткою». На графіку можна відстежити, як змінювалась концентрація речовини-забруднювача в минулому, і якою вона є зараз. Що ж до «квітки», кожна її пелюстка позначає певний забруднювач. На пелюстки можна натискати для того, щоб побачити графік для обраного пказника. </p>
 
-<p class="text">У верхній частині екрану є кнопка «Хто забруднює річки в твоїй області». Натисніть її й оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. На жаль, даних про точні координати, де саме вони скидають речовини-забруднювачі, в нас немає.
+<p class="text"><b>В мобільній версії відображається загальна картина якості води по басейнах</b></p>
+
+<p class="text">Над картою є кнопка «Хто забруднює річки в твоїй області». Натисніть її й оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. На жаль, даних про точні координати, де саме вони скидають речовини-забруднювачі, в нас немає.
 </p>
     </div>
 
@@ -46,22 +48,27 @@
 
 <button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто забруднює річки в твоїй області</button>
 <button id="switchToMap" class="switch" data-intro="Повернутись до попереднього екрану" data-step="8">Повернутись до карти</button>
+
+<button id="switchToTable-mob" class="switch-mob" data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто забруднює річки в твоїй області</button>
+<button id="switchToMap-mob" class="switch-mob" data-intro="Повернутись до попереднього екрану" data-step="8">Повернутись до карти</button>
+
 <div id="mobile">
+
     <h5>Дунай</h5>
-    <img style="width: 100%" src="img/mob/danube.png"/>
+    <img  src="img/mob/danube.png"/>
 
     <h5>Вісла</h5>
-    <img style="width: 100%"  src="img/mob/wisla.png"/>
+    <img  src="img/mob/wisla.png"/>
 
     <h5>Дністер</h5>
-    <img style="width: 100%"  src="img/mob/dnister.png"/>
+    <img  src="img/mob/dnister.png"/>
 
     <h5>Південний Буг</h5>
-    <img style="width: 100%"  src="img/mob/southernbug.png"/>
+    <img src="img/mob/southernbug.png"/>
 
     <h5>Дніпро</h5>
-    <img style="width: 100%" src="img/mob/dnipro-n.png"/>
-    <img style="width: 100%" src="img/mob/dnipro-s.png"/>
+    <img src="img/mob/dnipro.PNG"/>
+
 
     <h5>Дон</h5>
     <img style="width: 100%"  src="img/mob/don.png"/>
@@ -276,6 +283,33 @@ d3.select("canvas.river.danube")
         d3.select("#switchToMap").style("display", "none");
 
     });
+
+d3.select("#switchToTable-mob").on("click", function (){
+    d3.select("#mobile").style("display", "none");
+    d3.select("#regions").style("display", "block");
+    d3.select("#contaminants").style("display", "block");
+    d3.select("#switchToTable-mob").style("display", "none");
+    d3.select("#switchToMap-mob").style("display", "block");
+
+});
+
+d3.select("#switchToMap-mob").on("click", function (){
+    d3.select("#mobile").style("display", "block");
+    d3.select("#regions").style("display", "none");
+    d3.select("#contaminants").style("display", "none");
+    d3.select("#switchToTable-mob").style("display", "block");
+    d3.select("#switchToMap-mob").style("display", "none");
+
+});
+
+
+
+
+
+
+
+
+
 
     /* затримка появи річок, поки вони вантажаться*/
 d3.select("#body").append("div")

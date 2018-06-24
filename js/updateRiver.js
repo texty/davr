@@ -130,7 +130,7 @@ projection = d3.geoMercator()
     .center([30, 50]);
 
     zoom = d3.zoom()
-        .scaleExtent([2, 2])
+        .scaleExtent([4, 4])
         .on('zoom', function(){
 
             map.redraw(d3.event.transform);
@@ -144,7 +144,7 @@ else if (window.innerWidth < 2000){
         .center([30, 50]);
 
     zoom = d3.zoom()
-        .scaleExtent([3, 3])
+        .scaleExtent([6, 6])
         .on('zoom', function(){
 
             zoomTrans.x = d3.event.transform.x;

@@ -39,6 +39,8 @@ body {
 
 h1, h3, p, li {
   color:white;
+
+
 }
 
 #header {
@@ -144,6 +146,11 @@ h3 {
 p, li {
   font-size:18px;
   font-family: "Segoe UI Light", sans-serif;
+
+  @media #{$brk-narrow}, #{$brk-spnarrow} {
+    font-size:22px;
+
+  }
 }
 
 
@@ -202,8 +209,12 @@ p, li {
   width: 100%;
 }
 
-#switchToMap {
+#switchToMap, #switchToMap-mob {
   width: 96%;
+}
+
+#switchToMap-mob {
+  display:none;
 }
 
 .switch {
@@ -222,6 +233,25 @@ p, li {
   font-size: 12px;
   //text-transform: uppercase;
   letter-spacing: 2px;
+
+  @media #{$brk-narrow}, #{$brk-spnarrow} {
+    display:none;
+
+  }
+}
+
+.switch-mob {
+  grid-column: 1/2;
+  @media #{$brk-narrow}, #{$brk-spnarrow} {
+    display:block;
+  }
+
+  @media #{$brk-xlarge},
+  #{$brk-large},
+  #{$brk-medium}{
+    display:none;
+  }
+
 }
 
 .switch:hover {
@@ -283,6 +313,11 @@ p.button {
     display:none;
   }
 
+}
+
+#mobile img {
+  width: 100%;
+  margin-bottom: 150px;
 }
 
 #body {

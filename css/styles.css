@@ -102,6 +102,9 @@ h3 {
 p, li {
   font-size: 18px;
   font-family: "Segoe UI Light", sans-serif; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    p, li {
+      font-size: 22px; } }
 
 /* -----  Візуалізація ----- */
 #loader {
@@ -140,8 +143,11 @@ p, li {
 #switchToTable {
   width: 100%; }
 
-#switchToMap {
+#switchToMap, #switchToMap-mob {
   width: 96%; }
+
+#switchToMap-mob {
+  display: none; }
 
 .switch {
   height: auto;
@@ -153,6 +159,18 @@ p, li {
   float: right;
   font-size: 12px;
   letter-spacing: 2px; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    .switch {
+      display: none; } }
+
+.switch-mob {
+  grid-column: 1/2; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    .switch-mob {
+      display: block; } }
+  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
+    .switch-mob {
+      display: none; } }
 
 .switch:hover {
   background-color: #64b2f4;
@@ -197,6 +215,10 @@ p.button {
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
     #mobile {
       display: none; } }
+
+#mobile img {
+  width: 100%;
+  margin-bottom: 150px; }
 
 #body {
   position: relative;
