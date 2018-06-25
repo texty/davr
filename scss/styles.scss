@@ -118,8 +118,8 @@ h1, h3, p, li {
   //margin-top:100px;
   //margin-left: 150px;
   margin-left: 40px;
-  line-height: 1.8;
-  width:30%;
+  line-height: 1.5;
+  width:32%;
   opacity:1;
   text-align:left;
   font-size: 17px;
@@ -129,6 +129,8 @@ h1, h3, p, li {
   @media  #{$brk-xlarge} {
     width:20%;
   }
+
+
 
 }
 
@@ -404,8 +406,8 @@ svg {
 //мінікарти та регіони (навігація)
 
 #allrivers {
-  //height: 200px;
-  margin:10px 0;
+  margin-top: 10px;
+  margin-bottom:10px;
   grid-column: 1/2;
   grid-row:3/4;
   display:grid;
@@ -414,6 +416,7 @@ svg {
   grid-gap:10px;
   height: calc(100vh - 70px);
   overflow: scroll;
+  position: relative;
 
 
   @media #{$brk-narrow}, #{$brk-spnarrow} {
@@ -427,6 +430,7 @@ svg {
   border: 1px solid #0d0d0d;
   padding: 5px;
   cursor:pointer;
+
 }
 
 
@@ -505,6 +509,7 @@ td {
 .ps__rail-x {
   top: 0px;
   bottom: auto; /* If using `top`, there shouldn't be a `bottom`. */
+
 }
 .ps__rail-y {
   right: 0px;

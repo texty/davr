@@ -124,11 +124,9 @@
     карти
 </button>
 
-<button id="switchToTable-mob" class="switch-mob"
-        data-intro="Тисніть, аби дізнатись, які підприємстка скидають забруднену воду в річки" data-step="5">Хто
-    забруднює річки в твоїй області
+<button id="switchToTable-mob" class="switch-mob">
 </button>
-<button id="switchToMap-mob" class="switch-mob" data-intro="Повернутись до попереднього екрану" data-step="8">
+<button id="switchToMap-mob" class="switch-mob">
     Повернутись до карти
 </button>
 
@@ -327,16 +325,16 @@
 
     /* perfect scroll*/
 
-    const ps = new PerfectScrollbar('#regions', {
+    const perfectsc = new PerfectScrollbar('#regions', {
         wheelSpeed: 2,
         wheelPropagation: true,
-        minScrollbarLength: 1
+        minScrollbarLength: 20
     });
 
-    const ps2 = new PerfectScrollbar('#allrivers', {
+    const ps = new PerfectScrollbar('#allrivers', {
         wheelSpeed: 2,
         wheelPropagation: true,
-        minScrollbarLength: 1
+        minScrollbarLength: 20
     });
 
 

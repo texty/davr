@@ -79,8 +79,8 @@ h1, h3, p, li {
 
 #subtitle {
   margin-left: 40px;
-  line-height: 1.8;
-  width: 30%;
+  line-height: 1.5;
+  width: 32%;
   opacity: 1;
   text-align: left;
   font-size: 17px;
@@ -277,7 +277,8 @@ svg {
   #ukraine {
     fill: #161616; } }
 #allrivers {
-  margin: 10px 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
   grid-column: 1/2;
   grid-row: 3/4;
   display: grid;
@@ -285,7 +286,8 @@ svg {
   grid-template-rows: repeat(auto-fill, minmax(1fr));
   grid-gap: 10px;
   height: calc(100vh - 70px);
-  overflow: scroll; }
+  overflow: scroll;
+  position: relative; }
   @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
     #allrivers {
       display: none; } }
