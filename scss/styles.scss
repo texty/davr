@@ -84,7 +84,7 @@ h1, h3, p, li {
 #header {
   height:100vh;
   background-image: url(../img/output.png); //black design
-  //background-image: url(../img/rivers_face.png);
+  //background-image: url(../img/rivers_face_black.png);
   background-size: cover;
   margin: 0 !important;
   //margin-bottom:150px;
@@ -137,9 +137,10 @@ h1, h3, p, li {
   @media #{$brk-height} {
     font-size: 14px;
   }
+}
 
-
-
+#subtitle span {
+  background-color: #0c0c0c;
 }
 
 #credits {
@@ -191,10 +192,10 @@ h3 {
 
 }
 
-#text-description{
+#text-description {
   width:50%;
   color:#ABDAFF;
-  margin:0 auto;
+  margin:100px auto;
 }
 p, li {
   font-size:18px;
