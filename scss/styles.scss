@@ -11,6 +11,7 @@ $brk-height: '(min-height: 300px) and (max-height: 500px)';
 
 
 $blueTextColor: #c9defa;
+$blueBackgroundColor: #000979;
 @font-face {
   font-family: "Segoe UI Light"; src: url(../fonts/light.ttf);
 }
@@ -23,10 +24,9 @@ body {
   grid-template-rows: auto auto  calc(100vh - 50px);
   margin:0;
   padding:0;
-  background-color: black;
+  background-color: #080808; //black design
   overflow-x: hidden;
   pointer-events:none;
-
 }
 
 
@@ -37,7 +37,6 @@ body {
   left:10px;
   width:120px;
   height: 30px;
-
 }
 
 .gif {
@@ -84,7 +83,8 @@ h1, h3, p, li {
 
 #header {
   height:100vh;
-  background-image: url(../img/output.png);
+  background-image: url(../img/output.png); //black design
+  //background-image: url(../img/rivers_face.png);
   background-size: cover;
   margin: 0 !important;
   //margin-bottom:150px;
@@ -108,10 +108,10 @@ h1, h3, p, li {
   padding-top:40px;
   margin-left: 40px;
   margin-bottom:20px;
-  opacity:1;
+  opacity:0.8;
   line-height: 1;
   letter-spacing: 6px;
-  color: $blueTextColor;
+  color: $blueTextColor; //black design
   font-weight: 300;
 
 
@@ -124,7 +124,7 @@ h1, h3, p, li {
   margin-left: 40px;
   line-height: 1.5;
   width:32%;
-  opacity:1;
+  opacity:0.8;
   text-align:left;
   font-size: 17px;
   letter-spacing: 2px;

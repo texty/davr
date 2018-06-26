@@ -99,8 +99,10 @@ var div = d3.select("#myModal").append("div")
 //     .html("Наведіть </br> мишею на </br>пелюсток, аби </br> обрати показник </br> якості води");
 
 /* Кольорові шкали для річок та пелюсток */
-var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#82bcf4'];
+// var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#82bcf4']; //black design
 
+
+var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#9dc3f9'];
 
 //, '#9dc6f3', '#b4d1f3', '#c8daf2'
 var BlWhScale = d3.scaleQuantile() //синя шкала для річок
@@ -110,7 +112,9 @@ var BlWhScale = d3.scaleQuantile() //синя шкала для річок
 
 
 var reds = ["#570c49", "#84126e", "#DD1FB9", "#EC76D5", "#f094df"];
-var green = "#199eb1";
+var green = "#199eb1"; //black design
+
+// var green = "#7bf491";
 var PointColorsRed = d3.scaleQuantile()
     // .range(colorbrewer.Reds[9])
     .range(reds)
@@ -645,22 +649,22 @@ function drawPoints() {
                         if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
                             if (d.data.size > 0.9) {
                                 // return PointColorsRed(d.data.size);
-                                return "#dd1fb9"
+                                return reds[2]
                             }
                             else {
                                 // return "#49E858"
-                                return "#199eb1"
+                                return green
                             }
                         }
 
                         //якщо кисень
                         if(d.data.key === "Кисень.розчинений.МгО2.дм3") {
                             if (d.data.size > 0.9) {
-                                return "#199eb1";
+                                return green;
                             }
                             else {
                                 // return "#49E858"
-                                return "#dd1fb9"
+                                return reds[2]
                             }
 
 

@@ -32,7 +32,8 @@ function drawBigFlower(IdForChart) {
             .style("fill", function (d) {
                 if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
                     if (d.data.size > 0.9) {
-                        return PointColorsRed(d.data.size);
+                        // return PointColorsRed(d.data.size);
+                        return reds[2];
                     }
                     else {
                         // return "#49E858"
