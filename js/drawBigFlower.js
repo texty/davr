@@ -75,6 +75,9 @@ function drawBigFlower(IdForChart) {
                     .style("top", (d3.event.pageY - 28) + "px");
             })
             .on("mouseout", function (d) {
+                flowerhint.transition()
+                    .duration(200)
+                    .style("opacity", 0);
 
             }) ;
 

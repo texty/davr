@@ -395,7 +395,8 @@
 
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
     $(".riverCont").on("click", function () {
-        d3.selectAll(".riverCont").style("border", "1px solid #0d0d0d");
+        d3.selectAll(".riverCont").style("border", "1px solid #161616");
+//        d3.selectAll("#svgukraine g path").style("stroke-width", "0px");
         d3.select(this).style("border", "2px solid white");
         var t = d3.zoomIdentity.translate(0, 0).scale(1);
         d3.select("#body").call(zoom.transform, t);

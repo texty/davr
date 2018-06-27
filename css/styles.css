@@ -278,16 +278,24 @@ canvas {
 svg {
   z-index: 200; }
 
+#shape-regions {
+  z-index: 5;
+  position: absolute; }
+
 #flowers {
   z-index: 5;
   position: absolute; }
 
 #ukraine {
-  fill: #161616; }
+  fill: #161616;
+  stroke-width: 0.05px;
+  stroke: #080808; }
 
 @-moz-document url-prefix() {
   #ukraine {
-    fill: #161616; } }
+    fill: #161616;
+    stroke-width: 0.05px;
+    stroke: black; } }
 #allrivers {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -305,7 +313,7 @@ svg {
       display: none; } }
 
 .riverCont {
-  border: 1px solid #0d0d0d;
+  border: 1px solid #161616;
   padding: 5px;
   cursor: pointer; }
 
@@ -411,7 +419,7 @@ h5 {
   top: 0;
   width: 100%;
   overflow: auto;
-  background-color: black;
+  background-color: #161616;
   background-color: rgba(0, 0, 0, 0.4); }
 
 .modal-content {
@@ -622,5 +630,19 @@ img.preview {
 
 .introjs-prevbutton {
   color: #a1a1a1; }
+
+svg#labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  pointer-events: none;
+  z-index: 8; }
+
+.map-cities-labels {
+  letter-spacing: 1px;
+  font-size: 2.5px;
+  fill: white;
+  opacity: 0.2; }
 
 /*# sourceMappingURL=styles.css.map */

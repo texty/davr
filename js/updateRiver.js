@@ -138,6 +138,13 @@ projection = d3.geoMercator()
         .on('zoom', function(){
 
             map.redraw(d3.event.transform);
+
+            if(d3.event.transform.k === 1){
+                d3.select('#labels').style("display", "none")
+            }
+            if(d3.event.transform.k > 1){
+                d3.select('#labels').style("display", "block")
+            }
         });
 
 }
@@ -157,11 +164,14 @@ else if (window.innerWidth < 2000){
 
             map.redraw(d3.event.transform, riverForDrawId);
 
+            if(d3.event.transform.k === 1){
+                d3.select('#labels').style("display", "none")
+            }
+            if(d3.event.transform.k > 1){
+                d3.select('#labels').style("display", "block")
+            }
         });
-
 }
-
-
 
 
 var path2 = d3.geoPath()
@@ -182,11 +192,9 @@ var indicatorHint = d3.select("#modalKeysHeadings").append("div")
 
 /* контейнер для svg та canvas */
 var map = {};
-// map.width = mapWidth;
 mapHeight = window.innerHeight - 50;
 map.width = mapWidth;
 map.height = mapHeight;
-// map.height = window.innerWidth - 300;
 
 
 
@@ -323,7 +331,7 @@ map.canvasDon.draw = function (transform) {
 };
 
 
-/*-------------------------------------------------- */
+/*--------------------- Вісла ----------------------- */
 
 map.canvasWisla = d3.select("#body").append("canvas")
     .attr('height', map.height)
@@ -363,7 +371,7 @@ map.canvasWisla.draw = function (transform) {
     });
 };
 
-/*-------------------------------------------------- */
+/*-------------------Південний Буг ------------------- */
 
 map.canvasBug = d3.select("#body").append("canvas")
     .attr('height', map.height)
@@ -403,7 +411,7 @@ map.canvasBug.draw = function (transform) {
 };
 
 
-/*--------------------Південний Буг ------------------------------ */
+/*-------------------- Південний Буг ------------------------------ */
 
 map.canvasDniestr = d3.select("#body").append("canvas")
     .attr('height', map.height)
@@ -441,6 +449,7 @@ map.canvasDniestr.draw = function (transform) {
     });
 };
 
+
 /*------------ Draw rivers ----------------------------*/
 
     map.canvasDanube.draw();
@@ -455,6 +464,7 @@ map.canvasDniestr.draw = function (transform) {
 /*------------ Redraw rivers on zoom ------------------*/
 
     map.redraw = function (transform, riverForDrawId) {
+
         if (riverForDrawId == "danube") {
             map.canvasDanube.draw(transform);
         }
@@ -475,10 +485,26 @@ map.canvasDniestr.draw = function (transform) {
             map.canvasWisla.draw(transform);
         }
 
+        if (typeof riverForDrawId === 'undefined') {
+            map.canvasDanube.draw(transform);
+            map.canvasDnipro.draw(transform);
+            map.canvasDon.draw(transform);
+            map.canvasBug.draw(transform);
+            map.canvasDniestr.draw(transform);
+            map.canvasWisla.draw(transform);
+        }
+
+
+
+
+
+
         map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
         map.svg.attr("transform", d3.event.transform);
         map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
         map.svgShape.attr("transform", d3.event.transform);
+        map.svgLabels.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+        map.svgLabels.attr("transform", d3.event.transform);
     };
 
 
@@ -513,7 +539,19 @@ function retrieve(layername, method, param, cb){
 
 
 /* -------------------- append svg  -------------------- */
-
+var mista = [
+    { name: "Київ", location: { latitude: 30.5238000, longitude: 50.4546600 } },
+    { name: "Дніпро", location: { latitude:35.0131, longitude: 48.2758 } },
+    { name: "Вінниця", location: { latitude:28.2802,  longitude: 49.1414  }  },
+    { name: "Одеса", location: { latitude:30.4436, longitude: 46.2908 } },
+    { name: "Львів", location: { latitude:24.0051, longitude: 49.4948 } },
+    { name: "Донецьк", location: { latitude:37.4815, longitude: 48.0032 } },
+    { name: "Чернівці", location: { latitude:25.5518, longitude: 48.1919 } },
+    { name: "Харків", location: { latitude:36.1345, longitude: 50.0021 } },
+    { name: "Рівне", location: { latitude:26.1505, longitude: 50.3711 } },
+    { name: "Кропивницький", location: { latitude:32.1600, longitude: 48.3036 } },
+    { name: "Миколаїв", location: { latitude:31.5937, longitude: 46.5831 } }
+];
 
 
 map.svg =
@@ -534,14 +572,25 @@ map.svgShape =
         // .attr("viewBox", "0 0 960 350")
         .attr('width', map.width)
         .attr('height', map.height)
-        .append('g');
+        .append("g");
 
+map.svgLabels =
+    d3.select('#body')
+        .append('svg')
+        .attr("id", "labels")
+        // .attr("preserveAspectRatio", "xMinYMin meet")
+        // .attr("viewBox", "0 0 960 350")
+        .attr('width', map.width)
+        .attr('height', map.height)
+        .append("g");
 
 
 
 
 /* -------------------- Ukraine -------------------------------- */
 d3.json("data/ukr_shape.geojson", drawUkraine);
+// d3.json("data/ukr_regions.geojson", drawUkraine);
+
 function drawUkraine(ukraine) {
     map.svgShape.selectAll("path")
         .data(ukraine.features)
@@ -549,8 +598,42 @@ function drawUkraine(ukraine) {
         .append("path")
         .attr("d", path2)
         .attr("id", "ukraine")
-
 }
+
+
+var cities = map.svgLabels
+    .append("g");
+
+cities.selectAll("circle")
+    .data(mista)
+    .enter()
+    .append("circle")
+    .attr("transform", function(d) {
+        return "translate(" + projection([
+                d.location.latitude,
+                d.location.longitude
+            ]) + ")"
+    })
+    .attr("r", "0.5px")
+    .attr("fill", "white")
+    .attr("opacity", "0.2")
+    .attr("id", function (d) { return d.name; });
+
+cities.selectAll("text")
+    .data(mista)
+    .enter()
+    .append("text")
+    .attr("transform", function(d) {
+        return "translate(" + projection([
+                d.location.latitude + 0.05,
+                d.location.longitude
+            ]) + ")"
+    })
+    .text(function (d) { return d.name; } )
+    .attr("class", "map-cities-labels")
+    .attr("font-size", "5px");
+
+
 
 
 
@@ -570,40 +653,7 @@ function drawPoints() {
             .entries(points);
 
 
-        //беремо дані за останню можливу дату по кожному місцю водозабору
-        // x = nested.map(function (d) {
-        //     arrayLength = d.values.length - 1;
-        //     return d.values[arrayLength];
-        // });
-
-        //розгруповуємо дані за останню дату у звичайний array
-        // var unnest = [];
-        // x.forEach(function (d) {
-        //     d.values.forEach(function (k) {
-        //         unnest.push({
-        //             id: k.id,
-        //             date: k.date,
-        //             name: k.name,
-        //             lon: +k.lon,
-        //             lat: +k.lat,
-        //             key: k.key,
-        //             river: k.river,
-        //             value: k.value,
-        //             mean: k.mean,
-        //             norm: +k.norm,
-        //             dev: +k.dev,
-        //             size: +k.size
-        //         });
-        //     });
-        // });
-
-        //та сгруповуємо дані по індикаторам
-        // var nested2 = d3.nest()
-        //     .key(function (d) {
-        //         // return d.key;
-        //         return d.id
-        //     })
-        //     .entries(unnest);
+        
 
         /*додаємо мітки на карту по категоріям індикаторів, кожній групі індикаторів тепер можна задати окремі
          параметри а також transform
@@ -959,6 +1009,11 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
 
         });
 
+    // d3.select("#chart").append("p")
+    //     .attr("id", "units")
+    //     .style("float", "right")
+    //     .text("Блакитний колір лінії графіка означає, що показник знаходиться в межах норми. Рожева частина лінії може мати різні відтінки залежно від того, наскільки показник перевищує норму. Чим лінія яскравіша, тим більшим є перевищення");
+
     d3.select("#chart").append("p")
         .attr("id", "units")
         .style("float", "right")
@@ -1032,7 +1087,5 @@ d3.selection.prototype.moveToFront = function() {
 
 
 
-
-   
 
 
