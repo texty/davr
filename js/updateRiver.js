@@ -627,20 +627,20 @@ function drawUkraine(ukraine) {
 var cities = map.svgLabels
     .append("g");
 
-cities.selectAll("circle")
-    .data(mista)
-    .enter()
-    .append("circle")
-    .attr("transform", function(d) {
-        return "translate(" + projection([
-                d.location.latitude,
-                d.location.longitude
-            ]) + ")"
-    })
-    .attr("r", "0.5px")
-    .attr("fill", "white")
-    .attr("opacity", "0.2")
-    .attr("id", function (d) { return d.name; });
+// cities.selectAll("circle")
+//     .data(mista)
+//     .enter()
+//     .append("circle")
+//     .attr("transform", function(d) {
+//         return "translate(" + projection([
+//                 d.location.latitude,
+//                 d.location.longitude
+//             ]) + ")"
+//     })
+//     .attr("r", "0.5px")
+//     .attr("fill", "white")
+//     .attr("opacity", "0.2")
+//     .attr("id", function (d) { return d.name; });
 
 cities.selectAll("text")
     .data(mista)
