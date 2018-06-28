@@ -124,26 +124,33 @@
     Повернутись до карти
 </button>
 
-<div id="mobile">
+<div id="mobileMaps">
 
     <h5>Дунай</h5>
-    <img src="img/mob/danube.png"/>
+    <div id="danube-m"></div>
 
-    <h5>Вісла</h5>
-    <img src="img/mob/wisla.png"/>
 
     <h5>Дністер</h5>
-    <img src="img/mob/dnister.png"/>
+    <div id="dnister-m"></div>
+
+
+    <h5>Вісла</h5>
+    <div id="wisla-m"></div>
+
 
     <h5>Південний Буг</h5>
-    <img src="img/mob/southernbug.png"/>
+    <div id="bug-m"></div>
+
 
     <h5>Дніпро</h5>
-    <img src="img/mob/dnipro.PNG"/>
+    <div id="dnipro-m"></div>
 
 
     <h5>Дон</h5>
-    <img style="width: 100%" src="img/mob/don.png"/>
+    <div id="don-m"></div>
+
+
+
 
 </div>
 
@@ -190,14 +197,45 @@
 <script src="lib/perfect-scrollbar.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
 <script src="lib/share-behavior.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 
 
-<script src="js/drawBigFlower.js"></script>
-<script src="js/drawChart.js"></script>
-<script src="js/updateRiver.js"></script>
-<script src="js/contaminants.js"></script>
+<script>
+var body = document.getElementsByTagName('body')[0];
+var js1 = document.createElement("script");
+var js2 = document.createElement("script");
+var js3 = document.createElement("script");
+var js4 = document.createElement("script");
+
+js1.type = "text/javascript";
+js2.type = "text/javascript";
+js3.type = "text/javascript";
+js4.type = "text/javascript";
 
 
+if (screen.width > 700) {
+console.log("big screen");
+js1.src = "js/drawBigFlower.js";
+js2.src = "js/drawChart.js";
+js3.src = "js/updateRiver.js";
+js4.src = "js/contaminants.js";
+
+}
+if (screen.width < 700) {
+console.log("small screen");
+js1.src = "js/mobile-script.js";
+js2.src = "";
+js3.src = "";
+js4.src = "";
+}
+
+body.appendChild(js1);
+body.appendChild(js2);
+body.appendChild(js3);
+body.appendChild(js4);
+
+</script>
 <!--<script src="https://d3js.org/d3-tile.v0.0.min.js"></script>-->
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 <!--<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>-->
