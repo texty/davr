@@ -949,6 +949,10 @@ svg#labels {
   grid-column: 1/3;
   grid-row: 3/4;
   padding-bottom: 150px;
+
+  @media  #{$brk-xlarge}, #{$brk-large}, #{$brk-medium} {
+    display:none;
+  }
 }
 
 #danube-m, #dnister-m, #wisla-m, #bug-m, #dnipro-m, #don-m {
