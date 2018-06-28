@@ -77,7 +77,7 @@ h1, h3, p, li {
   opacity: 0.8;
   line-height: 1;
   letter-spacing: 6px;
-  color: #c9defa;
+  color: black;
   font-weight: 300; }
 
 #subtitle {
@@ -88,16 +88,13 @@ h1, h3, p, li {
   text-align: left;
   font-size: 17px;
   letter-spacing: 2px;
-  color: #c9defa; }
+  color: black; }
   @media (min-width: 1441px) and (max-width: 2570px) {
     #subtitle {
       width: 20%; } }
   @media (min-height: 300px) and (max-height: 500px) {
     #subtitle {
       font-size: 14px; } }
-
-#subtitle span {
-  background-color: #276c9e; }
 
 #credits {
   margin-left: 40px;
@@ -119,7 +116,7 @@ p.text, li.text {
 
 h1 {
   font-family: 'Prata', serif;
-  font-size: 40pt;
+  font-size: 44pt;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0; }
   @media (min-height: 300px) and (max-height: 500px) {
