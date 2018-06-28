@@ -29,8 +29,20 @@ $.when(counties).done(function() {
 
 L.geoJSON(counties.responseJSON).addTo(danubeMap);
 
-    var svgLayer = L.svg({clickable:true,
-        interactive:true});
+    danubeMap.dragging.disable();
+    danubeMap.doubleClickZoom.disable();
+    danubeMap.scrollWheelZoom.disable();
+    danubeMap.getContainer().addEventListener('click', function () {
+        danubeMap.dragging.enable();
+    });
+
+
+    // danubeMap.touchZoom.disable();
+
+    // danubeMap.boxZoom.disable();
+    // danubeMap.keyboard.disable();
+    // if (danubeMap.tap) danubeMap.tap.disable();
+
 
 
     var DanubeSvg = d3.select("#danube-m").select("svg").append('g').attr("class", "flowers");
@@ -148,6 +160,14 @@ var countiesDanube = $.ajax({
 $.when(countiesDanube).done(function() {
     var dnisterMap = L.map('dnister-m')
         .setView([48, 27], 7);
+
+
+    dnisterMap.dragging.disable();
+    dnisterMap.doubleClickZoom.disable();
+    dnisterMap.scrollWheelZoom.disable();
+    dnisterMap.getContainer().addEventListener('click', function () {
+        dnisterMap.dragging.enable();
+    });
 
     L.geoJSON(countiesDanube.responseJSON).addTo(dnisterMap);
 
@@ -276,6 +296,13 @@ $.when(wislaCounties).done(function() {
     var wislaMap = L.map('wisla-m')
         .setView([50.5, 23], 7);
 
+    wislaMap.dragging.disable();
+    wislaMap.doubleClickZoom.disable();
+    wislaMap.scrollWheelZoom.disable();
+    wislaMap.getContainer().addEventListener('click', function () {
+        wislaMap.dragging.enable();
+    });
+
     L.geoJSON(countiesDanube.responseJSON).addTo(wislaMap);
 
     var wislaSvg = d3.select("#wisla-m").select("svg").append('g').attr("class", "flowers");
@@ -400,6 +427,13 @@ $.when(bugCounties).done(function() {
     var bugMap = L.map('bug-m')
         .setView([48, 30], 7);
 
+    bugMap.dragging.disable();
+    bugMap.doubleClickZoom.disable();
+    bugMap.scrollWheelZoom.disable();
+    bugMap.getContainer().addEventListener('click', function () {
+        bugMap.dragging.enable();
+    });
+
     L.geoJSON(bugCounties.responseJSON).addTo(bugMap);
 
 
@@ -523,6 +557,13 @@ $.when(dniproCounties).done(function() {
     var dniproMap = L.map('dnipro-m')
         .setView([49, 32], 7);
 
+    dniproMap.dragging.disable();
+    dniproMap.doubleClickZoom.disable();
+    dniproMap.scrollWheelZoom.disable();
+    dniproMap.getContainer().addEventListener('click', function () {
+        dniproMap.dragging.enable();
+    });
+
     L.geoJSON(dniproCounties.responseJSON).addTo(dniproMap);
 
     var dniproSvg = d3.select("#dnipro-m").select("svg").append('g').attr("class", "flowers");
@@ -643,6 +684,13 @@ var donCounties = $.ajax({
 $.when(donCounties).done(function() {
     var donMap = L.map('don-m')
         .setView([49, 37], 7);
+
+    donMap.dragging.disable();
+    donMap.doubleClickZoom.disable();
+    donMap.scrollWheelZoom.disable();
+    donMap.getContainer().addEventListener('click', function () {
+        donMap.dragging.enable();
+    });
 
     L.geoJSON(donCounties.responseJSON).addTo(donMap);
 

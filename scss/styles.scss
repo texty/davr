@@ -144,7 +144,7 @@ h1, h3, p, li {
 }
 
 #subtitle span {
-  background-color: #0c0c0c;
+  background-color: #276c9e;
 }
 
 #credits {
@@ -474,6 +474,9 @@ position: absolute;
   display:none;
   width:100%;
   position: relative;
+  @media #{$brk-narrow}, #{$brk-spnarrow} {
+    margin-left: 50px;
+  }
 }
 
 

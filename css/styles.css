@@ -97,7 +97,7 @@ h1, h3, p, li {
       font-size: 14px; } }
 
 #subtitle span {
-  background-color: #0c0c0c; }
+  background-color: #276c9e; }
 
 #credits {
   margin-left: 40px;
@@ -332,6 +332,9 @@ svg {
   display: none;
   width: 100%;
   position: relative; }
+  @media (min-width: 767px) and (max-width: 1024px), (min-width: 374px) and (max-width: 767px) {
+    #regions {
+      margin-left: 50px; } }
 
 #allrivers, #regions, #contaminants {
   -ms-overflow-style: none; }

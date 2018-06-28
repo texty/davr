@@ -143,14 +143,17 @@
 
 
     <h5>Дніпро</h5>
+    <p style="width:90%; margin-left:5%;">Після кліку карту можна буде зсунути вліво-вправо та вверх-вниз, щоб побачити приховану частину басейну.</p>
     <div id="dnipro-m"></div>
+
+
 
 
     <h5>Дон</h5>
     <div id="don-m"></div>
 
 
-
+<div style="height:200px;"></div>
 
 </div>
 
@@ -164,7 +167,7 @@
     <!--<h1>На чисту воду!</h1></div>-->
     <!--<div id="subtitle">-->
     <!--<h3>Інтерактивна карту забруднення річок в Україні на основі даних Державного  агентства водних ресурсів. На карті понад 400 пунктів контролю річкової води. Ви можете подивитися до 16 параметрів забруднення, а також, як воно змінювалося протягом п`яти років</h3></div>-->
-    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію по користуванню
+    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію з користування
         картою
     </button>
 </div>
@@ -227,7 +230,7 @@ console.log("small screen");
 js1.src = "js/mobile-script.js";
 js2.src = "";
 js3.src = "";
-js4.src = "";
+js4.src = "js/contaminants.js";
 }
 
 body.appendChild(js1);
@@ -395,7 +398,7 @@ body.appendChild(js4);
     });
 
     d3.select("#switchToTable-mob").on("click", function () {
-        d3.select("#mobile").style("display", "none");
+        d3.select("#mobileMaps ").style("display", "none");
         d3.select("#regions").style("display", "block");
         d3.select("#contaminants").style("display", "block");
         d3.select("#switchToTable-mob").style("display", "none");
@@ -404,7 +407,7 @@ body.appendChild(js4);
     });
 
     d3.select("#switchToMap-mob").on("click", function () {
-        d3.select("#mobile").style("display", "block");
+        d3.select("#mobileMaps").style("display", "block");
         d3.select("#regions").style("display", "none");
         d3.select("#contaminants").style("display", "none");
         d3.select("#switchToTable-mob").style("display", "block");
