@@ -540,17 +540,40 @@ function retrieve(layername, method, param, cb){
 
 /* -------------------- append svg  -------------------- */
 var mista = [
-    { name: "Київ", location: { latitude: 30.5238000, longitude: 50.4546600 } },
-    { name: "Дніпро", location: { latitude:35.0131, longitude: 48.2758 } },
     { name: "Вінниця", location: { latitude:28.2802,  longitude: 49.1414  }  },
-    { name: "Одеса", location: { latitude:30.4436, longitude: 46.2908 } },
-    { name: "Львів", location: { latitude:24.0051, longitude: 49.4948 } },
+    { name: "Дніпро", location: { latitude:35.0131, longitude: 48.2758 } },
     { name: "Донецьк", location: { latitude:37.4815, longitude: 48.0032 } },
-    { name: "Чернівці", location: { latitude:25.5518, longitude: 48.1919 } },
-    { name: "Харків", location: { latitude:36.1345, longitude: 50.0021 } },
-    { name: "Рівне", location: { latitude:26.1505, longitude: 50.3711 } },
+    { name: "Житомир", location: { latitude: 28.3928, longitude: 50.1516 } },
+    { name: "Запоріжжя", location: { latitude: 35.0818, longitude: 47.5016 } },
+    { name: "Івано-Франківськ", location: { latitude: 24.4238, longitude: 48.5522 } },
+    { name: "Київ", location: { latitude: 30.5238000, longitude: 50.4546600 } },
     { name: "Кропивницький", location: { latitude:32.1600, longitude: 48.3036 } },
-    { name: "Миколаїв", location: { latitude:31.5937, longitude: 46.5831 } }
+    { name: "Луганськ", location: { latitude: 39.1831, longitude: 48.3406 } },
+    { name: "Луцьк", location: { latitude: 25.1928, longitude: 50.4452 } },
+    { name: "Львів", location: { latitude:24.0051, longitude: 49.4948 } },
+    { name: "Миколаїв", location: { latitude:31.5937, longitude: 46.5831 } },
+    { name: "Одеса", location: { latitude:30.4436, longitude: 46.2908 } },
+    { name: "Полтава", location: { latitude: 34.3304 , longitude: 49.3522 } },
+    { name: "Рівне", location: { latitude:26.1505, longitude: 50.3711 } },
+    { name: "Сімферополь", location: { latitude: 34.06, longitude: 44.57 } },
+    { name: "Суми", location: { latitude: 34.4812, longitude: 50.5443 } },
+    { name: "Тернопіль", location: { latitude: 25.3541, longitude: 49.3312 } },
+    { name: "Ужгород", location: { latitude: 22.1742, longitude:  48.4726} },
+    { name: "Харків", location: { latitude:36.1345, longitude: 50.0021 } },
+    { name: "Херсон", location: { latitude: 32.3652, longitude:  46.3824} },
+    { name: "Хмельницький‎", location: { latitude: 26.5846, longitude: 49.2510 } },
+    { name: "Черкаси", location: { latitude:  32.0335, longitude: 49.2640 } },
+    { name: "Чернігів", location: { latitude: 31.1755, longitude: 51.2928 } },
+    { name: "Чернівці", location: { latitude:25.5518, longitude: 48.1919 } }
+
+
+
+
+
+
+
+
+
 ];
 
 
