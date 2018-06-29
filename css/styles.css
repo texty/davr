@@ -402,6 +402,9 @@ h5 {
   color: #ffffff;
   letter-spacing: 5px; }
 
+h5.mob {
+  font-size: 30px; }
+
 .captions {
   font-style: italic;
   text-align: center;
