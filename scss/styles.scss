@@ -87,10 +87,10 @@ h1, h3, p, li {
   background-size: cover;
   margin: 0 !important;
 
-  //@media #{$brk-spnarrow}, #{$brk-narrow} {
-  //  height:60vh;
-  //
-  //}
+  @media #{$brk-spnarrow} {
+    height:60vh;
+
+  }
 
 
 }
@@ -123,8 +123,9 @@ h1, h3, p, li {
 }
 
 #subtitle {
-  @media #{$brk-spnarrow},  #{$brk-narrow}{
+  @media #{$brk-spnarrow} {
     font-size: 30px;
+     width:50%;
   }
   margin-left: 40px;
   line-height: 1.5;
