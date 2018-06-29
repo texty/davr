@@ -3,8 +3,8 @@
 $brk-xlarge: '(min-width: 1441px) and (max-width: 2570px)';
 $brk-large: '(min-width: 1286px) and (max-width: 1440px)';
 $brk-medium: '(min-width: 1024px) and (max-width: 1285px)';
-$brk-narrow: '(min-width: 767px) and (max-width: 1024px)';
-$brk-spnarrow: '(min-width: 374px) and (max-width: 767px)';
+$brk-narrow: '(min-width: 981px) and (max-width: 1024px)';
+$brk-spnarrow: '(min-width: 375px) and (max-width: 980px)';
 $brk-mobile: '(min-width: 0) and (max-width: 374px)';
 
 $brk-height: '(min-height: 300px) and (max-height: 500px)';
@@ -83,14 +83,14 @@ h1, h3, p, li {
 
 #header {
   height:100vh;
-  background-image: url(../img/gif.gif); //black design
+  background-image: url(../img/water2.gif); //black design
   background-size: cover;
   margin: 0 !important;
 
-  @media #{$brk-narrow}, #{$brk-spnarrow} {
-    height:50vh;
-
-  }
+  //@media #{$brk-spnarrow}, #{$brk-narrow} {
+  //  height:60vh;
+  //
+  //}
 
 
 }
@@ -108,6 +108,7 @@ h1, h3, p, li {
 }
 
 #title {
+
   text-transform: uppercase;
   padding-top:40px;
   margin-left: 40px;
@@ -115,34 +116,34 @@ h1, h3, p, li {
   opacity:0.8;
   line-height: 1;
   letter-spacing: 6px;
-  //color: $blueTextColor; //black design
-  color:black;
+  color: white; //black design
   font-weight: 300;
 
 
-  //color:white;
 }
 
 #subtitle {
-  //margin-top:100px;
-  //margin-left: 150px;
+  @media #{$brk-spnarrow},  #{$brk-narrow}{
+    font-size: 30px;
+  }
   margin-left: 40px;
   line-height: 1.5;
-  width:32%;
+  width:30%;
   opacity:0.8;
   text-align:left;
   font-size: 17px;
   letter-spacing: 2px;
-  //color: $blueTextColor;
-  color:black;
+  color: white;
 
   @media  #{$brk-xlarge} {
-    width:20%;
+    width:25%;
   }
 
   @media #{$brk-height} {
     font-size: 14px;
   }
+
+
 }
 
 #subtitle span {
@@ -159,7 +160,7 @@ h1, h3, p, li {
 }
 
 p.text, li.text {
-  color: $blueTextColor;
+  color: white;
   //opacity:0.7;
 }
 
@@ -388,10 +389,7 @@ p.button {
   grid-row:2/4;
   grid-column: 2/3;
 
-  @media #{$brk-narrow}, #{$brk-spnarrow} {
-    display:none;
 
-  }
 }
 
 
@@ -449,10 +447,8 @@ position: absolute;
   overflow: scroll;
   position: relative;
 
-
-  @media #{$brk-narrow}, #{$brk-spnarrow} {
+  @media screen and #{$brk-spnarrow}{
     display:none;
-
   }
 }
 
@@ -461,6 +457,8 @@ position: absolute;
   border: 1px solid #161616;
   padding: 5px;
   cursor:pointer;
+  min-height: 160px;
+  max-height: calc((100vh - 70px) / 3)
 
 }
 
@@ -566,10 +564,7 @@ h5 {
   line-height: 1.6;
   color: #ffffff;
   letter-spacing: 5px;
-  @media #{$brk-narrow}, #{$brk-spnarrow} {
-    font-size: 22px;
 
-  }
 }
 
 .captions {
