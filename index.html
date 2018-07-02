@@ -205,6 +205,10 @@
 
 
 <script>
+    var userAgent = navigator.userAgent.toLowerCase();
+    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
+    console.log(isTablet);
+
 var body = document.getElementsByTagName('body')[0];
 var js1 = document.createElement("script");
 var js2 = document.createElement("script");
