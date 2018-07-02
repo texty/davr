@@ -124,16 +124,39 @@ function drawChart(IdForChart, keyIndicator) {
                 .style("font-weight", "bold");
 
 
-            d3.select("#keyimg").
-                attr("title", function () {
-
+            d3.select("#keyimg")
+                .attr("title", function () {
                 var label = indicatorNames.filter(function (obj) {
                     return obj.key === keyIndicator;
                 });
                 return label[0].description
+            });
 
+            d3.select("#keyimg").on("click", function () {
+                chartHint
+                    .transition()
+                    .duration(200)
+                    .style("opacity", .9);
+
+                chartHint.html(function () {
+                    var label = indicatorNames.filter(function (obj) {
+                        return obj.key === keyIndicator;
+                    });
+                    return label[0].description
+                })
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 28) + "px");
 
             });
+
+            chartHint.on("click", function () {
+                chartHint
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 0);
+            });
+
+
 
             norm = +norm;
             var greenpart;

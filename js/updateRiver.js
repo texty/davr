@@ -183,6 +183,10 @@ var flowerhint = d3.select("body").append("div")
     .attr("class", "flowerhint")
     .style("opacity", 0);
 
+var chartHint = d3.select("body").append("div")
+    .attr("class", "chartHint")
+    .style("opacity", 0);
+
 
 //підказка про кожний показник
 var indicatorHint = d3.select("#modalKeysHeadings").append("div")
