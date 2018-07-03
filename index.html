@@ -197,57 +197,11 @@
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
-<script src="lib/perfect-scrollbar.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+<script src=""></script>
 <script src="lib/share-behavior.js"></script>
+<script src="lib/perfect-scrollbar.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-
-
-<script>
-    var userAgent = navigator.userAgent.toLowerCase();
-    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
-    console.log(isTablet);
-
-var body = document.getElementsByTagName('body')[0];
-var js1 = document.createElement("script");
-var js2 = document.createElement("script");
-var js3 = document.createElement("script");
-var js4 = document.createElement("script");
-
-js1.type = "text/javascript";
-js2.type = "text/javascript";
-js3.type = "text/javascript";
-js4.type = "text/javascript";
-
-
-if (screen.width > 700) {
-console.log("big screen");
-js1.src = "js/drawBigFlower.js";
-js2.src = "js/drawChart.js";
-js3.src = "js/updateRiver.js";
-js4.src = "js/contaminants.js";
-
-}
-if (screen.width < 700) {
-console.log("small screen");
-js1.src = "js/mobile-script.js";
-js2.src = "";
-js3.src = "";
-js4.src = "js/contaminants.js";
-}
-
-body.appendChild(js1);
-body.appendChild(js2);
-body.appendChild(js3);
-body.appendChild(js4);
-
-</script>
-<!--<script src="https://d3js.org/d3-tile.v0.0.min.js"></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-<!--<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>-->
-
-<!--<script src="js/leafletmap.js"></script>-->
 
 
 <div id="allrivers">
@@ -279,6 +233,66 @@ body.appendChild(js4);
         <img style="width:100%" src="img/don.png"/>
     </div>
 </div>
+
+<script>
+    var userAgent = navigator.userAgent.toLowerCase();
+    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
+    console.log(isTablet);
+
+
+
+var body = document.getElementsByTagName('body')[0];
+var js0 = document.createElement("script");
+var js1 = document.createElement("script");
+var js2 = document.createElement("script");
+var js3 = document.createElement("script");
+var js4 = document.createElement("script");
+
+js0.type = "text/javascript";
+js1.type = "text/javascript";
+js2.type = "text/javascript";
+js3.type = "text/javascript";
+js4.type = "text/javascript";
+
+
+if (screen.width >= 700) {
+console.log("big screen");
+js0.src = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js";
+js1.src = "js/drawBigFlower.js";
+js2.src = "js/drawChart.js";
+js3.src = "js/updateRiver.js";
+js4.src = "js/contaminants.js";
+d3.select("#mobileMaps").style("display", "none");
+d3.select("#allrivers").style("display", "grid");
+
+}
+else if (screen.width < 700){
+console.log("small screen");
+    d3.select("#mobileMaps").style("display", "block");
+    d3.select('#allrivers').style('display', 'none');
+    d3.selectAll('.riverCont').style('display', 'none');
+    js0.src = "";
+    js1.src = "js/mobile-script.js";
+    js2.src = "";
+    js3.src = "";
+    js4.src = "js/contaminants.js";
+
+}
+body.appendChild(js0);
+body.appendChild(js1);
+body.appendChild(js2);
+body.appendChild(js3);
+body.appendChild(js4);
+
+</script>
+<!--<script src="https://d3js.org/d3-tile.v0.0.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>-->
+
+<!--<script src="js/leafletmap.js"></script>-->
+
+
+
 
 
 <div id="regions">
@@ -332,29 +346,6 @@ body.appendChild(js4);
 <script>
 
 
-    //    var zoomWidth = mapWidth - 310;
-    //    d3.selectAll("#body").on("dblclick", function () {
-    //        d3.selectAll("#body").style("transform-origin", "50% 50% 0");
-    //
-    //        var scale;
-    //        var tx;
-    //        var ty;
-    //        if(window.innerWidth >= 1500){
-    //            scale = 3;
-    //            tx = mapWidth * scale / 3  - scale * d3.event.clientX;
-    //            ty = mapHeight / 2 - scale * d3.event.clientY;
-    //
-    //        } else if(window.innerWidth < 1500) {
-    //            scale = 5;
-    //            tx = mapWidth * scale / 2.5 - scale * d3.event.clientX;
-    //            ty = mapHeight / 2 - scale * d3.event.clientY;
-    //        }
-    //
-    //        var z = d3.zoomIdentity
-    //                .translate(tx, ty)
-    //                .scale(scale);
-    //        d3.select("#body").call(zoom.transform, z);
-    //    });
 
 
     startIntro = function () {

@@ -55,7 +55,16 @@ h1, h3, p, li {
   background-image: url(../img/smaller.gif);
   background-size: cover;
   margin: 0 !important; }
-  @media (min-width: 375px) and (max-width: 700px) {
+  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    #header {
+      height: 100vh; } }
+  @media only screen and (min-device-width: 1112px) and (max-device-width: 1112px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    #header {
+      height: 100vh; } }
+  @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+    #header {
+      height: 100vh; } }
+  @media (min-width: 200px) and (max-width: 699px) {
     #header {
       height: 60vh; } }
 
@@ -89,7 +98,7 @@ h1, h3, p, li {
   font-size: 17px;
   letter-spacing: 2px;
   color: white; }
-  @media (min-width: 375px) and (max-width: 700px) {
+  @media (min-width: 200px) and (max-width: 699px) {
     #subtitle {
       font-size: 30px;
       width: 50%; } }
@@ -145,7 +154,7 @@ h3 {
 p, li {
   font-size: 18px;
   font-family: "Segoe UI Light", sans-serif; }
-  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
+  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
     p, li {
       font-size: 22px; } }
 
@@ -202,14 +211,14 @@ p, li {
   float: right;
   font-size: 12px;
   letter-spacing: 2px; }
-  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
+  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
     .switch {
       display: none; } }
 
 .switch-mob {
   margin-left: 50px;
   grid-column: 1/2; }
-  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
+  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
     .switch-mob {
       display: block; } }
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
@@ -253,7 +262,7 @@ p.button {
 
 #mobile {
   grid-column: 1/-1; }
-  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
+  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
     #mobile {
       display: block; } }
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
@@ -298,21 +307,23 @@ svg {
     fill: #161616;
     stroke-width: 0.05px;
     stroke: black; } }
-#allrivers {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  grid-column: 1/2;
-  grid-row: 3/4;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
-  grid-template-rows: repeat(auto-fill, minmax(1fr));
-  grid-gap: 10px;
-  height: calc(100vh - 70px);
-  overflow: scroll;
-  position: relative; }
-  @media screen and (min-width: 375px) and (max-width: 700px) {
-    #allrivers {
-      display: none; } }
+@media (min-width: 200px) and (max-width: 699px) {
+  #allrivers {
+    display: none;
+    opacity: 0; } }
+@media (min-width: 700px) and (max-width: 1024px), (min-width: 1024px) and (max-width: 1285px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1441px) and (max-width: 2570px) {
+  #allrivers {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    grid-column: 1/2;
+    grid-row: 3/4;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+    grid-template-rows: repeat(auto-fill, minmax(1fr));
+    grid-gap: 10px;
+    height: calc(100vh - 70px);
+    overflow: scroll;
+    position: relative; } }
 
 .riverCont {
   border: 1px solid #161616;
@@ -320,6 +331,10 @@ svg {
   cursor: pointer;
   min-height: 160px;
   max-height: calc((100vh - 70px) / 3); }
+  @media (min-width: 200px) and (max-width: 699px) {
+    .riverCont {
+      display: none !important;
+      opacity: 0; } }
 
 #regions {
   margin-top: 10px;
@@ -332,7 +347,7 @@ svg {
   display: none;
   width: 100%;
   position: relative; }
-  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
+  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
     #regions {
       margin-left: 50px; } }
 
@@ -499,7 +514,7 @@ h5.mob {
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
     #clone {
       width: 40vw; } }
-  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px), (min-width: 0) and (max-width: 374px) {
+  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px), (min-width: 0) and (max-width: 200px) {
     #clone {
       width: 40vw; } }
 
@@ -559,10 +574,10 @@ div.chartHint {
 
 .formInpurs {
   display: grid; }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px), (min-width: 701px) and (max-width: 1024px) {
+  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px), (min-width: 700px) and (max-width: 1024px) {
     .formInpurs {
       grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 375px) and (max-width: 700px), (min-width: 0) and (max-width: 374px) {
+  @media (min-width: 200px) and (max-width: 699px), (min-width: 0) and (max-width: 200px) {
     .formInpurs {
       grid-template-columns: 1fr; } }
 
@@ -679,9 +694,6 @@ svg#labels {
   grid-column: 1/3;
   grid-row: 3/4;
   padding-bottom: 150px; }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
-    #mobileMaps {
-      display: none; } }
 
 #danube-m, #dnister-m, #wisla-m, #bug-m, #dnipro-m, #don-m {
   height: 500px;
