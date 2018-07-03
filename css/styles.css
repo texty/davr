@@ -55,7 +55,7 @@ h1, h3, p, li {
   background-image: url(../img/smaller.gif);
   background-size: cover;
   margin: 0 !important; }
-  @media (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 375px) and (max-width: 700px) {
     #header {
       height: 60vh; } }
 
@@ -89,7 +89,7 @@ h1, h3, p, li {
   font-size: 17px;
   letter-spacing: 2px;
   color: white; }
-  @media (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 375px) and (max-width: 700px) {
     #subtitle {
       font-size: 30px;
       width: 50%; } }
@@ -145,7 +145,7 @@ h3 {
 p, li {
   font-size: 18px;
   font-family: "Segoe UI Light", sans-serif; }
-  @media (min-width: 981px) and (max-width: 1024px), (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
     p, li {
       font-size: 22px; } }
 
@@ -202,14 +202,14 @@ p, li {
   float: right;
   font-size: 12px;
   letter-spacing: 2px; }
-  @media (min-width: 981px) and (max-width: 1024px), (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
     .switch {
       display: none; } }
 
 .switch-mob {
   margin-left: 50px;
   grid-column: 1/2; }
-  @media (min-width: 981px) and (max-width: 1024px), (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
     .switch-mob {
       display: block; } }
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
@@ -253,7 +253,7 @@ p.button {
 
 #mobile {
   grid-column: 1/-1; }
-  @media (min-width: 981px) and (max-width: 1024px), (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
     #mobile {
       display: block; } }
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
@@ -310,7 +310,7 @@ svg {
   height: calc(100vh - 70px);
   overflow: scroll;
   position: relative; }
-  @media screen and (min-width: 375px) and (max-width: 980px) {
+  @media screen and (min-width: 375px) and (max-width: 700px) {
     #allrivers {
       display: none; } }
 
@@ -332,7 +332,7 @@ svg {
   display: none;
   width: 100%;
   position: relative; }
-  @media (min-width: 981px) and (max-width: 1024px), (min-width: 375px) and (max-width: 980px) {
+  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px) {
     #regions {
       margin-left: 50px; } }
 
@@ -499,7 +499,7 @@ h5.mob {
   @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
     #clone {
       width: 40vw; } }
-  @media (min-width: 981px) and (max-width: 1024px), (min-width: 375px) and (max-width: 980px), (min-width: 0) and (max-width: 374px) {
+  @media (min-width: 701px) and (max-width: 1024px), (min-width: 375px) and (max-width: 700px), (min-width: 0) and (max-width: 374px) {
     #clone {
       width: 40vw; } }
 
@@ -559,10 +559,10 @@ div.chartHint {
 
 .formInpurs {
   display: grid; }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px), (min-width: 981px) and (max-width: 1024px) {
+  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px), (min-width: 701px) and (max-width: 1024px) {
     .formInpurs {
       grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 375px) and (max-width: 980px), (min-width: 0) and (max-width: 374px) {
+  @media (min-width: 375px) and (max-width: 700px), (min-width: 0) and (max-width: 374px) {
     .formInpurs {
       grid-template-columns: 1fr; } }
 
