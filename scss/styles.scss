@@ -26,6 +26,10 @@ body {
   background-color: #080808; //black design
   overflow-x: hidden;
   pointer-events:none;
+
+  @media #{$brk-narrow} {
+    grid-template-columns: 150px auto;
+  }
 }
 
 
