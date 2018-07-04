@@ -55,7 +55,7 @@ h1, h3, p, li {
 
 #header {
   height: 100vh;
-  background-image: url(../img/water24.gif);
+  background-image: url(../img/GIFF.gif);
   background-size: cover;
   margin: 0 !important; }
   @media (min-width: 1441px) and (max-width: 2570px) {
@@ -76,12 +76,15 @@ h1, h3, p, li {
   @media (min-width: 200px) and (max-width: 699px) {
     #header {
       height: 60vh; } }
+  @media only screen and (orientation: portrait) {
+    #header {
+      height: 50vh; } }
 
 #title {
   text-transform: uppercase;
   padding-top: 40px;
   margin-left: 40px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   opacity: 0.8;
   line-height: 1;
   letter-spacing: 6px;
@@ -91,7 +94,7 @@ h1, h3, p, li {
 #subtitle {
   margin-left: 40px;
   line-height: 1.5;
-  width: 30%;
+  width: 35%;
   opacity: 0.8;
   text-align: left;
   font-size: 17px;
@@ -136,7 +139,7 @@ h1 {
       font-size: 30pt; } }
   @media (min-width: 200px) and (max-width: 699px) {
     h1 {
-      font-size: 25pt; } }
+      font-size: 45pt; } }
 
 h1 span {
   font-size: 78pt;
