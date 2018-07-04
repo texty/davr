@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description"
           content="Річкова вода">
@@ -117,14 +117,15 @@
     карти
 </button>
 
-<button id="switchToTable-mob" class="switch-mob">Хто
-    забруднює річки в твоїй області
-</button>
-<button id="switchToMap-mob" class="switch-mob">
-    Повернутись до карти
-</button>
+
 
 <div id="mobileMaps">
+    <!--<button id="switchToTable-mob" class="switch-mob">Хто-->
+        <!--забруднює річки в твоїй області-->
+    <!--</button>-->
+    <!--<button id="switchToMap-mob" class="switch-mob">-->
+        <!--Повернутись до карти-->
+    <!--</button>-->
 
     <h5 class="mob">Дунай</h5>
     <div id="danube-m"></div>
@@ -271,6 +272,7 @@ console.log("small screen");
     d3.select("#mobileMaps").style("display", "block");
     d3.select('#allrivers').style('display', 'none');
     d3.selectAll('.riverCont').style('display', 'none');
+    d3.select('#runIntro').style('display', 'none');
     js0.src = "";
     js1.src = "js/mobile-script.js";
     js2.src = "";
@@ -386,6 +388,7 @@ body.appendChild(js4);
 
     d3.select("#switchToTable").on("click", function () {
         d3.select("#body").style("display", "none");
+        d3.select("#mobileMaps").style("display", "none");
         d3.select("#allrivers").style("display", "none");
         d3.select("#regions").style("display", "block");
         d3.select("#contaminants").style("display", "block");
@@ -395,17 +398,27 @@ body.appendChild(js4);
     });
 
     d3.select("#switchToMap").on("click", function () {
-        d3.select("#body").style("display", "block");
-        d3.select("#allrivers").style("display", "grid");
-        d3.select("#regions").style("display", "none");
-        d3.select("#contaminants").style("display", "none");
-        d3.select("#switchToTable").style("display", "block");
-        d3.select("#switchToMap").style("display", "none");
+ if(screen.width >=700) {
+     d3.select("#body").style("display", "block");
+     d3.select("#allrivers").style("display", "grid");
+     d3.select("#regions").style("display", "none");
+     d3.select("#contaminants").style("display", "none");
+     d3.select("#switchToTable").style("display", "block");
+     d3.select("#switchToMap").style("display", "none");
+ } else if (screen.width < 700) {
+     d3.select("#mobileMaps").style("display", "block");
+     d3.select("#regions").style("display", "none");
+     d3.select("#contaminants").style("display", "none");
+     d3.select("#switchToTable").style("display", "block");
+     d3.select("#switchToMap").style("display", "none");
+
+
+        }
 
     });
 
     d3.select("#switchToTable-mob").on("click", function () {
-        d3.select("#mobileMaps ").style("display", "none");
+        d3.select("#mobileMaps").style("display", "none");
         d3.select("#regions").style("display", "block");
         d3.select("#contaminants").style("display", "block");
         d3.select("#switchToTable-mob").style("display", "none");

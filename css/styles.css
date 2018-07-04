@@ -67,19 +67,12 @@ h1, h3, p, li {
   @media only screen and (min-device-width: 1366px) and (max-device-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
     #header {
       height: 100vh; } }
+  @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
+    #header {
+      height: 50vh; } }
   @media (min-width: 200px) and (max-width: 699px) {
     #header {
       height: 60vh; } }
-
-#overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 100vw;
-  color: black;
-  opacity: 0.8;
-  z-index: 5; }
 
 #title {
   text-transform: uppercase;
@@ -138,6 +131,9 @@ h1 {
   @media (min-height: 300px) and (max-height: 500px) {
     h1 {
       font-size: 30pt; } }
+  @media (min-width: 200px) and (max-width: 699px) {
+    h1 {
+      font-size: 25pt; } }
 
 h1 span {
   font-size: 78pt;
@@ -145,6 +141,9 @@ h1 span {
   @media (min-height: 300px) and (max-height: 500px) {
     h1 span {
       font-size: 68pt; } }
+  @media (min-width: 200px) and (max-width: 699px) {
+    h1 span {
+      font-size: 50pt; } }
 
 h3 {
   font-family: "Segoe UI Light", sans-serif; }
@@ -198,7 +197,7 @@ p, li {
 #switchToTable {
   width: 100%; }
 
-#switchToMap, #switchToMap-mob {
+#switchToMap {
   width: 96%; }
 
 #switchToMap-mob {
@@ -214,19 +213,9 @@ p, li {
   float: right;
   font-size: 12px;
   letter-spacing: 2px; }
-  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
+  @media (max-width: 699px) {
     .switch {
-      display: none; } }
-
-.switch-mob {
-  margin-left: 50px;
-  grid-column: 1/2; }
-  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
-    .switch-mob {
-      display: block; } }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
-    .switch-mob {
-      display: none; } }
+      margin-left: 50px !important; } }
 
 .switch:hover {
   background-color: #64b2f4;
@@ -350,7 +339,7 @@ svg {
   display: none;
   width: 100%;
   position: relative; }
-  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
+  @media (min-width: 200px) and (max-width: 699px) {
     #regions {
       margin-left: 50px; } }
 
