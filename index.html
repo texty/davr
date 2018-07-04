@@ -126,7 +126,7 @@
     <!--<button id="switchToMap-mob" class="switch-mob">-->
         <!--Повернутись до карти-->
     <!--</button>-->
-    <p style="width:90%; margin-left:5%;">Увага! Ви переглядаєте мобільну версію. <b>Квіточки неклікабельні.</b> Блакитні пелюстки квіток означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми.</p>
+    <p style="width:90%; margin-left:5%;">Увага! Ви переглядаєте мобільну версію. <b>Квіточки неклікабельні.</b> Блакитні пелюстки квіток означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Для запуску інтерактивної версії карти потрібен пристрій із шириною екрану не менше 700 пікселів. Через те, що інструмент візуалізує великий масив даних (при кліку на кожну пелюстку обробляється понад 150 тис. рядків даних), для комфортного перегляду інтерактивної карти бажано використовувати пристрій з оперативною памʼяттю від 2Гб. </p>
     <h5 class="mob">Дунай</h5>
     <div id="danube-m"></div>
 
@@ -240,6 +240,26 @@
     const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
     console.log(isTablet);
 
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
 
 
 var body = document.getElementsByTagName('body')[0];

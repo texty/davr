@@ -124,7 +124,7 @@ p.text, li.text {
   position: absolute;
   bottom: 10px !important;
   right: 20px;
-  z-index: 20; }
+  z-index: 10; }
 
 h1 {
   font-family: 'Prata', serif;

@@ -123,7 +123,7 @@ function drawChart(IdForChart, keyIndicator) {
                 })
                 .style("font-weight", "bold");
 
-            if(!isTablet) {
+            if(!isTablet || !isMobile.any()) {
                 d3.select("#keyimg")
                     .attr("title", function () {
                         var label = indicatorNames.filter(function (obj) {
@@ -132,7 +132,7 @@ function drawChart(IdForChart, keyIndicator) {
                         return label[0].description
                     });
             }
-            if(isTablet) {
+            if(isTablet || isMobile.any()) {
                 d3.select("#keyimg").on("click", function () {
                     chartHint
                         .transition()
