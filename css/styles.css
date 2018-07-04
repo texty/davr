@@ -52,9 +52,12 @@ h1, h3, p, li {
 
 #header {
   height: 100vh;
-  background-image: url(../img/smaller.gif);
+  background-image: url(../img/water24.gif);
   background-size: cover;
   margin: 0 !important; }
+  @media (min-width: 1441px) and (max-width: 2570px) {
+    #header {
+      background-image: url(../img/GIFF.gif); } }
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
     #header {
       height: 100vh; } }
