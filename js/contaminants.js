@@ -10,9 +10,9 @@ var callTable = function (key) {
     d3.csv(file, function (error, data) {
         if (error) throw error;
 
-        var table = d3.select("#contaminants")
+        var table = d3.select("#tableContainer")
             .append("table")
-            .attr('class', 'contaminantsTable');
+            .attr('id', 'contaminantsTable');
 
 // Append the table header and body.
         var tableHead = table.append('thead'),
