@@ -10,6 +10,9 @@ var callTable = function (key) {
     d3.csv(file, function (error, data) {
         if (error) throw error;
 
+        data.forEach(function (d) {
+            d.value = +d.value;
+        });
         var table = d3.select("#tableContainer")
             .append("table")
             .attr('id', 'contaminantsTable');

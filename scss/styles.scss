@@ -477,6 +477,14 @@ position: absolute;
 }
 
 
+.riverCont > img {
+  pointer-events: none;
+}
+
+.riverCont > h5 {
+  pointer-events: none;
+}
+
 .riverCont {
   @media #{$brk-spnarrow} {
     display:none!important;
@@ -488,8 +496,11 @@ position: absolute;
   cursor:pointer;
   min-height: 160px;
   max-height: calc((100vh - 70px) / 3);
+  pointer-events: all;
 
 }
+
+
 
 
 #regions {
