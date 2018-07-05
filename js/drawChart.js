@@ -1,6 +1,37 @@
 /**
  * Created by yevheniia on 11.06.18.
  */
+
+var parseTime = d3.timeParse("%Y-%m-%d");
+
+
+var all_flower_data;
+function retrieve_all_flower_data(cb) {
+    if (all_flower_data) return cb(all_flower_data);
+
+    return d3.csv("data/allFlowerData.csv", function(err, data){
+        if (err) throw err;
+
+        data.forEach(function (d) {
+            d.date = parseTime(d.date);
+            d.value = +d.value;
+        });
+
+        var nested_data = d3.nest()
+            .key(function(d){return d.id})
+            .object(data);
+
+        all_flower_data = nested_data;
+        if (cb) return cb(nested_data);
+        return;
+    })
+}
+
+// пустимо завантаження даних на самий початок. Хай вони завантажаться, щоб коли вони нам будуть потрібні вже все було
+retrieve_all_flower_data();
+
+
+
 function drawChart(IdForChart, keyIndicator) {
     var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
     // var dataId = d3.selectAll(".messageCheckbox").attr("name");
@@ -8,16 +39,16 @@ function drawChart(IdForChart, keyIndicator) {
     // var keyIndicator = checkInput();
 
     // var parseTime = d3.timeParse("%d.%m.%Y");
-    var parseTime = d3.timeParse("%Y-%m-%d");
 
     // d3.csv("data/total_data_gather.csv", function (error, chart) {
-        d3.csv("data/allFlowerData.csv", function (error, chart){
+
+    retrieve_all_flower_data(function(chart_data) {
 
         var chartSvg = d3.select("#chart").transition();
         var chartG = chartSvg.select('g').transition();
-        var idData = chart.filter(function (d) {
-            return d.id === IdForChart
-        });
+        
+
+        var idData = chart_data[IdForChart];
 
         var dataData = idData.filter(function (d) {
             return d.key === keyIndicator;
@@ -28,11 +59,6 @@ function drawChart(IdForChart, keyIndicator) {
         d3.select('#placename')
             .html(dataData[0].name);
 
-
-        dataData.forEach(function (d) {
-            d.date = parseTime(d.date);
-            d.value = +d.value;
-        });
 
         dataData.sort(function(a,b){
             // Turn your strings into dates, and then subtract them
