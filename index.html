@@ -5,17 +5,17 @@
     <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
 
     <meta name="description"
-          content="Річкова вода">
+          content="Чиста вода">
     <meta name="author" content="">
 
-    <title>Річкова вода</title>
+    <title>Чиста вода</title>
 
     <!-- OpenGraph Meta Tags -->
     <meta property="og:site_name"
-          content="Річкова вода"/>
+          content="Чиста вода"/>
     <meta property="og:type" content="http://texty.org.ua/water/"/>
     <meta property="og:title"
-          content="Річкова вода"/>
+          content="Чиста вода"/>
     <meta property="og:image" content="http://texty.org.ua/water/img/main.png"/>
     <meta property="og:description"
           content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'/>
@@ -28,7 +28,7 @@
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:url" content="http://texty.org.ua/water/"/>
     <meta name="twitter:title"
-          content="Річкова вода"/>
+          content="Чиста вода"/>
     <meta name="twitter:description"
           content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'/>
     <meta name="twitter:image:src" content="http://texty.org.ua/water/img/main.png"/>
@@ -38,7 +38,7 @@
 
     <!-- Other Meta Tags -->
     <meta name="title"
-          content="Річкова вода">
+          content="Чиста вода">
     <meta name="description"
           content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'>
 
@@ -83,7 +83,7 @@
         </div>
 
 
-        <h1 id="title">Річкова<br><span>вода</span></h1>
+        <h1 id="title">Чиста<br><span>вода</span></h1>
         <div id="title-subtitle">
             <h3 id="subtitle">Інтерактивна карта забрудненості річок в Україні на основі даних Державного агентства водних ресурсів. На карті ‒ понад 400 пунктів контролю річкової води. Ви можете переглянути до 16 параметрів забруднення, а також з’ясувати, як його рівень змінювався протягом п’яти років.
             </h3>
@@ -185,6 +185,7 @@
     <div class="modal-content">
         <span class="close">&times;</span>
         <p id="petalsData"></p>
+
         <div id="myModalGrid">
             <div id="chart"></div>
             <div id="big-flower">
@@ -520,6 +521,7 @@ body.appendChild(js4);
         var key = this.innerText;
         key = key.replace(/(\r\n\t|\n|\r\t)/gm, "");
         callTable(key);
+        $('#contaminants').animate({scrollTop: $("#tableContainer").offset().top}, 'slow');
     });
 
 

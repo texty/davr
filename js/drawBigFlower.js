@@ -152,4 +152,7 @@ function polarToCartesian(angle, radius) {
 }
 /* end of flowers */
 
-
+d3.select("#big-flower")
+    .append("p")
+    .attr("id", "bigFlowerIntro")
+    .html("клікайте на пелюстки, аби побудувати <br> графік для різних показників");

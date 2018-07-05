@@ -1044,9 +1044,7 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
         .attr("id", "units")
         .style("float", "right")
         .text("Одиниці вимірювання речовин - мг/дм3");
-
-
-
+    
 
     d3.select('#petalsData')
         .append("p")
