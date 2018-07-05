@@ -843,7 +843,6 @@ d3.selectAll("#danube-m > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.l
 
 
 
-
 var flowefsize = 4;
 
 function petalPath(d) {

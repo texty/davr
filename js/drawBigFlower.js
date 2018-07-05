@@ -65,19 +65,23 @@ function drawBigFlower(IdForChart) {
                 drawChart(IdForChart, keyIndicator)
             })
             .on("mouseover", function (d) {
-                // d3.select(".hint").html("Клікніть </br> на пелюсток, </br> аби побудувати </br> графік");
-                flowerhint.transition()
-                    .duration(200)
-                    .style("opacity", .9);
+                if(!isTablet) {                    
+                    // d3.select(".hint").html("Клікніть </br> на пелюсток, </br> аби побудувати </br> графік");
+                    flowerhint.transition()
+                        .duration(200)
+                        .style("opacity", .9);
 
-                flowerhint.html(d.data.key)
-                    .style("left", (d3.event.pageX) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    flowerhint.html(d.data.key)
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY - 28) + "px");
+                }
             })
             .on("mouseout", function (d) {
-                flowerhint.transition()
-                    .duration(200)
-                    .style("opacity", 0);
+                if(!isTablet) {
+                    flowerhint.transition()
+                        .duration(200)
+                        .style("opacity", 0);
+                }
 
             }) ;
 
