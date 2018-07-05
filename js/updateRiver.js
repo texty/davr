@@ -748,19 +748,19 @@ function drawPoints() {
                         }
 
                     })
-                    // .on("mouseover", function (d) {
-                    //    var targetFlower= d3.select(this.parentNode);
-                    //     targetFlower.moveToFront();
-                    //
-                    //     flowerhint.transition()
-                    //         .duration(200)
-                    //         .style("opacity", .9);
-                    //
-                    //     flowerhint.html(d.data.name)
-                    //         .style("left", (d3.event.pageX) + "px")
-                    //         .style("top", (d3.event.pageY) + "px");
-                    //
-                    // })
+                    .on("mouseover", function (d) {
+                       var targetFlower= d3.select(this.parentNode);
+                        targetFlower.moveToFront();
+
+                        // flowerhint.transition()
+                        //     .duration(200)
+                        //     .style("opacity", .9);
+                        //
+                        // flowerhint.html(d.data.name)
+                        //     .style("left", (d3.event.pageX) + "px")
+                        //     .style("top", (d3.event.pageY) + "px");
+
+                    })
                     // .on("mouseout", function (d) {
                     //     flowerhint.transition()
                     //         .duration(200)
