@@ -770,7 +770,7 @@ function drawPoints() {
                     // })
 
                     /*чому тут d повертає не той датасет? , що треба, а гемометрію?????*/
-                    .on('click', function (d) {
+                    .on('click touchstart', function (d) {
                         var modal = document.getElementById('myModal');
                         var span = document.getElementsByClassName("close")[0];
 
