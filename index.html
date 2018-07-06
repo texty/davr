@@ -154,8 +154,16 @@
     <div id="don-m"></div>
 
 
-<div style="height:100px;"></div>
 
+    <div id="donors-mob">
+        <div></div>
+        <img style="width:100%" src="img/logo/USAID.png">
+        <img style="width:100%" src="img/logo/UKAID.jpg">
+        <img style="width:100%;margin-top:5px" src="img/logo/eurasia_foundation.png">
+        <img style="width:100%" src="img/logo/davr.png">
+        <img style="width:100%; margin-top:5px" src="img/logo/daeu.jpg">
+
+    </div>
 </div>
 
 
@@ -236,6 +244,9 @@
     </div>
 </div>
 
+
+
+
 <script>
     var userAgent = navigator.userAgent.toLowerCase();
     const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
@@ -287,6 +298,7 @@ js4.src = "js/contaminants.js";
 d3.select("#mobileMaps").style("display", "none");
 d3.select("#allrivers").style("display", "grid");
 
+
 }
 else if (screen.width < 700){
 console.log("small screen");
@@ -294,6 +306,8 @@ console.log("small screen");
     d3.select('#allrivers').style('display', 'none');
     d3.selectAll('.riverCont').style('display', 'none');
     d3.select('#runIntro').style('display', 'none');
+
+
     js0.src = "";
     js1.src = "js/mobile-script.js";
     js2.src = "";
@@ -370,10 +384,20 @@ body.appendChild(js4);
     </div>
 </div>
 
+<div id="donors">
+    <div></div>
+    <img style="width:100%" src="img/logo/USAID.png">
+    <img style="width:100%" src="img/logo/UKAID.jpg">
+    <img style="width:100%;margin-top:5px" src="img/logo/eurasia_foundation.png">
+    <img style="width:100%" src="img/logo/davr.png">
+    <img style="width:100%; margin-top:5px" src="img/logo/daeu.jpg">
 
+</div>
 <script>
 
-
+    if (screen.width < 700) {
+        d3.select("#donors").style("display", "none");
+    }
 
 
     startIntro = function () {
