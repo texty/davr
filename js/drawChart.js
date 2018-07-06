@@ -28,7 +28,7 @@ function retrieve_all_flower_data(cb) {
 }
 
 // пустимо завантаження даних на самий початок. Хай вони завантажаться, щоб коли вони нам будуть потрібні вже все було
-retrieve_all_flower_data();
+
 
 
 
@@ -46,7 +46,7 @@ function drawChart(IdForChart, keyIndicator) {
 
         var chartSvg = d3.select("#chart").transition();
         var chartG = chartSvg.select('g').transition();
-        
+
 
         var idData = chart_data[IdForChart];
 
@@ -97,106 +97,106 @@ function drawChart(IdForChart, keyIndicator) {
 
 
 
-            if (norm > 0) {
-                if (norm > yMax) {
-                    chartY.domain([0, norm]);
-                }
-
-                if (norm < yMax) {
-                    chartY.domain([0, yMax]);
-                }
+        if (norm > 0) {
+            if (norm > yMax) {
+                chartY.domain([0, norm]);
             }
 
-            else {
+            if (norm < yMax) {
                 chartY.domain([0, yMax]);
             }
-            var yticks;
-            if (norm > 0) {
-                yticks = [yMin, +norm, yMax];
-            }
-            else {
-                yticks = [yMin, yMax];
-            }
-            yticks.sort(function (a, b) {
-                return a - b
-            });
+        }
 
-            chartSvg.select(".line")   // change the line
-                .duration(500)
-                .attr("d", valueline(dataData));
-            chartSvg.select(".x.axis") // change the x axis
-                .duration(500)
-                .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(multiFormat));
+        else {
+            chartY.domain([0, yMax]);
+        }
+        var yticks;
+        if (norm > 0) {
+            yticks = [yMin, +norm, yMax];
+        }
+        else {
+            yticks = [yMin, yMax];
+        }
+        yticks.sort(function (a, b) {
+            return a - b
+        });
 
-            chartSvg.select(".y.axis") // change the y axis
-                .duration(500)
-                .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
+        chartSvg.select(".line")   // change the line
+            .duration(500)
+            .attr("d", valueline(dataData));
+        chartSvg.select(".x.axis") // change the x axis
+            .duration(500)
+            .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(multiFormat));
+
+        chartSvg.select(".y.axis") // change the y axis
+            .duration(500)
+            .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
 
 
-            d3.select("#lineText")
-                .attr("x", chartX(parseTime("2018-01-01")))
-                .attr("y", chartY(norm)+10);
+        d3.select("#lineText")
+            .attr("x", chartX(parseTime("2018-01-01")))
+            .attr("y", chartY(norm)+10);
 
 
-            d3.select('#keyHeading')
-                .html(function (d) {
+        d3.select('#keyHeading')
+            .html(function (d) {
+                var label = indicatorNames.filter(function (obj) {
+                    return obj.key === keyIndicator;
+                });
+
+                return label[0].printName;
+
+            })
+            .style("font-weight", "bold");
+
+        if(!isTablet || !isMobile.any()) {
+            d3.select("#keyimg")
+                .attr("title", function () {
                     var label = indicatorNames.filter(function (obj) {
                         return obj.key === keyIndicator;
                     });
+                    return label[0].description
+                });
+        }
+        if(isTablet || isMobile.any()) {
+            d3.select("#keyimg").on("click", function () {
+                chartHint
+                    .transition()
+                    .duration(200)
+                    .style("opacity", .9);
 
-                    return label[0].printName;
-
-                })
-                .style("font-weight", "bold");
-
-            if(!isTablet || !isMobile.any()) {
-                d3.select("#keyimg")
-                    .attr("title", function () {
-                        var label = indicatorNames.filter(function (obj) {
-                            return obj.key === keyIndicator;
-                        });
-                        return label[0].description
+                chartHint.html(function () {
+                    var label = indicatorNames.filter(function (obj) {
+                        return obj.key === keyIndicator;
                     });
-            }
-            if(isTablet || isMobile.any()) {
-                d3.select("#keyimg").on("click", function () {
-                    chartHint
-                        .transition()
-                        .duration(200)
-                        .style("opacity", .9);
+                    return label[0].description
+                })
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY + 28) + "px");
 
-                    chartHint.html(function () {
-                        var label = indicatorNames.filter(function (obj) {
-                            return obj.key === keyIndicator;
-                        });
-                        return label[0].description
-                    })
-                        .style("left", (d3.event.pageX) + "px")
-                        .style("top", (d3.event.pageY + 28) + "px");
+            });
 
-                });
-
-                chartHint.on("click", function () {
-                    chartHint
-                        .transition()
-                        .duration(200)
-                        .style("opacity", 0);
-                });
-            }
+            chartHint.on("click", function () {
+                chartHint
+                    .transition()
+                    .duration(200)
+                    .style("opacity", 0);
+            });
+        }
 
 
-            norm = +norm;
-            var greenpart;
-            var redpart;
-            var step1;
-            var step2;
-            var step3;
-            var step4;
-            var step5;
-            var step6;
+        norm = +norm;
+        var greenpart;
+        var redpart;
+        var step1;
+        var step2;
+        var step3;
+        var step4;
+        var step5;
+        var step6;
 
 
-if(dataData[0].key != "Кисень.розчинений.МгО2.дм3") {
+        if(dataData[0].key != "Кисень.розчинений.МгО2.дм3") {
 
 
             /*------- gradient ------*/
@@ -262,71 +262,71 @@ if(dataData[0].key != "Кисень.розчинений.МгО2.дм3") {
         }
 
 
-            if(dataData[0].key === "Кисень.розчинений.МгО2.дм3") {
+        if(dataData[0].key === "Кисень.розчинений.МгО2.дм3") {
 
-                if (norm === "NA" || norm != norm) {
-                    greenpart = 100;
-                    redpart = 0;
-                }
-                else if (yMax < norm) {
-                    greenpart = 0;
-                    redpart = 100;
-                }
-                else if (yMax > norm) {
-                    redpart = 100 / (yMax / norm);
-                    greenpart = 100 - redpart;
-                }
-
-                step1 = redpart + "%";
-                step2 = greenpart + "%";
-                step3 = "100%";
-                step4 = "100%";
-                step5 = "100%";
-                step6 = "100%";
-
-
-
-                chartSvg.select('#line-gradient > stop:nth-child(1)')
-                    .attr("offset", "0%")
-                    .attr("stop-color", reds[2]);
-                chartSvg.select('#line-gradient > stop:nth-child(2)')
-                    .attr("offset", step1)
-                    .attr("stop-color", reds[2]);
-                chartSvg.select('#line-gradient > stop:nth-child(3)')
-                    .attr("offset", step1)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(4)')
-                    .attr("offset", step2)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(5)')
-                    .attr("offset", step2)
-                    .attr("stop-color",green);
-                chartSvg.select('#line-gradient > stop:nth-child(6)')
-                    .attr("offset", step3)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(7)')
-                    .attr("offset", step3)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(8)')
-                    .attr("offset", step4)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(9)')
-                    .attr("offset", step4)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(10)')
-                    .attr("offset", step5)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(11)')
-                    .attr("offset", step5)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(12)')
-                    .attr("offset", step6)
-                    .attr("stop-color", green);
-                chartSvg.select('#line-gradient > stop:nth-child(13)')
-                    .attr("offset", step6)
-                    .attr("stop-color", green);
-
+            if (norm === "NA" || norm != norm) {
+                greenpart = 100;
+                redpart = 0;
             }
+            else if (yMax < norm) {
+                greenpart = 0;
+                redpart = 100;
+            }
+            else if (yMax > norm) {
+                redpart = 100 / (yMax / norm);
+                greenpart = 100 - redpart;
+            }
+
+            step1 = redpart + "%";
+            step2 = greenpart + "%";
+            step3 = "100%";
+            step4 = "100%";
+            step5 = "100%";
+            step6 = "100%";
+
+
+
+            chartSvg.select('#line-gradient > stop:nth-child(1)')
+                .attr("offset", "0%")
+                .attr("stop-color", reds[2]);
+            chartSvg.select('#line-gradient > stop:nth-child(2)')
+                .attr("offset", step1)
+                .attr("stop-color", reds[2]);
+            chartSvg.select('#line-gradient > stop:nth-child(3)')
+                .attr("offset", step1)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(4)')
+                .attr("offset", step2)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(5)')
+                .attr("offset", step2)
+                .attr("stop-color",green);
+            chartSvg.select('#line-gradient > stop:nth-child(6)')
+                .attr("offset", step3)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(7)')
+                .attr("offset", step3)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(8)')
+                .attr("offset", step4)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(9)')
+                .attr("offset", step4)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(10)')
+                .attr("offset", step5)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(11)')
+                .attr("offset", step5)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(12)')
+                .attr("offset", step6)
+                .attr("stop-color", green);
+            chartSvg.select('#line-gradient > stop:nth-child(13)')
+                .attr("offset", step6)
+                .attr("stop-color", green);
+
+        }
 
 
         /*end of the gradient*/
