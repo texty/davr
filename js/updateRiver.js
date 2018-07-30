@@ -722,32 +722,32 @@ function drawPoints() {
                     .style("stroke", "#070707")
                     .style("stroke-width", "0.1px")
                     .style("fill", function (d) {
-                        //якщо не кисень
-                        if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
-                            if (d.data.size > 0.9) {
-                                // return PointColorsRed(d.data.size);
-                                return reds[2]
-                            }
-                            else {
-                                // return "#49E858"
-                                return green
-                            }
-                        }
-
-                        //якщо кисень
-                        if(d.data.key === "Кисень.розчинений.МгО2.дм3") {
-                            if (d.data.size > 0.9) {
-                                return green;
-                            }
-                            else {
-                                // return "#49E858"
-                                return reds[2]
+                            if (d.data.key != "Кисень.розчинений.МгО2.дм3") {
+                                if (d.data.size > 0.9) {
+                                    // return PointColorsRed(d.data.size);
+                                    return reds[2];
+                                }
+                                else {
+                                    // return "#49E858"
+                                    return green
+                                }
                             }
 
+                            //якщо кисень
+                            if (d.data.key === "Кисень.розчинений.МгО2.дм3") {
+                                if (d.data.size > 0.9) {
+                                    return green;
+                                }
+                                else {
+                                    // return "#49E858"
+                                    return reds[2]
+                                }
 
-                        }
+
+                            }
 
                     })
+
                     .on("mouseover", function (d) {
                        var targetFlower= d3.select(this.parentNode);
                         targetFlower.moveToFront();
@@ -788,6 +788,8 @@ function drawPoints() {
                         var keyindicator = d.data.key;
                         var norm = d.data.norm;
 
+                        d3.selectAll("#texturePetals").attr("value", IdForChart);
+                        d3.selectAll("#texturePetals").attr("name", keyindicator);
                         // drawChart(IdForChart, indicator);
                         // updateLineChart(IdForChart)
                         // d3.selectAll(".messageCheckbox").attr("name", IdForChart);
@@ -1060,7 +1062,22 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
 
     modalKeysHeadings.append("img")
         .attr("id", "keyimg")
-        .attr("src", "img/question.svg")
+        .attr("src", "img/question.svg");
+
+    modalKeysHeadings.append("img")
+        .attr("id", "texturePetals")
+        .attr("src", "img/eye-white.png")
+        .attr("title", "Версія для користувачів з вадами зору. Пелюстки з діагональною полоскою - неналежна якість за обраним показником")
+        .on("click", function () {
+        $(this).toggleClass("eye-clicked");
+        var id = $("#texturePetals").attr("value");
+        var key = $("#texturePetals").attr("name");
+
+        drawBigFlower(id);
+        // drawPoints();
+
+
+    });
 
 
 });
@@ -1087,29 +1104,6 @@ d3.selection.prototype.moveToFront = function() {
         this.parentNode.appendChild(this);
     });
 };
-
-
-
-
-// var value = d3.select('#body').attr("value");
-//
-//
-// $("#body").on("click", function () {
-//
-//     if (value === '0' || value === '1') {
-//         console.log(value);
-//         console.log(d3.event.transform.x)
-//         var p = d3.zoomIdentity.translate(d3.event.transform.x, d3.event.transform.y).scale(6);
-//         d3.select("#body").attr("value", "6").call(zoom.transform, p);
-//     }
-// });
-
-
-
-    // var t = d3.zoomIdentity.translate(0, 0).scale(1);
-
-
-
 
 
 

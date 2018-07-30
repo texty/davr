@@ -749,4 +749,10 @@ a.leaflet-control-zoom-in {
 #danube-m > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-overlay-pane > svg > g:nth-child(1) > path {
   pointer-events: none; }
 
+#texturePetals {
+  width: 30px;
+  height: 18px;
+  margin: 0 0 0 10px !important;
+  border: none; }
+
 /*# sourceMappingURL=styles.css.map */

@@ -50,6 +50,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/patterns.css">
+
 </head>
 
 
@@ -92,9 +94,10 @@
     <div id="text-description">
         <p class="text">Ми нанесли на карту найбільші річкові басейни України. Користувачу потрібно клікнути на один з басейнів у меню ліворуч для того, щоб почати працювати з картою.</p>
 
-        <p class="text">Після кліку карта прибирає всю зайву інформацію і залишає тільки обраний басейн та іконки (у вигляді «квітки») на ньому. Ними на карті позначені місця, де співробітники Держводагенства забирають воду для аналізів. Якщо у «квітки» рожевіють пелюстки ‒ значить, забруднення перевищує норму. <b>Наблизити карту можна за допомогою подвійного кліку.</b></p>
+        <p class="text">Після кліку карта прибирає всю зайву інформацію і залишає тільки обраний басейн та іконки (у вигляді «квітки») на ньому. Ними на карті позначені місця, де співробітники Держводагенства забирають воду для аналізів. Якщо у «квітки» рожевіють пелюстки — значить, забруднення перевищує норму. <b>Наблизити карту можна за допомогою подвійного кліку.</b></p>
 
         <p class="text">Якщо натиснути на іконку, на екрані з’являється нове вікно з графіком та збільшеною «квіткою». На графіку можна відстежити, як змінювалась концентрація речовини-забруднювача в минулому, і якою вона є зараз. Що ж до «квітки», кожна її пелюстка позначає певний параметр за яким оцінюють якість води. На пелюстки можна натискати для того, щоб побачити графік для обраного показника. Блакитний колір лінії графіка означає, що показник знаходиться в межах норми. Рожева частина лінії може мати різні відтінки залежно від того, наскільки показник перевищує норму. Чим лінія яскравіша, тим більшим є перевищення.</p>
+        <p class="text"> Іконка «око» над графіком <span style="padding-top:10px;"> <svg value="" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 500 200" style="enable-background:new 0 0 456 456;" xml:space="preserve"> <g><g><path d="M448.947,218.474c-0.922-1.168-23.055-28.933-61-56.81c-50.707-37.253-105.879-56.944-159.551-56.944    c-53.673,0-108.845,19.691-159.551,56.944c-37.944,27.876-60.077,55.642-61,56.81L0,228.396l7.845,9.923    c0.923,1.168,23.056,28.934,61,56.811c50.707,37.254,105.878,56.943,159.551,56.943c53.672,0,108.844-19.689,159.551-56.943    c37.945-27.877,60.078-55.643,61-56.811l7.846-9.923L448.947,218.474z M228.396,312.096c-46.152,0-83.699-37.548-83.699-83.699    c0-46.152,37.547-83.699,83.699-83.699s83.7,37.547,83.7,83.699C312.096,274.548,274.548,312.096,228.396,312.096z     M41.685,228.396c9.197-9.872,25.32-25.764,46.833-41.478c13.911-10.16,31.442-21.181,51.772-30.305    c-15.989,19.589-25.593,44.584-25.593,71.782s9.604,52.193,25.593,71.782c-20.329-9.124-37.861-20.146-51.771-30.306    C67.002,254.159,50.878,238.265,41.685,228.396z M368.273,269.874c-13.912,10.16-31.443,21.182-51.771,30.306    c15.988-19.589,25.594-44.584,25.594-71.782s-9.605-52.193-25.594-71.782c20.33,9.124,37.861,20.146,51.771,30.305    c21.516,15.715,37.639,31.609,46.832,41.477C405.91,238.268,389.785,254.161,368.273,269.874z" fill="#FFFFFF"/><path d="M223.646,168.834c-27.513,4-50.791,31.432-41.752,59.562c8.23-20.318,25.457-33.991,45.795-32.917    c16.336,0.863,33.983,18.237,33.59,32.228c1.488,22.407-12.725,39.047-32.884,47.191c46.671,15.21,73.197-44.368,51.818-79.352    C268.232,175.942,245.969,166.23,223.646,168.834z" fill="#FFFFFF"/></g></g></svg>  </span> перемкне відображення великої квітки на версію для користувачів із вадами зору. В цій версії пелюстки з діагональною полоскою означають неналежну якість за обраним показником, а пелюстки в крапку — задовільну якість.</p>
 
         <p class="text">Щоб <b>повернутись до попереднього (маленького) масштабу,</b> знову клікніть на міні-карту потрібного басейну ліворуч від основної карти.</p>
 
@@ -105,6 +108,12 @@
         </p>
 
         <p class="text">В <b>мобільній версії</b> відображається лише загальна картина якості води по басейнах українських річок, тому рекомендуємо переглядати проект на великому екрані (компʼютер, ноутбук).</p>
+
+
+
+            <!---->
+
+
     </div>
 </div>
 
@@ -191,12 +200,19 @@
 <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
+        <!--<div id='texturePetals'></div>-->
         <span class="close">&times;</span>
+        <!--<div id="eye">-->
+
+
+
         <p id="petalsData"></p>
 
         <div id="myModalGrid">
             <div id="chart"></div>
             <div id="big-flower">
+
+
 
             </div>
         </div>
@@ -413,12 +429,6 @@ body.appendChild(js4);
                 .start();
     };
 
-//
-//    d3.select("canvas.river.danube")
-//            .attr("data-intro", "Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>")
-//            .attr("data-step", "3");
-
-
     /* perfect scroll*/
 
     const perfectsc = new PerfectScrollbar('#regions', {
@@ -549,18 +559,40 @@ body.appendChild(js4);
     });
 
 
-
-//$('#contaminants').animate({ scrollTop: $("#tableContainer").offset().bottom}, 'slow');
-
-
-
-// $(window).on("resize", resizeme);
+    //перемикач для користувачыв з вадами зору
 //
+//    $("#texturePetals").on("click", function () {
+//        $(this).toggleClass("eye-clicked");
+//        var id = $("#texturePetals").attr("value");
+//        drawBigFlower(id);
+//        drawPoints();
+//        $('#eye').toggleText('Щоб активувати версію для користувачів з вадами зору, клікніть на іконку ока.', 'Версію для користувачів з вадами зору активовано.  Білі пелюстки означають, що показники в межах норми, пелюстки з текстурою - перевищення норми. Щоб повернутись до звичайної версії, ще раз клікніть на іконку ока.');
 //
-//    function resizeme() {
-//        location.reload();
-//    }
+//    });
+
+    $.fn.extend({
+        toggleText: function(a, b){
+            return this.text(this.text() == b ? a : b);
+        }
+    });
+
+
 </script>
+
+<svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="circles-1" patternUnits="userSpaceOnUse" width="10" height="10"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h
+0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSIjMTk5ZWIxIiAvPg
+ogIDxjaXJjbGUgY3g9IjEiIGN5PSIxIiByPSIxIiBmaWxsPSIjZmZmIi8+Cjwvc3ZnPg==" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg>
+
+<svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="diagonal-stripe-1" patternUnits="userSpaceOnUse" width="10" height="10"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h
+0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPScjREQxRkI5Jy8+Ci
+AgPHBhdGggZD0nTS0xLDEgbDIsLTIKICAgICAgICAgICBNMCwxMCBsMTAsLTEwCiAgICAgICAgI
+CAgTTksMTEgbDIsLTInIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nMScvPgo8L3N2Zz4=" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg>
+
+<svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="dots-9" patternUnits="userSpaceOnUse" width="10" height="10" > <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScgLz4KICA8cmVjdCB4PScwJyB5PScwJyB3aWR0aD0nOScgaGVpZ2h0PSc5JyBmaWxsPSdibGFjaycgLz4KPC9zdmc+" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg>
+
+
+<svg height="1" width="1" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="8" height="8" fill="#DD1FB9"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==" x="0" y="0" width="1" height="1"> </image> </pattern> </defs> </svg>
+
 <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-18136548-1']);

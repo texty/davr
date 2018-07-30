@@ -1081,3 +1081,22 @@ a.leaflet-control-zoom-in {
   pointer-events: none;
 }
 
+
+//версія для користувачів з вадами зору
+#texturePetals {
+  width:30px;
+  height:18px;
+  margin: 0 0 0 10px!important;
+  //background: url(http://velve.lv/templates/velve/design/icons/svg/eye-white.svg) no-repeat center bottom;
+  //background-size:contain;
+   border:none;
+  //background-image: url(https://upload.wikimedia.org/wikipedia/commons/c/c4/Eye_close_font_awesome_red.svg);
+  //background-size: cover;
+}
+
+.eye-clicked {
+  //background: url(../img/eye.png) no-repeat center bottom;
+}
+
+
+

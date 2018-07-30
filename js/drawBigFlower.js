@@ -30,28 +30,55 @@ function drawBigFlower(IdForChart) {
             })
             .style("stroke", "#070707")
             .style("fill", function (d) {
-                if(d.data.key != "Кисень.розчинений.МгО2.дм3") {
-                    if (d.data.size > 0.9) {
-                        // return PointColorsRed(d.data.size);
-                        return reds[2];
-                    }
-                    else {
-                        // return "#49E858"
-                        return green
-                    }
-                }
-
-                //якщо кисень
-                if(d.data.key === "Кисень.розчинений.МгО2.дм3") {
-                    if (d.data.size > 0.9) {
-                        return green;
-                    }
-                    else {
-                        // return "#49E858"
-                        return reds[2]
+                var eye = $("#texturePetals");
+                if(!eye.hasClass("eye-clicked")){
+                    if (d.data.key != "Кисень.розчинений.МгО2.дм3") {
+                        if (d.data.size > 0.9) {
+                            // return PointColorsRed(d.data.size);
+                            return reds[2];
+                        }
+                        else {
+                            // return "#49E858"
+                            return green
+                        }
                     }
 
+                    //якщо кисень
+                    if (d.data.key === "Кисень.розчинений.МгО2.дм3") {
+                        if (d.data.size > 0.9) {
+                            return green;
+                        }
+                        else {
+                            // return "#49E858"
+                            return reds[2]
+                        }
 
+
+                    }
+                } else {
+                    if (d.data.key != "Кисень.розчинений.МгО2.дм3") {
+                        if (d.data.size > 0.9) {
+                            // return PointColorsRed(d.data.size);
+                            return "url(#diagonal-stripe-1)";
+                        }
+                        else {
+                            // return "#49E858"
+                            return "url(#circles-1)"
+                        }
+                    }
+
+                    //якщо кисень
+                    if (d.data.key === "Кисень.розчинений.МгО2.дм3") {
+                        if (d.data.size > 0.9) {
+                            return "url(#circles-1)";
+                        }
+                        else {
+                            // return "#49E858"
+                            return "url(#diagonal-stripe-1)"
+                        }
+
+
+                    }
                 }
             })
             .on("click", function (d) {
@@ -155,4 +182,7 @@ function polarToCartesian(angle, radius) {
 d3.select("#big-flower")
     .append("p")
     .attr("id", "bigFlowerIntro")
-    .html("клікайте на пелюстки, аби побудувати <br> графік для різних показників");
+    .html('клікайте на пелюстки, аби побудувати <br> графік для різних показників');
+
+
+
