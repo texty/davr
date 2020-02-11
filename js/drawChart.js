@@ -9,7 +9,7 @@ var all_flower_data;
 function retrieve_all_flower_data(cb) {
     if (all_flower_data) return cb(all_flower_data);
 
-    return d3.csv("data/allFlowerData.csv", function(err, data){
+    return d3.csv("data/allFlowerData_2019.csv", function(err, data){
         if (err) throw err;
 
         data.forEach(function (d) {
