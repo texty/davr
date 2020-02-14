@@ -5,13 +5,13 @@
 
 
 var callTable = function (key) {
-    var file = "data/contaminantsByRegionEdited.csv";
+    var file = "data/contaminants_2018.csv";
 
     d3.csv(file, function (error, data) {
         if (error) throw error;
 
         data.forEach(function (d) {
-            d.value = +d.value;
+            d.year2018 = +d.year2018;
         });
         var table = d3.select("#tableContainer")
             .append("table")
@@ -32,38 +32,37 @@ var callTable = function (key) {
 // Add the table body rows.
         var rows = tableBody.selectAll('tr')
             .data(data.filter(function (d) {
-                return d.regionName === key
+                return d.region === key
             }))
             .enter()
             .append('tr')
             .attr("id", function (d) {
-                return "id"+d.id
+                return "id"+d.companyID
             });
 
 
 
         rows.append('td')
-
             .text(function (d) {
-
-                return d.id;
+                return d.companyID;
             });
 
 
         rows.append('td')
             .text(function (d) {
-                return d.name;
+                return d.companyNAME;
             });
 
         rows.append('td')
             .text(function (d) {
-                return d.value;
-            });
+                return d.year2018;
+            })
+            .style("text-align", "center");
 
 
         table.selectAll("tbody tr")
             .sort(function (a, b) {
-                return d3.descending(a.value, b.value);
+                return d3.descending(a.year2018, b.year2018);
             });
 
     });
