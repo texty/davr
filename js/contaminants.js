@@ -2,8 +2,6 @@
  * Created by yevheniia on 20.06.18.
  */
 
-
-
 var callTable = function (key) {
     var file = "data/contaminants_2018.csv";
 
