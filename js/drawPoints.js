@@ -1,7 +1,6 @@
 function drawPoints() {
 
     d3.csv("data/flowers.csv", function (error, points) {
-    // d3.csv("data/total_data_gather.csv", function (error, points) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
             .key(function (d) {
@@ -11,15 +10,6 @@ function drawPoints() {
                 return d.date
             })
             .entries(points);
-
-/*----------------------- roll up try ---------------------------------------*/
-
-
-
-
-/*-------------------------------------------------------------------------- -*/
-
-
 
 
         //беремо дані за останню можливу дату по кожному місцю водозабору
@@ -125,11 +115,7 @@ function drawPoints() {
                         var keyindicator = d.data.key;
                         var norm = d.data.norm;
                         
-                        // drawChart(IdForChart, indicator);
-                        // updateLineChart(IdForChart)
-                        // d3.selectAll(".messageCheckbox").attr("name", IdForChart);
-                        // FindByAttributeValue("value", keyindicator).checked = true;
-                        
+                                           
                         
                         drawBigFlower(IdForChart);
                         drawChart(IdForChart, keyindicator);

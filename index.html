@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <meta name="description"
           content="Чиста вода">
@@ -75,6 +75,7 @@
                     </svg>
                 </a>
             </div>
+
             <div class="twitter">
                 <a class='share-btn' href="https://twitter.com/intent/tweet?text=http://texty.org.ua/water/">
                     <svg id="twitter" fill='white' viewBox="0 0 448 512">
@@ -108,128 +109,16 @@
         </p>
 
         <p class="text">В <b>мобільній версії</b> відображається лише загальна картина якості води по басейнах українських річок, тому рекомендуємо переглядати проект на великому екрані (компʼютер, ноутбук).</p>
-
-
-
-            <!---->
-
-
     </div>
 </div>
 
+<!-- кнопка-перемикач на табличку -->
+<button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємства скидають забруднену воду в річки" data-step="4">Хто забруднює річки в твоїй області </button>
 
-<button id="switchToTable" class="switch"
-        data-intro="Тисніть, аби дізнатись, які підприємства скидають забруднену воду в річки" data-step="4">Хто
-    забруднює річки в твоїй області
-</button>
-<button id="switchToMap" class="switch">Повернутись до
-    карти
-</button>
+<!-- кнопка-перемикач на карту -->
+<button id="switchToMap" class="switch">Повернутись до  карти</button>
 
-
-
-<div id="mobileMaps">
-    <!--<button id="switchToTable-mob" class="switch-mob">Хто-->
-        <!--забруднює річки в твоїй області-->
-    <!--</button>-->
-    <!--<button id="switchToMap-mob" class="switch-mob">-->
-        <!--Повернутись до карти-->
-    <!--</button>-->
-    <p style="width:90%; margin-left:5%;">Увага! Ви переглядаєте мобільну версію, без інтерактивності. Для того, щоб побачити деталі, використовуйте десктоп. Блакитні пелюстки квіток означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми.</p>
-    <h5 class="mob">Дунай</h5>
-    <div id="danube-m"></div>
-
-
-    <h5 class="mob">Дністер</h5>
-    <div id="dnister-m"></div>
-
-
-    <h5 class="mob">Вісла</h5>
-    <div id="wisla-m"></div>
-
-
-    <h5 class="mob">Південний Буг</h5>
-    <div id="bug-m"></div>
-
-
-    <h5 class="mob">Дніпро</h5>
-    <p style="width:90%; margin-left:5%;">Після кліку карту можна буде зсунути вліво-вправо та вверх-вниз, щоб побачити приховану частину басейну.</p>
-    <div id="dnipro-m"></div>
-
-
-
-
-    <h5 class="mob">Дон</h5>
-    <div id="don-m"></div>
-
-
-
-    <div id="donors-mob">
-        <div></div>
-        <img style="width:100%" src="img/logo/USAID.png">
-        <img style="width:100%" src="img/logo/UKAID.jpg">
-        <img style="width:100%;margin-top:5px" src="img/logo/eurasia_foundation.png">
-        <img style="width:100%" src="img/logo/davr.png">
-        <img style="width:100%; margin-top:5px" src="img/logo/daeu.jpg">
-
-    </div>
-</div>
-
-
-<div id="clone"></div>
-<div id="body" value="0"
-     data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки. Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>"
-     data-step="2">
-    <div id="map"></div>
-    <!--<div id="title">-->
-    <!--<h1>На чисту воду!</h1></div>-->
-    <!--<div id="subtitle">-->
-    <!--<h3>Інтерактивна карту забруднення річок в Україні на основі даних Державного  агентства водних ресурсів. На карті понад 400 пунктів контролю річкової води. Ви можете подивитися до 16 параметрів забруднення, а також, як воно змінювалося протягом п`яти років</h3></div>-->
-    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію з користування
-        картою
-    </button>
-</div>
-<script>
-    var clonedivWidth = document.getElementById('clone').clientWidth;
-    var mapWidth = document.getElementById('body').clientWidth;
-    var buttonHeight = document.getElementById('switchToTable').clientHeight;
-    //    alert(buttonHeight)
-</script>
-
-
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <!--<div id='texturePetals'></div>-->
-        <span class="close">&times;</span>
-        <!--<div id="eye">-->
-
-
-
-        <p id="petalsData"></p>
-
-        <div id="myModalGrid">
-            <div id="chart"></div>
-            <div id="big-flower">
-
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="lib/jquery-2.1.4.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
-<script src="https://d3js.org/topojson.v2.min.js"></script>
-<script src=""></script>
-<script src="lib/share-behavior.js"></script>
-<script src="lib/perfect-scrollbar.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-
-
+<!-- панель вибору річок -->
 <div id="allrivers">
     <div id="danube" class="riverCont"
          data-intro="Перед тим, як натиснути <b>Далі</b>, клікніть на позначену область, щоб обрати басейн річки"
@@ -260,92 +149,50 @@
     </div>
 </div>
 
+<div id="clone"></div>
+
+
+<!-- десктопна версія-->
+<div id="body" class="desktop-version"
+     value="0"
+     data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки. Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>"
+     data-step="2">
+    <div id="map"></div>
+    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію з користування
+        картою
+    </button>
+</div>
 
 
 
-<script>
-    var userAgent = navigator.userAgent.toLowerCase();
-    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
-    console.log(isTablet);
-
-    var isMobile = {
-        Android: function() {
-            return navigator.userAgent.match(/Android/i);
-        },
-        BlackBerry: function() {
-            return navigator.userAgent.match(/BlackBerry/i);
-        },
-        iOS: function() {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-        },
-        Opera: function() {
-            return navigator.userAgent.match(/Opera Mini/i);
-        },
-        Windows: function() {
-            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-        },
-        any: function() {
-            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-        }
-    };
 
 
-var body = document.getElementsByTagName('body')[0];
-var js0 = document.createElement("script");
-var js1 = document.createElement("script");
-var js2 = document.createElement("script");
-var js3 = document.createElement("script");
-var js4 = document.createElement("script");
+<div id="mobileMaps">
+    <p style="width:90%; margin-left:5%;">Увага! Ви переглядаєте мобільну версію, без інтерактивності. Для того, щоб побачити деталі, використовуйте десктоп. Блакитні пелюстки квіток означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми.</p>
 
-js0.type = "text/javascript";
-js1.type = "text/javascript";
-js2.type = "text/javascript";
-js3.type = "text/javascript";
-js4.type = "text/javascript";
+    <h5 class="mob">Дунай</h5>
+    <div id="danube-m"></div>
 
 
-if (screen.width >= 700) {
-console.log("big screen");
-js0.src = "https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js";
-js1.src = "js/drawBigFlower.js";
-js2.src = "js/drawChart.js";
-js3.src = "js/updateRiver.js";
-js4.src = "js/contaminants.js";
-d3.select("#mobileMaps").style("display", "none");
-d3.select("#allrivers").style("display", "grid");
+    <h5 class="mob">Дністер</h5>
+    <div id="dnister-m"></div>
 
 
-}
-else if (screen.width < 700){
-console.log("small screen");
-    d3.select("#mobileMaps").style("display", "block");
-    d3.select('#allrivers').style('display', 'none');
-    d3.selectAll('.riverCont').style('display', 'none');
-    d3.select('#runIntro').style('display', 'none');
+    <h5 class="mob">Вісла</h5>
+    <div id="wisla-m"></div>
 
 
-    js0.src = "";
-    js1.src = "js/mobile-script.js";
-    js2.src = "";
-    js3.src = "";
-    js4.src = "js/contaminants.js";
-
-}
-body.appendChild(js0);
-body.appendChild(js1);
-body.appendChild(js2);
-body.appendChild(js3);
-body.appendChild(js4);
-
-</script>
-<!--<script src="https://d3js.org/d3-tile.v0.0.min.js"></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-<!--<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>-->
-
-<!--<script src="js/leafletmap.js"></script>-->
+    <h5 class="mob">Південний Буг</h5>
+    <div id="bug-m"></div>
 
 
+    <h5 class="mob">Дніпро</h5>
+    <p style="width:90%; margin-left:5%;">Після кліку карту можна буде зсунути вліво-вправо та вверх-вниз, щоб побачити приховану частину басейну.</p>
+    <div id="dnipro-m"></div>
 
+    <h5 class="mob">Дон</h5>
+    <div id="don-m"></div>
+</div>
 
 
 <div id="regions">
@@ -381,8 +228,8 @@ body.appendChild(js4);
 <div id="contaminants">
     <p>Ми знаємо, що ці підприємства забруднюють воду. Чому вони продовжують це робити?</p>
 
-   <p >Підприємства повинні очищувати усю воду, яку скидають у річки. Але часом вони не можуть цього зробити, оскільки мають застарілі технології, а модернізація коштує надто дорого. Іноді необхідне обладнання взагалі відсутнє. В той же час деякі підприємства свідомо економлять на очисних спорудах, щоб отримати додатковий прибуток.
-   </p>
+    <p >Підприємства повинні очищувати усю воду, яку скидають у річки. Але часом вони не можуть цього зробити, оскільки мають застарілі технології, а модернізація коштує надто дорого. Іноді необхідне обладнання взагалі відсутнє. В той же час деякі підприємства свідомо економлять на очисних спорудах, щоб отримати додатковий прибуток.
+    </p>
 
     <p>В таких випадках держава може надати підприємству право скидати в річки забруднену воду. Проте, кількість речовин, які вони можуть скинути, обмежують. Вона встановлює «гранично допустимі скиди», скорочено — ГДС.
     </p>
@@ -390,31 +237,90 @@ body.appendChild(js4);
     <p>ГДС потрібні для того, аби поступово зменшувати рівень забруднення. За право забруднювати довкілля підприємства платять екологічний податок. Якщо вони перевищують встановлені норми — то зобов’язані сплатити штраф.</p>
 
     <p>Одна з функцій ГДС — зробити невигідним забруднення річок. В Україні діє державна стратегія екологічної політики. У ній закріплено, що до 2020 року кількість речовин-забруднювачів має зменшитись на 15%. Тому підприємства повинні модернізувати свої очисні споруди, щоб відповідати новим вимогам.
-         <p><b>Оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. Наприклад, цифра 284.3  біля ПРАТ АК «КИЇВВОДОКАНАЛ» означає, що підприємство cкинуло в річки 284.3 млн кубічних метрів забрудненої води. Нагадуємо, що в 1 кубічному метрі міститься 1000 літрів.</b></p>
+    <p><b>Оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. Наприклад, цифра 284.3  біля ПРАТ АК «КИЇВВОДОКАНАЛ» означає, що підприємство cкинуло в річки 284.3 млн кубічних метрів забрудненої води. Нагадуємо, що в 1 кубічному метрі міститься 1000 літрів.</b></p>
+
+    <div id="tableContainer"></div>
+</div>
+
+<div id="donors-mob">
+    <img style="width:150px" src="img/logo/USAID.png">
+    <img style="width:70px" src="img/logo/UKAID.jpg">
+    <img style="width:150px; margin-top:5px" src="img/logo/eurasia_foundation.png">
+    <img style="width:220px" src="img/logo/davr.png">
+    <img style="width:180px; margin-top:5px" src="img/logo/daeu.jpg">
+</div>
 
 
-
-    <div id="tableContainer">
-
-
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p id="petalsData"></p>
+        <div id="myModalGrid">
+            <div id="chart"></div>
+            <div id="big-flower"></div>
+        </div>
     </div>
 </div>
 
-<div id="donors">
-    <div></div>
-    <img style="width:100%" src="img/logo/USAID.png">
-    <img style="width:100%" src="img/logo/UKAID.jpg">
-    <img style="width:100%;margin-top:5px" src="img/logo/eurasia_foundation.png">
-    <img style="width:100%" src="img/logo/davr.png">
-    <img style="width:100%; margin-top:10px" src="img/logo/daeu.jpg">
 
-</div>
+<script src="lib/jquery-2.1.4.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="https://d3js.org/topojson.v2.min.js"></script>
+<script src="lib/share-behavior.js"></script>
+<script src="lib/perfect-scrollbar.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+
+
+
+
+
 <script>
+    var clonedivWidth = document.getElementById('clone').clientWidth;
+    var mapWidth = document.getElementById('body').clientWidth;
+    var buttonHeight = document.getElementById('switchToTable').clientHeight;
 
-    if (screen.width < 700) {
-        d3.select("#donors").style("display", "none");
-    }
 
+    var userAgent = navigator.userAgent.toLowerCase();
+    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
+    console.log(isTablet);
+
+    var isMobile = {
+        Android: function() {
+            return navigator.userAgent.match(/Android/i);
+        },
+        BlackBerry: function() {
+            return navigator.userAgent.match(/BlackBerry/i);
+        },
+        iOS: function() {
+            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+        Opera: function() {
+            return navigator.userAgent.match(/Opera Mini/i);
+        },
+        Windows: function() {
+            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
+        },
+        any: function() {
+            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+        }
+    };
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+<script src="js/retrieve_data.js"></script>
+<script src="js/drawBigFlower.js"></script>
+<script src="js/drawChart.js"></script>
+<script src="js/updateRiver.js"></script>
+<script src="js/contaminants.js"></script>
+<script src="js/mobile-script.js"></script>
+
+
+<script>
 
     startIntro = function () {
         introJs()
@@ -429,78 +335,39 @@ body.appendChild(js4);
                 .start();
     };
 
-    /* perfect scroll*/
-
-    const perfectsc = new PerfectScrollbar('#regions', {
-        wheelSpeed: 2,
-        wheelPropagation: true,
-        minScrollbarLength: 20
-    });
-
-    const ps = new PerfectScrollbar('#allrivers', {
-        wheelSpeed: 2,
-        wheelPropagation: true,
-        minScrollbarLength: 20
-    });
+//    /* perfect scroll*/
+//    const perfectsc = new PerfectScrollbar('#regions', {
+//        wheelSpeed: 2,
+//        wheelPropagation: true,
+//        minScrollbarLength: 20
+//    });
+//
+//    const ps = new PerfectScrollbar('#allrivers', {
+//        wheelSpeed: 2,
+//        wheelPropagation: true,
+//        minScrollbarLength: 20
+//    });
 
 
     /* перемикач між екранами*/
-
     d3.select("#switchToTable").on("click", function () {
-        d3.select("#body").style("display", "none");
-        d3.select("#mobileMaps").style("display", "none");
-        d3.select("#allrivers").style("display", "none");
-        d3.select("#regions").style("display", "block");
-        d3.select("#contaminants").style("display", "block");
-        d3.select("#switchToTable").style("display", "none");
-        d3.select("#switchToMap").style("display", "block");
-
+        d3.selectAll("#body, #mobileMaps, #allrivers, #switchToTable").style("display", "none");
+        d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "block");
     });
 
     d3.select("#switchToMap").on("click", function () {
- if(screen.width >=700) {
-     d3.select("#body").style("display", "block");
-     d3.select("#allrivers").style("display", "grid");
-     d3.select("#regions").style("display", "none");
-     d3.select("#contaminants").style("display", "none");
-     d3.select("#switchToTable").style("display", "block");
-     d3.select("#switchToMap").style("display", "none");
- } else if (screen.width < 700) {
-     d3.select("#mobileMaps").style("display", "block");
-     d3.select("#regions").style("display", "none");
-     d3.select("#contaminants").style("display", "none");
-     d3.select("#switchToTable").style("display", "block");
-     d3.select("#switchToMap").style("display", "none");
-
-
+        d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "none");
+        if(screen.width >=700) {
+             d3.selectAll("#body, #allrivers, #switchToTable").style("display", "block");
+            d3.select("#allrivers").style("display", "grid");
+         } else if (screen.width < 700) {
+             d3.selectAll("#mobileMaps, #switchToTable").style("display", "block");
         }
-
     });
-
-    d3.select("#switchToTable-mob").on("click", function () {
-        d3.select("#mobileMaps").style("display", "none");
-        d3.select("#regions").style("display", "block");
-        d3.select("#contaminants").style("display", "block");
-        d3.select("#switchToTable-mob").style("display", "none");
-        d3.select("#switchToMap-mob").style("display", "block");
-
-    });
-
-    d3.select("#switchToMap-mob").on("click", function () {
-        d3.select("#mobileMaps").style("display", "block");
-        d3.select("#regions").style("display", "none");
-        d3.select("#contaminants").style("display", "none");
-        d3.select("#switchToTable-mob").style("display", "block");
-        d3.select("#switchToMap-mob").style("display", "none");
-
-    });
-
 
     /* затримка появи річок, поки вони вантажаться*/
     d3.select("#body").append("div")
             .attr("id", "loader")
-            //        .append("img")
-            //        .attr("src", "img/loading.gif");
             .append("p")
             .html("триває завантаження<span>.</span><span>.</span><span>.</span>")
             .attr("id", "wait");
@@ -509,7 +376,6 @@ body.appendChild(js4);
     setTimeout(function () {
         $('body').css('pointer-events', 'all');
         $('#loader').remove()
-
     }, 4000);
 
     var riverForDrawId;
@@ -558,24 +424,11 @@ body.appendChild(js4);
         $('#contaminants').animate({scrollTop: $("#tableContainer").offset().top}, 'slow');
     });
 
-
-    //перемикач для користувачыв з вадами зору
-//
-//    $("#texturePetals").on("click", function () {
-//        $(this).toggleClass("eye-clicked");
-//        var id = $("#texturePetals").attr("value");
-//        drawBigFlower(id);
-//        drawPoints();
-//        $('#eye').toggleText('Щоб активувати версію для користувачів з вадами зору, клікніть на іконку ока.', 'Версію для користувачів з вадами зору активовано.  Білі пелюстки означають, що показники в межах норми, пелюстки з текстурою - перевищення норми. Щоб повернутись до звичайної версії, ще раз клікніть на іконку ока.');
-//
-//    });
-
     $.fn.extend({
         toggleText: function(a, b){
             return this.text(this.text() == b ? a : b);
         }
     });
-
 
 </script>
 

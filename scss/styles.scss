@@ -20,7 +20,7 @@ body {
   font-family: "Segoe UI Light", sans-serif;
   display:grid;
   grid-template-columns: 310px auto;
-  grid-template-rows: auto auto  calc(100vh - 50px);
+  //grid-template-rows: auto auto  calc(100vh - 50px);
   margin:0;
   padding:0;
   background-color: #080808; //black design
@@ -29,6 +29,9 @@ body {
 
   @media #{$brk-narrow} {
     grid-template-columns: 160px auto;
+  }
+  @media #{$brk-spnarrow} {
+   display: block;
   }
 }
 
@@ -73,7 +76,7 @@ body {
   grid-row:1/2;
   grid-column: 1/-1;
   color:white;
-  margin-bottom: 150px;
+  margin-bottom: 50px;
 }
 
 /* ---------  Текст --------- */
@@ -87,58 +90,8 @@ h1, h3, p, li {
 #header {
   height:100vh;
   background-image: url(../img/GIFF.gif);
-  //background-image: url(../img/water24.gif);
   background-size: cover;
   margin: 0 !important;
-
-  @media #{$brk-xlarge} {
-    background-image: url(../img/GIFF.gif);
-  }
-
-
-  @media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    height:100vh;
-  }
-
-
-  @media only screen
-  and (min-device-width: 1112px)
-  and (max-device-width: 1112px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    height:100vh;
-  }
-
-  @media only screen
-  and (min-device-width: 1366px)
-  and (max-device-width: 1366px)
-  and (orientation: landscape)
-  and (-webkit-min-device-pixel-ratio: 2) {
-    height:100vh;
-  }
-
-  @media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 812px)
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) {
-    height:50vh;
-  }
-
-  @media #{$brk-spnarrow} {
-    height:60vh;
-
-  }
-
-  @media only screen and (orientation: portrait) {
-    height: 50vh;
-  }
-
-
 }
 
 #title {
@@ -154,32 +107,19 @@ h1, h3, p, li {
 }
 
 #subtitle {
-  @media #{$brk-spnarrow} {
-    font-size: 30px;
-     width:50%;
-  }
   margin-left: 40px;
   line-height: 1.5;
-  width:35%;
+  width: 90%;
+  max-width: 500px;
   opacity:0.8;
   text-align:left;
-  font-size: 17px;
+  font-size: 30px;
   letter-spacing: 2px;
   color: white;
-
-  @media  #{$brk-xlarge} {
-    width:25%;
+  @media #{$brk-spnarrow} {
+    font-size: 22px;
+    width: 80%;
   }
-
-  @media #{$brk-height} {
-    font-size: 14px;
-  }
-
-
-}
-
-#subtitle span {
-  //background-color: #276c9e;
 }
 
 #credits {
@@ -193,7 +133,6 @@ h1, h3, p, li {
 
 p.text, li.text {
   color: white;
-  //opacity:0.7;
 }
 
 
@@ -242,8 +181,12 @@ h3 {
 #text-description {
   width:50%;
   color:#ABDAFF;
-  margin:100px auto;
+  margin: 100px auto;
+  @media #{$brk-spnarrow} {
+    width:90%;
+  }
 }
+
 p, li {
   font-size:18px;
   font-family: "Segoe UI Light", sans-serif;
@@ -262,16 +205,23 @@ div#donors  {
     margin-top: 100px;
     background-color: #ffffff;
     grid-column: 1/3;
-    display: grid;
-    grid-template-columns: auto 220px 80px 200px 250px 200px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  align-items: center;
+    //grid-template-columns: auto 220px 80px 200px 250px 200px auto;
  }
 
 div#donors-mob {
   margin-top: 100px;
   background-color: #ffffff;
   grid-column: 1/3;
-  display: grid;
-  grid-template-columns: auto 150px 70px 150px 220px 180px auto;
+  //display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  //grid-template-columns: auto 150px 70px 150px 220px 180px auto;
 }
 
 div#donors > img {
@@ -428,10 +378,12 @@ p.button {
 
 #body {
   position:relative;
-  height: 100vh;
   width:100%;
   grid-row:2/4;
   grid-column: 2/3;
+  @media #{$brk-spnarrow} {
+    display:none;
+  }
 }
 
 
@@ -500,6 +452,7 @@ position: absolute;
 
 .riverCont > img {
   pointer-events: none;
+  width: 100%;
 }
 
 .riverCont > h5 {
@@ -536,7 +489,7 @@ position: absolute;
   width:100%;
   position: relative;
   @media #{$brk-spnarrow} {
-    margin-left: 50px;
+    margin-left: 10px;
   }
 }
 
@@ -780,9 +733,7 @@ div.tooltip {
   font: 14px sans-serif;
   background: white;
   border: 0px;
-  //border-radius: 8px;
   pointer-events: none;
-  //fill:white;
   z-index:6;
 }
 
@@ -830,7 +781,6 @@ div.chartHint {
   max-width: 100px;
   max-height:100px;
   color: #ffffff;
-  //background-color: #ffffff;
   pointer-events: none;
 }
 
@@ -869,7 +819,6 @@ input[type="radio"] {
   stroke: $blueTextColor;
   z-index: 1000;
   stroke-width: 0.8px;
-  //stroke-dasharray: 5;
 }
 
 #lineText {
@@ -884,11 +833,7 @@ input[type="radio"] {
   stroke: #ccc;
   stroke-dasharray: 2px 3px;
   shape-rendering: crispEdges;
-  //stroke-width: 1px;
 }
-
-
-
 
 
 path.domain {
@@ -925,13 +870,11 @@ g.tick {
 
 .river {
   z-index:1;
-  //display:none;
 }
 
 .petal {
   z-index:1;
   display:none;
-  //color: #95ddff;
 }
 
 
@@ -987,38 +930,6 @@ img.preview {
 
 
 
-///////////////////////
-//#basemapslidercontainer {
-//  position: absolute;
-//  top: 50px;
-//  right: 10px;
-//  z-index: 1000;
-//}
-//
-//#basemapslider{
-//  font-size:62.5%;
-//  margin: 14px;
-//  height: 125px;
-//  width:7px;
-//}
-//
-//#map {
-//  width: 100vw;
-//  height: 100vh;
-//}
-//
-//.leaflet-container {
-//  background:  black;
-//  outline: 0;
-//}
-//
-//path.leaflet-interactive {
-//fill: #0b0b0b;
-//fill-opacity: 0.8;
-//stroke: black;
-//stroke-opacity: 0;
-//}
-
 
 svg#labels {
   position:absolute;
@@ -1042,11 +953,15 @@ svg#labels {
 
 
 #mobileMaps {
+  display: none;
   position:relative;
   grid-column: 1/3;
   grid-row: 3/4;
   padding-bottom: 150px;
+  @media #{$brk-spnarrow}{
+    display: block;
 
+  }
 
 }
 
@@ -1087,16 +1002,10 @@ a.leaflet-control-zoom-in {
   width:30px;
   height:18px;
   margin: 0 0 0 10px!important;
-  //background: url(http://velve.lv/templates/velve/design/icons/svg/eye-white.svg) no-repeat center bottom;
-  //background-size:contain;
    border:none;
-  //background-image: url(https://upload.wikimedia.org/wikipedia/commons/c/c4/Eye_close_font_awesome_red.svg);
-  //background-size: cover;
 }
 
-.eye-clicked {
-  //background: url(../img/eye.png) no-repeat center bottom;
-}
+
 
 
 

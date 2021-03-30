@@ -33,7 +33,6 @@ var indicatorNames = [
 ];
 
 var riversNames = [
-    // {key:"Дунай", value:"danube", lat: "24.53", lon:"48.45", scale:"10000"},
     {key: "Дунай", value: "danube", lat: "20.00", lon: "48.30", scale: "2700", color: "viridisScale"},
     {key: "Дністер", value: "dnister", lat: "25.53", lon: "49.00", scale: "4000", color: "viridisScale"},
     {key: "Дніпро", value: "dnipro", lat: "30.53", lon: "52.45", scale: "3000", color: "viridisScale"},
@@ -44,18 +43,9 @@ var riversNames = [
 
 
 
-
-
 /*Змінні для великої квітки*/
 var halfRadius = 2;
-
-
-
 var bigradius = clonedivWidth / 10;
-
-var arc = d3.arc()
-    .outerRadius(bigradius)
-    .innerRadius(0);
 
 var size = d3.scaleSqrt()
     .domain([0, 1])
@@ -63,18 +53,14 @@ var size = d3.scaleSqrt()
 
 var pie = d3.pie()
     .sort(null)
-    // .value(function(d) { return d.size; });
-    .value(function (d) {
-        return 5;
-    });
+    .value(function (d) {  return 5;  });
 
-var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
-
-var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right,
+var chartMargin = {top: 20, right: 20, bottom: 20, left: 35},
+    chartWidth = clonedivWidth - chartMargin.left - chartMargin.right,
     chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
-var flowerMargin = {top: 20, right: 20, bottom: 20, left: 35};
-var flowerWidth = clonedivWidth - chartMargin.left - chartMargin.right,
+var flowerMargin = {top: 20, right: 20, bottom: 20, left: 35},
+    flowerWidth = clonedivWidth - chartMargin.left - chartMargin.right,
     flowerHeight = 300 - chartMargin.top - chartMargin.bottom;
 
 var flowerSvg = d3.select("#big-flower").append("svg")
@@ -86,39 +72,27 @@ var flowerG = flowerSvg.append("g")
     .attr('transform', 'translate(+' + flowerWidth / 2 + "," + flowerHeight / 2 + ')');
 
 
-var div = d3.select("#myModal").append("div")
+d3.select("#myModal")
+    .append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
 
-
-
-
-// var hint = d3.select("#myModal").append("div")
-//     .attr("class", "hint")
-//     .html("Наведіть </br> мишею на </br>пелюсток, аби </br> обрати показник </br> якості води");
-
-/* Кольорові шкали для річок та пелюсток */
-// var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#82bcf4']; //black design
-
-
 var bluRedWhite = ['#12335a', '#143d67', '#154675', '#165183', '#165b92', '#1765a0', '#1671af', '#167bbf', '#1486ce', '#1292dd', '#0e9ded', '#3aa8f5', '#64b2f4', '#9dc3f9'];
 
-//, '#9dc6f3', '#b4d1f3', '#c8daf2'
 var BlWhScale = d3.scaleQuantile() //синя шкала для річок
     .range(bluRedWhite)
     .domain([0, 9]);
 
 
-
 var reds = ["#570c49", "#84126e", "#DD1FB9", "#EC76D5", "#f094df"];
-var green = "#199eb1"; //black design
+var green = "#199eb1";
 
-// var green = "#7bf491";
+
 var PointColorsRed = d3.scaleQuantile()
-    // .range(colorbrewer.Reds[9])
     .range(reds)
     .domain([0, 9]);
+
 
 /* проекція для карти*/
 
@@ -127,28 +101,23 @@ var zoom;
 
 var zoomTrans = {x:0, y:0, scale:1};
 
-if (window.innerWidth > 2000){
-projection = d3.geoMercator()
-    .scale(3500)
-    .rotate([0, 0, 0])
-    .center([30, 50]);
+// if (window.innerWidth > 2000){
 
-    zoom = d3.zoom()
-        .scaleExtent([4, 4])
-        .on('zoom', function(){
+// projection = d3.geoMercator()
+//     .scale(3500)
+//     .rotate([0, 0, 0])
+//     .center([30, 50]);
+//
+//     zoom = d3.zoom()
+//         .scaleExtent([4, 4])
+//         .on('zoom', function(){
+//             map.redraw(d3.event.transform);
+//             d3.event.transform.k === 1 ? d3.select('#labels').style("display", "none"):  d3.select('#labels').style("display", "block");
+//         });
 
-            map.redraw(d3.event.transform);
-
-            if(d3.event.transform.k === 1){
-                d3.select('#labels').style("display", "none")
-            }
-            if(d3.event.transform.k > 1){
-                d3.select('#labels').style("display", "block")
-            }
-        });
-
-}
-else if (window.innerWidth < 2000){
+// }
+//
+// else if (window.innerWidth < 2000){
     projection = d3.geoMercator()
         .scale(2000)
         .rotate([0, 0, 0])
@@ -157,21 +126,14 @@ else if (window.innerWidth < 2000){
     zoom = d3.zoom()
         .scaleExtent([6, 6])
         .on('zoom', function(){
-
-            zoomTrans.x = d3.event.transform.x;
-            zoomTrans.y = d3.event.transform.y;
-            zoomTrans.scale = d3.event.transform.k;
-
+            // zoomTrans.x = d3.event.transform.x;
+            // zoomTrans.y = d3.event.transform.y;
+            // zoomTrans.scale = d3.event.transform.k;
             map.redraw(d3.event.transform, riverForDrawId);
+            d3.event.transform.k === 1 ? d3.select('#labels').style("display", "none") : d3.select('#labels').style("display", "block");
 
-            if(d3.event.transform.k === 1){
-                d3.select('#labels').style("display", "none")
-            }
-            if(d3.event.transform.k > 1){
-                d3.select('#labels').style("display", "block")
-            }
         });
-}
+
 
 
 var path2 = d3.geoPath()
@@ -196,262 +158,64 @@ var indicatorHint = d3.select("#modalKeysHeadings").append("div")
 
 /* контейнер для svg та canvas */
 var map = {};
-mapHeight = window.innerHeight - 50;
+
 map.width = mapWidth;
-map.height = mapHeight;
+map.height = window.innerHeight - 50;
+
+projection
+    .translate([map.width/2, map.height/2]);
 
 
+function drawAllCanvases(mapCanvas, clas, retrieveName, retrievePath){
 
-projection.translate([map.width/2, map.height/2]);
+    map[mapCanvas] = d3.select("#body").append("canvas")
+        .attr('height', map.height)
+        .attr('width', map.width)
+        .attr("class", clas);
 
-/*------------------ Дунай ------------------------------- */
-map.canvasDanube = d3.select("#body").append("canvas")
-    .attr('height', map.height)
-    .attr('width', map.width)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 350")
-    .attr("class", "river danube");
+    var ctx = map[mapCanvas].node().getContext('2d');
 
-var ctxDanube = map.canvasDanube.node().getContext('2d');
-
-var pathDanube = d3.geoPath()
-    .projection(projection)
-    // .context(ctx);
-    .context(ctxDanube);
+    var riverPath = d3.geoPath()
+        .projection(projection)
+        .context(ctx);
 
 
-map.canvasDanube.draw = function (transform) {
-    retrieve("DANUBE", d3.json, "data/DANUBE.json", function (data) {
-        ctxDanube.clearRect(0, 0, map.width, map.height);
-        ctxDanube.save();
+    map[mapCanvas].draw = function (transform) {
+        retrieve(retrieveName, d3.json, retrievePath, function (data) {
+            ctx.clearRect(0, 0, map.width, map.height);
+            ctx.save();
 
-        if (transform) {
-            ctxDanube.translate(transform.x, transform.y);
-            ctxDanube.scale(transform.k, transform.k);
-        }
-            ctxDanube.fillStyle = "transparent";        data.forEach(function (d) {
-            ctxDanube.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
+            if (transform) {
+                ctx.translate(transform.x, transform.y);
+                ctx.scale(transform.k, transform.k);
+            }
+            ctx.fillStyle = "transparent";        data.forEach(function (d) {
+                ctx.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
 
-                ctxDanube.lineWidth = d.properties.a_WIDTH5 / 100;
+                ctx.lineWidth = d.properties.a_WIDTH5 / 100;
 
-                ctxDanube.lineWidth = d.properties.a_WIDTH5 / 150;
+                ctx.lineWidth = d.properties.a_WIDTH5 / 150;
 
-            // ctxDanube.globalAlpha = 0.8;
-            ctxDanube.beginPath();
-            pathDanube(d);
-            ctxDanube.fill();
-            ctxDanube.stroke();
+                // ctxDanube.globalAlpha = 0.8;
+                ctx.beginPath();
+                riverPath(d);
+                ctx.fill();
+                ctx.stroke();
+            });
+
+            ctx.restore();
+
         });
+    };
 
-        ctxDanube.restore();
+}
 
-    });
-};
-
-
-
-
-
-
-/*--------------------- Дніпро ----------------------------- */
-
-map.canvasDnipro = d3.select("#body").append("canvas")
-    .attr('height', map.height)
-    .attr('width', map.width)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 350")
-    .attr("class", "river dnipro");
-
-var ctxDnipro = map.canvasDnipro.node().getContext('2d');
-
-var pathDnipro = d3.geoPath()
-    .projection(projection)
-    // .context(ctx);
-    .context(ctxDnipro);
-
-map.canvasDnipro.draw = function (transform) {
-    retrieve("DNIEPR", d3.json, "data/DNIPRO.json", function (data) {
-        ctxDnipro.clearRect(0, 0, map.width, map.height);
-        ctxDnipro.save();
-
-        if (transform) {
-            ctxDnipro.translate(transform.x, transform.y);
-            ctxDnipro.scale(transform.k, transform.k);
-        }
-        ctxDnipro.fillStyle = "transparent";
-        data.forEach(function (d) {
-            ctxDnipro.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            ctxDnipro.lineWidth = d.properties.a_WIDTH5 / 100;
-            ctxDnipro.beginPath();
-            pathDnipro(d);
-            ctxDnipro.fill();
-            ctxDnipro.stroke();
-        });
-
-        ctxDnipro.restore();
-    });
-};
-
-
-
-/*----------------- Дон ------------------------ */
-
-map.canvasDon = d3.select("#body").append("canvas")
-    .attr('height', map.height)
-    .attr('width', map.width)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 350")
-    .attr("class", "river don")
-    .node().getContext('2d');
-
-var pathDon = d3.geoPath()
-    .projection(projection)
-    // .context(ctx);
-    .context(map.canvasDon);
-
-map.canvasDon.draw = function (transform) {
-    retrieve("DON", d3.json, "data/DON.json", function (data) {
-        map.canvasDon.clearRect(0, 0, map.width, map.height);
-        map.canvasDon.save();
-
-        if (transform) {
-            map.canvasDon.translate(transform.x, transform.y);
-            map.canvasDon.scale(transform.k, transform.k);
-        }
-        map.canvasDon.fillStyle = "transparent";
-
-        data.forEach(function (d) {
-            map.canvasDon.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            map.canvasDon.lineWidth = d.properties.a_WIDTH5 / 100;
-            map.canvasDon.beginPath();
-            pathDon(d);
-            map.canvasDon.fill();
-            map.canvasDon.stroke();
-        });
-
-        map.canvasDon.restore();
-
-    });
-};
-
-
-/*--------------------- Вісла ----------------------- */
-
-map.canvasWisla = d3.select("#body").append("canvas")
-    .attr('height', map.height)
-    .attr('width', map.width)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 350")
-    .attr("class", "river wisla")
-    .node().getContext('2d');
-
-var pathWisla = d3.geoPath()
-    .projection(projection)
-    // .context(ctx);
-    .context(map.canvasWisla);
-
-map.canvasWisla.draw = function (transform) {
-    retrieve("WISLA", d3.json, "data/WISLA.json", function (data) {
-
-        map.canvasWisla.clearRect(0, 0, map.width, map.height);
-        map.canvasWisla.save();
-
-        if (transform) {
-            map.canvasWisla.translate(transform.x, transform.y);
-            map.canvasWisla.scale(transform.k, transform.k);
-        }
-        map.canvasWisla.fillStyle = "transparent";
-        data.forEach(function (d) {
-            map.canvasWisla.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            map.canvasWisla.lineWidth = d.properties.a_WIDTH5 / 100;
-            map.canvasWisla.beginPath();
-            pathWisla(d);
-            map.canvasWisla.fill();
-            map.canvasWisla.stroke();
-        });
-
-        map.canvasWisla.restore();
-
-    });
-};
-
-/*-------------------Південний Буг ------------------- */
-
-map.canvasBug = d3.select("#body").append("canvas")
-    .attr('height', map.height)
-    .attr('width', map.width)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 350")
-    .attr("class", "river southernbug")
-    .node().getContext('2d');
-
-var pathBug = d3.geoPath()
-    .projection(projection)
-    // .context(ctx);
-    .context(map.canvasBug);
-
-map.canvasBug.draw = function (transform) {
-    retrieve("SOUTHERNBUG", d3.json, "data/SOUTHERNBUG.json", function (data) {
-
-        map.canvasBug.clearRect(0, 0, map.width, map.height);
-        map.canvasBug.save();
-
-        if (transform) {
-            map.canvasBug.translate(transform.x, transform.y);
-            map.canvasBug.scale(transform.k, transform.k);
-        }
-
-        map.canvasBug.fillStyle = "transparent";
-        data.forEach(function (d) {
-            map.canvasBug.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            map.canvasBug.lineWidth = d.properties.a_WIDTH5 / 100;
-            map.canvasBug.beginPath();
-            pathBug(d);
-            map.canvasBug.fill();
-            map.canvasBug.stroke();
-        });
-        map.canvasBug.restore();
-    });
-};
-
-
-/*-------------------- Південний Буг ------------------------------ */
-
-map.canvasDniestr = d3.select("#body").append("canvas")
-    .attr('height', map.height)
-    .attr('width', map.width)
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 350")
-    .attr("class", "river dnister")
-    .node().getContext('2d');
-
-var pathDniestr = d3.geoPath()
-    .projection(projection)
-    // .context(ctx);
-    .context(map.canvasDniestr);
-
-map.canvasDniestr.draw = function (transform) {
-    retrieve("DNIESTR", d3.json, "data/DNIESTR.json", function (data) {
-        map.canvasDniestr.clearRect(0, 0, map.width, map.height);
-        map.canvasDniestr.save();
-
-        if (transform) {
-            map.canvasDniestr.translate(transform.x, transform.y);
-            map.canvasDniestr.scale(transform.k, transform.k);
-        }
-
-        map.canvasDniestr.fillStyle = "transparent";
-        data.forEach(function (d) {
-            map.canvasDniestr.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
-            map.canvasDniestr.lineWidth = d.properties.a_WIDTH5 / 100;
-            map.canvasDniestr.beginPath();
-            pathDniestr(d);
-            map.canvasDniestr.fill();
-            map.canvasDniestr.stroke();
-        });
-        map.canvasDniestr.restore();
-    });
-};
+drawAllCanvases("canvasDanube", "river danube", "DANUBE", "data/DANUBE.json");
+drawAllCanvases("canvasDnipro", "river dnipro", "DNIEPR", "data/DNIPRO.json");
+drawAllCanvases("canvasDon", "river don", "DON", "data/DON.json");
+drawAllCanvases("canvasWisla", "river wisla", "WISLA", "data/WISLA.json");
+drawAllCanvases("canvasBug", "river southernbug", "SOUTHERNBUG", "data/SOUTHERNBUG.json");
+drawAllCanvases("canvasDniestr", "river dnister", "DNIESTR", "data/DNIESTR.json");
 
 
 /*------------ Draw rivers ----------------------------*/
@@ -499,16 +263,12 @@ map.canvasDniestr.draw = function (transform) {
         }
 
 
-
-
-
-
-        map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
         map.svg.attr("transform", d3.event.transform);
-        map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
         map.svgShape.attr("transform", d3.event.transform);
-        map.svgLabels.style("stroke-width", 1.5 / d3.event.transform.k + "px");
         map.svgLabels.attr("transform", d3.event.transform);
+        map.svgShape.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+        map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
+        map.svgLabels.style("stroke-width", 1.5 / d3.event.transform.k + "px");        
     };
 
 
@@ -569,15 +329,6 @@ var mista = [
     { name: "Черкаси", location: { latitude:  32.0335, longitude: 49.2640 } },
     { name: "Чернігів", location: { latitude: 31.1755, longitude: 51.2928 } },
     { name: "Чернівці", location: { latitude:25.5518, longitude: 48.1919 } }
-
-
-
-
-
-
-
-
-
 ];
 
 
@@ -585,8 +336,6 @@ map.svg =
     d3.select('#body')
         .append('svg')
         .attr("id", "flowers")
-        // .attr("preserveAspectRatio", "xMinYMin meet")
-        // .attr("viewBox", "0 0 960 350")
         .attr('width', map.width)
         .attr('height', map.height)
         .append('g');
@@ -595,8 +344,6 @@ map.svgShape =
     d3.select('#body')
         .append('svg')
         .attr("id", "svgukraine")
-        // .attr("preserveAspectRatio", "xMinYMin meet")
-        // .attr("viewBox", "0 0 960 350")
         .attr('width', map.width)
         .attr('height', map.height)
         .append("g");
@@ -605,8 +352,6 @@ map.svgLabels =
     d3.select('#body')
         .append('svg')
         .attr("id", "labels")
-        // .attr("preserveAspectRatio", "xMinYMin meet")
-        // .attr("viewBox", "0 0 960 350")
         .attr('width', map.width)
         .attr('height', map.height)
         .append("g");
@@ -616,7 +361,6 @@ map.svgLabels =
 
 /* -------------------- Ukraine -------------------------------- */
 d3.json("data/ukr_shape.geojson", drawUkraine);
-// d3.json("data/ukr_regions.geojson", drawUkraine);
 
 function drawUkraine(ukraine) {
     map.svgShape.selectAll("path")
@@ -630,21 +374,6 @@ function drawUkraine(ukraine) {
 
 var cities = map.svgLabels
     .append("g");
-
-// cities.selectAll("circle")
-//     .data(mista)
-//     .enter()
-//     .append("circle")
-//     .attr("transform", function(d) {
-//         return "translate(" + projection([
-//                 d.location.latitude,
-//                 d.location.longitude
-//             ]) + ")"
-//     })
-//     .attr("r", "0.5px")
-//     .attr("fill", "white")
-//     .attr("opacity", "0.2")
-//     .attr("id", function (d) { return d.name; });
 
 cities.selectAll("text")
     .data(mista)
@@ -663,31 +392,22 @@ cities.selectAll("text")
 
 
 
-
-
-
 /* -------------------- Flowers -------------------------------- */
 function drawPoints() {
     d3.csv("data/lastDayMeanValueAllKey2.csv", function (error, points) {
         //групуємо дані по місцю забору і даті
         var nested = d3.nest()
-            .key(function (d) {
-                return d.id
-            })
-            // .key(function (d) {
-            //     return d.date
-            // })
+            .key(function (d) { return d.id })
             .entries(points);
 
 
-        
 
         /*додаємо мітки на карту по категоріям індикаторів, кожній групі індикаторів тепер можна задати окремі
          параметри а також transform
          */
 
 
-        var smallFlowerForClick = map.svg.selectAll(".petal")
+        map.svg.selectAll(".petal")
             .data(nested)
             .enter().append('g')
             .attr("transform", function (d) {
@@ -703,109 +423,42 @@ function drawPoints() {
                     .enter()
                     .append("path")
                     .attr("class", function (d) {
-                        var basin = d.data.river;
                         var filteredArray = riversNames.filter(function (obj) {
-                            return obj.key === basin;
+                            return obj.key === d.data.river;
                         });
-                        if (filteredArray.length > 0) {
-                            return filteredArray[0].value + " petal myBtn"
-                        } else {
-                            return "petal myBtn"
-                        }
-
+                        return filteredArray.length > 0 ? filteredArray[0].value + " petal myBtn" :  "petal myBtn";
                     })
-                    .attr("transform", function (d) {
-                        return r((d.startAngle + d.endAngle) / 2);
-                    })
-
+                    .attr("transform", function (d) { return r((d.startAngle + d.endAngle) / 2);  })
                     .attr("d", petalPath)
                     .style("stroke", "#070707")
                     .style("stroke-width", "0.1px")
-                    .style("fill", function (d) {
-                            if (d.data.key != "Кисень.розчинений.МгО2.дм3") {
-                                if (d.data.size > 0.9) {
-                                    // return PointColorsRed(d.data.size);
-                                    return reds[2];
-                                }
-                                else {
-                                    // return "#49E858"
-                                    return green
-                                }
-                            }
-
-                            //якщо кисень
-                            if (d.data.key === "Кисень.розчинений.МгО2.дм3") {
-                                if (d.data.size > 0.9) {
-                                    return green;
-                                }
-                                else {
-                                    // return "#49E858"
-                                    return reds[2]
-                                }
-
-
-                            }
-
-                    })
-
+                    .style("fill", function (d) { return petalFill(d);  })
                     .on("mouseover", function (d) {
                        var targetFlower= d3.select(this.parentNode);
                         targetFlower.moveToFront();
-
-                        // flowerhint.transition()
-                        //     .duration(200)
-                        //     .style("opacity", .9);
-                        //
-                        // flowerhint.html(d.data.name)
-                        //     .style("left", (d3.event.pageX) + "px")
-                        //     .style("top", (d3.event.pageY) + "px");
-
                     })
-                    // .on("mouseout", function (d) {
-                    //     flowerhint.transition()
-                    //         .duration(200)
-                    //         .style("opacity", 0);
-                    //
-                    //
-                    // })
-
                     /*чому тут d повертає не той датасет? , що треба, а гемометрію?????*/
-                .on('click touchstart', function (d) {
+                    .on('click touchstart', function (d) {
                         var modal = document.getElementById('myModal');
                         var span = document.getElementsByClassName("close")[0];
 
                         modal.style.display = "block";
-                        span.onclick = function () {
-                            modal.style.display = "none";
-                        };
+                        span.onclick = function () { modal.style.display = "none"; };
                         window.onclick = function (event) {
                             if (event.target == modal) {
                                 modal.style.display = "none";
                             }
                         };
-
                         var IdForChart = d.data.id;
                         var keyindicator = d.data.key;
                         var norm = d.data.norm;
 
                         d3.selectAll("#texturePetals").attr("value", IdForChart);
                         d3.selectAll("#texturePetals").attr("name", keyindicator);
-                        // drawChart(IdForChart, indicator);
-                        // updateLineChart(IdForChart)
-                        // d3.selectAll(".messageCheckbox").attr("name", IdForChart);
-                        // FindByAttributeValue("value", keyindicator).checked = true;
-
-
                         drawBigFlower(IdForChart);
                         drawChart(IdForChart, keyindicator);
-
-
                     })
-
-
             });
-
-
     });
 }
 
@@ -840,19 +493,40 @@ function polarToCartesian(angle, radius) {
 }
 /* end of flowers */
 
+function petalFill(d) {
+    //якщо не кисень
+    if (d.data.key != "Кисень.розчинений.МгО2.дм3") {
+        if (d.data.size > 0.9) {
+            // return PointColorsRed(d.data.size);
+            return reds[2]
+        }
+        else {
+            // return "#49E858"
+            return green
+        }
+    }
 
+    //якщо кисень
+    if (d.data.key === "Кисень.розчинений.МгО2.дм3") {
+        if (d.data.size > 0.9) {
+            return green;
+        }
+        else {
+            // return "#49E858"
+            return reds[2]
+        }
+
+
+    }
+}
 
 
 
 
 /* -------------------- Draw line charts -------------------------------- */
-var chartMargin = {top: 20, right: 20, bottom: 20, left: 35};
 
-// var W = (parseInt(d3.select('body').style('width'), 10) - chartMargin.left - chartMargin.right) * 0.8;
-var chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
-chartHeight = 300 - chartMargin.top - chartMargin.bottom;
-
-
+// chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
+// chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
 
 var locale = d3.timeFormatLocale({
@@ -875,11 +549,7 @@ function multiFormat(date) {
         : formatYear)(date);
 }
 
-
-
-// var parseTime = d3.timeParse("%d.%m.%Y");
 var parseTime = d3.timeParse("%Y-%m-%d");
-
 
 var chartX = d3.scaleTime()
     .rangeRound([0, chartWidth]);
@@ -896,71 +566,62 @@ var valueline = d3.line()
         return chartY(d.value);
     });
 
-// d3.csv("data/total_data_gather.csv", function (error, chart) {
-d3.csv("data/allFlowerData.csv", function (error, chart){
 
-    var chartSvg = d3.select("#chart")
+// d3.csv("data/allFlowerData_2020_4.csv", function (error, chart){
+
+    retrieve_all_flower_data(function(chart) {
+        var chartSvg = d3.select("#chart")
         .append("svg")
         .attr("id", "chartToRemove")
         .attr("width", chartWidth + chartMargin.left + chartMargin.right)
         .attr("height", chartHeight + chartMargin.top + chartMargin.bottom);
-    // .attr("preserveAspectRatio", "xMinYMin meet")
-    // .attr("viewBox", "0 0 960 300");
 
-    var chartG = chartSvg.append("g")
-        .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
+        var chartG = chartSvg.append("g")
+            .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
+        var idData = chart["27224"];
+        // var idData = chart.filter(function (d) { return d.id === "27224" });
 
-    var idData = chart.filter(function (d) {
-        return d.id === "27224"
-    });
-
-    idData.forEach(function (d) {
-        d.date = parseTime(d.date);
-        d.value = +d.value;
-    });
+        idData.forEach(function (d) {
+            d.date = parseTime(d.date);
+            d.value = +d.value;
+        });
 
 
-    var dataData = idData.filter(function (d) {
-        return d.key === 'БСК5..МгО.дм3';
-    });
+        var dataData = idData.filter(function (d) {
+            return d.key === 'БСК5..МгО.дм3';
+        });
+
+        dataData.sort(function (a, b) {
+            return new Date(b.date) - new Date(a.date);
+        });
+
+        var norm = dataData[0].norm;
+        norm = +norm;
 
 
-    dataData.sort(function (a, b) {
-        return new Date(b.date) - new Date(a.date);
-        /* щоб не малюватись крокозяблики*/
-    });
-
-    var norm = dataData[0].norm;
-    norm = +norm;
-
-    // d3.select('#petalsData')
-    //     .html(dataData[0].name);
+        d3.select('#petalsData')
+            .html(dataData[0].name);
 
 
-    //yAxis
-    var values = dataData.map(function (d) {
-        return d.value
-    });
-    var yMax = d3.max(d3.values(values));
-    var yMin = d3.min(d3.values(values));
-    var yticks = [yMin, +norm, yMax];
-    yticks.sort(function (a, b) {
-        return a - b
-    });
+        /* y axis */
+        var values = dataData.map(function (d) {
+            return d.value
+        });
+        var yMax = d3.max(d3.values(values));
+        // var yMin = d3.min(d3.values(values));
+        var yticks = [+norm];
 
 
-    //xAxis
-    var dates = dataData.map(function (d) {
-        return d.date
-    });
-    var xMin = d3.min(d3.values(dates));
-    var xMax = d3.max(d3.values(dates));
-    // var xMax = new Date();
-    chartX.domain([xMin, xMax]);
-    chartY.domain([0, d3.max(dataData, function (d) {
-        return d.value;
-    })]);
+        /* x axis */
+        var dates = dataData.map(function (d) { return d.date });
+        var xMin = d3.min(d3.values(dates));
+        var xMax = d3.max(d3.values(dates));
+
+        chartX.domain([xMin, xMax]);
+        chartY.domain([0, d3.max(dataData, function (d) {
+            return d.value;
+        })]);
 
 
     //Градієнт для лінійного графіку
@@ -970,7 +631,6 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
         .attr("x1", 0).attr("y1", chartY(0))
         .attr("x2", 0).attr("y2", chartY(yMax))
         .selectAll("stop")
-    // var reds = ["#fb6a4a", "#ef3b2c", "#cb181d", "#a50f15", "#67000d"];
         .data([
             {offset: "0%", color: "#199eb1"},
             {offset: "10%", color: "#199eb1"},
@@ -987,118 +647,110 @@ d3.csv("data/allFlowerData.csv", function (error, chart){
 
         ])
         .enter().append("stop")
-        .attr("offset", function (d) {
-            return d.offset;
-        })
-        .attr("stop-color", function (d) {
-            return d.color;
+        .attr("offset", function (d) { return d.offset; })
+        .attr("stop-color", function (d) { return d.color; });
+        /*end of the gradient*/
+
+
+        //Додaємо path and axis
+        chartG.append("path")
+            .data([dataData])
+            .attr("class", "line")
+            .attr("d", valueline)
+            .attr("stroke", "#49E858")
+            .style("stroke-width", "2px");
+
+        chartG.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + chartHeight + ")")
+            .call(d3.axisBottom(chartX)
+                .ticks(numTicks(chartWidth))
+                .tickSize(-chartHeight)
+                .tickFormat(multiFormat));
+
+
+        chartG.append("g")
+            .attr("class", "y axis")
+            .call(d3.axisLeft(chartY)
+                .tickValues(yticks)
+                .tickSize(-chartWidth));
+
+
+        chartG.append("text")
+            .attr("id", "lineText")
+            .attr("x", chartX(parseTime("2018-01-01")) + 5)
+            .attr("y", function() { return norm > 0 ? chartY(norm) + 15 : false; })
+            .text(function() { return  norm > 0 ? "норма" : ""; });
+
+
+        var modalKeysHeadings = d3.select('#petalsData')
+            .append("div")
+            .attr("id","modalKeysHeadings");
+
+
+        var textTitle = chartSvg.append("g");
+
+        textTitle.append("text")
+            .attr("id", "keyHeading")
+            .attr("x", 15)
+            .attr("y", 40)
+            .attr("fill", "black")
+            .attr("font-size", "14px")
+            .attr("text-anchor", "start")
+            .style("font-weight", "bold")
+            .style("letter-spacing", "1px")
+            .style("cursor", "help");
+
+
+        textTitle.append("svg:title")
+            .attr("id", "keyimgtooltip")
+            .attr("width", 100)
+            .text("Триває завантаження даних, почекайте");
+
+
+        textTitle.insert("rect", "text")
+            .attr("x", 10)
+            .attr("y", 25)
+            .attr("fill", "white")
+            .attr("opacity", "0.8")
+            .attr("width", 0)
+            .attr("height", 20);
+
+
+
+        $("body").on('DOMSubtreeModified', "#keyHeading", function() {
+            textTitle.select("rect")
+                .transition().duration(300)
+                .attr("width", function() {
+                    var textwidth = $("#keyHeading")[0].getBoundingClientRect();
+                    return textwidth.width + 10
+                })
         });
-    /*end of the gradient*/
 
 
-    //Додaємо path and axis
-    chartG.append("path")
-        .data([dataData])
-        .attr("class", "line")
-        .attr("d", valueline)
-        .attr("stroke", "#49E858");
+        d3.select("img#texturePetals")
+            .attr("src", "img/eye-white.png")
+            .attr("title", "Версія для користувачів з вадами зору. Пелюстки з діагональною полоскою - неналежна якість за обраним показником")
+            .on("click", function () {
+                $(this).toggleClass("eye-clicked");
+                var id = $("#texturePetals").attr("value");
+                var key = $("#texturePetals").attr("name");
 
-    chartG.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + chartHeight + ")")
-        .call(d3.axisBottom(chartX).ticks(numTicks(chartWidth)).tickSize(-chartHeight).tickFormat(multiFormat));
-
-
-    chartG.append("g")
-        .attr("class", "y axis")
-        // .attr("transform", "translate(30,0)")//magic number, change it at will
-        .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidth));
-
-
-    chartG.append("text")
-        .attr("id", "lineText")
-        .attr("x", chartX(parseTime("2018-01-01")))
-        .attr("y", function() {
-            if(norm > 0){
-              return chartY(norm)+10
-            }
-            else {
-                return false
-            }
-
-        })
-        .text(function() {
-            if(norm > 0){
-                return "норма"
-            }
-            else {
-                return ''
-            }
-
-        });
-
-    // d3.select("#chart").append("p")
-    //     .attr("id", "units")
-    //     .style("float", "right")
-    //     .text("Блакитний колір лінії графіка означає, що показник знаходиться в межах норми. Рожева частина лінії може мати різні відтінки залежно від того, наскільки показник перевищує норму. Чим лінія яскравіша, тим більшим є перевищення");
-
-    d3.select("#chart").append("p")
-        .attr("id", "units")
-        .style("float", "right")
-        .text("Одиниці вимірювання речовин - мг/дм3");
-    
-
-    d3.select('#petalsData')
-        .append("p")
-        .attr("id", "placename");
-
-    var modalKeysHeadings = d3.select('#petalsData')
-        .append("div")
-        .attr("id","modalKeysHeadings");
-
-    modalKeysHeadings.append("text")
-        .attr("id", "keyHeading")
-        .text("триває завантаження").style("font-weight", "bold");
-
-    modalKeysHeadings.append("img")
-        .attr("id", "keyimg")
-        .attr("src", "img/question.svg");
-
-    modalKeysHeadings.append("img")
-        .attr("id", "texturePetals")
-        .attr("src", "img/eye-white.png")
-        .attr("title", "Версія для користувачів з вадами зору. Пелюстки з діагональною полоскою - неналежна якість за обраним показником")
-        .on("click", function () {
-        $(this).toggleClass("eye-clicked");
-        var id = $("#texturePetals").attr("value");
-        var key = $("#texturePetals").attr("name");
-
-        drawBigFlower(id);
-        // drawPoints();
-
-
-    });
-
-
+                drawBigFlower(id);
+            });
 });
+
+
 
 
 
 
 /* кількість ticks для вісі Х*/
 function numTicks(widther) {
-    if (widther <= 900) {
-        return 4
-        console.log("return 4")
-    }
-    else {
-        return 8
-        console.log("return 5")
-    }
+    return widther <= 900 ? 4 : 8;
 }
 
 /* end of line chart*/
-
 d3.selection.prototype.moveToFront = function() {
     return this.each(function(){
         this.parentNode.appendChild(this);
