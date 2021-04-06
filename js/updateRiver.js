@@ -451,12 +451,13 @@ function drawPoints() {
                         };
                         var IdForChart = d.data.id;
                         var keyindicator = d.data.key;
+                        let dataName = d.data.name;
                         var norm = d.data.norm;
 
                         d3.selectAll("#texturePetals").attr("value", IdForChart);
                         d3.selectAll("#texturePetals").attr("name", keyindicator);
                         drawBigFlower(IdForChart);
-                        drawChart(IdForChart, keyindicator);
+                        drawChart(IdForChart, keyindicator, dataName);
                     })
             });
     });
@@ -559,12 +560,8 @@ var chartY = d3.scaleLinear()
 
 
 var valueline = d3.line()
-    .x(function (d) {
-        return chartX(d.date);
-    })
-    .y(function (d) {
-        return chartY(d.value);
-    });
+    .x(function (d) { return chartX(d.date); })
+    .y(function (d) {  return chartY(d.value); });
 
 
 // d3.csv("data/allFlowerData_2020_4.csv", function (error, chart){
@@ -579,16 +576,18 @@ var valueline = d3.line()
         var chartG = chartSvg.append("g")
             .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
-        var idData = chart["27224"];
-        // var idData = chart.filter(function (d) { return d.id === "27224" });
-
-        idData.forEach(function (d) {
-            d.date = parseTime(d.date);
-            d.value = +d.value;
-        });
+        //var idData = chart["27224"];
+        var idData = chart.filter(function (d) { return d.id === "27224" });
 
 
-        var dataData = idData.filter(function (d) {
+
+        // idData[0].data.forEach(function (d) {
+        //     d.date = parseTime(d.date);
+        //     d.value = +d.value;
+        // });
+
+
+        var dataData = idData[0].data.filter(function (d) {
             return d.key === 'БСК5..МгО.дм3';
         });
 
@@ -600,8 +599,6 @@ var valueline = d3.line()
         norm = +norm;
 
 
-        d3.select('#petalsData')
-            .html(dataData[0].name);
 
 
         /* y axis */
@@ -611,7 +608,6 @@ var valueline = d3.line()
         var yMax = d3.max(d3.values(values));
         // var yMin = d3.min(d3.values(values));
         var yticks = [+norm];
-
 
         /* x axis */
         var dates = dataData.map(function (d) { return d.date });
@@ -688,6 +684,8 @@ var valueline = d3.line()
             .attr("id","modalKeysHeadings");
 
 
+
+
         var textTitle = chartSvg.append("g");
 
         textTitle.append("text")
@@ -715,6 +713,7 @@ var valueline = d3.line()
             .attr("opacity", "0.8")
             .attr("width", 0)
             .attr("height", 20);
+
 
 
 

@@ -32,24 +32,25 @@ var parseTime = d3.timeParse("%Y-%m-%d");
 
 
 
-function drawChart(IdForChart, keyIndicator) {
+function drawChart(IdForChart, keyIndicator, dataName) {
     var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
     chartX.range([0, chartWidthNew]);
 
 
+    d3.select('#petalsData').html(dataName);
 
     retrieve_all_flower_data(function(chart_data) {
 
+
         const chartSvg = d3.select("#chart").transition();
-        // var chartG = chartSvg.select('g').transition();
 
-        const idData = chart_data[IdForChart];
+        const idData = chart_data.filter(function (d) { return d.id === IdForChart })[0].data;
 
-        var dataData = idData.filter(function (d) {
+
+        const dataData = idData.filter(function (d) {
             return d.key === keyIndicator;
         });
 
-        d3.select('#placename').html(dataData[0].name);
 
         dataData.sort(function(a,b){
             return new Date(a.date) - new Date(b.date);
@@ -70,21 +71,6 @@ function drawChart(IdForChart, keyIndicator) {
 
 
         norm > 0 && norm > yMax ?  chartY.domain([0, norm]) :  chartY.domain([0, yMax]);
-
-        // if (norm > 0) {
-        //     if (norm > yMax) {
-        //         chartY.domain([0, norm]);
-        //     }
-        //
-        //     if (norm < yMax) {
-        //         chartY.domain([0, yMax]);
-        //     }
-        // }
-        //
-        // else {
-        //     chartY.domain([0, yMax]);
-        // }
-
 
 
         var yticks =  norm > 0 ? [ +norm] : [+yMax];

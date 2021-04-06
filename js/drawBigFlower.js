@@ -46,9 +46,14 @@ function drawBigFlower(IdForChart) {
                         "stroke-width": "4px", 
                         "stroke": "#1765a0"
                     });
+
+
                 
                 var keyIndicator = d.data.key;
-                drawChart(IdForChart, keyIndicator)
+
+                var dataName = d.data.name;
+
+                drawChart(IdForChart.toString(), keyIndicator, dataName)
             })
             .on("mouseover", function (d) {
                 if (!isTablet) {
