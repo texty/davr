@@ -3,44 +3,26 @@
  */
 
 var parseTime = d3.timeParse("%Y-%m-%d");
-
-
-// var all_flower_data;
-// function retrieve_all_flower_data(cb) {
-//     if (all_flower_data) return cb(all_flower_data);
-//
-//     return d3.csv("data/allFlowerData_2020_4.csv", function(err, data){
-//         if (err) throw err;
-//
-//         data.forEach(function (d) {
-//             d.date = parseTime(d.date);
-//             d.value = +d.value;
-//         });
-//
-//         var nested_data = d3.nest()
-//             .key(function(d){return d.id})
-//             .object(data);
-//
-//         all_flower_data = nested_data;
-//         if (cb) return cb(nested_data);
-//         return;
-//     })
-// }
-
-// пустимо завантаження даних на самий початок. Хай вони завантажаться, щоб коли вони нам будуть потрібні вже все було
-
-
-
+var IdForChartForResize, keyIndicatorForResize, dataNameResize;
 
 function drawChart(IdForChart, keyIndicator, dataName) {
-    var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
-    chartX.range([0, chartWidthNew]);
 
+
+    IdForChartForResize = IdForChart;
+    keyIndicatorForResize = keyIndicator;
+    dataNameResize = dataName;
 
     d3.select('#petalsData').html(dataName);
 
+
+    var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
+    chartX.range([0, chartWidthNew]);
+
     retrieve_all_flower_data(function(chart_data) {
 
+
+       d3.select("#chartToRemove")
+            .attr("width", chartWidthNew + chartMargin.left + chartMargin.right);
 
         const chartSvg = d3.select("#chart").transition();
 
@@ -216,9 +198,6 @@ function drawChart(IdForChart, keyIndicator, dataName) {
             chartSvg.select('#line-gradient > stop:nth-child(12)')
                 .attr("offset", step6)
                 .attr("stop-color", reds[4]);
-            // chartSvg.select('#line-gradient > stop:nth-child(13)')
-            //     .attr("offset", step6)
-            //     .attr("stop-color", reds[4]);
         }
 
 
@@ -287,14 +266,18 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
         }
 
+
+
     });
+
+
 
 
 }
 
+$(window).on('resize', function() {
+    drawChart(IdForChartForResize, keyIndicatorForResize, dataNameResize)
+});
 
 
 
-// $(window).on('resize', function() {
-//     drawChart(IdForChartForResize, keyIndicatorForResize)
-// })

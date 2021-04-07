@@ -60,16 +60,22 @@ var chartMargin = {top: 20, right: 20, bottom: 20, left: 35},
     chartHeight = 300 - chartMargin.top - chartMargin.bottom;
 
 var flowerMargin = {top: 20, right: 20, bottom: 20, left: 35},
+    //flowerWidth = window.innerWidth * 25 - chartMargin.left - chartMargin.right,
+
     flowerWidth = clonedivWidth - chartMargin.left - chartMargin.right,
     flowerHeight = 300 - chartMargin.top - chartMargin.bottom;
 
 var flowerSvg = d3.select("#big-flower").append("svg")
     .attr("id", "#bigFlower")
-    .attr("width", flowerWidth + flowerMargin.left + flowerMargin.right)
-    .attr("height", chartHeight + flowerMargin.top + flowerMargin.bottom);
+    // .attr("width", flowerWidth + flowerMargin.left + flowerMargin.right)
+    // .attr("height", chartHeight + flowerMargin.top + flowerMargin.bottom);
+
+    .attr("width", "100%")
+    .attr("height", "100%")
+    .attr("viewBox", "0 0 "+ 400 + " "  + 300 );
 
 var flowerG = flowerSvg.append("g")
-    .attr('transform', 'translate(+' + flowerWidth / 2 + "," + flowerHeight / 2 + ')');
+    .attr('transform', 'translate(+' + 200 + "," + 100 + ')');
 
 
 d3.select("#myModal")
@@ -578,13 +584,6 @@ var valueline = d3.line()
 
         //var idData = chart["27224"];
         var idData = chart.filter(function (d) { return d.id === "27224" });
-
-
-
-        // idData[0].data.forEach(function (d) {
-        //     d.date = parseTime(d.date);
-        //     d.value = +d.value;
-        // });
 
 
         var dataData = idData[0].data.filter(function (d) {
