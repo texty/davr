@@ -105,10 +105,7 @@
         <p class="text">Над картою є кнопка «Хто забруднює річки в твоїй області». Натисніть на неї й оберіть свою область зі списку. Ви отримаєте список підприємств, які, за офіційними даними Держводагентства, забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. На жаль, дані про точні координати місць, де вони скидають речовини-забруднювачі, відсутні.
         </p>
 
-        <p class="text">Ви також можете скористатися інтерактивною інструкцією. Відповідна кнопка «Запустити інтерактивну інструкцію з користування картою» знаходиться в нижньому правому куті карти.
-        </p>
-
-        <p class="text">В <b>мобільній версії</b> відображається лише загальна картина якості води по басейнах українських річок, тому рекомендуємо переглядати проект на великому екрані (компʼютер, ноутбук).</p>
+        <p class="text">Одна квітка — один точка забору проб. Натисніть на квітку, щоб подивитись якість показників в динаміці. Рекомендуємо переглядати проект на великому екрані</p>
     </div>
 </div>
 
@@ -346,20 +343,6 @@
                 .start();
     };
 
-//    /* perfect scroll*/
-//    const perfectsc = new PerfectScrollbar('#regions', {
-//        wheelSpeed: 2,
-//        wheelPropagation: true,
-//        minScrollbarLength: 20
-//    });
-//
-//    const ps = new PerfectScrollbar('#allrivers', {
-//        wheelSpeed: 2,
-//        wheelPropagation: true,
-//        minScrollbarLength: 20
-//    });
-
-
     /* перемикач між екранами*/
     d3.select("#switchToTable").on("click", function () {
         d3.selectAll("#body, #mobileMaps, #allrivers, #switchToTable").style("display", "none");
@@ -369,12 +352,8 @@
 
     d3.select("#switchToMap").on("click", function () {
         d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "none");
-        if(screen.width >=700) {
-             d3.selectAll("#body, #allrivers, #switchToTable").style("display", "block");
-            d3.select("#allrivers").style("display", "grid");
-         } else if (screen.width < 700) {
-             d3.selectAll("#mobileMaps, #switchToTable").style("display", "block");
-        }
+        d3.selectAll("#body, #allrivers, #switchToTable").style("display", "block");
+        screen.width >= 812 ? d3.select("#allrivers").style("display", "grid") : d3.select("#allrivers").style("display", "flex")
     });
 
     /* затримка появи річок, поки вони вантажаться*/
