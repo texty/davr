@@ -15,8 +15,11 @@ function drawChart(IdForChart, keyIndicator, dataName) {
     d3.select('#petalsData').html(dataName);
 
 
-    var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
-    chartX.range([0, chartWidthNew]);
+    // var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
+    // chartX.range([0, chartWidthNew]);
+
+    var chartWidthNew = 600;
+    chartX.range([0, 600]);
 
 
     d3.json("data/data_samples/" + IdForChart + ".json", function(err, chart_data) {
@@ -28,8 +31,9 @@ function drawChart(IdForChart, keyIndicator, dataName) {
                 d.value = +d.value;
         });
 
-        d3.select("#chartToRemove")
-            .attr("width", chartWidthNew + chartMargin.left + chartMargin.right);
+        d3.select("#chartToRemove");
+             //.attr("width", chartWidthNew + chartMargin.left + chartMargin.right);
+
 
         const chartSvg = d3.select("#chart")
             .transition();

@@ -75,7 +75,7 @@ var flowerSvg = d3.select("#big-flower").append("svg")
     .attr("viewBox", "0 0 "+ 400 + " "  + 300 );
 
 var flowerG = flowerSvg.append("g")
-    .attr('transform', 'translate(+' + 200 + "," + 100 + ')');
+    .attr('transform', 'translate(+' + 200 + "," + 150 + ')');
 
 
 d3.select("#myModal")
@@ -112,7 +112,7 @@ projection = d3.geoMercator()
     .center([30, 49]);
 
 zoom = d3.zoom()
-    .scaleExtent([6, 6])
+    .scaleExtent([5, 5])
     .on('zoom', function(){
         // zoomTrans.x = d3.event.transform.x;
         // zoomTrans.y = d3.event.transform.y;
@@ -177,7 +177,8 @@ function drawAllCanvases(mapCanvas, clas, retrieveName, retrievePath){
                 ctx.translate(transform.x, transform.y);
                 ctx.scale(transform.k, transform.k);
             }
-            ctx.fillStyle = "transparent";        data.forEach(function (d) {
+            ctx.fillStyle = "transparent";        
+            data.forEach(function (d) {
                 ctx.strokeStyle = BlWhScale(d.properties.a_DEPTH5 * 5);
 
                 ctx.lineWidth = d.properties.a_WIDTH5 / 100;
@@ -561,12 +562,15 @@ var valueline = d3.line()
 
 d3.json("data/data_samples/27224.json", function(err, chart) {
 
-    // retrieve_all_flower_data(function(chart) {
         var chartSvg = d3.select("#chart")
-        .append("svg")
-        .attr("id", "chartToRemove")
-        .attr("width", chartWidth + chartMargin.left + chartMargin.right)
-        .attr("height", chartHeight + chartMargin.top + chartMargin.bottom);
+            .append("svg")
+            .attr("id", "chartToRemove")
+            .attr("width", "100%")
+            .attr("height", "100%")
+            .attr("viewBox", "0 0 " + 600 + " "  + 300 );
+            
+            // .attr("width", chartWidth + chartMargin.left + chartMargin.right)
+            // .attr("height", chartHeight + chartMargin.top + chartMargin.bottom);
 
         var chartG = chartSvg.append("g")
             .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
