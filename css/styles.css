@@ -459,14 +459,9 @@ h5.mob {
   left: 0;
   top: 0;
   width: 100%;
-  max-height: 500px;
-  height: 70vh;
+  height: max-content;
   background-color: #161616;
   background-color: rgba(0, 0, 0, 0.4); }
-  @media (max-width: 812px) and (orientation: portrait) {
-    .modal {
-      max-height: 90vh;
-      height: 80vh; } }
 
 .modal-content {
   background-color: rgba(0, 0, 0, 0.95);

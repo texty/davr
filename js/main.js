@@ -45,7 +45,7 @@ var riversNames = [
 
 /*Змінні для великої квітки*/
 var halfRadius = 2;
-var bigradius = 45;
+var bigradius = 30;
 
 var size = d3.scaleSqrt()
     .domain([0, 1])
@@ -72,10 +72,10 @@ var flowerSvg = d3.select("#big-flower").append("svg")
 
     .attr("width", "100%")
     .attr("height", "100%")
-    .attr("viewBox", "0 0 "+ 400 + " "  + 200 );
+    .attr("viewBox", "0 0 "+ 300 + " "  + 200 );
 
 var flowerG = flowerSvg.append("g")
-    .attr('transform', 'translate(+' + 200 + "," + 100 + ')');
+    .attr('transform', 'translate(' + 150 + "," + 100 + ')');
 
 
 d3.select("#myModal")
