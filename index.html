@@ -112,58 +112,117 @@
     </div>
 </div>
 
-<!-- кнопка-перемикач на табличку -->
-<button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємства скидають забруднену воду в річки" data-step="4">Хто забруднює річки в твоїй області </button>
+<div id="button-container">
+    <!-- кнопка-перемикач на табличку -->
+    <button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємства скидають забруднену воду в річки" data-step="4">Хто забруднює річки в твоїй області </button>
 
-<!-- кнопка-перемикач на карту -->
-<button id="switchToMap" class="switch">Повернутись до  карти</button>
+    <!-- кнопка-перемикач на карту -->
+    <button id="switchToMap" class="switch">Повернутись до  карти</button>
+    <div id="zoom-button" class="zoom-in"></div>
 
-<!-- панель вибору річок -->
-<div id="allrivers">
-    <div id="danube" class="riverCont"
-         data-intro="Перед тим, як натиснути <b>Далі</b>, клікніть на позначену область, щоб обрати басейн річки"
-         data-step="1">
-        <h5>Дунай</h5>
-        <img style="width:100%" src="img/danube.png"/>
+    <!--<button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію з користування картою</button>-->
+
+</div>
+
+
+
+<div id="main-viz">
+
+    <!-- панель вибору річок -->
+    <div id="allrivers">
+        <div id="danube" class="riverCont" data-lat="25" data-lon="48"
+             data-intro="Перед тим, як натиснути <b>Далі</b>, клікніть на позначену область, щоб обрати басейн річки"
+             data-step="1">
+            <h5>Дунай</h5>
+            <img style="width:100%" src="img/danube.png" >
+        </div>
+        <div id="dnister" class="riverCont" data-lat="26.5" data-lon="49"
+             data-intro="Щоб повернутись до попереднього масштабу, клікніть на позначену область" data-step="3">
+            <h5>Дністер</h5>
+            <img style="width:100%" src="img/dnister.png"/>
+        </div>
+        <div id="wisla" class="riverCont" data-lat="23.53" data-lon="50.5">
+            <h5>Вісла</h5>
+            <img style="width:100%" src="img/wisla.png"/>
+        </div>
+        <div id="southernbug" class="riverCont" data-lat="30.53" data-lon="49">
+            <h5>Південний Буг</h5>
+            <img style="width:100%" src="img/southernbug.png"/>
+        </div>
+        <div id="dnipro" class="riverCont" data-lat="30.53" data-lon="50.45">
+            <h5>Дніпро</h5>
+            <img style="width:100%" src="img/dnipro.png"/>
+        </div>
+        <div id="don" class="riverCont" data-lat="37.35" data-lon="49.44">
+            <h5>Дон</h5>
+            <img style="width:100%" src="img/don.png"/>
+        </div>
     </div>
-    <div id="dnister" class="riverCont"
-         data-intro="Щоб повернутись до попереднього масштабу, клікніть на позначену область" data-step="3">
-        <h5>Дністер</h5>
-        <img style="width:100%" src="img/dnister.png"/>
+
+
+
+
+    <!-- десктопна версія-->
+    <div id="body" class="desktop-version"
+         value="0"
+         data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки. Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>"
+         data-step="2">
+        <div id="map"></div>
+
     </div>
-    <div id="wisla" class="riverCont">
-        <h5>Вісла</h5>
-        <img style="width:100%" src="img/wisla.png"/>
+
+
+
+    <div id="regions">
+        <button class="button">Вінницька</button>
+        <button class="button">Волинська</button>
+        <button class="button">Луганська</button>
+        <button class="button">Дніпропетровська</button>
+        <button class="button">Донецька</button>
+        <button class="button">Житомирська</button>
+        <button class="button">Закарпатська</button>
+        <button class="button">Запорізька</button>
+        <button class="button">Івано-Франківська</button>
+        <button class="button">Київ</button>
+        <button class="button">Київська</button>
+        <button class="button">Кіровоградська</button>
+        <button class="button">АР Крим</button>
+        <button class="button">Львівська</button>
+        <button class="button">Миколаївська</button>
+        <button class="button">Одеська</button>
+        <button class="button">Полтавська</button>
+        <button class="button">Рівненська</button>
+        <button class="button">Сумська</button>
+        <button class="button">Тернопільська</button>
+        <button class="button">Харківська</button>
+        <button class="button">Херсонська</button>
+        <button class="button">Хмельницька</button>
+        <button class="button">Черкаська</button>
+        <button class="button">Чернігівська</button>
+        <button class="button">Чернівецька</button>
     </div>
-    <div id="southernbug" class="riverCont">
-        <h5>Південний Буг</h5>
-        <img style="width:100%" src="img/southernbug.png"/>
-    </div>
-    <div id="dnipro" class="riverCont">
-        <h5>Дніпро</h5>
-        <img style="width:100%" src="img/dnipro.png"/>
-    </div>
-    <div id="don" class="riverCont">
-        <h5>Дон</h5>
-        <img style="width:100%" src="img/don.png"/>
+
+    <div id="contaminants">
+        <p>Ми знаємо, що ці підприємства забруднюють воду. Чому вони продовжують це робити?</p>
+
+        <p >Підприємства повинні очищувати усю воду, яку скидають у річки. Але часом вони не можуть цього зробити, оскільки мають застарілі технології, а модернізація коштує надто дорого. Іноді необхідне обладнання взагалі відсутнє. В той же час деякі підприємства свідомо економлять на очисних спорудах, щоб отримати додатковий прибуток.
+        </p>
+
+        <p>В таких випадках держава може надати підприємству право скидати в річки забруднену воду. Проте, кількість речовин, які вони можуть скинути, обмежують. Вона встановлює «гранично допустимі скиди», скорочено — ГДС.
+        </p>
+
+        <p>ГДС потрібні для того, аби поступово зменшувати рівень забруднення. За право забруднювати довкілля підприємства платять екологічний податок. Якщо вони перевищують встановлені норми — то зобов’язані сплатити штраф.</p>
+
+        <p>Одна з функцій ГДС — зробити невигідним забруднення річок. В Україні діє державна стратегія екологічної політики. У ній закріплено, що до 2020 року кількість речовин-забруднювачів має зменшитись на 15%. Тому підприємства повинні модернізувати свої очисні споруди, щоб відповідати новим вимогам.
+        <p><b>Оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. Наприклад, цифра 284.3  біля ПРАТ АК «КИЇВВОДОКАНАЛ» означає, що підприємство cкинуло в річки 284.3 млн кубічних метрів забрудненої води. Нагадуємо, що в 1 кубічному метрі міститься 1000 літрів.</b></p>
+
+        <div id="tableContainer"></div>
     </div>
 </div>
+
+
 
 <div id="clone"></div>
-
-
-<!-- десктопна версія-->
-<div id="body" class="desktop-version"
-     value="0"
-     data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки. Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>"
-     data-step="2">
-    <div id="map"></div>
-    <button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію з користування
-        картою
-    </button>
-</div>
-
-
 
 
 
@@ -195,52 +254,6 @@
 </div>
 
 
-<div id="regions">
-    <button class="button">Вінницька</button>
-    <button class="button">Волинська</button>
-    <button class="button">Луганська</button>
-    <button class="button">Дніпропетровська</button>
-    <button class="button">Донецька</button>
-    <button class="button">Житомирська</button>
-    <button class="button">Закарпатська</button>
-    <button class="button">Запорізька</button>
-    <button class="button">Івано-Франківська</button>
-    <button class="button">Київ</button>
-    <button class="button">Київська</button>
-    <button class="button">Кіровоградська</button>
-    <button class="button">АР Крим</button>
-    <button class="button">Львівська</button>
-    <button class="button">Миколаївська</button>
-    <button class="button">Одеська</button>
-    <button class="button">Полтавська</button>
-    <button class="button">Рівненська</button>
-    <button class="button">Сумська</button>
-    <button class="button">Тернопільська</button>
-    <button class="button">Харківська</button>
-    <button class="button">Херсонська</button>
-    <button class="button">Хмельницька</button>
-    <button class="button">Черкаська</button>
-    <button class="button">Чернігівська</button>
-    <button class="button">Чернівецька</button>
-
-</div>
-
-<div id="contaminants">
-    <p>Ми знаємо, що ці підприємства забруднюють воду. Чому вони продовжують це робити?</p>
-
-    <p >Підприємства повинні очищувати усю воду, яку скидають у річки. Але часом вони не можуть цього зробити, оскільки мають застарілі технології, а модернізація коштує надто дорого. Іноді необхідне обладнання взагалі відсутнє. В той же час деякі підприємства свідомо економлять на очисних спорудах, щоб отримати додатковий прибуток.
-    </p>
-
-    <p>В таких випадках держава може надати підприємству право скидати в річки забруднену воду. Проте, кількість речовин, які вони можуть скинути, обмежують. Вона встановлює «гранично допустимі скиди», скорочено — ГДС.
-    </p>
-
-    <p>ГДС потрібні для того, аби поступово зменшувати рівень забруднення. За право забруднювати довкілля підприємства платять екологічний податок. Якщо вони перевищують встановлені норми — то зобов’язані сплатити штраф.</p>
-
-    <p>Одна з функцій ГДС — зробити невигідним забруднення річок. В Україні діє державна стратегія екологічної політики. У ній закріплено, що до 2020 року кількість речовин-забруднювачів має зменшитись на 15%. Тому підприємства повинні модернізувати свої очисні споруди, щоб відповідати новим вимогам.
-    <p><b>Оберіть свою область зі списку. Ви отримаєте список підприємств, які забруднюють річки у вашому регіоні. Ці підприємства відповідальні за значну частину забруднення в річках. Наприклад, цифра 284.3  біля ПРАТ АК «КИЇВВОДОКАНАЛ» означає, що підприємство cкинуло в річки 284.3 млн кубічних метрів забрудненої води. Нагадуємо, що в 1 кубічному метрі міститься 1000 літрів.</b></p>
-
-    <div id="tableContainer"></div>
-</div>
 
 <div id="donors-mob">
     <img style="width:150px" src="img/logo/USAID.png">
@@ -285,7 +298,6 @@
 
     var userAgent = navigator.userAgent.toLowerCase();
     const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
-    console.log(isTablet);
 
     var isMobile = {
         Android: function() {
@@ -312,16 +324,14 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
-<script src="js/retrieve_data.js"></script>
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
-<script src="js/updateRiver.js"></script>
+<script src="js/main.js"></script>
 <script src="js/contaminants.js"></script>
 <script src="js/mobile-script.js"></script>
 
 
 <script>
-
     startIntro = function () {
         introJs()
                 .setOption('showBullets', false)
@@ -355,6 +365,7 @@
         d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "block");
     });
 
+
     d3.select("#switchToMap").on("click", function () {
         d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "none");
         if(screen.width >=700) {
@@ -374,26 +385,35 @@
 
 
     setTimeout(function () {
-        $('body').css('pointer-events', 'all');
         $('#loader').remove()
     }, 4000);
 
-    var riverForDrawId;
+
+    var riverForDrawId = "dnister";
+    var riverForZoomLat = 26.5;
+    var riverForZoomLon = 49;
+    var zoom_scale = 5;
+
 
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
     $(".riverCont").on("click", function () {
         d3.selectAll(".riverCont").style("border", "1px solid #161616");
-//        d3.selectAll("#svgukraine g path").style("stroke-width", "0px");
         d3.select(this).style("border", "2px solid white");
         var t = d3.zoomIdentity.translate(0, 0).scale(1);
         d3.select("#body").call(zoom.transform, t);
 
+        d3.select("#zoom-button").classed("zoom-in", true);
+        d3.select("#zoom-button").classed("zoom-out", false);
+
         riverForDrawId = $(this).attr("id");
-//        alert(id);
+        riverForZoomLat = $(this).attr("data-lat");
+        riverForZoomLon = $(this).attr("data-lon");
+
 
         var filteredArray = riversNames.filter(function (obj) {
             return obj.value === riverForDrawId;
         });
+
 
         d3.selectAll(".river")
                 .style("display", "none")

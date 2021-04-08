@@ -5,8 +5,8 @@
 var parseTime = d3.timeParse("%Y-%m-%d");
 var IdForChartForResize, keyIndicatorForResize, dataNameResize;
 
-function drawChart(IdForChart, keyIndicator, dataName) {
 
+function drawChart(IdForChart, keyIndicator, dataName) {
 
     IdForChartForResize = IdForChart;
     keyIndicatorForResize = keyIndicator;
@@ -18,25 +18,30 @@ function drawChart(IdForChart, keyIndicator, dataName) {
     var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
     chartX.range([0, chartWidthNew]);
 
-    retrieve_all_flower_data(function(chart_data) {
 
+    d3.json("data/data_samples/" + IdForChart + ".json", function(err, chart_data) {
 
-       d3.select("#chartToRemove")
+        if (err) throw err;
+
+        chart_data[0].data.forEach(function (d) {
+                d.date = parseTime(d.date);
+                d.value = +d.value;
+        });
+
+        d3.select("#chartToRemove")
             .attr("width", chartWidthNew + chartMargin.left + chartMargin.right);
 
-        const chartSvg = d3.select("#chart").transition();
+        const chartSvg = d3.select("#chart")
+            .transition();
 
-        const idData = chart_data.filter(function (d) { return d.id === IdForChart })[0].data;
-
-
-        const dataData = idData.filter(function (d) {
-            return d.key === keyIndicator;
-        });
-
-
-        dataData.sort(function(a,b){
-            return new Date(a.date) - new Date(b.date);
-        });
+        const dataData = chart_data[0].data
+            .filter(function (d) {  return d.key === keyIndicator; 
+            });
+      
+        dataData
+            .sort(function(a,b){  
+                return new Date(a.date) - new Date(b.date); 
+            });
 
         /* x domain */
         var dates = dataData.map(function (d) { return d.date });
@@ -57,7 +62,6 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
         var yticks =  norm > 0 ? [ +norm] : [+yMax];
         yticks.sort(function (a, b) { return a - b });
-
 
 
         chartSvg.select(".line")   // change the line
@@ -88,44 +92,7 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
             })
             .style("font-weight", "bold");
-
-        // if(!isTablet || !isMobile.any()) {
-        //     d3.select("#keyimgtooltip")
-        //         .text(function () {
-        //             var label = indicatorNames.filter(function (obj) {
-        //                 return obj.key === keyIndicator;
-        //             });
-        //             return label[0].description
-        //         })
-        //
-        // }
-        // if(isTablet || isMobile.any()) {
-        //     d3.select("#keyimgtooltip").on("click", function () {
-        //         chartHint
-        //             .transition()
-        //             .duration(200)
-        //             .style("opacity", .9);
-        //
-        //         chartHint.html(function () {
-        //             var label = indicatorNames.filter(function (obj) {
-        //                 return obj.key === keyIndicator;
-        //             });
-        //             return label[0].description
-        //         })
-        //             .style("left", (d3.event.pageX) + "px")
-        //             .style("top", (d3.event.pageY + 28) + "px");
-        //
-        //     });
-        //
-        //     chartHint.on("click", function () {
-        //         chartHint
-        //             .transition()
-        //             .duration(200)
-        //             .style("opacity", 0);
-        //     });
-        // }
-
-
+    
         norm = +norm;
         var greenpart;
         var redpart;
@@ -265,9 +232,6 @@ function drawChart(IdForChart, keyIndicator, dataName) {
                 .attr("stop-color", green);
 
         }
-
-
-
     });
 
 

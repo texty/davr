@@ -105,40 +105,22 @@ var PointColorsRed = d3.scaleQuantile()
 var projection;
 var zoom;
 
-var zoomTrans = {x:0, y:0, scale:1};
 
-// if (window.innerWidth > 2000){
+projection = d3.geoMercator()
+    .scale(3000)
+    .rotate([0, 0, 0])
+    .center([30, 49]);
 
-// projection = d3.geoMercator()
-//     .scale(3500)
-//     .rotate([0, 0, 0])
-//     .center([30, 50]);
-//
-//     zoom = d3.zoom()
-//         .scaleExtent([4, 4])
-//         .on('zoom', function(){
-//             map.redraw(d3.event.transform);
-//             d3.event.transform.k === 1 ? d3.select('#labels').style("display", "none"):  d3.select('#labels').style("display", "block");
-//         });
+zoom = d3.zoom()
+    .scaleExtent([6, 6])
+    .on('zoom', function(){
+        // zoomTrans.x = d3.event.transform.x;
+        // zoomTrans.y = d3.event.transform.y;
+        // zoomTrans.scale = d3.event.transform.k;
+        map.redraw(d3.event.transform, riverForDrawId);
+        d3.event.transform.k === 1 ? d3.select('#labels').style("display", "none") : d3.select('#labels').style("display", "block");
 
-// }
-//
-// else if (window.innerWidth < 2000){
-    projection = d3.geoMercator()
-        .scale(2000)
-        .rotate([0, 0, 0])
-        .center([30, 50]);
-
-    zoom = d3.zoom()
-        .scaleExtent([6, 6])
-        .on('zoom', function(){
-            // zoomTrans.x = d3.event.transform.x;
-            // zoomTrans.y = d3.event.transform.y;
-            // zoomTrans.scale = d3.event.transform.k;
-            map.redraw(d3.event.transform, riverForDrawId);
-            d3.event.transform.k === 1 ? d3.select('#labels').style("display", "none") : d3.select('#labels').style("display", "block");
-
-        });
+    });
 
 
 
@@ -166,7 +148,7 @@ var indicatorHint = d3.select("#modalKeysHeadings").append("div")
 var map = {};
 
 map.width = mapWidth;
-map.height = window.innerHeight - 50;
+map.height = window.innerHeight * 0.7;
 
 projection
     .translate([map.width/2, map.height/2]);
@@ -466,7 +448,18 @@ function drawPoints() {
                         drawChart(IdForChart, keyindicator, dataName);
                     })
             });
+
+        d3.selectAll(".petal")
+            .style("display", "none")
+            .each(function () {
+                var currentPath = this;
+                if (currentPath.classList.contains("dnister")) {
+                    d3.select(currentPath).style("display", "block")
+                }
+            });
     });
+
+
 }
 
 var flowefsize = 0.08;
@@ -532,10 +525,6 @@ function petalFill(d) {
 
 /* -------------------- Draw line charts -------------------------------- */
 
-// chartWidth = clonedivWidth - chartMargin.left - chartMargin.right;
-// chartHeight = 300 - chartMargin.top - chartMargin.bottom;
-
-
 var locale = d3.timeFormatLocale({
     "dateTime": "%A, %e %B %Y г. %X",
     "date": "%d.%m.%Y",
@@ -570,9 +559,9 @@ var valueline = d3.line()
     .y(function (d) {  return chartY(d.value); });
 
 
-// d3.csv("data/allFlowerData_2020_4.csv", function (error, chart){
+d3.json("data/data_samples/27224.json", function(err, chart) {
 
-    retrieve_all_flower_data(function(chart) {
+    // retrieve_all_flower_data(function(chart) {
         var chartSvg = d3.select("#chart")
         .append("svg")
         .attr("id", "chartToRemove")
@@ -582,11 +571,8 @@ var valueline = d3.line()
         var chartG = chartSvg.append("g")
             .attr("transform", "translate(" + chartMargin.left + "," + chartMargin.top + ")");
 
-        //var idData = chart["27224"];
-        var idData = chart.filter(function (d) { return d.id === "27224" });
-
-
-        var dataData = idData[0].data.filter(function (d) {
+        
+        var dataData = chart[0].data.filter(function (d) {
             return d.key === 'БСК5..МгО.дм3';
         });
 
@@ -597,15 +583,11 @@ var valueline = d3.line()
         var norm = dataData[0].norm;
         norm = +norm;
 
-
-
-
         /* y axis */
         var values = dataData.map(function (d) {
             return d.value
         });
         var yMax = d3.max(d3.values(values));
-        // var yMin = d3.min(d3.values(values));
         var yticks = [+norm];
 
         /* x axis */
@@ -740,13 +722,11 @@ var valueline = d3.line()
 
 
 
-
-
-
 /* кількість ticks для вісі Х*/
 function numTicks(widther) {
     return widther <= 900 ? 4 : 8;
 }
+
 
 /* end of line chart*/
 d3.selection.prototype.moveToFront = function() {
@@ -757,3 +737,32 @@ d3.selection.prototype.moveToFront = function() {
 
 
 
+/* кнопка зума над картою. При переключенні змінюємо background-image у кнопки та зумимо карту*/
+d3.select("#zoom-button").on("click", function(d){
+    d3.select(this).classed("zoom-in", !d3.select(this).classed("zoom-in"));
+    d3.select(this).classed("zoom-out", !d3.select(this).classed("zoom-out"));
+
+    zoom_scale = d3.select(this).classed("zoom-in") === true ? 1 : 5;
+
+    riverForZoomLat = d3.select(this).classed("zoom-in") === true ? 30 : riverForZoomLat;
+    riverForZoomLon = d3.select(this).classed("zoom-in") === true ? 49 : riverForZoomLon;
+    
+
+    var x = projection([riverForZoomLat,riverForZoomLon])[0],
+        y = projection([riverForZoomLat,riverForZoomLon])[1],           
+        translate = [map.width / 2 - zoom_scale * x, map.height / 2 - zoom_scale * y];
+
+    d3.select("#body")
+        .transition().duration(750)
+        .call(zoom.transform, d3.zoomIdentity
+            .scale(zoom_scale)
+            .translate(translate[0]/zoom_scale,translate[1]/zoom_scale)
+        );
+});
+
+
+window.onload = function(){
+    setTimeout(function(){
+        document.getElementById('zoom-button').click();
+    }, 1000)
+};

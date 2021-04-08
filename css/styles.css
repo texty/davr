@@ -4,16 +4,9 @@
   src: url(../fonts/light.ttf); }
 body {
   font-family: "Segoe UI Light", sans-serif;
-  display: grid;
-  grid-template-columns: 310px auto;
   margin: 0;
   padding: 0;
-  background-color: #080808;
-  overflow-x: hidden;
-  pointer-events: none; }
-  @media (min-width: 700px) and (max-width: 1024px) {
-    body {
-      grid-template-columns: 160px auto; } }
+  background-color: #080808; }
   @media (min-width: 200px) and (max-width: 699px) {
     body {
       display: block; } }
@@ -100,10 +93,8 @@ p.text, li.text {
 
 #runIntro {
   width: auto;
-  position: absolute;
-  bottom: 10px !important;
-  right: 20px;
-  z-index: 10; }
+  z-index: 10;
+  height: 66px; }
 
 h1 {
   font-family: 'Prata', serif;
@@ -139,8 +130,8 @@ h3 {
       width: 90%; } }
 
 p, li {
-  font-size: 18px;
-  font-family: "Segoe UI Light", sans-serif; }
+  line-height: 1.6;
+  font-size: 18px; }
   @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
     p, li {
       font-size: 22px; } }
@@ -200,31 +191,52 @@ div#donors > img {
     opacity: 1; }
   100% {
     opacity: .2; } }
-#switchToTable {
-  width: 100%; }
+#main-viz {
+  height: 80vh;
+  width: 100%;
+  position: relative;
+  display: grid;
+  grid-template-columns: 310px auto; }
 
-#switchToMap {
-  width: 96%; }
+#button-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; }
 
 #switchToMap-mob {
   display: none; }
 
+#zoom-button {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  background-size: cover; }
+
+.zoom-in {
+  background: url(../img/zoom-in.png); }
+
+.zoom-out {
+  background: url(../img/zoom-out.png); }
+
 .switch {
+  outline: none;
+  margin: 10px 0;
   height: auto;
+  border-radius: 20px;
   padding: 10px;
-  align-self: center;
-  grid-column: 1/2;
-  grid-row: 2/3;
   position: relative;
-  float: right;
-  font-size: 12px;
-  letter-spacing: 2px; }
+  width: 310px;
+  letter-spacing: 2px;
+  font-size: 18px;
+  background-color: transparent;
+  color: #199eb1; }
   @media (max-width: 699px) {
     .switch {
       margin-left: 50px !important; } }
 
 .switch:hover {
-  background-color: #64b2f4;
+  background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer; }
 
 #switchToMap {
@@ -232,7 +244,7 @@ div#donors > img {
 
 button.button {
   background-color: transparent;
-  width: 96%;
+  width: 100%;
   padding: 10px;
   border: 1px solid grey;
   margin-bottom: 10px;
@@ -274,7 +286,6 @@ p.button {
 #body {
   position: relative;
   width: 100%;
-  grid-row: 2/4;
   grid-column: 2/3; }
   @media (min-width: 200px) and (max-width: 699px) {
     #body {
@@ -284,7 +295,8 @@ canvas {
   z-index: -1;
   position: absolute;
   top: 0;
-  left: 0; }
+  left: 0;
+  pointer-events: none; }
 
 svg {
   z-index: 200; }
@@ -313,17 +325,13 @@ svg {
     opacity: 0; } }
 @media (min-width: 700px) and (max-width: 1024px), (min-width: 1024px) and (max-width: 1285px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1441px) and (max-width: 2570px) {
   #allrivers {
-    margin-top: 10px;
-    margin-bottom: 10px;
     grid-column: 1/2;
-    grid-row: 3/4;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
     overflow-y: scroll;
     position: relative; } }
 
 .riverCont > img {
-  pointer-events: none;
   width: 100%; }
 
 .riverCont > h5 {
@@ -644,6 +652,12 @@ g.tick {
 /* end of modal*/
 .river {
   z-index: 1; }
+
+#dnister {
+  border: 2px solid white; }
+
+.river:not(.dnister) {
+  display: none; }
 
 .petal {
   z-index: 1;

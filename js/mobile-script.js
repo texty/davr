@@ -79,6 +79,7 @@ d3.csv("data/lastDayMeanValueAllKey2.csv", function (error, points) {
                         .style("stroke", "white")
                         .style("stroke-width", "0.1px")
                         .style("fill", function (d) { return petalFill(d); })
+                        .on("click", function(){ console.log("hey")})
                 });
             
             
