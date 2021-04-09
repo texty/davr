@@ -71,7 +71,7 @@ function drawChart(IdForChart, keyIndicator, dataName) {
                 .tickSize(-chartWidth));
 
 
-        d3.select("#lineText")
+        d3.select("#line-text")
             .attr("x", chartX(parseTime("2019-01-01")) + 5)
             .attr("y", chartY(norm) + 15);
 

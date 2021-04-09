@@ -7,9 +7,6 @@ body {
   margin: 0;
   padding: 0;
   background-color: #080808; }
-  @media (min-width: 200px) and (max-width: 699px) {
-    body {
-      display: block; } }
 
 .logo {
   position: absolute;
@@ -77,7 +74,7 @@ h1, h3, p, li {
   font-size: 30px;
   letter-spacing: 2px;
   color: white; }
-  @media (min-width: 200px) and (max-width: 699px) {
+  @media (max-width: 812px) {
     #subtitle {
       font-size: 22px;
       width: 80%; } }
@@ -103,22 +100,9 @@ h1 {
   font-size: 60pt;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0; }
-  @media (min-height: 300px) and (max-height: 500px) {
-    h1 {
-      font-size: 30pt; } }
-  @media (min-width: 200px) and (max-width: 699px) {
+  @media (max-width: 812px) {
     h1 {
       font-size: 45pt; } }
-
-h1 span {
-  font-size: 78pt;
-  line-height: 1.4; }
-  @media (min-height: 300px) and (max-height: 500px) {
-    h1 span {
-      font-size: 68pt; } }
-  @media (min-width: 200px) and (max-width: 699px) {
-    h1 span {
-      font-size: 50pt; } }
 
 h3 {
   font-family: "Segoe UI Light", sans-serif; }
@@ -127,16 +111,13 @@ h3 {
   width: 50%;
   color: #ABDAFF;
   margin: 100px auto; }
-  @media (min-width: 200px) and (max-width: 699px) {
+  @media (max-width: 812px) {
     #text-description {
       width: 90%; } }
 
 p, li {
   line-height: 1.6;
   font-size: 18px; }
-  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
-    p, li {
-      font-size: 22px; } }
 
 /* -----  Візуалізація ----- */
 div#donors {
@@ -148,7 +129,7 @@ div#donors {
   justify-content: space-around;
   align-items: center; }
 
-div#donors-mob {
+div#donors {
   margin-top: 100px;
   background-color: #ffffff;
   grid-column: 1/3;
@@ -156,9 +137,6 @@ div#donors-mob {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around; }
-
-div#donors > img {
-  grid-column: span 1; }
 
 #loader {
   position: absolute;
@@ -210,9 +188,6 @@ div#donors > img {
   justify-content: space-between;
   align-items: center; }
 
-#switchToMap-mob {
-  display: none; }
-
 #zoom-button {
   cursor: pointer;
   width: 50px;
@@ -238,16 +213,10 @@ div#donors > img {
   font-size: 18px;
   background-color: transparent;
   color: #199eb1; }
-  @media (max-width: 699px) {
-    .switch {
-      margin-left: 50px !important; } }
 
 .switch:hover {
   background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer; }
-
-#switchToMap {
-  display: none; }
 
 button.button {
   background-color: transparent;
@@ -277,6 +246,9 @@ p.button {
   padding: 0;
   font-size: 12px; }
 
+#switch-to-map {
+  display: none; }
+
 #body {
   position: relative;
   width: 100%;
@@ -292,11 +264,7 @@ canvas {
 svg {
   z-index: 200; }
 
-#shape-regions {
-  z-index: 5;
-  position: absolute; }
-
-#flowers {
+svg#flowers {
   z-index: 5;
   position: absolute; }
 
@@ -310,6 +278,20 @@ svg {
     fill: #161616;
     stroke-width: 0.05px;
     stroke: black; } }
+svg#labels {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+  pointer-events: none;
+  z-index: 8; }
+
+.map-cities-labels {
+  letter-spacing: 1px;
+  font-size: 2.5px;
+  fill: white;
+  opacity: 0.2; }
+
 #allrivers {
   grid-column: 1/2;
   display: grid;
@@ -322,20 +304,18 @@ svg {
       flex-wrap: wrap;
       height: max-content; } }
 
-.riverCont > img {
-  width: 100%; }
-  @media (max-width: 812px) and (orientation: portrait) {
-    .riverCont > img {
-      display: none; } }
-
-.riverCont > h5 {
-  pointer-events: none; }
-
 .riverCont {
   border: 1px solid #161616;
   padding: 5px;
   cursor: pointer;
   pointer-events: all; }
+  .riverCont img {
+    width: 100%; }
+    @media (max-width: 812px) and (orientation: portrait) {
+      .riverCont img {
+        display: none; } }
+  .riverCont h5 {
+    pointer-events: none; }
 
 #regions {
   margin-top: 10px;
@@ -436,27 +416,15 @@ h5 {
   text-decoration: none;
   cursor: pointer; }
 
-#petalsData, #modalKeysHeadings, .onecol {
+#petalsData, #modalKeysHeadings {
   color: white;
   font-size: 18px; }
 
 #modalKeysHeadings {
   display: inline-block; }
 
-#keyimg {
-  width: 20px;
-  height: 20px;
-  margin-left: 10px; }
-
 .modalKeysHeading {
   font-size: 14px; }
-
-#units {
-  float: right;
-  font-size: 14px;
-  color: white;
-  font-style: italic;
-  margin-right: 10px; }
 
 #bigFlowerIntro {
   text-align: center;
@@ -489,7 +457,6 @@ h5 {
       width: 80%;
       max-width: 400px; } }
 
-/*клон чарт-контейнера для вирахування ширини для медіа-кверіс*/
 div.tooltip {
   position: absolute;
   min-width: 100px;
@@ -498,11 +465,11 @@ div.tooltip {
   padding: 2px;
   font: 14px sans-serif;
   background: white;
-  border: 0px;
+  border: 0;
   pointer-events: none;
   z-index: 6; }
 
-div.flowerhint {
+div.flower-hint {
   position: absolute;
   min-width: 100px;
   max-width: 200px;
@@ -515,7 +482,7 @@ div.flowerhint {
   pointer-events: none;
   z-index: 10; }
 
-div.chartHint {
+div.chart-hint {
   font-family: "Segoe UI Light", sans-serif;
   position: absolute;
   min-width: 100px;
@@ -547,12 +514,7 @@ div.chartHint {
 #chartToRemove {
   margin-bottom: 30px; }
 
-.redline {
-  stroke: #c9defa;
-  z-index: 1000;
-  stroke-width: 0.8px; }
-
-#lineText {
+#line-text {
   font-size: 12px;
   font-style: italic;
   fill: white !important;
@@ -585,11 +547,11 @@ g.tick {
 .river {
   z-index: 1; }
 
-#dnister {
-  border: 2px solid white; }
-
 .river:not(.dnister) {
   display: none; }
+
+#dnister {
+  border: 2px solid white; }
 
 .petal {
   cursor: pointer;
@@ -598,6 +560,7 @@ g.tick {
   stroke: #070707;
   stroke-width: 0.1px; }
 
+/* intro js*/
 .introjs-helperLayer {
   background-color: rgba(59, 56, 56, 0.05);
   border: 1px solid white; }
@@ -621,20 +584,6 @@ g.tick {
 
 .introjs-prevbutton {
   color: #a1a1a1; }
-
-svg#labels {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: none;
-  pointer-events: none;
-  z-index: 8; }
-
-.map-cities-labels {
-  letter-spacing: 1px;
-  font-size: 2.5px;
-  fill: white;
-  opacity: 0.2; }
 
 #texturePetals {
   width: 25px;

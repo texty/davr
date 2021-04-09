@@ -72,11 +72,11 @@ var path2 = d3.geoPath()
 
 //tooltip for all flowers
 var flowerhint = d3.select("body").append("div")
-    .attr("class", "flowerhint")
+    .attr("class", "flower-hint")
     .style("opacity", 0);
 
 var chartHint = d3.select("body").append("div")
-    .attr("class", "chartHint")
+    .attr("class", "chart-hint")
     .style("opacity", 0);
 
 

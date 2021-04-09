@@ -106,10 +106,10 @@
 
 <div id="button-container">
     <!-- кнопка-перемикач на табличку -->
-    <button id="switchToTable" class="switch" data-intro="Тисніть, аби дізнатись, які підприємства скидають забруднену воду в річки" data-step="4">Хто забруднює річки в твоїй області </button>
+    <button id="switch-to-table" class="switch" data-intro="Тисніть, аби дізнатись, які підприємства скидають забруднену воду в річки" data-step="4">Хто забруднює річки в твоїй області </button>
 
     <!-- кнопка-перемикач на карту -->
-    <button id="switchToMap" class="switch">Повернутись до  карти</button>
+    <button id="switch-to-map" class="switch">Повернутись до  карти</button>
     <div id="zoom-button" class="zoom-in"></div>
 
     <!--<button id="runIntro" class="switch" onclick="startIntro()">Запустити інтерактивну інструкцію з користування картою</button>-->
@@ -214,7 +214,7 @@
 
 <div id="clone"></div>
 
-<div id="donors-mob">
+<div id="donors">
     <img style="width:150px" src="img/logo/USAID.png">
     <img style="width:70px" src="img/logo/UKAID.jpg">
     <img style="width:150px; margin-top:5px" src="img/logo/eurasia_foundation.png">
@@ -275,15 +275,15 @@
 
 
     /* показати забрудників  */
-    d3.select("#switchToTable").on("click", function () {
-        d3.selectAll("#body, #mobileMaps, #allrivers, #switchToTable").style("display", "none");
-        d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "block");
+    d3.select("#switch-to-table").on("click", function () {
+        d3.selectAll("#body, #mobileMaps, #allrivers, #switch-to-table").style("display", "none");
+        d3.selectAll("#regions, #contaminants, #switch-to-map").style("display", "block");
     });
 
     /* показати карту  */
-    d3.select("#switchToMap").on("click", function () {
-        d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "none");
-        d3.selectAll("#body, #allrivers, #switchToTable").style("display", "block");
+    d3.select("#switch-to-map").on("click", function () {
+        d3.selectAll("#regions, #contaminants, #switch-to-map").style("display", "none");
+        d3.selectAll("#body, #allrivers, #switch-to-table").style("display", "block");
         screen.width >= 812 ? d3.select("#allrivers").style("display", "grid") : d3.select("#allrivers").style("display", "flex")
     });
 
