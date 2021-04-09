@@ -160,7 +160,7 @@
             <h5>Дунай</h5>
             <img style="width:100%" src="img/danube.png" >
         </div>
-        <div id="dnister" class="riverCont" data-lat="26.5" data-lon="49"
+        <div id="dnister" class="riverCont active" data-lat="26.5" data-lon="49"
              data-intro="Щоб повернутись до попереднього масштабу, клікніть на позначену область" data-step="3">
             <h5>Дністер</h5>
             <img style="width:100%" src="img/dnister.png"/>
@@ -353,12 +353,9 @@
 
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
     $(".riverCont").on("click", function () {
-        d3.selectAll(".riverCont")
-                .style("border", "1px solid #161616");
 
-        d3.select(this)
-                .style("border", "2px solid white");
-
+        d3.selectAll(".riverCont").classed("active", false);
+        d3.select(this).classed("active", true);
 
 
         d3.select("#zoom-button").classed("zoom-in", true);

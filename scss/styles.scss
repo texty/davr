@@ -269,7 +269,7 @@ div#donors {
   outline: none;
   margin:10px 0;
   height: auto;
-  border-radius: 20px;
+  border-radius: 10px;
   padding:10px;
   position:relative;
   width: 310px;
@@ -277,9 +277,10 @@ div#donors {
   font-size: 18px;
   background-color: transparent;
   color: #199eb1;
+  border-width: 1px;
 }
 
-.switch:hover {
+.switch:hover, #show-english:hover {
   background-color: rgba(255, 255, 255, 0.2);
   cursor:pointer;
 }
@@ -287,7 +288,7 @@ div#donors {
 
 button.button {
   background-color: transparent;
-  width: 100%;
+  width: 96%;
   padding: 10px;
   border: 1px solid grey;
   margin-bottom:10px;
@@ -416,6 +417,14 @@ svg#labels {
   }
 }
 
+.riverCont:hover {
+  border: 1px solid grey;
+}
+
+.riverCont.active {
+  border: 2px solid white;
+}
+
 
 
 #regions {
@@ -441,7 +450,7 @@ svg#labels {
   grid-column: 2/3;
   display:none;
   height: calc(100vh - 70px);
-  overflow: auto;
+  overflow-y: auto;
 
 }
 
@@ -726,10 +735,6 @@ g.tick {
 
 .river:not(.dnister) {
   display: none;
-}
-
-#dnister {
-  border: 2px solid white;
 }
 
 
