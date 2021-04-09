@@ -49,7 +49,9 @@ h1, h3, p, li {
   color: white; }
 
 #header {
-  height: 100vh;
+  min-height: 100vh;
+  height: max-content;
+  padding: 30px 0;
   background-image: url(../img/GIFF.gif);
   background-size: cover;
   margin: 0 !important; }
