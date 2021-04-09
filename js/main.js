@@ -153,7 +153,7 @@ drawAllCanvases("canvasDniestr", "river dnister", "DNIESTR", "data/DNIESTR.json"
     map.canvasBug.draw();
     map.canvasDniestr.draw();
     map.canvasWisla.draw();
-    setTimeout(drawPoints, 100);
+    drawPoints();
 
 
 /*------------ Redraw rivers on zoom ------------------*/
@@ -180,6 +180,8 @@ drawAllCanvases("canvasDniestr", "river dnister", "DNIESTR", "data/DNIESTR.json"
             map.canvasWisla.draw(transform);
         }
 
+        //map.canvasPoints.draw(transform);
+
         if (typeof riverForDrawId === 'undefined') {
             map.canvasDanube.draw(transform);
             map.canvasDnipro.draw(transform);
@@ -188,6 +190,8 @@ drawAllCanvases("canvasDniestr", "river dnister", "DNIESTR", "data/DNIESTR.json"
             map.canvasDniestr.draw(transform);
             map.canvasWisla.draw(transform);
         }
+
+
         map.svg.attr("transform", d3.event.transform);
         map.svgShape.attr("transform", d3.event.transform);
         map.svgLabels.attr("transform", d3.event.transform);
@@ -195,12 +199,6 @@ drawAllCanvases("canvasDniestr", "river dnister", "DNIESTR", "data/DNIESTR.json"
         map.svg.style("stroke-width", 1.5 / d3.event.transform.k + "px");
         map.svgLabels.style("stroke-width", 1.5 / d3.event.transform.k + "px");        
     };
-
-
-d3.select('#body')
-    .call(zoom).on("wheel.zoom", null);
-
-
 
 
 
@@ -293,7 +291,68 @@ cities.selectAll("text")
     .attr("font-size", "5px");
 
 
+/* спроба відмалювати квіточки на canvas, працює, клік-евенти не додавала і трішки невдалий rotate, можна пізніше погратись з цим ще */
+// map.canvasPoints = d3.select("#body").append("canvas")
+//     .attr("class", "layer")
+//     .attr('width', map.width)
+//     .attr('height', map.height);
+//
+// var context = map.canvasPoints.node().getContext('2d');
+//
+// retrieve_points_data(function (points) {
+//     map.canvasPoints.draw = function(transform) {
+//
+//         let targetRiver = riversNames
+//             .filter(function (obj) {
+//                 return obj.value === riverForDrawId;
+//             })[0].key;
+//
+//         context.clearRect(0, 0, map.width, map.height);
+//
+//         var nested = d3.nest()
+//             .key(function (d) {
+//                 return d.id
+//             })
+//             .entries(points.filter(function(d){return d.river === targetRiver}));
+//
+//
+//         nested.forEach(function (flower) {
+//             let piedata = pie(flower.values
+//                 .filter(function (k) { return k.size > 0; } ));
+//
+//             piedata.forEach(function (d) {
+//                 let angle = (d.startAngle + d.endAngle) / 2;
+//                 let rotate_degree = angle / Math.PI * 180;
+//                 var coords = projection([flower.values[0].lon, flower.values[0].lat]);
+//                 var p;
+//                 context.save();
+//
+//                 if (transform) {
+//                     context.translate(0, 0);
+//                     context.translate(coords[0] * transform.k + transform.x, coords[1] * transform.k + transform.y);
+//                     context.scale(transform.k, transform.k);
+//                 } else {
+//                     context.translate(coords[0], coords[1]);
+//                 }
+//
+//                 p = new Path2D(petalPath(d));
+//                 context.rotate(rotate_degree);
+//                 context.fillStyle = petalFill(d);
+//                 context.fill(p);
+//                 context.restore();
+//
+//             });
+//         });
+//
+//         };
+//
+//     map.canvasPoints.draw();
+//
+// });
 
+
+d3.select('#body')
+    .call(zoom).on("wheel.zoom", null);
 
 /* -------------------- Flowers -------------------------------- */
 function drawPoints() {
@@ -301,6 +360,7 @@ function drawPoints() {
         var nested = d3.nest()
             .key(function (d) { return d.id })
             .entries(points);
+
 
         map.svg.selectAll(".petal")
             .data(nested)
@@ -324,7 +384,7 @@ function drawPoints() {
                         return filteredArray.length > 0 ? filteredArray[0].value + " petal myBtn" :  "petal myBtn";
                     })
                     .attr("transform", function (d) { return r((d.startAngle + d.endAngle) / 2);  })
-                    .attr("d", petalPath)                    
+                    .attr("d", petalPath)
                     .style("fill", function (d) { return petalFill(d);  })
                     .on("mouseover", function (d) {
                        var targetFlower= d3.select(this.parentNode);
@@ -345,14 +405,13 @@ function drawPoints() {
                         var IdForChart = d.data.id;
                         var keyindicator = d.data.key;
                         let dataName = d.data.name;
-                        var norm = d.data.norm;
 
                         d3.selectAll("#texturePetals").attr("value", IdForChart);
                         d3.selectAll("#texturePetals").attr("name", keyindicator);
                         drawBigFlower(IdForChart);
                         drawChart(IdForChart, keyindicator, dataName);
-                    })
-            });
+                    });
+                });
 
         d3.selectAll(".petal")
             .style("display", "none")
@@ -363,6 +422,10 @@ function drawPoints() {
                 }
             });
     });
+
+
+
+
 }
 
 var flowefsize = 0.08;

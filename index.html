@@ -191,6 +191,7 @@
          data-step="2">
 
         <div id="map"></div>
+        <!--<canvas id="test"></canvas>-->
     </div>
 
 
@@ -278,17 +279,12 @@
 <script src="lib/topojson.v2.min.js"></script>
 <script src="lib/intro.min.js"></script>
 <script src="lib/share-behavior.js"></script>
-<!--<script src="lib/perfect-scrollbar.min.js"></script>-->
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-<!--<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>-->
-
 
 <script src="js/variables.js"></script>
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
 <script src="js/main.js"></script>
 <script src="js/contaminants.js"></script>
-<!--<script src="js/mobile-script.js"></script>-->
 
 
 <script>
@@ -317,9 +313,6 @@
             showEnglish.text("Show project description in English")
         }
     });
-
-
-
 
     /* показати забрудників  */
     d3.select("#switch-to-table").on("click", function () {
@@ -371,7 +364,7 @@
                 translate = [map.width / 2 - zoom_scale * x, map.height / 2 - zoom_scale * y];
 
         d3.select("#body")
-                .transition().duration(750)
+                .transition().duration(100)
                 .call(zoom.transform, d3.zoomIdentity
                         .scale(zoom_scale)
                         .translate(translate[0]/zoom_scale,translate[1]/zoom_scale)
