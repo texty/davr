@@ -43,15 +43,10 @@
           content='Інтерактивна карта забруднення річок в Україні на основі даних Державного агентства водних ресурсів'>
 
     <!-- Links -->
-    <link rel="stylesheet" href="css/perfect-scrollbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs-rtl.min.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Prata&amp;subset=cyrillic,cyrillic-ext,vietnamese"
-          rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Prata&amp;subset=cyrillic,cyrillic-ext,vietnamese"   >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.min.css"/>
     <link rel="stylesheet" href="css/styles.css">
-    <!--<link rel="stylesheet" href="css/patterns.css">-->
-
 </head>
 
 
@@ -157,15 +152,13 @@
     </div>
 
 
-
-
     <!-- десктопна версія-->
     <div id="body" class="desktop-version"
          value="0"
          data-intro="Подвійний клік на карті, наблизить і відцентрує її. Спробуйте! Можете потягнути мапу вліво-вправо або вверх-вниз, щоб роздивитись інші квіточки. Кожна квіточка показує якість води в конкретній точці забору. Блакитні пелюстки означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми. Після проходження інструкції Ви зможете клікнути на будь-яку квітку і побачити, які показники актуальні для цієї точки, а також динаміку кожного за останні 5 років. Зараз тисніть <b>Далі</b>"
          data-step="2">
-        <div id="map"></div>
 
+        <div id="map"></div>
     </div>
 
 
@@ -264,7 +257,11 @@
 <div id="myModal" class="modal">
     <!-- Modal content -->
     <div class="modal-content">
-        <span class="close">&times;</span>
+        <div style="float:right; display:flex; align-items: center;">
+            <img id="texturePetals" src="img/eye-white.png"/>
+            <span class="close">&times;</span>
+        </div>
+        <!--<span class="close">&times;</span>-->
         <p id="petalsData"></p>
         <div id="myModalGrid">
             <div id="big-flower"></div>
@@ -280,53 +277,18 @@
 <script src="https://d3js.org/colorbrewer.v1.min.js"></script>
 <script src="https://d3js.org/topojson.v2.min.js"></script>
 <script src="lib/share-behavior.js"></script>
-<script src="lib/perfect-scrollbar.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
-
-
-
-
-
-<script>
-    var clonedivWidth = document.getElementById('clone').clientWidth;
-    var mapWidth = document.getElementById('body').clientWidth;
-    var buttonHeight = document.getElementById('switchToTable').clientHeight;
-
-
-    var userAgent = navigator.userAgent.toLowerCase();
-    const isTablet = /(ipad|tablet|(android(?!.*mobile))|(windows(?!.*phone)(.*touch))|kindle|playbook|silk|(puffin(?!.*(IP|AP|WP))))/.test(userAgent);
-
-    var isMobile = {
-        Android: function() {
-            return navigator.userAgent.match(/Android/i);
-        },
-        BlackBerry: function() {
-            return navigator.userAgent.match(/BlackBerry/i);
-        },
-        iOS: function() {
-            return navigator.userAgent.match(/iPhone|iPad|iPod/i);
-        },
-        Opera: function() {
-            return navigator.userAgent.match(/Opera Mini/i);
-        },
-        Windows: function() {
-            return navigator.userAgent.match(/IEMobile/i) || navigator.userAgent.match(/WPDesktop/i);
-        },
-        any: function() {
-            return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
-        }
-    };
-
-</script>
+<!--<script src="lib/perfect-scrollbar.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>-->
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.min.js"></script>
+<script src="js/variables.js"></script>
 <script src="js/drawBigFlower.js"></script>
 <script src="js/drawChart.js"></script>
 <script src="js/main.js"></script>
 <script src="js/contaminants.js"></script>
-<script src="js/mobile-script.js"></script>
+<!--<script src="js/mobile-script.js"></script>-->
 
 
 <script>
@@ -338,23 +300,25 @@
                 .setOption("prevLabel", "Назад")
                 .setOption("skipLabel", "Пропустити інструктаж")
                 .setOption("doneLabel", "Зрозуміло")
-
-
                 .start();
     };
 
-    /* перемикач між екранами*/
+
+
+
+    /* показати забрудників  */
     d3.select("#switchToTable").on("click", function () {
         d3.selectAll("#body, #mobileMaps, #allrivers, #switchToTable").style("display", "none");
         d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "block");
     });
 
-
+    /* показати карту  */
     d3.select("#switchToMap").on("click", function () {
         d3.selectAll("#regions, #contaminants, #switchToMap").style("display", "none");
         d3.selectAll("#body, #allrivers, #switchToTable").style("display", "block");
         screen.width >= 812 ? d3.select("#allrivers").style("display", "grid") : d3.select("#allrivers").style("display", "flex")
     });
+
 
     /* затримка появи річок, поки вони вантажаться*/
     d3.select("#body").append("div")
@@ -363,10 +327,7 @@
             .html("триває завантаження<span>.</span><span>.</span><span>.</span>")
             .attr("id", "wait");
 
-
-    setTimeout(function () {
-        $('#loader').remove()
-    }, 4000);
+    setTimeout(function () { $('#loader').remove() }, 4000);
 
 
     var riverForDrawId = "dnister";
@@ -377,10 +338,13 @@
 
     /* функція фільтрує річки і квітки по обраній річці графік на різні індикатори*/
     $(".riverCont").on("click", function () {
-        d3.selectAll(".riverCont").style("border", "1px solid #161616");
-        d3.select(this).style("border", "2px solid white");
-        var t = d3.zoomIdentity.translate(0, 0).scale(1);
-        d3.select("#body").call(zoom.transform, t);
+        d3.selectAll(".riverCont")
+                .style("border", "1px solid #161616");
+
+        d3.select(this)
+                .style("border", "2px solid white");
+
+
 
         d3.select("#zoom-button").classed("zoom-in", true);
         d3.select("#zoom-button").classed("zoom-out", false);
@@ -388,12 +352,29 @@
         riverForDrawId = $(this).attr("id");
         riverForZoomLat = $(this).attr("data-lat");
         riverForZoomLon = $(this).attr("data-lon");
+        zoom_scale = 1;
 
+        var x = projection([riverForZoomLat,riverForZoomLon])[0],
+                y = projection([riverForZoomLat,riverForZoomLon])[1],
+                translate = [map.width / 2 - zoom_scale * x, map.height / 2 - zoom_scale * y];
+
+        d3.select("#body")
+                .transition().duration(750)
+                .call(zoom.transform, d3.zoomIdentity
+                        .scale(zoom_scale)
+                        .translate(translate[0]/zoom_scale,translate[1]/zoom_scale)
+                );
+
+//        var t = d3.zoomIdentity
+//                .translate(0, 0)
+//                .scale(1);
+//
+//        d3.select("#body")
+//                .call(zoom.transform, t);
 
         var filteredArray = riversNames.filter(function (obj) {
             return obj.value === riverForDrawId;
         });
-
 
         d3.selectAll(".river")
                 .style("display", "none")
@@ -412,7 +393,6 @@
                         d3.select(currentPath).style("display", "block")
                     }
                 });
-
     });
 
 
@@ -442,7 +422,6 @@ AgPHBhdGggZD0nTS0xLDEgbDIsLTIKICAgICAgICAgICBNMCwxMCBsMTAsLTEwCiAgICAgICAgI
 CAgTTksMTEgbDIsLTInIHN0cm9rZT0nd2hpdGUnIHN0cm9rZS13aWR0aD0nMScvPgo8L3N2Zz4=" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg>
 
 <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="dots-9" patternUnits="userSpaceOnUse" width="10" height="10" > <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSd3aGl0ZScgLz4KICA8cmVjdCB4PScwJyB5PScwJyB3aWR0aD0nOScgaGVpZ2h0PSc5JyBmaWxsPSdibGFjaycgLz4KPC9zdmc+" x="0" y="0" width="10" height="10"> </image> </pattern> </defs> </svg>
-
 
 <svg height="1" width="1" xmlns="http://www.w3.org/2000/svg" version="1.1"> <defs> <pattern id="crosshatch" patternUnits="userSpaceOnUse" width="8" height="8" fill="#DD1FB9"> <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSc4JyBoZWlnaHQ9JzgnPgogIDxyZWN0IHdpZHRoPSc4JyBoZWlnaHQ9JzgnIGZpbGw9JyNmZmYnLz4KICA8cGF0aCBkPSdNMCAwTDggOFpNOCAwTDAgOFonIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2U9JyNhYWEnLz4KPC9zdmc+Cg==" x="0" y="0" width="1" height="1"> </image> </pattern> </defs> </svg>
 

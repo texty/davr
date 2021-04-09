@@ -1,26 +1,8 @@
-/**
- * Created by yevheniia on 11.06.18.
- */
-
 var parseTime = d3.timeParse("%Y-%m-%d");
-var IdForChartForResize, keyIndicatorForResize, dataNameResize;
-
 
 function drawChart(IdForChart, keyIndicator, dataName) {
 
-    IdForChartForResize = IdForChart;
-    keyIndicatorForResize = keyIndicator;
-    dataNameResize = dataName;
-
     d3.select('#petalsData').html(dataName);
-
-
-    // var chartWidthNew = ((window.innerWidth * 0.65 / 3) * 1.8) - chartMargin.left - chartMargin.right;
-    // chartX.range([0, chartWidthNew]);
-
-    var chartWidthNew = 600;
-    chartX.range([0, 600]);
-
 
     d3.json("data/data_samples/" + IdForChart + ".json", function(err, chart_data) {
 
@@ -30,10 +12,6 @@ function drawChart(IdForChart, keyIndicator, dataName) {
                 d.date = parseTime(d.date);
                 d.value = +d.value;
         });
-
-        d3.select("#chartToRemove");
-             //.attr("width", chartWidthNew + chartMargin.left + chartMargin.right);
-
 
         const chartSvg = d3.select("#chart")
             .transition();
@@ -60,12 +38,19 @@ function drawChart(IdForChart, keyIndicator, dataName) {
         var yMax = d3.max(d3.values(values));
         var yMin = d3.min(d3.values(values));
 
+        norm > 0 && norm > yMax ?
+            chartY.domain([0, norm]) :
+            chartY.domain([0, yMax]);
 
-        norm > 0 && norm > yMax ?  chartY.domain([0, norm]) :  chartY.domain([0, yMax]);
 
+        var yticks = norm > 0 ?
+            [ +norm] :
+            [+yMax];
 
-        var yticks =  norm > 0 ? [ +norm] : [+yMax];
-        yticks.sort(function (a, b) { return a - b });
+        yticks
+            .sort(function (a, b) {
+                return a - b
+            });
 
 
         chartSvg.select(".line")   // change the line
@@ -74,11 +59,16 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
         chartSvg.select(".x.axis") // change the x axis
             .duration(500)
-            .call(d3.axisBottom(chartX).ticks(5).tickSize(-chartHeight).tickFormat(d3.timeFormat("%Y")));
+            .call(d3.axisBottom(chartX)
+                .ticks(5)
+                .tickSize(-chartHeight)
+                .tickFormat(d3.timeFormat("%Y")));
 
         chartSvg.select(".y.axis") // change the y axis
             .duration(500)
-            .call(d3.axisLeft(chartY).tickValues(yticks).tickSize(-chartWidthNew));
+            .call(d3.axisLeft(chartY)
+                .tickValues(yticks)
+                .tickSize(-chartWidth));
 
 
         d3.select("#lineText")
@@ -88,12 +78,8 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
         d3.select('#keyHeading')
             .html(function (d) {
-                var label = indicatorNames.filter(function (obj) {
-                    return obj.key === keyIndicator;
-                });
-
+                let label = indicatorNames.filter(function (obj) {  return obj.key === keyIndicator; });
                 return label[0].printName + " <tspan style='font-family: B612, serif; fill: rgb(221, 31, 185); font-weight:bold; font-size:14px'> i</tspan>";
-
             })
             .style("font-weight", "bold");
     
@@ -110,10 +96,7 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
 
         if (dataData[0].key != "Кисень.розчинений.МгО2.дм3") {
-
-
             /*------- gradient ------*/
-
 
             if (norm === "NA" || norm != norm) {
                 greenpart = 100
@@ -173,7 +156,6 @@ function drawChart(IdForChart, keyIndicator, dataName) {
 
 
         if (dataData[0].key === "Кисень.розчинений.МгО2.дм3") {
-
             if (norm === "NA" || norm != norm) {
                 greenpart = 100;
                 redpart = 0;
@@ -234,18 +216,11 @@ function drawChart(IdForChart, keyIndicator, dataName) {
             chartSvg.select('#line-gradient > stop:nth-child(13)')
                 .attr("offset", step6)
                 .attr("stop-color", green);
-
         }
     });
 
-
-
-
 }
 
-$(window).on('resize', function() {
-    drawChart(IdForChartForResize, keyIndicatorForResize, dataNameResize)
-});
 
 
 

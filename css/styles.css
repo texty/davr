@@ -192,7 +192,7 @@ div#donors > img {
   100% {
     opacity: .2; } }
 #main-viz {
-  height: 80vh;
+  max-height: 80vh;
   width: 100%;
   position: relative;
   display: grid;
@@ -275,19 +275,6 @@ p.button {
   padding: 0;
   font-size: 12px; }
 
-#mobile {
-  grid-column: 1/-1; }
-  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px) {
-    #mobile {
-      display: block; } }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
-    #mobile {
-      display: none; } }
-
-#mobile img {
-  width: 100%;
-  margin-bottom: 150px; }
-
 #body {
   position: relative;
   width: 100%;
@@ -325,12 +312,13 @@ svg {
   grid-column: 1/2;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
-  overflow-y: scroll;
+  height: 100%;
   position: relative; }
   @media (max-width: 812px) and (orientation: portrait) {
     #allrivers {
       display: flex;
-      flex-wrap: wrap; } }
+      flex-wrap: wrap;
+      height: max-content; } }
 
 .riverCont > img {
   width: 100%; }
@@ -361,18 +349,6 @@ svg {
   @media (min-width: 200px) and (max-width: 699px) {
     #regions {
       margin-left: 10px; } }
-
-#allrivers, #regions, #contaminants {
-  -ms-overflow-style: none; }
-
-#allrivers::-webkit-scrollbar {
-  display: none; }
-
-#regions::-webkit-scrollbar {
-  display: none; }
-
-#contaminants::-webkit-scrollbar {
-  display: none; }
 
 #contaminants {
   grid-row: 3/4;
@@ -406,27 +382,6 @@ td, th {
 td {
   padding-bottom: 10px; }
 
-/* Perfect Scrollbar */
-.ps__rail-x {
-  top: 0px;
-  bottom: auto;
-  /* If using `top`, there shouldn't be a `bottom`. */ }
-
-.ps__rail-y {
-  right: 0px;
-  left: auto;
-  /* If using `left`, there shouldn't be a `right`. */ }
-
-.ps__thumb-x {
-  top: 1px;
-  bottom: auto;
-  /* If using `top`, there shouldn't be a `bottom`. */ }
-
-.ps__thumb-y {
-  right: 1px;
-  left: auto;
-  /* If using `left`, there shouldn't be a `right`. */ }
-
 h5 {
   font-size: 12px;
   text-align: center;
@@ -437,19 +392,10 @@ h5 {
     h5 {
       margin: 5px auto; } }
 
-h5.mob {
-  font-size: 30px; }
-
 .captions {
   font-style: italic;
   text-align: center;
   color: white; }
-
-#selectBasin {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 25vw; }
 
 /*----- Modal Window -----*/
 .modal {
@@ -460,6 +406,7 @@ h5.mob {
   left: 0;
   top: 0;
   width: 100%;
+  border-radius: 50px;
   height: max-content;
   background-color: #161616;
   background-color: rgba(0, 0, 0, 0.4); }
@@ -471,13 +418,15 @@ h5.mob {
   border: 1px solid #888;
   width: 80%;
   max-width: 1000px;
-  height: 100%; }
+  height: 100%;
+  border-radius: 30px; }
 
 .close {
   color: #aaaaaa;
   float: right;
-  font-size: 28px;
-  font-weight: bold; }
+  font-size: 35px;
+  font-weight: bold;
+  margin-left: 10px; }
 
 .close:hover,
 .close:focus {
@@ -486,7 +435,8 @@ h5.mob {
   cursor: pointer; }
 
 #petalsData, #modalKeysHeadings, .onecol {
-  color: white; }
+  color: white;
+  font-size: 18px; }
 
 #modalKeysHeadings {
   display: inline-block; }
@@ -538,16 +488,6 @@ h5.mob {
       max-width: 400px; } }
 
 /*клон чарт-контейнера для вирахування ширини для медіа-кверіс*/
-#clone {
-  opacity: 0;
-  pointer-events: none; }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px) {
-    #clone {
-      width: 40vw; } }
-  @media (min-width: 700px) and (max-width: 1024px), (min-width: 200px) and (max-width: 699px), (min-width: 0) and (max-width: 200px) {
-    #clone {
-      width: 40vw; } }
-
 div.tooltip {
   position: absolute;
   min-width: 100px;
@@ -602,26 +542,6 @@ div.chartHint {
   color: #ffffff;
   pointer-events: none; }
 
-.formInpurs {
-  display: grid; }
-  @media (min-width: 1441px) and (max-width: 2570px), (min-width: 1286px) and (max-width: 1440px), (min-width: 1024px) and (max-width: 1285px), (min-width: 700px) and (max-width: 1024px) {
-    .formInpurs {
-      grid-template-columns: 1fr 1fr; } }
-  @media (min-width: 200px) and (max-width: 699px), (min-width: 0) and (max-width: 200px) {
-    .formInpurs {
-      grid-template-columns: 1fr; } }
-
-.onecol {
-  grid-column: span 1; }
-
-input[type="radio"] {
-  -webkit-appearance: checkbox;
-  -moz-appearance: checkbox;
-  -ms-appearance: checkbox;
-  /* not currently supported */
-  -o-appearance: checkbox;
-  /* not currently supported */ }
-
 #chartToRemove {
   margin-bottom: 30px; }
 
@@ -670,22 +590,11 @@ g.tick {
   display: none; }
 
 .petal {
+  cursor: pointer;
   z-index: 1;
-  display: none; }
-
-img.preview {
-  max-width: 100%; }
-
-.preview-svg {
-  max-width: 100%;
-  position: absolute; }
-
-.preview-svg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: #000;
-  opacity: .5; }
+  display: none;
+  stroke: #070707;
+  stroke-width: 0.1px; }
 
 .introjs-helperLayer {
   background-color: rgba(59, 56, 56, 0.05);
@@ -725,34 +634,11 @@ svg#labels {
   fill: white;
   opacity: 0.2; }
 
-#danube-m, #dnister-m, #wisla-m, #bug-m, #dnipro-m, #don-m {
-  height: 500px;
-  width: 90%;
-  margin-left: 5%;
-  margin-top: 50px; }
-
-.leaflet-container {
-  background: #080808;
-  outline: 0;
-  margin-bottom: 150px; }
-
-div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-overlay-pane > svg:nth-child(1) > g:nth-child(1) > path:nth-child(1) {
-  stroke: #181818;
-  fill: #494949; }
-
-.leaflet-control-zoom-out.leaflet-disabled, .leaflet-control-zoom-in.leaflet-disabled {
-  display: none; }
-
-a.leaflet-control-zoom-in {
-  display: none; }
-
-#danube-m > div.leaflet-pane.leaflet-map-pane > div.leaflet-pane.leaflet-overlay-pane > svg > g:nth-child(1) > path {
-  pointer-events: none; }
-
 #texturePetals {
-  width: 30px;
-  height: 18px;
-  margin: 0 0 0 10px !important;
-  border: none; }
+  width: 25px;
+  height: 13px;
+  margin: 10px 0 0 10px !important;
+  border: none;
+  opacity: 0.7; }
 
 /*# sourceMappingURL=styles.css.map */

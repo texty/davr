@@ -38,13 +38,10 @@ var callTable = function (key) {
                 return "id"+d.companyID
             });
 
-
-
         rows.append('td')
             .text(function (d) {
                 return d.companyID;
             });
-
 
         rows.append('td')
             .text(function (d) {
@@ -52,9 +49,7 @@ var callTable = function (key) {
             });
 
         rows.append('td')
-            .text(function (d) {
-                return d.year2018;
-            })
+            .text(function (d) { return d.year2018; })
             .style("text-align", "center");
 
 
