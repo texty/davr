@@ -180,7 +180,8 @@ div#donors {
   @media (max-width: 812px) and (orientation: portrait) {
     #main-viz {
       display: block;
-      height: max-content; } }
+      height: max-content;
+      max-height: max-content; } }
 
 #button-container {
   width: 100%;
@@ -192,7 +193,8 @@ div#donors {
   cursor: pointer;
   width: 50px;
   height: 50px;
-  margin-right: 20px;
+  margin-right: 10px;
+  margin-left: 10px;
   background-size: cover; }
 
 .zoom-in {
