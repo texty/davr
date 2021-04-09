@@ -203,7 +203,7 @@ div#donors {
 .zoom-out {
   background: url(../img/zoom-out.png); }
 
-.switch {
+.switch, #show-english {
   outline: none;
   margin: 10px 0;
   height: auto;
@@ -593,5 +593,15 @@ g.tick {
   margin: 10px 0 0 10px !important;
   border: none;
   opacity: 0.7; }
+
+#english {
+  display: none; }
+
+#show-english {
+  width: max-content;
+  max-width: 96%;
+  cursor: pointer;
+  margin: 30px auto;
+  font-size: 16px; }
 
 /*# sourceMappingURL=styles.css.map */

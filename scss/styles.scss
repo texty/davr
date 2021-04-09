@@ -265,7 +265,7 @@ div#donors {
 }
 
 
-.switch {
+.switch, #show-english {
   outline: none;
   margin:10px 0;
   height: auto;
@@ -832,7 +832,14 @@ g.tick {
   opacity: 0.7;
 }
 
+#english {
+  display:none;
+}
 
-
-
-
+#show-english {
+  width: max-content;
+  max-width: 96%;
+  cursor:pointer;
+  margin:30px auto;
+  font-size:16px;
+}
