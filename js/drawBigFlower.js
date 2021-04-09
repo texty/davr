@@ -75,7 +75,6 @@ function drawBigFlower(IdForChart) {
 }
 
 
-
 function bigPetalPath(d) {
     var angle = (d.endAngle - d.startAngle) / 3,
         s = polarToCartesian(-angle, bigradius),
@@ -88,18 +87,7 @@ function bigPetalPath(d) {
     return "M0,0Q" + Math.round(c1.x) + "," + Math.round(c1.y * 3) + " " + Math.round(m.x + r) + "," + Math.round(m.y) + "Q" + Math.round(c2.x) + "," + Math.round(c2.y * 3) + " " + Math.round(0) + "," + Math.round(0) + "Z";
 }
 
-//
-// function r(angle) {
-//     return "rotate(" + (angle / Math.PI * 180) + ")";
-// }
-//
-// function polarToCartesian(angle, radius) {
-//     return {
-//         x: Math.cos(angle) * radius,
-//         y: Math.sin(angle) * radius
-//     };
-// }
-/* end of flowers */
+
 
 d3.select("#big-flower")
     .append("p")

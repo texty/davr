@@ -214,37 +214,6 @@
 
 <div id="clone"></div>
 
-
-
-<!--<div id="mobileMaps">-->
-    <!--<p style="width:90%; margin-left:5%;">Увага! Ви переглядаєте мобільну версію, без інтерактивності. Для того, щоб побачити деталі, використовуйте десктоп. Блакитні пелюстки квіток означають, що середнє значення показника якості в межах норми, рожеві - перевищення норми.</p>-->
-
-    <!--<h5 class="mob">Дунай</h5>-->
-    <!--<div id="danube-m"></div>-->
-
-
-    <!--<h5 class="mob">Дністер</h5>-->
-    <!--<div id="dnister-m"></div>-->
-
-
-    <!--<h5 class="mob">Вісла</h5>-->
-    <!--<div id="wisla-m"></div>-->
-
-
-    <!--<h5 class="mob">Південний Буг</h5>-->
-    <!--<div id="bug-m"></div>-->
-
-
-    <!--<h5 class="mob">Дніпро</h5>-->
-    <!--<p style="width:90%; margin-left:5%;">Після кліку карту можна буде зсунути вліво-вправо та вверх-вниз, щоб побачити приховану частину басейну.</p>-->
-    <!--<div id="dnipro-m"></div>-->
-
-    <!--<h5 class="mob">Дон</h5>-->
-    <!--<div id="don-m"></div>-->
-<!--</div>-->
-
-
-
 <div id="donors-mob">
     <img style="width:150px" src="img/logo/USAID.png">
     <img style="width:70px" src="img/logo/UKAID.jpg">
@@ -261,7 +230,6 @@
             <img id="texturePetals" src="img/eye-white.png"/>
             <span class="close">&times;</span>
         </div>
-        <!--<span class="close">&times;</span>-->
         <p id="petalsData"></p>
         <div id="myModalGrid">
             <div id="big-flower"></div>
@@ -364,13 +332,6 @@
                         .scale(zoom_scale)
                         .translate(translate[0]/zoom_scale,translate[1]/zoom_scale)
                 );
-
-//        var t = d3.zoomIdentity
-//                .translate(0, 0)
-//                .scale(1);
-//
-//        d3.select("#body")
-//                .call(zoom.transform, t);
 
         var filteredArray = riversNames.filter(function (obj) {
             return obj.value === riverForDrawId;
